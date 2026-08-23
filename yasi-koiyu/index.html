@@ -526,15 +526,17 @@
   /* === done button states (bigger, white to green) === */
   .btn-done{
     padding:12px 20px !important; font-size:15px !important; font-weight:600 !important;
-    background:rgba(255,255,255,.08) !important; border:2px solid rgba(255,255,255,.2) !important;
+    background:rgba(255,255,255,.08) !important; border:2px solid rgba(255,255,255,.25) !important;
     color:var(--ink) !important; border-radius:999px !important;
     transition:all .25s ease; cursor:pointer;
   }
   .btn-done:hover{background:rgba(255,255,255,.14) !important}
   .btn-done.answered{
-    background:rgba(168,230,180,.25) !important; border-color:var(--good) !important;
-    color:var(--good) !important;
+    background:var(--good) !important; border-color:var(--good) !important;
+    color:#0a1220 !important; font-weight:700 !important;
+    box-shadow:0 4px 14px rgba(64,196,99,.35);
   }
+  .btn-done.answered:hover{ background:var(--good) !important; }
 
   /* === question heatmap === */
   .heatmap-tabs{display:flex;gap:8px;margin:0 0 16px}
@@ -1296,7 +1298,8 @@ async function startRec(){
           const q = doc[currentIdx];
           if(q){
             logPractice(label, q.topic, "Part 1");
-            toast("✅ 录制完成，已自动记录今日进度");
+            updateDoneButtonStates();
+            toast("✅ 录制完成，已自动标记今日进度");
           }
         }
       }

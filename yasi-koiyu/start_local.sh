@@ -47,7 +47,7 @@ if [ ! -f "10.110.218.198+1.pem" ] || [ ! -f "10.110.218.198+1-key.pem" ]; then
 fi
 
 echo "[1/1] Starting HTTPS server on port 8996 ..."
-BRAND9_TLS=1 python server.py >> "$PROJ_DIR/server.log" 2>&1 &
+BRAND9_TLS=1 node server.js >> "$PROJ_DIR/server.log" 2>&1 &
 SERVER_PID=$!
 sleep 2
 

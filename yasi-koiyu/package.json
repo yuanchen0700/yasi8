@@ -1,0 +1,14 @@
+{
+  "name": "yasi-koiyu",
+  "version": "2.2.0",
+  "private": true,
+  "description": "brand9 雅思口语练习应用 (Node.js 后端，零第三方依赖)",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=22.5.0"
+  }
+}

@@ -43,12 +43,12 @@ fi
 
 echo "=================== brand9 launcher ==================="
 
-# 1) Python HTTP server (port 8996)
+# 1) Node.js HTTP server (port 8996)
 # Logs go to server.log (NOT the console pipe): if this script's parent shell
 # dies, the orphaned server keeps writing to a file instead of a broken pipe,
 # which previously made the server unresponsive ("empty reply").
 echo "[1/2] Starting server on http://127.0.0.1:8996 ..."
-python server.py >> "$PROJ_DIR/server.log" 2>&1 &
+node server.js >> "$PROJ_DIR/server.log" 2>&1 &
 SERVER_PID=$!
 sleep 2
 # NOTE: use bash redirect >/dev/null, NOT curl -o /dev/null (MSYS curl -o misbehaves, exit 23)

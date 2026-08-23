@@ -1283,10 +1283,21 @@ async function startRec(){
         const activeTab = document.querySelector(".tab-btn.active")?.dataset.tab;
         if(activeTab === "p23"){
           const q = p23Data[p23Idx];
-          if(q) logPractice(label, q.topic, q.section);
+          if(q){
+            logPractice(label, q.topic, q.section);
+            // 自动标记「已完成」：与点击「标记已完成」效果一致，免去手动点击
+            const today = new Date().toISOString().substring(0,10);
+            const done = getPracticeLog().some(e => e.label === q.label && e.date === today);
+            const btn = $("#p23DoneBtn");
+            if(btn){ btn.classList.toggle("answered", done); btn.textContent = done ? "✅ 今日已完成" : "□ 标记已完成"; }
+            toast("✅ 录制完成，已自动标记今日进度");
+          }
         } else {
           const q = doc[currentIdx];
-          if(q) logPractice(label, q.topic, "Part 1");
+          if(q){
+            logPractice(label, q.topic, "Part 1");
+            toast("✅ 录制完成，已自动记录今日进度");
+          }
         }
       }
     })();

@@ -78,10 +78,32 @@ SMTP_PASSWORD = os.environ.get("DW_SHOP_SMTP_PASSWORD", _DWSHOP_ENV.get("DW_SHOP
 MAIL_FROM = os.environ.get("DW_SHOP_MAIL_FROM", _DWSHOP_ENV.get("DW_SHOP_MAIL_FROM", "")) or SMTP_USER
 
 
+def get_smtp_creds():
+    """Return (user, password) for sending mail.
+
+    Precedence: process env / dw-shop .env, then the admin-configured QQ
+    email + authorization key stored in the `kv` table (set via admin panel).
+    """
+    user = os.environ.get("DW_SHOP_SMTP_USER", _DWSHOP_ENV.get("DW_SHOP_SMTP_USER", ""))
+    pw = os.environ.get("DW_SHOP_SMTP_PASSWORD", _DWSHOP_ENV.get("DW_SHOP_SMTP_PASSWORD", ""))
+    if user and pw:
+        return user, pw
+    try:
+        with db() as conn:
+            u = conn.execute("SELECT v FROM kv WHERE k='smtp_user'").fetchone()
+            p = conn.execute("SELECT v FROM kv WHERE k='smtp_pass'").fetchone()
+            if u and u["v"] and p and p["v"]:
+                return u["v"], p["v"]
+    except Exception:
+        pass
+    return "", ""
+
+
 def send_verification_email(email: str, code: str):
     """Send the 6-digit code email; returns None on success or an error message."""
-    if not (SMTP_USER and SMTP_PASSWORD):
-        return "SMTP 未配置（请检查 dw-shop/.env 的 DW_SHOP_SMTP_*）"
+    smtp_user, smtp_pass = get_smtp_creds()
+    if not (smtp_user and smtp_pass):
+        return "SMTP 未配置（请在管理员后台填写 QQ 邮箱与授权码）"
     body_html = f"""<div style="max-width:520px;margin:0 auto;font-family:-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;color:#1f2328;background:#f6f7f9;padding:20px;">
   <div style="background:#ffffff;border-radius:14px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.08);">
     <div style="background:linear-gradient(135deg,#1a1f2e,#2d3550);color:#fff;padding:22px 26px;">
@@ -102,11 +124,11 @@ def send_verification_email(email: str, code: str):
 </div>"""
     msg = MIMEText(body_html, "html", "utf-8")
     msg["Subject"] = "【brand9】邮箱注册验证码"
-    msg["From"] = MAIL_FROM
+    msg["From"] = smtp_user
     msg["To"] = email
     try:
         with smtplib.SMTP_SSL(SMTP_HOST, SMTP_PORT, timeout=15) as server:
-            server.login(SMTP_USER, SMTP_PASSWORD)
+            server.login(smtp_user, smtp_pass)
             server.send_message(msg)
         return None
     except Exception as e:
@@ -133,7 +155,11 @@ def init_db():
                 username   TEXT UNIQUE NOT NULL,
                 pass_salt  TEXT NOT NULL,
                 pass_hash  TEXT NOT NULL,
-                created_at TEXT NOT NULL
+                created_at TEXT NOT NULL,
+                email      TEXT,
+                role       TEXT NOT NULL DEFAULT 'user',
+                parent_id  INTEGER,
+                note       TEXT
             );
             CREATE TABLE IF NOT EXISTS user_state (
                 user_id    INTEGER NOT NULL,
@@ -154,7 +180,19 @@ def init_db():
         cols = [r["name"] for r in conn.execute("PRAGMA table_info(users)").fetchall()]
         if "email" not in cols:
             conn.execute("ALTER TABLE users ADD COLUMN email TEXT")
+        if "role" not in cols:
+            conn.execute("ALTER TABLE users ADD COLUMN role TEXT NOT NULL DEFAULT 'user'")
+        if "parent_id" not in cols:
+            conn.execute("ALTER TABLE users ADD COLUMN parent_id INTEGER")
+        if "note" not in cols:
+            conn.execute("ALTER TABLE users ADD COLUMN note TEXT")
         conn.execute("CREATE UNIQUE INDEX IF NOT EXISTS idx_users_email ON users(email)")
+        conn.execute(
+            """CREATE TABLE IF NOT EXISTS kv (
+                   k TEXT PRIMARY KEY,
+                   v TEXT
+               );"""
+        )
     print(f"[db] ready at {DB_PATH}")
 
 
@@ -248,7 +286,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             return None
         with db() as conn:
             row = conn.execute(
-                "SELECT id, username FROM users WHERE id = ?", (uid,)
+                "SELECT id, username, role FROM users WHERE id = ?", (uid,)
             ).fetchone()
         if row is None:
             self._fail("用户不存在", status=401)
@@ -274,6 +312,22 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             return self._api_state_sync()
         if path == "/api/state/clear" and method == "POST":
             return self._api_state_clear()
+        if path == "/api/admin/me" and method == "GET":
+            return self._api_admin_me()
+        if path == "/api/admin/accounts" and method == "GET":
+            return self._api_admin_accounts()
+        if path == "/api/admin/accounts" and method == "POST":
+            return self._api_admin_create()
+        if path == "/api/admin/smtp" and method == "GET":
+            return self._api_admin_smtp_get()
+        if path == "/api/admin/smtp" and method == "PUT":
+            return self._api_admin_smtp_set()
+        m = re.match(r"^/api/admin/accounts/(\d+)$", path)
+        if m and method == "PUT":
+            return self._api_admin_update(int(m.group(1)))
+        m = re.match(r"^/api/admin/accounts/(\d+)/reset$", path)
+        if m and method == "POST":
+            return self._api_admin_reset(int(m.group(1)))
         self._fail("未知接口: %s %s" % (method, path), status=404)
 
     def _api_send_code(self):
@@ -425,6 +479,143 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             conn.execute("DELETE FROM user_state WHERE user_id = ?", (user["id"],))
         return self._json({"ok": True})
 
+    # ----------------------------------------------------------- admin
+    def _require_admin(self):
+        user = self._auth()
+        if user is None:
+            return None
+        if user["role"] != "admin":
+            self._fail("需要管理员权限", status=403)
+            return None
+        return user
+
+    def _is_managed(self, conn, admin, uid):
+        """Admin may manage any account (single-admin model)."""
+        row = conn.execute("SELECT id FROM users WHERE id = ?", (uid,)).fetchone()
+        return row is not None
+
+    def _api_admin_me(self):
+        user = self._auth()
+        if user is None:
+            return
+        return self._json({"ok": True, "username": user["username"], "role": user["role"]})
+
+    def _api_admin_accounts(self):
+        admin = self._require_admin()
+        if admin is None:
+            return
+        with db() as conn:
+            rows = conn.execute(
+                "SELECT id, username, email, note, created_at, role, parent_id "
+                "FROM users ORDER BY created_at"
+            ).fetchall()
+        return self._json({"ok": True, "accounts": [dict(r) for r in rows]})
+
+    def _api_admin_create(self):
+        admin = self._require_admin()
+        if admin is None:
+            return
+        data = self._read_json()
+        username = str(data.get("username") or "").strip()
+        password = str(data.get("password") or "")
+        email = str(data.get("email") or "").strip().lower()
+        note = str(data.get("note") or "")
+        if not (3 <= len(username) <= 32):
+            return self._fail("用户名需为 3-32 个字符")
+        if not (6 <= len(password) <= 128):
+            return self._fail("密码需为 6-128 个字符")
+        if email and not EMAIL_RE.match(email):
+            return self._fail("邮箱格式不正确")
+        salt = secrets.token_hex(16)
+        pw_hash = hash_password(password, salt)
+        try:
+            with db() as conn:
+                cur = conn.execute(
+                    "INSERT INTO users (username, pass_salt, pass_hash, created_at, email, role, parent_id, note) "
+                    "VALUES (?,?,?,?,?,?,?,?)",
+                    (username, salt, pw_hash, time.strftime("%Y-%m-%d %H:%M:%S"),
+                     email or None, "user", admin["id"], note),
+                )
+                uid = cur.lastrowid
+        except sqlite3.IntegrityError:
+            return self._fail("用户名已被注册", status=409)
+        return self._json({"ok": True, "id": uid, "username": username})
+
+    def _api_admin_reset(self, uid):
+        admin = self._require_admin()
+        if admin is None:
+            return
+        if uid == admin["id"]:
+            return self._fail("不能重置自己的密码")
+        data = self._read_json()
+        password = str(data.get("password") or "")
+        if not (6 <= len(password) <= 128):
+            return self._fail("密码需为 6-128 个字符")
+        with db() as conn:
+            if not self._is_managed(conn, admin, uid):
+                return self._fail("无权限操作该账号", status=403)
+            salt = secrets.token_hex(16)
+            pw_hash = hash_password(password, salt)
+            conn.execute(
+                "UPDATE users SET pass_salt = ?, pass_hash = ? WHERE id = ?",
+                (salt, pw_hash, uid),
+            )
+        return self._json({"ok": True})
+
+    def _api_admin_update(self, uid):
+        admin = self._require_admin()
+        if admin is None:
+            return
+        data = self._read_json()
+        note = data.get("note")
+        email = data.get("email")
+        with db() as conn:
+            if not self._is_managed(conn, admin, uid):
+                return self._fail("无权限操作该账号", status=403)
+            if note is not None:
+                conn.execute("UPDATE users SET note = ? WHERE id = ?", (str(note), uid))
+            if email is not None:
+                email = str(email).strip().lower()
+                if email and not EMAIL_RE.match(email):
+                    return self._fail("邮箱格式不正确")
+                conn.execute("UPDATE users SET email = ? WHERE id = ?", (email or None, uid))
+        return self._json({"ok": True})
+
+    def _api_admin_smtp_get(self):
+        admin = self._require_admin()
+        if admin is None:
+            return
+        with db() as conn:
+            u = conn.execute("SELECT v FROM kv WHERE k='smtp_user'").fetchone()
+            p = conn.execute("SELECT v FROM kv WHERE k='smtp_pass'").fetchone()
+        return self._json({
+            "ok": True,
+            "qq_email": u["v"] if (u and u["v"]) else "",
+            "qq_key": p["v"] if (p and p["v"]) else "",
+        })
+
+    def _api_admin_smtp_set(self):
+        admin = self._require_admin()
+        if admin is None:
+            return
+        data = self._read_json()
+        qq_email = str(data.get("qq_email") or "").strip()
+        qq_key = str(data.get("qq_key") or "").strip()
+        if qq_email and not EMAIL_RE.match(qq_email):
+            return self._fail("QQ 邮箱格式不正确")
+        with db() as conn:
+            conn.execute(
+                "INSERT INTO kv (k, v) VALUES ('smtp_user', ?) "
+                "ON CONFLICT(k) DO UPDATE SET v = excluded.v",
+                (qq_email,),
+            )
+            conn.execute(
+                "INSERT INTO kv (k, v) VALUES ('smtp_pass', ?) "
+                "ON CONFLICT(k) DO UPDATE SET v = excluded.v",
+                (qq_key,),
+            )
+        return self._json({"ok": True})
+
     # -- HTTP verbs ---------------------------------------------------------
     def do_GET(self):
         if self.path.split("?")[0].startswith("/api/"):
@@ -433,6 +624,9 @@ class Handler(http.server.SimpleHTTPRequestHandler):
 
     def do_POST(self):
         return self._api("POST")
+
+    def do_PUT(self):
+        return self._api("PUT")
 
 
 if __name__ == "__main__":

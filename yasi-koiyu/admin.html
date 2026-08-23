@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>brand9 · 管理员后台</title>
+<style>
+  :root{ --bg:#0f1320; --card:#1a2030; --line:#2a3142; --txt:#e6e9f0; --mut:#8b93a7; --acc:#ffbca8; --ok:#40c463; --bad:#f85149; }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--txt);font-family:-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;padding:24px}
+  h1{font-size:20px;margin:0 0 4px}
+  h2{font-size:15px;margin:24px 0 12px;color:var(--acc)}
+  .sub{color:var(--mut);font-size:13px;margin-bottom:16px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:18px}
+  input,button,textarea{font:inherit}
+  input,textarea{width:100%;background:#0c1019;border:1px solid var(--line);color:var(--txt);border-radius:9px;padding:9px 11px;margin:4px 0 10px}
+  label{font-size:13px;color:var(--mut);display:block;margin-top:6px}
+  button{cursor:pointer;border:none;border-radius:9px;padding:9px 16px;background:var(--acc);color:#1a1f2e;font-weight:600}
+  button.ghost{background:transparent;border:1px solid var(--line);color:var(--txt);font-weight:500}
+  button.danger{background:transparent;border:1px solid var(--bad);color:var(--bad);font-weight:500;padding:5px 10px;font-size:12px}
+  button.sm{padding:5px 10px;font-size:12px}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th,td{text-align:left;padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{color:var(--mut);font-weight:500}
+  .tag{display:inline-block;padding:2px 8px;border-radius:20px;font-size:11px;background:#2a3142;color:var(--mut)}
+  .tag.admin{background:rgba(255,188,168,.15);color:var(--acc)}
+  .row{display:flex;gap:12px;flex-wrap:wrap}
+  .row>*{flex:1;min-width:180px}
+  #login{max-width:360px;margin:12vh auto}
+  .msg{font-size:13px;margin-top:8px;min-height:18px}
+  .ok{color:var(--ok)} .bad{color:var(--bad)}
+  .hide{display:none}
+  code{background:#0c1019;padding:1px 6px;border-radius:5px;color:var(--acc)}
+</style>
+</head>
+<body>
+
+<!-- login -->
+<div id="login" class="card hide">
+  <h1>管理员登录</h1>
+  <div class="sub">使用管理员账号登录以管理用户与注册机配置</div>
+  <label>用户名</label><input id="luser" placeholder="devin668">
+  <label>密码</label><input id="lpass" type="password" placeholder="密码">
+  <button onclick="doLogin()">登录</button>
+  <div id="lmsg" class="msg"></div>
+</div>
+
+<!-- panel -->
+<div id="panel" class="hide">
+  <div class="row" style="align-items:center">
+    <div><h1>管理员后台</h1><div class="sub">当前管理员：<span id="me"></span></div></div>
+    <div style="text-align:right"><button class="ghost" onclick="doLogout()">退出登录</button></div>
+  </div>
+
+  <div class="card">
+    <h2>注册机 SMTP 配置（QQ 邮箱 + 授权码）</h2>
+    <div class="sub">填写后，注册流程的「邮箱验证码」才能正常发送。授权码不是 QQ 密码，是在 QQ 邮箱设置里生成的。</div>
+    <div class="row">
+      <div><label>QQ 邮箱</label><input id="smtp_email" placeholder="123456@qq.com"></div>
+      <div><label>授权码（密钥）</label><input id="smtp_key" type="password" placeholder="邮箱设置里生成的授权码"></div>
+    </div>
+    <button onclick="saveSmtp()">保存 SMTP 配置</button>
+    <div id="smtpmsg" class="msg"></div>
+  </div>
+
+  <div class="card">
+    <h2>账号管理</h2>
+    <div class="sub">可新建账号、重置密码、添加邮箱备注。所有账号均在本管理员名下。</div>
+    <table>
+      <thead><tr><th>用户名</th><th>角色</th><th>邮箱</th><th>备注</th><th>创建时间</th><th>操作</th></tr></thead>
+      <tbody id="acctbody"></tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>新建账号</h2>
+    <div class="row">
+      <div><label>用户名</label><input id="nuser" placeholder="3-32 字符"></div>
+      <div><label>密码</label><input id="npass" type="password" placeholder="6-128 字符"></div>
+    </div>
+    <div class="row">
+      <div><label>邮箱（可选）</label><input id="nemail" placeholder="可空"></div>
+      <div><label>备注（可选）</label><input id="nnote" placeholder="如：张三/iPad 端"></div>
+    </div>
+    <button onclick="createAcct()">创建账号</button>
+    <div id="nmsg" class="msg"></div>
+  </div>
+</div>
+
+<script>
+const TKEY = "admin_token";
+const $ = s => document.querySelector(s);
+const api = (path, opts={}) => {
+  const t = localStorage.getItem(TKEY);
+  opts.headers = Object.assign({"Content-Type":"application/json"}, opts.headers||{});
+  if (t) opts.headers["Authorization"] = "Bearer " + t;
+  return fetch(path, opts).then(r => r.json());
+};
+
+async function boot(){
+  const t = localStorage.getItem(TKEY);
+  if (!t){ showLogin(); return; }
+  const me = await api("/api/admin/me");
+  if (me.ok && me.role === "admin"){ showPanel(me.username); }
+  else { localStorage.removeItem(TKEY); showLogin(); }
+}
+function showLogin(){ $("#login").classList.remove("hide"); $("#panel").classList.add("hide"); }
+async function showPanel(name){
+  $("#login").classList.add("hide"); $("#panel").classList.remove("hide");
+  $("#me").textContent = name;
+  await loadAccounts(); await loadSmtp();
+}
+function doLogout(){ localStorage.removeItem(TKEY); location.reload(); }
+
+async function doLogin(){
+  const r = await api("/api/login", {method:"POST", body: JSON.stringify({username:$("#luser").value.trim(), password:$("#lpass").value})});
+  if (r.ok){
+    localStorage.setItem(TKEY, r.token);
+    const me = await api("/api/admin/me");
+    if (me.ok && me.role === "admin"){ showPanel(me.username); }
+    else { $("#lmsg").className="msg bad"; $("#lmsg").textContent="该账号不是管理员"; localStorage.removeItem(TKEY); }
+  } else { $("#lmsg").className="msg bad"; $("#lmsg").textContent = r.error || "登录失败"; }
+}
+
+async function loadAccounts(){
+  const r = await api("/api/admin/accounts");
+  if (!r.ok){ return; }
+  const tb = $("#acctbody"); tb.innerHTML = "";
+  for (const a of r.accounts){
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${esc(a.username)}</td>
+      <td><span class="tag ${a.role==='admin'?'admin':''}">${a.role==='admin'?'管理员':'用户'}</span></td>
+      <td>${esc(a.email||'—')}</td>
+      <td>${esc(a.note||'—')}</td>
+      <td>${esc(a.created_at||'')}</td>
+      <td>
+        <button class="danger sm" onclick="resetPw(${a.id},'${esc(a.username)}')">重置密码</button>
+        <button class="ghost sm" onclick="editNote(${a.id},'${esc(a.username)}')">备注/邮箱</button>
+      </td>`;
+    tb.appendChild(tr);
+  }
+}
+async function loadSmtp(){
+  const r = await api("/api/admin/smtp");
+  if (r.ok){ $("#smtp_email").value = r.qq_email||""; $("#smtp_key").value = r.qq_key||""; }
+}
+async function saveSmtp(){
+  const r = await api("/api/admin/smtp", {method:"PUT", body: JSON.stringify({qq_email:$("#smtp_email").value.trim(), qq_key:$("#smtp_key").value})});
+  $("#smtpmsg").className = "msg " + (r.ok?"ok":"bad");
+  $("#smtpmsg").textContent = r.ok ? "已保存 ✅" : (r.error||"保存失败");
+}
+async function createAcct(){
+  const body = {username:$("#nuser").value.trim(), password:$("#npass").value, email:$("#nemail").value.trim(), note:$("#nnote").value.trim()};
+  const r = await api("/api/admin/accounts", {method:"POST", body: JSON.stringify(body)});
+  $("#nmsg").className = "msg " + (r.ok?"ok":"bad");
+  $("#nmsg").textContent = r.ok ? ("已创建：" + body.username + " ✅") : (r.error||"创建失败");
+  if (r.ok){ $("#nuser").value="";$("#npass").value="";$("#nemail").value="";$("#nnote").value=""; await loadAccounts(); }
+}
+async function resetPw(id, name){
+  const pw = prompt("为账号 ["+name+"] 设置新密码（6-128 字符）：");
+  if (!pw) return;
+  const r = await api("/api/admin/accounts/"+id+"/reset", {method:"POST", body: JSON.stringify({password:pw})});
+  alert(r.ok ? "已重置 ✅" : (r.error||"失败"));
+}
+async function editNote(id, name){
+  const cur = await api("/api/admin/accounts");
+  const a = cur.accounts.find(x=>x.id===id) || {};
+  const note = prompt("账号 ["+name+"] 备注：", a.note||"");
+  if (note===null) return;
+  const email = prompt("账号 ["+name+"] 邮箱：", a.email||"");
+  if (email===null) return;
+  const r = await api("/api/admin/accounts/"+id, {method:"PUT", body: JSON.stringify({note, email})});
+  alert(r.ok ? "已更新 ✅" : (r.error||"失败"));
+  if (r.ok) await loadAccounts();
+}
+function esc(s){ return String(s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+boot();
+</script>
+</body>
+</html>

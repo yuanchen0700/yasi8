@@ -1055,7 +1055,7 @@ function render(){
   refreshRecButtons();
 }
 function toggleStar(label){ stars[label]=!stars[label]; saveStars(); render(); toast(stars[label]?"已收藏 ⭐":"取消收藏"); }
-function switchTo(i){ if(i<0||i>=doc.length) return; currentIdx=i; render(); }
+function switchTo(i){ if(i<0||i>=doc.length) return; currentIdx=i; render(); savePosition(); }
 function markSaved(){ try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(doc)); }catch(e){} setStatus("saved"); }
 
 const audio = () => $("#sharedAudio");
@@ -1535,6 +1535,37 @@ let p23Stars  = loadStarsP23();
 let p23Reveal = false;
 const STARS_P23_KEY = "brand9::stars_p23::v1";
 
+// --- Resume position (local, survives refresh / close) ---
+const POS_KEY = "brand9::pos::v1";
+let _pendingP23Idx = null;
+function savePosition(){
+  try{
+    const t = document.querySelector(".tab-btn.active");
+    const tab = (t && t.dataset) ? t.dataset.tab : "p1";
+    localStorage.setItem(POS_KEY, JSON.stringify({tab, p1: currentIdx, p23: p23Idx, ts: Date.now()}));
+  }catch(e){}
+}
+function _restorePos(){ try{ return JSON.parse(localStorage.getItem(POS_KEY)||"null"); }catch(e){ return null; } }
+function maybeRestoreP23(){
+  if(_pendingP23Idx === null) return;
+  const t = document.querySelector(".tab-btn.active");
+  if(p23Data.length && t && t.dataset && t.dataset.tab === "p23"){
+    p23Idx = Math.max(0, Math.min(_pendingP23Idx, p23Data.length - 1));
+    renderP23(); renderP23Sidebar();
+    _pendingP23Idx = null;
+  }
+}
+function restorePosition(){
+  const pos = _restorePos();
+  if(!pos) return;
+  if(typeof pos.p1 === "number" && pos.p1 >= 0 && pos.p1 < doc.length) currentIdx = pos.p1;
+  _pendingP23Idx = (typeof pos.p23 === "number") ? pos.p23 : null;
+  const tab = (pos.tab === "p23" || pos.tab === "overview") ? pos.tab : "p1";
+  if(tab === "p23"){ switchTab("p23"); maybeRestoreP23(); }
+  else if(tab === "overview"){ switchTab("overview"); }
+  else { switchTab("p1"); render(); }
+}
+
 function loadStarsP23(){ try{ return JSON.parse(localStorage.getItem(STARS_P23_KEY)||"{}"); }catch(e){ return {}; } }
 function saveStarsP23(){ localStorage.setItem(STARS_P23_KEY, JSON.stringify(p23Stars)); trackChange(STARS_P23_KEY); }
 
@@ -1552,6 +1583,7 @@ function loadP23Data(){
       localStorage.setItem("brand9::p23data::v1", JSON.stringify(data));
       renderP23();
       renderP23Sidebar();
+      maybeRestoreP23();
     })
     .catch(() => {});
 }
@@ -1574,7 +1606,7 @@ function renderP23Sidebar(filter){
     const item = document.createElement("div");
     item.className = "qitem" + (p2 === p23Idx ? " active" : "");
     item.innerHTML = `<div class="lbl">P2</div><div class="qt">${escape(topic)}</div>`;
-    item.addEventListener("click", () => { p23Idx = p2; renderP23(); renderP23Sidebar(); });
+      item.addEventListener("click", () => { p23Idx = p2; renderP23(); renderP23Sidebar(); savePosition(); });
     tree.appendChild(item);
   });
   $("#p23Total").textContent = p23Data.length;
@@ -1811,8 +1843,8 @@ function renderOverview(){
 function bindP23(){
   loadP23Data();
   $("#filterP23").addEventListener("input", e => { renderP23Sidebar(e.target.value); });
-  $("#p23PrevBtn").addEventListener("click", ()=>{ p23Idx = Math.max(0, p23Idx-1); renderP23(); renderP23Sidebar(); });
-  $("#p23NextBtn").addEventListener("click", ()=>{ p23Idx = Math.min(p23Data.length-1, p23Idx+1); renderP23(); renderP23Sidebar(); });
+    $("#p23PrevBtn").addEventListener("click", ()=>{ p23Idx = Math.max(0, p23Idx-1); renderP23(); renderP23Sidebar(); savePosition(); });
+    $("#p23NextBtn").addEventListener("click", ()=>{ p23Idx = Math.min(p23Data.length-1, p23Idx+1); renderP23(); renderP23Sidebar(); savePosition(); });
   $("#p23StarBtn").addEventListener("click", ()=>{
     const q = p23Data[p23Idx];
     p23Stars[q.label] = !p23Stars[q.label];
@@ -2081,6 +2113,7 @@ bindP23();
   const origSwitchTab = switchTab;
   switchTab = function(tab){
     origSwitchTab.call(this, tab);
+    savePosition();
     setTimeout(updateDoneButtonStates, 100);
     if(tab === "overview"){
       setTimeout(()=>{
@@ -2416,6 +2449,8 @@ if(authToken){
     }
   });
 }
+
+restorePosition();
 
 </script>
 </body>

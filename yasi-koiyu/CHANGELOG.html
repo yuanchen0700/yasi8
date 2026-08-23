@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>brand9 · 版本更新历史</title>
+<style>
+  :root{ --bg:#0f1320; --card:#1a2030; --line:#2a3142; --txt:#e6e9f0; --mut:#8b93a7; --acc:#ffbca8; --good:#40c463; }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--txt);font-family:-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;padding:28px 18px;line-height:1.6}
+  .wrap{max-width:760px;margin:0 auto}
+  h1{font-size:22px;margin:0 0 4px}
+  .sub{color:var(--mut);font-size:13px;margin-bottom:22px}
+  a{color:var(--acc);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .ver{display:inline-block;background:rgba(255,188,168,.12);color:var(--acc);font-weight:700;font-size:13px;padding:3px 12px;border-radius:999px;margin-bottom:4px}
+  .date{color:var(--mut);font-size:12px;margin-left:10px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:14px 0}
+  .card h2{font-size:16px;margin:0 0 10px;display:flex;align-items:center;flex-wrap:wrap}
+  ul{margin:6px 0 0;padding-left:20px}
+  li{margin:5px 0;font-size:14px}
+  .tag{display:inline-block;font-size:11px;color:var(--mut);border:1px solid var(--line);border-radius:6px;padding:1px 7px;margin-right:6px}
+  .foot{margin-top:28px;color:var(--mut);font-size:12px;text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>版本更新历史</h1>
+  <div class="sub">brand9 · yasi-koiyu 雅思口语练习 · 每次改进都会在此记录。完整提交记录见 <a href="https://github.com/yuanchen0700/yasi8/commits/main" target="_blank" rel="noopener">GitHub Commits</a>。</div>
+
+  <div class="card">
+    <h2><span class="ver">v2.2.0</span><span class="date">2026-08-23</span></h2>
+    <ul>
+      <li><span class="tag">页脚</span>移除 “edge-tts · 4 口音轮换” 字样，改为可点击的版本号，跳转本更新历史页</li>
+      <li><span class="tag">UI</span>录制结束后「标记已完成」自动变为实心绿“✅ 今日已完成”，Part 1 也实时刷新，无需手动点击</li>
+      <li><span class="tag">体验</span>刷新或关闭页面后，自动恢复到上次所在的标签页与具体题号（本地续学）</li>
+      <li><span class="tag">后台</span>新增管理员后台 <a href="admin.html">/admin.html</a>：账号增删改、重置密码、备注/邮箱</li>
+      <li><span class="tag">注册</span>注册机 SMTP（QQ 邮箱 + 授权码）改为后台配置并入库，修复注册验证码发不出的问题</li>
+      <li><span class="tag">稳定</span>修复带斜杠题目标签的参考答案播放、移除 audio 的 crossorigin；录音结束自动记录练习进度</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2><span class="ver">v2.1.0</span><span class="date">基线版本</span></h2>
+    <ul>
+      <li>Part 1 / Part 2&3 题库浏览与答题</li>
+      <li>edge-tts 参考答案音频、用户录音与回放</li>
+      <li>练习日志记录、总览热力图、收藏、答案显隐</li>
+      <li>页面版本徽标（#verBadge）</li>
+    </ul>
+  </div>
+
+  <div class="foot">本页随版本演进持续更新 · 当前版本 v2.2.0</div>
+</div>
+</body>
+</html>

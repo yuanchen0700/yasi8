@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ '编辑商品' if product else '新增商品' }} - DW Shop</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="{{ url_for('index') }}">DW<span class="dot">.</span>Shop</a>
+    <nav class="admin-nav">
+      <a href="{{ url_for('admin_dashboard') }}">订单</a>
+      <a href="{{ url_for('admin_products') }}">商品</a>
+      <a href="{{ url_for('admin_logout') }}">退出</a>
+    </nav>
+  </div>
+</div>
+<main>
+  <div class="panel" style="max-width: 640px;">
+    <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 18px;">
+      <h1 style="font-size: 22px;">{{ '编辑商品' if product else '新增商品' }}</h1>
+      <button class="btn" type="submit" form="product-form">保存商品</button>
+    </div>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% for category, message in messages %}
+        <div class="flash {{ category }}">{{ message }}</div>
+      {% endfor %}
+    {% endwith %}
+
+    <form id="product-form" method="POST">
+      <div class="field">
+        <label for="title">标题</label>
+        <input id="title" name="title" required value="{{ product['title'] if product else '' }}" placeholder="例如：Python 入门笔记">
+      </div>
+      <div class="field">
+        <label for="subtitle">副标题</label>
+        <input id="subtitle" name="subtitle" value="{{ product['subtitle'] if product else '' }}" placeholder="一句话简介">
+      </div>
+      <div class="field">
+        <label for="category">分类</label>
+        <select id="category" name="category">
+          {% for c in categories %}
+            <option value="{{ c }}" {{ 'selected' if product and product['category'] == c else '' }}>{{ c }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="field">
+        <label for="price">价格（元，0 表示免费）</label>
+        <input id="price" name="price" type="number" step="0.01" min="0" value="{{ '%.2f' | format(product['price']) if product else '0.00' }}">
+      </div>
+      <div class="field">
+        <label for="description">详情描述</label>
+        <textarea id="description" name="description" rows="6" placeholder="写清楚内容包含什么、如何交付、时长等">{{ product['description'] if product else '' }}</textarea>
+      </div>
+      <div class="field">
+        <label>
+          <input type="checkbox" name="active" {{ 'checked' if (product and product['active']) or not product else '' }}>
+          上架出售
+        </label>
+      </div>
+      <button class="btn btn-block" type="submit">保存商品</button>
+    </form>
+
+    {% if product %}
+      <hr style="border: 0; border-top: 1px solid #eceef1; margin: 22px 0;">
+      <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px;">
+        <h2 style="font-size: 16px;">商品图片（{{ images | length }} 张）</h2>
+        <form method="POST" action="{{ url_for('admin_product_cover', pid=product['id']) }}" enctype="multipart/form-data" id="upload-form">
+          <label class="btn btn-ghost" style="cursor: pointer; display: inline-block; margin: 0;">
+            选择图片
+            <input type="file" name="covers" accept="image/png,image/jpeg,image/gif,image/webp" multiple hidden onchange="previewFiles(this)">
+          </label>
+          <button class="btn" type="submit" style="margin-left: 8px;">上传</button>
+        </form>
+      </div>
+
+      <div id="preview-box" style="display: none; gap: 8px; flex-wrap: wrap; margin-bottom: 12px;"></div>
+
+      {% if images %}
+        <div class="img-grid">
+          {% for img in images %}
+            <div class="img-cell {{ 'cover' if img['is_cover'] else '' }}">
+              <img src="{{ img['url'] }}" alt="商品图">
+              <div class="img-actions">
+                {% if not img['is_cover'] %}
+                  <form class="inline-form" method="POST" action="{{ url_for('admin_product_image_cover', pid=product['id'], img_id=img['id']) }}">
+                    <button class="btn btn-small btn-ghost" type="submit">设为封面</button>
+                  </form>
+                {% else %}
+                  <span class="status done" style="display: inline-block;">封面</span>
+                {% endif %}
+                <form class="inline-form" method="POST" action="{{ url_for('admin_product_image_delete', pid=product['id'], img_id=img['id']) }}"
+                      onsubmit="return confirm('确定删除这张图片吗？');">
+                  <button class="btn btn-small btn-danger" type="submit">删除</button>
+                </form>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+        <p class="small muted" style="margin-top: 8px;">第一张图片为商品主图，可上传多张、任选一张设为封面。</p>
+      {% else %}
+        <div class="empty" style="padding: 24px 0;">还没有图片，点右上角「选择图片」上传。</div>
+      {% endif %}
+    {% endif %}
+  </div>
+</main>
+<script>
+function previewFiles(input) {
+  const box = document.getElementById('preview-box');
+  box.innerHTML = '';
+  if (!input.files.length) return;
+  box.style.display = 'flex';
+  Array.from(input.files).forEach(f => {
+    if (!/image\/(png|jpeg|gif|webp)/.test(f.type)) return;
+    const reader = new FileReader();
+    reader.onload = e => {
+      const img = document.createElement('img');
+      img.src = e.target.result;
+      img.style.cssText = 'width:88px;height:88px;object-fit:cover;border-radius:8px;border:1px solid #e5e7eb;';
+      box.appendChild(img);
+    };
+    reader.readAsDataURL(f);
+  });
+}
+</script>
+</body>
+</html>

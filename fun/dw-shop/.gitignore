@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+dwshop.db
+.env
+static/uploads/
+static/qrcodes/

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DW Shop - 小店</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="{{ url_for('index') }}">DW<span class="dot">.</span>Shop</a>
+    <nav class="topbar-links">
+      <span>出售笔记与有趣的服务</span>
+      <a href="{{ url_for('order_query') }}">订单查询</a>
+    </nav>
+  </div>
+</div>
+<main>
+  <div class="hero">
+    <h1>欢迎光临 DW Shop</h1>
+    <p>这里出售我整理的一些笔记与有趣的服务。看中喜欢的商品，拍下并留下联系方式，我会尽快和你联系成交。</p>
+  </div>
+
+  {% if products %}
+    <div class="grid">
+      {% for p in products %}
+        <a class="card" href="{{ url_for('product', pid=p['id']) }}">
+          {% if p['_images'] %}
+            <div class="card-cover" style="background: transparent; padding: 0; height: 160px; overflow: hidden;">
+              <img src="{{ p['_images'][0]['url'] }}" alt="{{ p['title'] }}" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+          {% else %}
+            <div class="card-cover" style="background: {{ p['id'] | cover_class }}">
+              <span>{{ p['category'] | cover_emoji }}</span>
+            </div>
+          {% endif %}
+          <div class="card-body">
+            <span class="badge {{ 'service' if p['category'] == '服务' else '' }}">{{ p['category'] }}</span>
+            <div class="card-title" style="margin-top: 6px;">{{ p['title'] }}</div>
+            {% if p['subtitle'] %}
+              <div class="card-subtitle">{{ p['subtitle'] }}</div>
+            {% endif %}
+            <div class="card-price-row">
+              <span class="price">
+                ¥{{ '%.2f' | format(p['price']) if p['price'] >= 0 else '免费' }}
+                <small>起</small>
+              </span>
+              <span class="btn btn-small" style="pointer-events: none;">看看</span>
+            </div>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="empty">小店正在备货中，敬请期待。</div>
+  {% endif %}
+</main>
+<div class="footer-note">DW Shop · 拍下留言，线下成交</div>
+</body>
+</html>

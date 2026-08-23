@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>课程总目录 · 雅思课程中心</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; height: 100%; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; color: #1f2328; background: #f6f8fa; }
+  a { color: #2c5cdc; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* 顶部 */
+  .topbar { position: fixed; top: 0; left: 0; right: 0; height: 56px; display: flex; align-items: center; padding: 0 24px; border-bottom: 1px solid #e5e7eb; background: #fff; z-index: 10; }
+  .logo { font-weight: 800; font-size: 20px; letter-spacing: -0.5px; color: #111; }
+  .logo span { color: #6b7280; font-weight: 500; }
+  .topbar-right { margin-left: auto; display: flex; gap: 16px; align-items: center; position: relative; }
+  .topbar-right input { border: 1px solid #d1d5db; border-radius: 6px; padding: 6px 10px; font-size: 13px; width: 260px; background: #f9fafb; }
+  .topbar-right input:focus { outline: none; border-color: #2c5cdc; background: #fff; box-shadow: 0 0 0 3px rgba(44,92,220,0.12); }
+  #search-panel { position: absolute; top: 44px; right: 0; width: 380px; max-height: 70vh; overflow-y: auto; background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); padding: 8px 0; z-index: 100; font-size: 13px; }
+  #search-panel .sp-group { padding: 8px 14px 4px; font-size: 11px; color: #6b7280; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px; }
+  #search-panel ul { list-style: none; padding: 0; margin: 0; }
+  #search-panel li a { display: block; padding: 6px 14px; color: #374151; line-height: 1.4; font-size: 12.5px; }
+  #search-panel li a:hover { background: #f3f4f6; color: #1d4ed8; text-decoration: none; }
+  #search-panel .sp-empty { padding: 24px; text-align: center; color: #9ca3af; font-size: 12px; }
+
+  /* 主体 */
+  .layout { padding: 56px 0 80px; min-height: 100vh; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  .hero { padding: 40px 0 28px; }
+  .hero h1 { font-size: 30px; margin: 0 0 8px; letter-spacing: -0.5px; }
+  .hero p { margin: 0; color: #6b7280; font-size: 14px; line-height: 1.7; }
+  .hero .badge { display: inline-block; margin-right: 8px; padding: 3px 10px; border-radius: 999px; background: #eef2ff; color: #4f46e5; font-size: 12px; font-weight: 600; }
+
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+
+  .card { background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 20px 22px; box-shadow: 0 1px 2px rgba(0,0,0,0.03); }
+  .card-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 4px; }
+  .card-title { font-size: 17px; font-weight: 700; color: #111; }
+  .card-title small { display: block; font-size: 12px; font-weight: 500; color: #6b7280; margin-top: 2px; }
+  .card-desc { font-size: 12.5px; color: #6b7280; line-height: 1.6; margin: 6px 0 12px; }
+  .card .enter { flex-shrink: 0; font-size: 12.5px; font-weight: 600; color: #2c5cdc; border: 1px solid #d6e0f8; background: #f5f8ff; border-radius: 6px; padding: 5px 12px; white-space: nowrap; }
+  .card .enter:hover { background: #eaf1ff; text-decoration: none; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chips a { font-size: 12.5px; color: #374151; background: #f6f8fa; border: 1px solid #e9ecef; border-radius: 6px; padding: 4px 10px; line-height: 1.5; }
+  .chips a:hover { background: #eef2ff; border-color: #c7d6f5; color: #1d4ed8; text-decoration: none; }
+
+  .foot { margin-top: 32px; text-align: center; font-size: 12px; color: #9ca3af; }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="logo">雅思课程<span> · 总目录</span></div>
+  <div class="topbar-right">
+    <input id="search-input" placeholder="搜索课程/考点 Ctrl K" autocomplete="off">
+    <div id="search-panel" hidden></div>
+  </div>
+</header>
+<div class="layout">
+  <div class="wrap">
+    <div class="hero">
+      <h1>雅思课程中心</h1>
+      <p><span class="badge">阅读 13 讲</span><span class="badge">听力 8 讲</span><span class="badge">精讲 + 问答双版本</span></p>
+      <p>四个系列共 44 讲内容，全部可以从这里进入。精讲版为完整逐字稿 + 三栏排版，问答精要版为 Q&amp;A 速查。</p>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="card-head">
+          <div class="card-title">雅思阅读 · 精讲版<small>完整逐字稿 · 三栏排版 · 共 14 个文件</small></div>
+          <a class="enter" href="index.html">进入系列 ↗</a>
+        </div>
+        <p class="card-desc">13 讲核心方法逐字稿，涵盖填空、判断、配对、选择、平行阅读法等全部题型。</p>
+        <div class="chips">
+          <a href="lesson-01.html">01 导学课</a>
+          <a href="lesson-02.html">02 填空题专题一</a>
+          <a href="lesson-03.html">03 判断题 TFNG/YNNG</a>
+          <a href="lesson-04.html">04 填空题专题二</a>
+          <a href="lesson-05.html">05 第05讲</a>
+          <a href="lesson-06.html">06 填空专题四</a>
+          <a href="lesson-07.html">07 配对题专题一</a>
+          <a href="lesson-08.html">08 配对题专题二</a>
+          <a href="lesson-09.html">09 配对题专题三</a>
+          <a href="lesson-10.html">10 第10讲</a>
+          <a href="lesson-11.html">11 第11讲</a>
+          <a href="lesson-12.html">12 第12讲</a>
+          <a href="lesson-13.html">13 核心技巧</a>
+          <a href="lesson-14.html">14 进阶阅读</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-title">雅思阅读 · 问答精要版<small>Q&amp;A 速查 · 每讲浓缩考点 · 共 14 个文件</small></div>
+          <a class="enter" href="qa-index.html">进入系列 ↗</a>
+        </div>
+        <p class="card-desc">逐讲问答化速查，把每讲的结论、方法、真题答案浓缩成可快速翻阅的要点。</p>
+        <div class="chips">
+          <a href="qa-01.html">01 导学课</a>
+          <a href="qa-02.html">02 填空专题一</a>
+          <a href="qa-03.html">03 判断题</a>
+          <a href="qa-04.html">04 填空专题二</a>
+          <a href="qa-05.html">05 填空专题三</a>
+          <a href="qa-06.html">06 填空专题四</a>
+          <a href="qa-07.html">07 配对专题一</a>
+          <a href="qa-08.html">08 配对专题二</a>
+          <a href="qa-09.html">09 配对专题三</a>
+          <a href="qa-10.html">10 判断题速查</a>
+          <a href="qa-11.html">11 多选题</a>
+          <a href="qa-12.html">12 单选题</a>
+          <a href="qa-13.html">13 平行阅读法</a>
+          <a href="qa-14.html">14 进阶阅读</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-title">雅思听力 · 精讲版<small>完整逐字稿 · 三栏排版 · 共 8 个文件</small></div>
+          <a class="enter" href="tl-index.html">进入系列 ↗</a>
+        </div>
+        <p class="card-desc">8 讲听力题型方法论，覆盖 Form、地图、表格、单选、多选、填空、配对全题型。</p>
+        <div class="chips">
+          <a href="tl-00.html">00 考试概述</a>
+          <a href="tl-01.html">01 导学课</a>
+          <a href="tl-02.html">02 Form 个人信息表</a>
+          <a href="tl-03.html">03 地图题</a>
+          <a href="tl-04.html">04 表格题</a>
+          <a href="tl-05.html">05 听力单选题</a>
+          <a href="tl-06.html">06 多选题</a>
+          <a href="tl-07.html">07 填空题</a>
+          <a href="tl-08.html">08 题型方法论</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-title">雅思听力 · 问答精要版<small>Q&amp;A 速查 · 每讲浓缩考点 · 共 8 个文件</small></div>
+          <a class="enter" href="qa-tl-index.html">进入系列 ↗</a>
+        </div>
+        <p class="card-desc">听力各讲问答化速查，快速定位题型要点与避坑规则。</p>
+        <div class="chips">
+          <a href="qa-tl-01.html">01 导学课</a>
+          <a href="qa-tl-02.html">02 Form 个人信息表</a>
+          <a href="qa-tl-03.html">03 地图题</a>
+          <a href="qa-tl-04.html">04 表格题</a>
+          <a href="qa-tl-05.html">05 听力单选题</a>
+          <a href="qa-tl-06.html">06 多选题</a>
+          <a href="qa-tl-07.html">07 填空题</a>
+          <a href="qa-tl-08.html">08 配对题</a>
+        </div>
+      </div>
+    </div>
+
+    <p class="foot">共 4 个系列 · 44 讲 · 本页为总目录入口</p>
+  </div>
+</div>
+<script>
+(function(){
+  var input = document.getElementById('search-input');
+  var panel = document.getElementById('search-panel');
+  if (!input || !panel) return;
+  var allLinks = Array.prototype.slice.call(document.querySelectorAll('.chips a'));
+
+  function escHtml(s){
+    return s.replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+  function search(q){
+    q = (q || '').trim();
+    panel.innerHTML = '';
+    if (!q) { panel.hidden = true; return; }
+    var qLower = q.toLowerCase();
+    var hits = allLinks.filter(function(a){
+      return a.textContent.toLowerCase().indexOf(qLower) >= 0;
+    });
+    var parts = [];
+    if (hits.length) {
+      parts.push('<div class="sp-group">课程（' + hits.length + '）</div>');
+      parts.push('<ul>' + hits.map(function(a){
+        return '<li><a href="' + a.getAttribute('href') + '">' + escHtml(a.textContent) + '</a></li>';
+      }).join('') + '</ul>');
+    }
+    if (!parts.length) parts.push('<div class="sp-empty">无匹配结果</div>');
+    panel.innerHTML = parts.join('');
+    panel.hidden = false;
+  }
+  var timer = null;
+  input.addEventListener('input', function(e){
+    clearTimeout(timer);
+    timer = setTimeout(function(){ search(e.target.value); }, 80);
+  });
+  input.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') { input.value = ''; search(''); input.blur(); panel.hidden = true; }
+  });
+  document.addEventListener('click', function(e){
+    if (panel.contains(e.target) || e.target === input) return;
+    panel.hidden = true;
+  });
+  document.addEventListener('keydown', function(e){
+    if ((e.ctrlKey || e.metaKey) && (e.key === 'k' || e.key === 'K')) {
+      e.preventDefault();
+      input.focus();
+      input.select();
+    }
+  });
+  panel.addEventListener('click', function(e){
+    var a = e.target.closest('a');
+    if (a) panel.hidden = true;
+  });
+})();
+</script>
+</body>
+</html>

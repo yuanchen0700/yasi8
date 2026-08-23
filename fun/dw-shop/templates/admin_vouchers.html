@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>卡券管理 - DW Shop</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="{{ url_for('index') }}">DW<span class="dot">.</span>Shop</a>
+    <nav class="admin-nav">
+      <a href="{{ url_for('admin_dashboard') }}">订单</a>
+      <a href="{{ url_for('admin_products') }}">商品</a>
+      <a href="{{ url_for('admin_vouchers') }}" class="active">卡券</a>
+      <a href="{{ url_for('admin_logout') }}">退出</a>
+    </nav>
+  </div>
+</div>
+<main>
+  <h1 style="font-size: 24px;">卡券管理</h1>
+
+  <div class="stats">
+    <div class="stat"><div class="num">{{ stats['total'] }}</div><div class="label">卡券总数</div></div>
+    <div class="stat"><div class="num">{{ stats['unused'] }}</div><div class="label">未发放</div></div>
+    <div class="stat"><div class="num">{{ stats['issued'] }}</div><div class="label">已发放</div></div>
+    <div class="stat"><div class="num">{{ stats['used'] }}</div><div class="label">已核销</div></div>
+  </div>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}
+      <div class="flash {{ category }}">{{ message }}</div>
+    {% endfor %}
+  {% endwith %}
+
+  <div class="panel" style="margin-bottom: 20px;">
+    <h2 style="font-size: 16px; margin-bottom: 10px;">生成卡券</h2>
+    <form method="POST" action="{{ url_for('admin_vouchers_generate') }}" style="display: flex; gap: 10px; flex-wrap: wrap; align-items: flex-end;">
+      <div class="field" style="margin: 0;">
+        <label for="product_id">关联商品</label>
+        <select id="product_id" name="product_id">
+          {% for p in products %}
+            <option value="{{ p['id'] }}">{{ p['title'] }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="field" style="margin: 0;">
+        <label for="count">数量</label>
+        <input id="count" name="count" type="number" min="1" max="100" value="1">
+      </div>
+      <div class="field" style="margin: 0; flex: 1; min-width: 180px;">
+        <label for="note">备注（选填）</label>
+        <input id="note" name="note" placeholder="例如：99 元优惠卡券">
+      </div>
+      <button class="btn" type="submit">生成卡券</button>
+    </form>
+  </div>
+
+  {% if vouchers %}
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>卡券码</th>
+            <th>商品</th>
+            <th>状态</th>
+            <th>订单号</th>
+            <th>发放邮箱</th>
+            <th>备注</th>
+            <th>创建时间</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for v in vouchers %}
+            <tr>
+              <td>{{ v['id'] }}</td>
+              <td><b>{{ v['code'] }}</b></td>
+              <td>{{ v['product_title'] }}</td>
+              <td>
+                {% if v['status'] == 'unused' %}
+                  <span class="status pending">未发放</span>
+                {% elif v['status'] == 'issued' %}
+                  <span class="status done">已发放</span>
+                {% else %}
+                  <span class="status closed">已核销</span>
+                {% endif %}
+              </td>
+              <td>{{ v['order_id'] or '-' }}</td>
+              <td>{{ v['email'] or '-' }}</td>
+              <td class="small muted">{{ v['note'] or '-' }}</td>
+              <td class="small muted">{{ v['created_at'] }}</td>
+              <td>
+                {% if v['status'] == 'unused' %}
+                  <form class="inline-form" method="POST" action="{{ url_for('admin_voucher_issue', vid=v['id']) }}">
+                    <input type="email" name="email" required placeholder="顾客邮箱">
+                    <input type="text" name="order_id" placeholder="订单号(选填)" style="width: 90px;">
+                    <button class="btn btn-small" type="submit">发放</button>
+                  </form>
+                {% else %}
+                  <span class="small muted">{{ v['issued_at'] or '' }}</span>
+                {% endif %}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <p class="small muted" style="margin-top: 10px;">把订单状态改为「已付款」时，系统会自动为该订单发放一张对应商品的卡券并邮件通知顾客。</p>
+  {% else %}
+    <div class="empty">还没有卡券，先在上方生成。</div>
+  {% endif %}
+</main>
+</body>
+</html>

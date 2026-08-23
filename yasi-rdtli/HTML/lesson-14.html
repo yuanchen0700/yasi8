@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第14讲 · 进阶阅读 · 雅思阅读13讲</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; height: 100%; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; color: #1f2328; background: #fff; }
+  a { color: #2c5cdc; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* 顶部 */
+  .topbar { position: fixed; top: 0; left: 0; right: 0; height: 56px; display: flex; align-items: center; padding: 0 24px; border-bottom: 1px solid #e5e7eb; background: #fff; z-index: 10; }
+  .logo { font-weight: 800; font-size: 20px; letter-spacing: -0.5px; color: #111; }
+  .logo span { color: #6b7280; font-weight: 500; }
+  .topbar-right { margin-left: auto; display: flex; gap: 16px; align-items: center; position: relative; }
+  .topbar-right input { border: 1px solid #d1d5db; border-radius: 6px; padding: 6px 10px; font-size: 13px; width: 240px; background: #f9fafb; }
+  .topbar-right input:focus { outline: none; border-color: #2c5cdc; background: #fff; box-shadow: 0 0 0 3px rgba(44,92,220,0.12); }
+  #search-panel { position: absolute; top: 44px; right: 0; width: 360px; max-height: 70vh; overflow-y: auto; background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); padding: 8px 0; z-index: 100; font-size: 13px; }
+  #search-panel .sp-group { padding: 8px 14px 4px; font-size: 11px; color: #6b7280; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px; }
+  #search-panel ul { list-style: none; padding: 0; margin: 0; }
+  #search-panel li a { display: block; padding: 6px 14px; color: #374151; line-height: 1.4; font-size: 12.5px; }
+  #search-panel li a:hover { background: #f3f4f6; color: #1d4ed8; text-decoration: none; }
+  #search-panel .sp-empty { padding: 24px; text-align: center; color: #9ca3af; font-size: 12px; }
+  mark.search-hl { background: #fff3a3; color: inherit; padding: 0 2px; border-radius: 2px; }
+
+  /* 三栏布局 */
+  .layout { display: flex; padding-top: 56px; min-height: 100vh; }
+  .col-left { width: 240px; flex-shrink: 0; border-right: 1px solid #e5e7eb; padding: 20px 14px 40px; overflow-y: auto; height: calc(100vh - 56px); position: sticky; top: 56px; }
+  .col-left ul { list-style: none; padding: 0; margin: 0 0 16px; }
+  .col-left li { margin: 2px 0; }
+  .col-left a { display: block; padding: 6px 10px; border-radius: 6px; font-size: 13.5px; color: #374151; line-height: 1.4; }
+  .col-left a:hover { background: #f3f4f6; text-decoration: none; }
+  .col-left a.active { background: #eff6ff; color: #1d4ed8; font-weight: 600; }
+  .col-left h3 { font-size: 11px; text-transform: uppercase; color: #6b7280; margin: 18px 8px 8px; letter-spacing: 0.5px; font-weight: 600; }
+  .col-left .sub { padding-left: 24px !important; font-size: 12.5px; color: #4b5563; }
+
+  .col-main { flex: 1; min-width: 0; padding: 40px 56px 80px; max-width: 820px; margin: 0 auto; }
+  .col-main h1 { font-size: 32px; margin-top: 0; border-bottom: 1px solid #e5e7eb; padding-bottom: 12px; line-height: 1.3; }
+  .col-main h2 { font-size: 24px; margin-top: 40px; padding-top: 16px; border-top: 1px solid #f3f4f6; }
+  .col-main h3 { font-size: 18px; margin-top: 28px; color: #1f2937; }
+  .col-main p { line-height: 1.75; color: #374151; }
+
+  .col-right { width: 220px; flex-shrink: 0; border-left: 1px solid #e5e7eb; padding: 24px 18px; font-size: 13px; height: calc(100vh - 56px); position: sticky; top: 56px; overflow-y: auto; }
+  .col-right h4 { font-size: 11px; text-transform: uppercase; color: #6b7280; margin: 0 0 12px; letter-spacing: 0.5px; font-weight: 600; }
+  .col-right ul { list-style: none; padding: 0; margin: 0; }
+  .col-right li { margin: 6px 0; }
+  .col-right a { color: #4b5563; line-height: 1.45; font-size: 12.5px; }
+  .col-right a:hover { color: #1d4ed8; }
+  .col-right .section { color: #1f2937; font-weight: 600; margin-top: 14px; }
+  .col-right .empty { color: #9ca3af; font-size: 12px; padding: 6px 0; }
+
+  @media (max-width: 1100px) { .col-right { display: none; } }
+  @media (max-width: 800px) { .col-left { display: none; } .col-main { padding: 24px; } }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="logo">雅思阅读<span> · 13讲</span></div>
+  <div class="topbar-right">
+    <a href="index.html" style="font-size:13px;color:#2c5cdc;font-weight:600;white-space:nowrap;">🏠 总目录</a>
+    <span style="font-size:18px;">🐙</span>
+    <span style="font-size:18px;">💬</span>
+    <input id="search-input" placeholder="搜索 Ctrl K" autocomplete="off">
+    <div id="search-panel" hidden></div>
+  </div>
+</header>
+<div class="layout">
+  <aside class="col-left">
+    <h3>课程目录</h3>
+    <ul>
+      <li><a href="lesson-01.html">第01讲 · 导学课</a></li>
+<li><a href="lesson-02.html">第2讲 · 填空题专题一</a></li>
+<li><a href="lesson-03.html">第03讲 · 判断题专题：TFNG vs YNNG</a></li>
+<li><a href="lesson-04.html">第4讲 · 填空题专题二</a></li>
+<li><a href="lesson-05.html">第05讲</a></li>
+<li><a href="lesson-06.html">第06讲 · 雅思阅读填空题专题四</a></li>
+<li><a href="lesson-07.html">第7讲 · 配对题专题一</a></li>
+<li><a href="lesson-08.html">第8讲 · 配对题专题二</a></li>
+<li><a href="lesson-09.html">第9讲 · 配对题专题三</a></li>
+<li><a href="lesson-10.html">第10讲</a></li>
+<li><a href="lesson-11.html">第11讲</a></li>
+<li><a href="lesson-12.html">第12讲</a></li>
+<li><a href="lesson-13.html">第13讲 · 雅思阅读核心技巧</a></li>
+<li><a href="lesson-14.html" class="active">第14讲 · 进阶阅读</a></li>
+    </ul>
+    <h3>本页问题</h3><p class="empty" style="padding:6px 10px;font-size:12px;color:#9ca3af;margin:0;">无小节</p>
+  </aside>
+  <main class="col-main">
+    <h1>雅思阅读全解13讲</h1>
+<h2><a id="14"></a>14</h2>
+<p>内容总时长：内容总时长：20分钟</p>
+<p>[00:00 - 00:19]
+哈喽各位同学大家好，时光荏苒，来到了今天已经是我们这个系列的阅读课当中的最后一节课了。这节课我给它起了一个名字，叫做进阶阅读。那么是什么意思呢？嗯，可能如果从头follow我的课程到现在的同学啊，可能在阅读上已经有了一个非常大的提升。</p>
+<p>[00:00 - 00:19]</p>
+<p>[00:19 - 00:32]
+大家在做题的时候，可能会感觉嗯老师的方法还是蛮好用的，对吧？嗯，点赞哦，但是事实上呢也有一些阅读的篇章，并不是我们能用方法，或者说简简单单的方法就能把它解决掉的。</p>
+<p>[00:19 - 00:32]</p>
+<p>[00:32 - 00:53]
+我们也是要对背景知识有一定的了解，甚至要读懂这篇文章。那我今天给大家选取了一篇，在我看来即使题看起来比较简单，但是文章确实不好读，甚至呢还需要我们对于这个故事或者当时的那个历史时期有一定的知识储备，你可能读起来才会比较顺手啊。</p>
+<p>[00:32 - 00:53]</p>
+<p>[00:53 - 01:06]
+所以今天我给他这个这节课起名叫进阶阅读，就是想拿这样的一个题目来给大家做一个示范，告诉大家阅读这个科目，它并不是说你有了你方法，就一定能够取得一个非常高的分数。</p>
+<p>[00:53 - 01:06]</p>
+<p>[01:06 - 01:30]
+如果你想拿到非常高的分数，同时方法加上你自己的能力，再加上你不断的去训练，以及可能遇到错题，需要有人给你点拨，这样的情况下才能取得高分的。我今天拿到这个题，其实并没有说特别难为大家，因为我都没有拿选择题，我拿的是一个中规中矩的题型啊，算每次考试基本上也都会遇到的一种题，总结填空啊。</p>
+<p>[01:06 - 01:30]</p>
+<p>[01:30 - 01:49]
+当然这是一个带选项的总结填空啊，它来自于剑桥时期test one的第三篇文章，就是讲那个抓住一个国王的这个事情啊，我们首先来看一下这个题啊，对应下面这个框里边这个选项大家认不认识啊，这些选项里边从a到j这么多个选项都没有一个单词的全都是词组。</p>
+<p>[01:30 - 01:49]</p>
+<p>[01:49 - 02:07]
+所以这些单词如果你不认识，肯定做这个题，就会有一个巨大无比的障碍，对吧？所以咱浅看一下啊，这几个词都什么意思？ A选项military innovation或者说叫嗯军事上的一个创新，b呢叫做large w叫做一个大奖。</p>
+<p>[01:49 - 02:07]</p>
+<p>[02:08 - 02:26]
+ C widespreadcomparisonconspiracy那广泛传播的诶，广泛传播的诶，这个单词是什么意思呀？不知道啊，哦那你只能看出来广泛传播的，就相当于对于这个选项，你只折了一半的腿了啊。</p>
+<p>[02:08 - 02:26]</p>
+<p>[02:26 - 02:45]
+ D选项相对来说安全一新，政府这个没问题啊，嗯f选项呢这单词什么意思呀？ Victory倒是认识啊，这个叫做这个胜利，对吧？完了又一个选项，折了一个腿了啊，咱把这种不是特别熟悉的这种单词都先标。</p>
+<p>[02:26 - 02:45]</p>
+<p>[02:42 - 03:07]
+在这同学说，老师其他的选项里边，我也有不认识的单词。那我们就暂且以一个还不错的学生这样去模拟一下子啊，好，g选项叫做political debate啊，政治上面的争论啊，然后h选项strategic alignance这个strategic叫做策略的，这个倒是认识这个alignance是什么东西啊，又一个不认识的。</p>
+<p>[02:42 - 03:07]</p>
+<p>[03:07 - 03:25]
+然后a选项popular solution这个倒都认识啊，一个这个是啊流行的解决方案啊，g选项啊，这个叫做什么玩意儿，什么玩意儿，看着好像都不太认识。但你仔细看一看religiousreligion这个单词，你认识吧，religion这个叫做宗教，对吧？</p>
+<p>[03:07 - 03:25]</p>
+<p>[03:25 - 03:37]
+所以religious conviction啊这个大概就是什么宗教信仰的意思。哎，反正蒙蒙圈圈的啊就是画些问号放在这吧。所以如果你读完这些选项，你问号这么多，那怎么办？</p>
+<p>[03:25 - 03:37]</p>
+<p>[03:37 - 03:53]
+你只能通过原文再加上题目去猜来猜去读来读去，确实那就很别扭啊。那我们来看看这个题，这个题，其实他上来还是有挺好的定位呢1649啊，对吧？所以我们来看一下文章，文章上来1649,你就能看到。</p>
+<p>[03:37 - 03:53]</p>
+<p>[03:53 - 04:15]
+所以他肯定是来自于第一段的，即使你不知道它是完全对应第一段，但至少肯定从第一段开始找。我，先给大家讲一讲这个故事的背景。大家图上现在所见的这个人叫做查理二世啊，这个故事呢我们就要回归到这个查理二世逃亡的这件事情。</p>
+<p>[03:53 - 04:15]</p>
+<p>[04:15 - 04:32]
+嗯，这个事情其实我在读这篇阅读之前我不知道，因为我是不学历史相关，就我也我也没学过文科啊，所以历史这块知识盲区就完全不知道。但是读过这篇文章之后，我特地去查阅了一下这个背景，不然的话就好多这个段子当中写的一些东西，我不理解。</p>
+<p>[04:15 - 04:32]</p>
+<p>[04:31 - 04:59]
+嗯，所以呢我就查到了这样一幅图片，给大家展示了一下这个查理二世呢，其实它是一个，因为他从小就过得过了一些苦日子。比如说在他上位期间呢，他去同意了一些啊什么类似于像风尘场所的开设啦之类的啊，然后后来呢他开就是他发动了一场战争，这场战争是入侵英格兰。</p>
+<p>[04:31 - 04:59]</p>
+<p>[04:59 - 05:17]
+众所周知，英国之所以叫做uk,因为它叫做united kingdom,是一个联合王国，它的全名叫做大，不列颠联合王国，它是由四个部分构成的。嗯，主要是英格兰、苏格兰，然后威尔士啊，还有这个北爱尔兰这一共四个部分。</p>
+<p>[04:59 - 05:17]</p>
+<p>[05:17 - 05:36]
+这四个部分呢，其中英格兰和苏格兰这两个部分呢就经常battle,唉，历史上他们就不和。那比如说苏格兰的人，就因为我去英国留学的时候，就苏格兰同学来经常嘲笑英格兰的同学，英格兰同学可能有嘲笑苏格兰的人，反正就他们互相看，彼此都不太顺眼啊，这确实是有一定的历史渊源。</p>
+<p>[05:17 - 05:36]</p>
+<p>[05:36 - 06:02]
+ Ok嗯所以呢这个哥们呢爱丁堡在哪呢？爱丁堡在苏格兰，苏格兰叫做scott scotlandscotland,诶，中间一个t啊scotland,这爱丁堡所在的地方在scotland.然后呢英格兰呢这个这所在的这个就是伦敦了。</p>
+<p>[05:36 - 06:02]</p>
+<p>[06:02 - 06:24]
+ Ok所以这哥们当时主持了一场战争啊，就是去入侵这个英格兰，也不知道他怎么想的，他最后战败了，他战败了，于是他就灰溜溜的逃跑了，然后他逃跑到哪了呢？他逃跑到欧洲啊，嗯当时他想去法国，但是法国没有要他后来好像他还想去西班牙，西班牙也没有要他，然后他就在这个欧洲大陆就不断的游窜流窜了十来年。</p>
+<p>[06:02 - 06:24]</p>
+<p>[06:24 - 06:43]
+然后最后呢，有2万名战士给他迎接回了这个英国。然后这个全英国的人欢天喜地地接纳了他啊，但这篇文章确实没有说到欢天喜地接纳他啊，如果有兴趣读的同学可以在后面再读一读，反正在我查阅的资料就是英国人啊，当时就欢天喜地地又接纳了他。</p>
+<p>[06:24 - 06:43]</p>
+<p>[06:45 - 06:59]
+整个人生来看呢，其实也是跌宕起伏的。因为他在流亡的这10年，其实日子过得非常的苦啊，因为这哥们儿长得很高大，他1米9的大个儿，而且皮肤贼黝黑呢，然后他又跑到了这个欧洲，欧洲都是白人，对吧？</p>
+<p>[06:45 - 06:59]</p>
+<p>[06:59 - 07:17]
+所以他其实在欧洲看起来就是格格不入，只要那个眼睛里边出现一个贼高大黝黑的男子，这就说不定就是他，所以他特别容易被逮起来啊，所以他过的特别的苦啊，比如说呢他会用一些什么啊，就是树的那个汁水去给它染一染他的这个皮肤啊之类的。</p>
+<p>[06:59 - 07:17]</p>
+<p>[07:15 - 07:36]
+嗯，所以整个的日子就很凄惨啊。那我们来看一下对应的这个文章，咱们试着来做一做这个题。因为咱今天毕竟是一个要处理相对比较难的文章和题目。所以我们一定要对文章读的稍微仔细一些啊，这篇文章的标题叫做to catch a king就是为了抓住一个国王。</p>
+<p>[07:15 - 07:36]</p>
+<p>[07:36 - 07:52]
+那么我们来看一下副标题，唉，是这个安娜这个人他评价了一下，唉，这个叫做cs这个人，他写的一本书，这本书它写的是什么呢？就是这个书to catch a king标题就叫这个，所以是cs这个人写的这本书。</p>
+<p>[07:36 - 07:52]</p>
+<p>[07:52 - 08:08]
+安娜这个人是评价了这个这本书他是一个书评。那这本书写的就是在英国内战期间，大概是17世纪的这样的故事。 Ok我们首先来读一下这个第一段说这个人他有一本书最近的书叫做这个抓住一个国王，告诉了我们一个故事。</p>
+<p>[07:52 - 08:08]</p>
+<p>[08:08 - 08:24]
+关于hunt for king查理二世hunt,大家有没有感觉这个动词用的就感觉这个查理二世像一个动物一样，就被人猎杀的这样的一种感觉啊，所以呢嗯这个就是描述故事的一个背景，这本书写的就是hunt king.然后在什么时候hunt呢？</p>
+<p>[08:08 - 08:24]</p>
+<p>[08:24 - 08:38]
+In six week, after就在六周的时间在什么之后呢？呃，resounding defeatdefeat叫做战败啊，在伍斯特战争战败之后，伍斯特战争是在1651年9月份去举行的。</p>
+<p>[08:24 - 08:38]</p>
+<p>[08:38 - 09:09]
+所以整个这一句话就告诉了我们这本书写作的一个背景。嗯，首先呢伍斯特战争战败之后，这个国王就开始了他的流放生活。然后整个的这个英国都在举全国之力去抓他。 Ok然后接着我们继续来看啊，嗯这个这个故事是这样的，在他的爸爸被这有一个很重要的单词，诶，executed这个叫做处决啊，在他的爸爸被处决处决之后，ok在他爸爸被处决之后，被谁处决了呢？</p>
+<p>[08:38 - 09:09]</p>
+<p>[09:09 - 09:25]
+被一个这个屁处决了，这个东西咱也不知道是啥啊，反正他就是一个屁在被这个p处决了之后在1949年。然后这个年轻的查理二世呢，就牺牲了一个非常根本的原则，这是一个什么样的原则呢？</p>
+<p>[09:09 - 09:25]</p>
+<p>[09:25 - 09:56]
+他的爸爸为之而死掉的一个原则，然后他又干了一件事情，形成了一个合约，一个deal和谁呢？和scott scott是什么？就是苏格兰，所以这就是为什么查理二世。好，那我们来看对应的这个题目题目说的是1649年查理二世形成了一个什么和scott刚才我们已经找到了这个答案，形成了一个deal.所以这道题我们的答案就应该是deal这个单词。</p>
+<p>[09:25 - 09:56]</p>
+<p>[09:56 - 10:16]
+但是deal这个单词你能抄回来吗？显然不能因为你要在这些框框里边给我去选择一个合适的词，die叫做什么deal,叫做协议，形成了一个协议和苏格兰。那么在国与国之间，那么那个那个那个dio就应该叫做什么呢？</p>
+<p>[09:56 - 10:16]</p>
+<p>[10:16 - 10:39]
+比如说像战略同盟啦这样的一个感觉，对吧？所以当你在审视这些选项的时候，你会发现这是一个军事innovation嗯，不对呀，嗯b也不对，c也不对，d好像也奇奇怪怪的不对啊，这不是不说什么相对安全新政府，哎，是不是形成了一个新政府啊？</p>
+<p>[10:16 - 10:39]</p>
+<p>[10:39 - 10:52]
+但在这儿人家说到了形成了一个新政府吗？人只不过去形成了一个deal deal就能引申出来，这是一个新政府的含义吗？我认为不能的，只能说我们达成了一个协议，对吧？</p>
+<p>[10:39 - 10:52]</p>
+<p>[10:52 - 11:07]
+或者一个什么同盟之类的，所以新政府太夸张了，那肯定也不是f,肯定也不是g g叫做debate一个辩论呢，肯定不是h诶，是这个选项叫做战略。那么这个单词alliance这个叫同盟。</p>
+<p>[10:52 - 11:07]</p>
+<p>[11:07 - 11:23]
+所以如果你不认识单词的话，你只能猜谜语或者说猜梦啊，这就是为什么今天我选了这个题就比较难啊，就是想让大家知道嗯，我们雅思的题也不是说都很简单，就是大家随便一做都能全对，不是的，总有一些比较难的这叫战略同盟的意思啊。</p>
+<p>[11:07 - 11:23]</p>
+<p>[11:23 - 11:39]
+所以h选项确实它就可以替换deal这个单词，这个题还不是最难的。你越往后读，其实越难继续往后看in order to become king,他abandoned an important,他放弃了一个非常重要的什么东西。</p>
+<p>[11:23 - 11:39]</p>
+<p>[11:39 - 11:49]
+这个东西呢是held by his fatherand contribute to his father's death,就是导致他爸爸死掉的，他爸爸死掉的，他放弃的是什么呢？</p>
+<p>[11:39 - 11:49]</p>
+<p>[11:49 - 12:04]
+咱刚才读到的那一块，说他牺牲了一个非常重要的根本原则。那答案是不是就是根本原则啊，对吧？好，我们就开始看啊，那根本原则这里边没有任何一个选项和根本原则相关。那怎么办呢？</p>
+<p>[11:49 - 12:04]</p>
+<p>[12:04 - 12:32]
+你再往后读一读啊，看看这个根本原则到底是什么呢？就是啊他因此而接受了这个东西，作为一个国家的宗教in了in return,作为回报，他才能够成为苏格兰的国王。好，所以我们现在理一下这个逻辑啊，就是呢它有一个跌，他的这个爹拒绝了这个p作为国家宗教，所以这个苏格兰就把他给弄死了，就把他exaggerate就是给他弄死了。</p>
+<p>[12:04 - 12:32]</p>
+<p>[12:32 - 12:52]
+然后但是他的儿子呢放弃了这个原则，也就是说他的儿子接受了这个宗教，所以他的儿子当上了国王，就是这样的一个条件啊，就彼此达成了一个协议。那么所以我们对应的词其实应该是这个national religion呢叫做国家宗教，那和国家宗教相对应的。</p>
+<p>[12:32 - 12:52]</p>
+<p>[12:52 - 13:15]
+再来看一看，他放弃了一个重要的什么东西啊，和国家宗教相对应的。大家来看对应的是不是就是这个religious conviction啊，所以对应j这个选项进来好，再往后继续读题啊，说the opposite side that meet outside的伍斯特诶来具体时间和地点的一个定位了。</p>
+<p>[12:52 - 13:15]</p>
+<p>[13:15 - 13:32]
+说在1651年的时候，对战的双方在伍斯特城外相见，然后这个战争导致了一个什么for p哎呦，这里边怎么这么多p啊，这个p和那个p是一个p吗？咱们来看啊，刚才这个p叫做什么parliamentary什么玩意儿的。</p>
+<p>[13:15 - 13:32]</p>
+<p>[13:32 - 13:59]
+下面那个p呢我们继续往后看说这个呃his arrival ending ball,他们要去入侵苏格兰，在这样的一个短短的打击当中。然后呢，随着这个scottish,因为呃invasion of英格兰那英呃这个苏格兰就入侵到英格兰了啊，对战的双方在伍斯特城外见面了，时间点来到了1651年。</p>
+<p>[13:32 - 13:59]</p>
+<p>[13:59 - 14:18]
+然后接着嗯他立即的comprehensively defeated啊，这个叫立即的战败on the medal,这个叫草地，草地在哪城外的草地？所以这个p和那个p还真的不是一个p呢。</p>
+<p>[13:59 - 14:18]</p>
+<p>[14:18 - 14:40]
+大家来看我换一个颜色标注一下啊，这个p是对应的这个国家宗教，对吧？这个p叫做pre什么什么的这个p啊，所以这就仿佛是一个正规军这样的感觉。所以这个是他放弃啊，他他爸为之死掉的那个宗教，也是这个查理。</p>
+<p>[14:18 - 14:40]</p>
+<p>[14:37 - 14:56]
+二是支持的这个宗教成为国家宗教的啊，然后这个p代表的一个是英格兰，对吧？好，所以呢我们就会发现在战争的双方在城外草皮见面了，然后谁胜利了，谁输了呀？英格兰胜利了，苏格兰输了，对吧？</p>
+<p>[14:37 - 14:56]</p>
+<p>[14:56 - 15:16]
+苏格兰是谁呀？就是查理二世英格兰是谁啊？英格兰就是这个屁，那我们再接着来看。所以这个战争对于这个p来说，对于这个p来说，是空格里应该填的是成功了，对吧？因为是苏格兰失败了，英格兰成功了，所以我们空里面填的是对于英格兰来说是胜利啦。</p>
+<p>[14:56 - 15:16]</p>
+<p>[15:16 - 15:35]
+那么和胜利相关的一个单词叫做哎victory,即使你不认识前面这个单词是不是也做出来了？哎，但是我认为这个就叫做瞎猫撞了死耗子啊，毕竟你认识的是重要的名词victory,那如果你认识的是前面的形容词，那就坏了，那可能就做不出来了。</p>
+<p>[15:16 - 15:35]</p>
+<p>[15:35 - 15:53]
+好，接着往后啊，这个单词表示的是逃亡啊，开始了逃亡生涯a什么东西offer for查理二世sket capture叫做补货。所以如果能够成功抓住查理二世的话，可以得到什么东西呢？</p>
+<p>[15:35 - 15:53]</p>
+<p>[15:53 - 16:21]
+我们来看一看文章怎么说的啊，文章说年轻的21岁的查理二世，发现他自己成为整个国家的一个啊目标了。然后呢wage with with with a large sumoffered for his capture.所以如果成功把它捕获的话，那么就可以获得large su large sum是什么东西啊啊，large some reward啊，这个offer啊，这个all啊这个offer这个提供。</p>
+<p>[15:53 - 16:21]</p>
+<p>[16:21 - 16:41]
+那large some这个好像就像赏金一样的存在吧。就如果成功抓住了他的话，就可以获得非常多的这个赏金。好，咱们来看看成功，抓住他a然后赏金。那么对应2b这个选项吧，large reward啊，就是对应那个huge sum啊啊，这题倒还行。</p>
+<p>[16:21 - 16:41]</p>
+<p>[16:41 - 16:54]
+ Ok啊，接着往后看说，但是六周之后呢，它躲藏了它最终设法到达了什么？ Continent of europe,它最终设法到达了什么of europe叫做欧洲啊。</p>
+<p>[16:41 - 16:54]</p>
+<p>[16:54 - 17:11]
+好，我们继续往后看这题，你就不能说我跳着看或者怎么样，就得一个字一个字的。哎，抠着看说for the following six week,他设法through a series of啊非常严密的这个追查，然后他好不容易逃到了哪呢？</p>
+<p>[16:54 - 17:11]</p>
+<p>[17:11 - 17:34]
+他在他的眼皮子底下，然后寻找refugee in啊。 France france是不是好像对应的，就是欧大欧洲大陆啊，对吧？然后在接下来的9年，嗯，然后查理呢这个到处流亡around欧洲，with only a group of loyalty supporter,就是只有一小撮的那个王室的支持者。</p>
+<p>[17:11 - 17:34]</p>
+<p>[17:34 - 17:50]
+所以这一大坨给我们讲的就是查理二世在呃，六州逃到了法国，法国要不要？他这里边没有说，但反正就9年他都活着，他也没死啊，就活着。那所以这个欧洲大陆对他来说应该是相对安全的地方，对吧？</p>
+<p>[17:34 - 17:50]</p>
+<p>[17:50 - 18:11]
+所以答案选4d就这个题啊，我为什么放在这儿这个阶段给大家讲呢？一来我是想告诉大家做题，那你看下面的这些词你是不是要读的对吧？这些词你是要认识的那文章对应的这些词你是不是也要认识的对吧？</p>
+<p>[17:50 - 18:11]</p>
+<p>[18:11 - 18:28]
+然后文章这些逻辑这个内容是不是也要适当去看懂的？如果我们对于这件事本身在背景知识的储备上就很少。那么事实上做这个题其实是挺难的一件事情。这篇文章我还没把他的选择题拿出来呢？</p>
+<p>[18:11 - 18:28]</p>
+<p>[18:28 - 18:40]
+我如果把他的选择题拿出来，大家肯定会觉得更蒙圈啊，就为什么呀？为什么这个选择题会选这个答案？这文章到底在讲啥？因为这个文章它难的难点在于，首先历史背景大家不太清楚。</p>
+<p>[18:28 - 18:40]</p>
+<p>[18:40 - 18:55]
+其次呢，就是他是一个人写了一本书，这个书怎么写的，我们也不知道。另外呢是另一个人对于这本书的一个评价，所以这个人的评价，他的这个画风等等，还有很多需要我们考量的东西。</p>
+<p>[18:40 - 18:55]</p>
+<p>[18:55 - 19:26]
+就即便这是一篇中文的阅读，让大家去读一个书评，也是蛮难的一件事情啊，也是要去理解作者的思路和观点的那所以今天的这个进阶阅读呢要本着提升英语能力这样的一个大目标在做这件事情，而不是说就是简简单单的我去做题而已，肯定会有一些错误的题目。</p>
+<p>[18:55 - 19:26]</p>
+<p>[19:26 - 19:41]
+对于错误的题目呢，也要去进行整理和复盘，好好去思考错误的原因，并且找到对应的考点，那才能有提升。必要的时候，可能你的这些错题需要拿出来去找一个人帮你去解读一下啊。</p>
+<p>[19:26 - 19:41]</p>
+<p>[19:41 - 20:01]
+ Ok那我们整体的这个系列课程呢，到这就告一段落，希望能够帮助到大家在雅思备考的路上，嗯，至少能够给大家这个备考的路上添砖加瓦，see you next time,那就是下一个呃，是七列视频再见喽，拜。</p>
+<p>[19:41 - 20:01]</p>
+  </main>
+  <aside class="col-right">
+    <h4>本页章节</h4><ul><li><a href="#14">14</a></li></ul>
+  </aside>
+</div>
+<script>
+(function(){
+  var input = document.getElementById('search-input');
+  var panel = document.getElementById('search-panel');
+  if (!input || !panel) return;
+  var main = document.querySelector('.col-main');
+  var leftLinks = Array.prototype.slice.call(document.querySelectorAll('.col-left ul li a'));
+  var rightLinks = Array.prototype.slice.call(document.querySelectorAll('.col-right ul li a'));
+
+  function escHtml(s){
+    return s.replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+  function escapeRegex(s){
+    return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+  function clearHighlights(){
+    if (!main) return;
+    var marks = main.querySelectorAll('mark.search-hl');
+    for (var i = 0; i < marks.length; i++) {
+      var m = marks[i];
+      var text = document.createTextNode(m.textContent);
+      m.parentNode.replaceChild(text, m);
+    }
+    main.normalize();
+  }
+  function highlightInMain(kw){
+    if (!main) return;
+    clearHighlights();
+    if (!kw) return;
+    var re = new RegExp(escapeRegex(kw), 'gi');
+    var walker = document.createTreeWalker(main, NodeFilter.SHOW_TEXT, {
+      acceptNode: function(n){
+        if (!n.nodeValue || !n.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        var p = n.parentElement;
+        if (!p) return NodeFilter.FILTER_REJECT;
+        var tag = p.tagName;
+        if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'CODE' || tag === 'PRE') return NodeFilter.FILTER_REJECT;
+        if (p.closest && p.closest('mark.search-hl')) return NodeFilter.FILTER_REJECT;
+        return n.nodeValue.toLowerCase().indexOf(kw.toLowerCase()) >= 0 ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+      }
+    });
+    var nodes = [];
+    var n;
+    while ((n = walker.nextNode())) nodes.push(n);
+    for (var i = 0; i < nodes.length; i++) {
+      var node = nodes[i];
+      var src = node.nodeValue;
+      var html = '';
+      var last = 0;
+      var match;
+      re.lastIndex = 0;
+      while ((match = re.exec(src)) !== null) {
+        html += escHtml(src.slice(last, match.index));
+        html += '<mark class="search-hl">' + escHtml(match[0]) + '</mark>';
+        last = match.index + match[0].length;
+        if (match[0].length === 0) re.lastIndex++;
+      }
+      html += escHtml(src.slice(last));
+      var tmp = document.createElement('span');
+      tmp.innerHTML = html;
+      var parent = node.parentNode;
+      while (tmp.firstChild) parent.insertBefore(tmp.firstChild, node);
+      parent.removeChild(node);
+    }
+  }
+  function search(q){
+    q = (q || '').trim();
+    panel.innerHTML = '';
+    if (!q) {
+      panel.hidden = true;
+      leftLinks.forEach(function(a){ a.parentElement.style.display = ''; });
+      rightLinks.forEach(function(a){ a.parentElement.style.display = ''; });
+      clearHighlights();
+      return;
+    }
+    var qLower = q.toLowerCase();
+    var courseHits = leftLinks.filter(function(a){
+      return a.textContent.toLowerCase().indexOf(qLower) >= 0;
+    });
+    leftLinks.forEach(function(a){
+      a.parentElement.style.display = courseHits.indexOf(a) >= 0 ? '' : 'none';
+    });
+    var sectionHits = rightLinks.filter(function(a){
+      return a.textContent.toLowerCase().indexOf(qLower) >= 0;
+    });
+    rightLinks.forEach(function(a){
+      a.parentElement.style.display = sectionHits.indexOf(a) >= 0 ? '' : 'none';
+    });
+    var parts = [];
+    if (courseHits.length) {
+      parts.push('<div class="sp-group">课程（' + courseHits.length + '）</div>');
+      parts.push('<ul>' + courseHits.map(function(a){
+        return '<li><a href="' + a.getAttribute('href') + '">' + escHtml(a.textContent) + '</a></li>';
+      }).join('') + '</ul>');
+    }
+    if (sectionHits.length) {
+      parts.push('<div class="sp-group">本页小节（' + sectionHits.length + '）</div>');
+      parts.push('<ul>' + sectionHits.map(function(a){
+        return '<li><a href="' + a.getAttribute('href') + '">' + escHtml(a.textContent) + '</a></li>';
+      }).join('') + '</ul>');
+    }
+    if (!parts.length) parts.push('<div class="sp-empty">无匹配结果</div>');
+    panel.innerHTML = parts.join('');
+    panel.hidden = false;
+    highlightInMain(q);
+  }
+  var timer = null;
+  input.addEventListener('input', function(e){
+    clearTimeout(timer);
+    timer = setTimeout(function(){ search(e.target.value); }, 80);
+  });
+  input.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') { input.value = ''; search(''); input.blur(); panel.hidden = true; }
+  });
+  document.addEventListener('click', function(e){
+    if (panel.contains(e.target) || e.target === input) return;
+    panel.hidden = true;
+  });
+  document.addEventListener('keydown', function(e){
+    if ((e.ctrlKey || e.metaKey) && (e.key === 'k' || e.key === 'K')) {
+      e.preventDefault();
+      input.focus();
+      input.select();
+    }
+  });
+  panel.addEventListener('click', function(e){
+    var a = e.target.closest('a');
+    if (a) panel.hidden = true;
+  });
+})();
+</script>
+</body>
+</html>

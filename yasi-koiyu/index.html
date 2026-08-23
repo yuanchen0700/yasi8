@@ -1,0 +1,2411 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>IELTS Speaking · brand9 · Part 1</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='6' fill='%2316273E'/%3E%3Crect x='6' y='6' width='6' height='20' rx='2' fill='%235E7699'/%3E%3Crect x='14' y='6' width='12' height='9' rx='2' fill='%23FF9E8A'/%3E%3Crect x='14' y='17' width='12' height='9' rx='2' fill='%23F0EBE0'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-0:#0a1220; --bg-1:#0d1626; --bg-2:#16273e; --ink:#F2F0EA; --ink-dim:#9aa3b8;
+    --muted:#5E7699; --accent:#FF9E8A; --accent-2:#5E7699; --good:#a8e6b4;
+    --line:rgba(255,255,255,.10); --line-strong:rgba(255,255,255,.18); --rec:#ff5b6b;
+    --font-serif:'Fraunces',Georgia,serif;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0; font-family:"Instrument Sans","Inter","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+    color:var(--ink);
+    background:radial-gradient(900px 700px at 18% 8%, #1c2c44 0%, transparent 60%),
+               radial-gradient(800px 700px at 92% 92%, #2a1a4a 0%, transparent 60%),
+               linear-gradient(160deg, var(--bg-1), var(--bg-0));
+    min-height:100%; -webkit-font-smoothing:antialiased;
+  }
+  .topbar{
+    position:sticky; top:0; z-index:50;
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+    padding:14px 28px;
+    background:rgba(10,18,32,.72);
+    backdrop-filter:saturate(140%) blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .brand{display:flex; align-items:center; gap:12px; min-width:0}
+  .logo{width:32px; height:32px; border-radius:8px; background:var(--bg-2);
+    display:grid; grid-template-columns:1fr 2fr; grid-template-rows:1fr 1fr;
+    gap:2px; padding:5px; box-shadow:0 4px 14px rgba(0,0,0,.4);}
+  .logo i{display:block; border-radius:2px}
+  .logo i:nth-child(1){background:var(--accent-2); grid-row:1/3}
+  .logo i:nth-child(2){background:var(--accent)}
+  .logo i:nth-child(3){background:#f0ebe0}
+  .title{font-family:"Fraunces",Georgia,serif; font-weight:600; font-size:18px; letter-spacing:-.01em}
+  .title small{color:var(--ink-dim); font-weight:500; margin-left:8px; font-size:13px}
+  .toolbar{display:flex; gap:8px; flex-wrap:wrap; align-items:center}
+  /* 「更多」菜单：窄屏收纳次要操作 */
+  .more-trigger{display:none}
+  @media (max-width:880px){ .more-trigger{display:inline-flex} .tb-extra{display:none} }
+  .more-menu{position:absolute; right:16px; top:calc(100% + 8px); z-index:70;
+    min-width:150px; padding:6px; border-radius:12px;
+    background:rgba(13,22,38,.97); border:1px solid var(--line-strong);
+    box-shadow:0 16px 40px rgba(0,0,0,.5);
+    display:none; flex-direction:column; gap:2px;}
+  .more-menu.show{display:flex}
+  .more-menu button{appearance:none; cursor:pointer; background:transparent; border:none;
+    color:var(--ink); text-align:left; padding:10px 12px; border-radius:8px; font:500 13px/1 inherit;}
+  .more-menu button:hover{background:rgba(255,255,255,.08)}
+  button.tool{appearance:none; cursor:pointer; font:500 13px/1 inherit; color:var(--ink);
+    background:rgba(255,255,255,.06); border:1px solid var(--line);
+    border-radius:999px; padding:8px 14px; transition:all .15s ease;}
+  button.tool:hover{background:rgba(255,255,255,.10); border-color:var(--line-strong)}
+  button.tool.active{background:var(--accent); color:#0a1220; border-color:transparent}
+  .saved-pill{display:inline-flex; align-items:center; gap:6px; font-size:12px; color:var(--ink-dim)}
+  .saved-pill .dot{width:8px; height:8px; border-radius:50%; background:var(--muted)}
+  .saved-pill.dirty .dot{background:#ffcc66}
+  .saved-pill.saved .dot{background:var(--good)}
+  .layout{display:grid; grid-template-columns: 320px 1fr; gap:0;
+      min-height:calc(100vh - 65px); max-width:1400px; margin:0 auto; padding:24px 24px 140px;}
+    @media (max-width:880px){
+      .layout{grid-template-columns:1fr; padding:12px 12px 160px}
+      /* Sidebar becomes a slide-in drawer on mobile */
+      .sidebar{
+        position:fixed !important; top:64px; left:0; bottom:0; z-index:54;
+        width:min(300px, 86vw); max-height:none !important; height:auto !important;
+        background:linear-gradient(180deg, #16273e, #0d1626) !important;
+        border-radius:0 16px 0 0 !important; border-left:none;
+        transform:translateX(-105%); transition:transform .25s ease;
+        box-shadow:8px 0 30px rgba(0,0,0,.4);
+      }
+      .sidebar.open{transform:translateX(0)}
+      .qlist-btn{display:inline-flex !important}
+    }
+  /* === sidebar === */
+  .sidebar{background:rgba(255,255,255,.03); border:1px solid var(--line);
+    border-radius:16px; padding:14px; height:fit-content;
+    position:sticky; top:90px; max-height:calc(100vh - 130px); overflow:auto;}
+  .sidebar h3{margin:6px 4px 10px; font:600 11px/1 inherit;
+    letter-spacing:.18em; text-transform:uppercase; color:var(--ink-dim);}
+  .filter-input{
+    width:100%; margin:0 0 10px; padding:7px 12px;
+    background:rgba(255,255,255,.05); border:1px solid var(--line);
+    border-radius:8px; color:var(--ink); font:inherit; font-size:13px;
+  }
+  .filter-input:focus{outline:none; border-color:var(--accent)}
+  /* button to open sidebar drawer (mobile only) */
+  .qlist-btn{
+    display:none; appearance:none; cursor:pointer;
+    align-items:center; gap:6px;
+    background:rgba(255,255,255,.06); color:var(--ink);
+    border:1px solid var(--line); border-radius:999px;
+    padding:9px 16px; font:500 13px/1 inherit;
+    margin:0 0 12px;
+  }
+  .topic-group{margin:0 0 10px}
+  .topic-head{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:7px 8px; border-radius:8px; cursor:pointer;
+    font:600 12px/1 inherit; color:var(--ink);
+    background:rgba(255,255,255,.04);
+  }
+  .topic-head:hover{background:rgba(255,255,255,.08)}
+  .topic-head .name{flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+  .topic-head .cnt{font-size:11px; color:var(--ink-dim); background:rgba(255,255,255,.06); padding:2px 7px; border-radius:999px}
+  .topic-head .star-group{font-size:13px; color:var(--ink-dim); cursor:pointer; user-select:none; margin-left:8px}
+  .topic-head .star-group.on{color:#ffcc66}
+  .topic-qs{display:none; padding:4px 0 4px 4px}
+  .topic-group.open .topic-qs{display:block}
+  .qitem{display:grid; grid-template-columns:auto 1fr auto; gap:8px; align-items:center;
+    padding:7px 10px; border-radius:8px; background:transparent;
+    border:1px solid transparent; cursor:pointer; transition:all .15s ease;
+    font-size:12px; margin-bottom:2px;}
+  .qitem:hover{background:rgba(255,255,255,.06)}
+  .qitem.active{background:rgba(255,158,138,.12); border-color:rgba(255,158,138,.35)}
+  .qitem .lbl{font-family:"Fraunces",serif; font-weight:600; color:var(--accent); font-size:12px; min-width:28px}
+  .qitem .qt{color:var(--ink); line-height:1.35;
+    overflow:hidden; text-overflow:ellipsis;
+    display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical;}
+  .qitem .star{font-size:12px; color:var(--ink-dim); cursor:pointer; user-select:none}
+  .qitem .star.on{color:#ffcc66}
+  /* === main === */
+  .main{padding:0 24px; min-width:0}
+  .topic-title{font-family:"Fraunces",serif; font-weight:600;
+    font-size:clamp(28px,4vw,42px); margin:0 0 4px; letter-spacing:-.015em;}
+  .topic-sub{color:var(--ink-dim); margin:0 0 22px; font-size:14px}
+  /* Hide voice/accent info - not needed for user */
+  .topic-sub, .vmeta, .playerbar .now .voice { display: none !important; }
+  .card{background:rgba(255,255,255,.04); border:1px solid var(--line);
+    border-radius:18px; padding:30px 32px;}
+  .qhead{display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:18px}
+  .qnum{font-family:"Fraunces",serif; font-weight:600; color:var(--accent); font-size:30px; line-height:1}
+  .vmeta{display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,.04);
+    border:1px solid var(--line); border-radius:999px; padding:6px 12px;
+    font-size:12px; color:var(--ink-dim);}
+  .vmeta .flag{font-size:14px}
+  .vmeta .vname{color:var(--ink); font-family:"JetBrains Mono",ui-monospace,monospace}
+  .qtext{font-family:"Fraunces",Georgia,serif; font-size:clamp(20px,2.6vw,28px);
+    line-height:1.35; font-weight:500; letter-spacing:-.005em;
+    margin:0 0 22px; outline:none; padding:4px 6px; border-radius:8px;}
+  .qtext:focus{background:rgba(255,158,138,.06); box-shadow:inset 0 0 0 2px rgba(255,158,138,.5)}
+  .sections{display:grid; grid-template-columns:1fr 1.6fr; gap:16px}
+  @media (max-width:760px){ .sections{grid-template-columns:1fr} }
+  .sect{background:rgba(255,255,255,.03); border:1px solid var(--line);
+    border-radius:14px; padding:14px 16px;}
+  .sect h4{margin:0 0 8px; font:600 11px/1 inherit;
+    text-transform:uppercase; letter-spacing:.16em; color:var(--ink-dim);}
+  .phrases{display:flex; flex-wrap:wrap; gap:8px; outline:none; border-radius:8px}
+  .phrase{background:rgba(94,118,153,.15); border:1px solid rgba(94,118,153,.35);
+    color:#cfd9eb; border-radius:999px; padding:5px 10px; font-size:12px;}
+  .answer{outline:none; border-radius:8px; font:14px/1.6 inherit;
+    color:#e8edf4; padding:4px 6px; margin:-4px -6px; white-space:pre-wrap;}
+  .answer:focus{background:rgba(255,158,138,.06); box-shadow:inset 0 0 0 2px rgba(255,158,138,.4)}
+  .answer-gate{position:relative}
+  .answer-gate .gate-mask{position:absolute; inset:0;
+    background:rgba(10,18,32,.78); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+    border-radius:10px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:6px; color:var(--ink-dim); font-size:13px; cursor:pointer; transition:opacity .25s ease; z-index:2;}
+  .answer-gate .gate-mask:hover{background:rgba(10,18,32,.86); color:var(--ink)}
+  .answer-gate .gate-mask .lock{font-size:24px}
+  .answer-gate.revealed .gate-mask{display:none}
+  .actions{display:flex; gap:8px; margin-top:18px; flex-wrap:wrap}
+  .actions .btn{appearance:none; cursor:pointer; display:inline-flex; align-items:center; gap:8px;
+    background:rgba(255,255,255,.06); color:var(--ink); border:1px solid var(--line);
+    border-radius:999px; padding:8px 14px; font:500 13px/1 inherit;}
+  .actions .btn:hover{background:rgba(255,255,255,.10); border-color:var(--line-strong)}
+  .actions .btn.primary{background:linear-gradient(135deg,#ff9e8a,#ffbca8); color:#0a1220; border-color:transparent}
+  .actions .btn.rec{background:linear-gradient(135deg,#ff5b6b,#ff8896); color:#0a1220; border-color:transparent}
+  .actions .btn.star.active{background:rgba(255,204,102,.16); border-color:rgba(255,204,102,.4); color:#ffcc66}
+  /* === floating player === */
+  .playerbar{position:fixed; left:50%; transform:translateX(-50%); bottom:18px;
+    background:rgba(13,22,38,.86); backdrop-filter:saturate(160%) blur(14px);
+    border:1px solid var(--line-strong); border-radius:999px;
+    padding:10px 14px 10px 10px; display:flex; align-items:center; gap:8px;
+    box-shadow:0 12px 36px rgba(0,0,0,.5); z-index:60; max-width: calc(100vw - 32px);}
+  .playerbar .ctrl{appearance:none; cursor:pointer; width:38px; height:38px; border-radius:50%;
+    background:rgba(255,255,255,.08); color:var(--ink); border:1px solid var(--line);
+    display:grid; place-items:center; font-size:14px; transition:all .15s ease;}
+  .playerbar .ctrl:hover{background:rgba(255,255,255,.14)}
+  .playerbar .ctrl.play{width:46px; height:46px;
+    background:linear-gradient(135deg,#ff9e8a,#ffbca8); color:#0a1220; border-color:transparent;
+    font-size:15px; box-shadow:0 6px 20px rgba(255,158,138,.36);}
+  .playerbar .ctrl.play.playing{background:linear-gradient(135deg,#5E7699,#8aa1c4); color:#fff}
+  .playerbar .now{display:flex; flex-direction:column; min-width:0; padding:0 8px; line-height:1.1}
+  .playerbar .now .lbl{font-size:11px; color:var(--ink-dim); letter-spacing:.1em; text-transform:uppercase}
+  .playerbar .now .txt{font-size:13px; color:var(--ink);
+    max-width:200px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+  .playerbar .now .voice{font-size:11px; color:var(--accent); font-family:ui-monospace,monospace}
+  .playerbar .sep{width:1px; height:24px; background:var(--line); margin:0 4px}
+  .playerbar .tog{display:inline-flex; align-items:center; gap:6px;
+    font-size:12px; color:var(--ink-dim); cursor:pointer; user-select:none;
+    padding:4px 10px; border-radius:999px; white-space:nowrap;}
+  .playerbar .tog.on{color:var(--accent)}
+  .playerbar .tog .sw{flex:none; width:28px; height:16px; border-radius:999px;
+    background:rgba(255,255,255,.10); position:relative; transition:background .15s;}
+  .playerbar .tog.on .sw{background:rgba(255,158,138,.5)}
+  .playerbar .tog .sw::after{content:""; position:absolute; top:2px; left:2px;
+    width:12px; height:12px; border-radius:50%; background:#fff; transition:left .15s;}
+  .playerbar .tog.on .sw::after{left:14px}
+  .playerbar .pos{font-variant-numeric:tabular-nums; font-size:12px; color:var(--ink-dim);
+    min-width:96px; text-align:center;}
+  .playerbar .progress{height:3px; background:rgba(255,255,255,.08); border-radius:999px;
+    width:120px; overflow:hidden; cursor:pointer; position:relative;}
+  .playerbar .progress .bar{position:absolute; left:0; top:0; bottom:0;
+    width:0%; background:linear-gradient(90deg,#ff9e8a,#ffbca8); border-radius:999px;
+    transition:width .1s linear;}
+  /* === recording modal === */
+  .modal-bg{position:fixed; inset:0; z-index:80; background:rgba(10,18,32,.7);
+    backdrop-filter:blur(8px); display:none; align-items:center; justify-content:center; padding:20px;}
+  .modal-bg.show{display:flex}
+  .modal{background:linear-gradient(160deg, #16273e, #0d1626); border:1px solid var(--line-strong);
+    border-radius:20px; padding:28px; width:min(560px, 100%);
+    box-shadow:0 24px 60px rgba(0,0,0,.6);}
+  .modal h2{margin:0 0 6px; font-family:"Fraunces",serif; font-weight:600; font-size:22px}
+  .modal p.sub{color:var(--ink-dim); margin:0 0 18px; font-size:13px}
+  .rec-area{background:rgba(255,255,255,.03); border:1px solid var(--line);
+    border-radius:14px; padding:18px; text-align:center;}
+  .rec-circle{width:96px; height:96px; border-radius:50%;
+    background:rgba(255,255,255,.04); border:2px solid var(--line);
+    display:inline-grid; place-items:center; margin:6px auto 10px;
+    transition:all .2s ease; cursor:pointer;}
+  .rec-circle.idle:hover{border-color:var(--rec); background:rgba(255,91,107,.08)}
+  .rec-circle.recording{border-color:var(--rec); background:rgba(255,91,107,.16);
+    animation:pulse 1.4s ease-in-out infinite;}
+  @keyframes pulse{ 0%,100%{transform:scale(1)} 50%{transform:scale(1.06)} }
+  .rec-circle .ico{font-size:34px; color:var(--ink-dim)}
+  .rec-circle.recording .ico{color:var(--rec)}
+  .timer{font-family:"Fraunces",serif; font-weight:600; font-size:28px; color:var(--ink);
+    font-variant-numeric:tabular-nums;}
+  .vu{display:flex; justify-content:center; gap:3px; height:24px; margin:8px 0 4px;}
+  .vu i{width:3px; background:var(--rec); border-radius:2px;
+    height:6px; opacity:.4; transition:height .08s ease, opacity .08s ease;}
+  .rec-area .rec-btn{appearance:none; cursor:pointer;
+    background:rgba(255,255,255,.08); color:#E0E0E0;
+    border:1px solid rgba(255,255,255,.30); border-radius:999px;
+    padding:8px 16px; font:500 13px/1 inherit;
+    display:inline-flex; align-items:center; gap:6px;
+    transition:all .15s ease;}
+  .rec-area .rec-btn:hover{background:rgba(255,255,255,.14); border-color:rgba(255,255,255,.45)}
+  .rec-area .rec-btn.primary{background:linear-gradient(135deg,#ff5b6b,#ff8896); color:#0a1220; border-color:transparent}
+  .rec-area .rec-btn .stop-square{width:10px; height:10px; border-radius:2px;
+    background:var(--rec); flex:none; display:inline-block;}
+  .preview{margin-top:14px; background:rgba(0,0,0,.25); border:1px solid var(--line);
+    border-radius:10px; padding:10px 12px;}
+  .preview audio{display:none}
+  .mini-player{display:flex; align-items:center; gap:10px}
+  .mini-player .mp-btn{appearance:none; cursor:pointer; width:34px; height:34px;
+    border-radius:50%; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.30);
+    color:#B0B8C8; display:grid; place-items:center; font-size:13px;
+    transition:all .15s ease; flex:none;}
+  .mini-player .mp-btn:hover{background:rgba(255,255,255,.14); color:#fff}
+  .mini-player .mp-btn.playing{background:linear-gradient(135deg,#ff5b6b,#ff8896);
+    color:#0a1220; border-color:transparent}
+  .mini-player .mp-progress{flex:1; height:4px; border-radius:999px;
+    background:rgba(255,255,255,.12); cursor:pointer; position:relative}
+  .mini-player .mp-progress .mp-bar{height:100%; border-radius:999px; width:0%;
+    background:linear-gradient(90deg,var(--rec),#ff8896)}
+  .mini-player .mp-time{font-size:11px; color:var(--ink-dim);
+    font-variant-numeric:tabular-nums; flex:none;}
+  /* === simplified recording panel === */
+  .hidden{display:none!important}
+  .rec-panel{margin-top:20px; background:linear-gradient(160deg,#16273e,#0d1626);
+    border:1px solid var(--line-strong); border-radius:16px; padding:18px;}
+  .rec-panel[hidden]{display:none}
+  .rec-head{display:flex; align-items:center; justify-content:space-between;
+    gap:10px; flex-wrap:wrap; margin:0 0 14px;}
+  .rec-head h2{margin:0; font-family:"Fraunces",serif; font-weight:600; font-size:18px}
+  .rec-reveal-btn{appearance:none; cursor:pointer;
+    background:rgba(255,255,255,.06); color:var(--ink-dim);
+    border:1px solid var(--line); border-radius:999px;
+    padding:7px 12px; font:500 12px/1 inherit; transition:all .15s ease;}
+  .rec-reveal-btn:hover{background:rgba(255,255,255,.10); color:var(--ink)}
+  .rec-reveal-btn.on{background:rgba(255,158,138,.14); color:var(--accent);
+    border-color:rgba(255,158,138,.4)}
+  
+  /* Simplified recording button - becomes progress bar */
+  .rec-btn-wrap{position:relative; width:100%; max-width:480px; margin:0 auto;}
+  .rec-main-btn{
+    appearance:none; cursor:pointer; width:100%; height:56px; border-radius:14px;
+    background:rgba(255,255,255,.06); color:var(--ink);
+    border:2px solid var(--line); font:600 16px/1 inherit;
+    display:flex; align-items:center; justify-content:center; gap:10px;
+    transition:all .2s ease; overflow:hidden; position:relative;
+  }
+  .rec-main-btn:hover:not(.recording):not(.has-recording){
+    background:rgba(255,255,255,.10); border-color:var(--line-strong);
+  }
+  .rec-main-btn.recording{
+    background:rgba(255,91,107,.12); border-color:var(--rec); color:var(--rec);
+    cursor:default;
+  }
+  .rec-main-btn.has-recording{
+    background:rgba(168,230,180,.12); border-color:var(--good); color:var(--good);
+  }
+  .rec-main-btn.has-recording:hover,
+  .rec-main-btn.playing-rec{
+    background:rgba(168,230,180,.2); border-color:var(--good);
+  }
+  .rec-main-btn.playing-rec{color:var(--good)}
+  .rec-main-btn .rec-icon{font-size:20px; transition:transform .2s ease, opacity .2s ease;}
+  .rec-main-btn.recording .rec-icon{opacity:0; transform:scale(0.5);}
+  .rec-main-btn.has-recording .rec-icon{font-size:24px;}
+  
+  /* Progress bar inside button */
+  .rec-progress{position:absolute; left:0; top:0; bottom:0; width:0%;
+    background:linear-gradient(90deg,var(--rec),#ff8896); border-radius:12px;
+    transition:width .1s linear; z-index:0;}
+  .rec-main-btn .btn-content{position:relative; z-index:1; display:flex; align-items:center; gap:10px;}
+  
+  /* Timer during recording */
+  .rec-timer-inline{font-variant-numeric:tabular-nums; font-family:"Fraunces",serif; font-size:16px;}
+  
+  /* VU meter inline */
+  .rec-vu-inline{display:flex; gap:3px; height:20px; align-items:flex-end; margin-left:8px;}
+  .rec-vu-inline i{width:3px; background:var(--rec); border-radius:2px; height:6px; opacity:.4;
+    transition:height .08s ease, opacity .08s ease;}
+  
+  /* Playback buttons row (shown after recording) */
+  .rec-playback-row{display:none; gap:12px; justify-content:center; margin-top:14px; flex-wrap:wrap;}
+  .rec-playback-row.show{display:flex;}
+  .rec-playback-btn{
+    appearance:none; cursor:pointer; display:inline-flex; align-items:center; gap:8px;
+    background:rgba(255,255,255,.06); color:var(--ink);
+    border:1px solid var(--line); border-radius:999px; padding:10px 18px;
+    font:500 13px/1 inherit; transition:all .15s ease;
+  }
+  .rec-playback-btn:hover{background:rgba(255,255,255,.10); border-color:var(--line-strong)}
+  .rec-playback-btn.playing{background:var(--accent); color:#0a1220; border-color:transparent}
+  .rec-playback-btn.own.playing{background:var(--good); color:#0a1220; border-color:transparent}
+  .rec-playback-btn .play-icon{font-size:16px;}
+  
+  /* Mini player for own recording */
+  .rec-mini-player{display:none; margin-top:14px; padding:12px;
+    background:rgba(0,0,0,.25); border:1px solid var(--line); border-radius:10px;}
+  .rec-mini-player.show{display:block;}
+  .rec-mini-player-inner{display:flex; align-items:center; gap:10px;}
+  .rec-mini-btn{appearance:none; cursor:pointer; width:38px; height:38px; border-radius:50%;
+    background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.30);
+    color:#B0B8C8; display:grid; place-items:center; font-size:14px;
+    transition:all .15s ease; flex:none;}
+  .rec-mini-btn:hover{background:rgba(255,255,255,.14); color:#fff}
+  .rec-mini-btn.playing{background:linear-gradient(135deg,#ff5b6b,#ff8896); color:#0a1220; border-color:transparent}
+  .rec-mini-progress{flex:1; height:4px; border-radius:999px;
+    background:rgba(255,255,255,.12); cursor:pointer; position:relative}
+  .rec-mini-progress .mp-bar{height:100%; border-radius:999px; width:0%;
+    background:linear-gradient(90deg,var(--rec),#ff8896)}
+  .rec-mini-time{font-size:11px; color:var(--ink-dim); font-variant-numeric:tabular-nums; flex:none;}
+  
+  .actions .btn.play-own{background:rgba(168,230,180,.12); color:var(--good);
+    border-color:rgba(168,230,180,.35)}
+  .actions .btn.play-own:hover{background:rgba(168,230,180,.22)}
+  .actions .btn.play-own.playing{background:var(--good); color:#0a1220; border-color:transparent}
+  .actions .btn.play-ans{background:rgba(255,158,138,.10); color:var(--accent);
+    border-color:rgba(255,158,138,.3)}
+  .actions .btn.play-ans:hover{background:rgba(255,158,138,.2)}
+  .actions .btn.play-ans.playing{background:var(--accent); color:#0a1220; border-color:transparent}
+  .actions .btn.hidden{display:none}
+  .modal-actions{display:flex; gap:8px; margin-top:18px; flex-wrap:wrap; justify-content:flex-end}
+  .modal-actions button{appearance:none; cursor:pointer; background:rgba(255,255,255,.06);
+    color:var(--ink); border:1px solid var(--line); border-radius:999px;
+    padding:8px 14px; font:500 13px/1 inherit;}
+  .modal-actions button:hover{background:rgba(255,255,255,.10)}
+  .modal-actions .primary{background:linear-gradient(135deg,#ff9e8a,#ffbca8); color:#0a1220; border-color:transparent}
+  .modal-actions .rec{background:linear-gradient(135deg,#ff5b6b,#ff8896); color:#0a1220; border-color:transparent}
+  .modal-actions .danger:hover{background:rgba(255,80,80,.16); border-color:rgba(255,80,80,.5)}
+  /* === misc === */
+  .toast{position:fixed; bottom:96px; left:50%; transform:translateX(-50%) translateY(20px);
+    background:rgba(10,18,32,.95); color:var(--ink);
+    border:1px solid var(--line-strong); border-radius:999px;
+    padding:10px 18px; font-size:13px;
+    opacity:0; pointer-events:none; transition:all .25s ease; z-index:90;}
+  .toast.show{opacity:1; transform:translateX(-50%) translateY(0)}
+  footer{margin-top:36px; padding-top:18px; border-top:1px solid var(--line);
+    color:var(--ink-dim); font-size:12px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;}
+  .ver-badge{position:fixed; right:14px; bottom:76px; z-index:65;
+    font:500 10px/1 inherit; letter-spacing:.04em; color:rgba(154,163,184,.55);
+    background:rgba(13,22,38,.6); border:1px solid var(--line);
+    padding:4px 9px; border-radius:999px; backdrop-filter:blur(6px);
+    pointer-events:none; user-select:none;}
+  @media (max-width:880px){ .ver-badge{bottom:70px} }
+
+  /* === tab navigation === */
+  .tab-nav{
+    display:flex; gap:0; padding:0 28px; background:rgba(10,18,32,.5);
+    border-bottom:1px solid var(--line);
+  }
+  .tab-nav button{
+    appearance:none; cursor:pointer; border:none; background:transparent;
+    font:500 14px/1 inherit; color:var(--ink-dim);
+    padding:12px 20px; transition:all .12s ease;
+    border-bottom:2px solid transparent; margin-bottom:-1px;
+  }
+  .tab-nav button:hover{color:var(--ink)}
+  .tab-nav button.active{color:var(--accent); border-bottom-color:var(--accent)}
+    .tab-panel{display:none}
+    .tab-panel.active{display:block}
+    /* === hamburger menu (mobile) === */
+    .hamburger{
+      display:none; appearance:none; cursor:pointer; border:none; background:transparent;
+      width:36px; height:36px; flex-direction:column; align-items:center; justify-content:center;
+      gap:5px; padding:4px; border-radius:8px; transition:background .15s;
+    }
+    .hamburger:hover{background:rgba(255,255,255,.08)}
+    .hamburger span{display:block; width:20px; height:2px; background:var(--ink); border-radius:2px; transition:all .2s ease}
+    .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .hamburger.open span:nth-child(2){opacity:0}
+    .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    .drawer-overlay{
+      position:fixed; inset:0; z-index:55; background:rgba(0,0,0,.5);
+      opacity:0; pointer-events:none; transition:opacity .25s ease;
+    }
+    .drawer-overlay.open{opacity:1; pointer-events:auto}
+    .drawer{
+      position:fixed; top:0; left:0; bottom:0; z-index:56;
+      width:280px; max-width:85vw;
+      background:linear-gradient(180deg, #16273e, #0d1626);
+      border-right:1px solid var(--line-strong);
+      transform:translateX(-100%); transition:transform .25s ease;
+      display:flex; flex-direction:column; padding:16px;
+      overflow-y:auto;
+    }
+    .drawer.open{transform:translateX(0)}
+    .drawer h3{font:600 13px/1 inherit; color:var(--ink-dim); letter-spacing:.12em; text-transform:uppercase; margin:0 0 14px}
+    .drawer a{
+      display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:10px;
+      font-size:14px; color:var(--ink); text-decoration:none; cursor:pointer;
+      transition:background .12s;
+    }
+    .drawer a:hover{background:rgba(255,255,255,.06)}
+    .drawer a.active{background:rgba(255,158,138,.14); color:var(--accent)}
+    .drawer a .ic{font-size:16px; width:20px; text-align:center}
+    @media (max-width:880px){
+      .hamburger{display:flex}
+      .tab-nav{display:none}
+      .topbar{padding:10px 16px}
+      .toolbar button.tool{font-size:11px; padding:6px 10px}
+    }
+
+  @media (max-width:880px){
+    /* playerbar: compact on mobile */
+    .playerbar{bottom:8px; padding:6px 8px 6px 6px; gap:4px; border-radius:20px}
+    .playerbar .ctrl{width:34px; height:34px}
+    .playerbar .ctrl.play{width:42px; height:42px}
+    .playerbar .now{display:none}          /* hide now playing text */
+    .playerbar .progress{display:none}     /* hide progress bar */
+    .playerbar .pos{display:none}          /* hide time */
+    .playerbar .sep{display:none}
+    .playerbar .tog{padding:4px 6px; font-size:11px}
+    .playerbar .tog .sw{width:24px; height:14px}
+    .playerbar .tog.on .sw::after{left:12px}
+    /* touch targets */
+    .actions .btn{padding:11px 16px; font-size:14px}
+    .play, button.tool{padding:10px 14px}
+    /* cards & typography */
+    .card{padding:18px 16px; border-radius:14px}
+    .qtext{font-size:19px; margin-bottom:14px}
+    .sections{grid-template-columns:1fr; gap:12px}
+    .vmeta{font-size:11px; padding:5px 10px}
+    .qhead{gap:8px; margin-bottom:12px}
+    .qnum{font-size:24px}
+    .actions{margin-top:14px; gap:8px}
+    /* modal full-width-ish */
+    .modal{padding:20px 16px; max-height:88vh; overflow-y:auto}
+    .rec-circle{width:80px; height:80px}
+    /* drawer/nav */
+    .drawer{width:min(280px, 85vw)}
+    .tab-nav{padding:0 12px}
+    /* overview */
+    .overview-page{padding:16px 12px 150px}
+    .stat-card{padding:12px !important; min-width:120px !important}
+    .stat-card > div:nth-child(2){font-size:22px !important}
+    /* footer */
+    footer{font-size:11px}
+    .topic-title{font-size:26px}
+    .topic-sub{font-size:12px; margin-bottom:14px}
+  }
+
+  /* === countdown overlay === */
+  .countdown-overlay{
+    position:fixed; inset:0; z-index:90;
+    background:rgba(10,18,32,.92);
+    backdrop-filter:blur(12px);
+    display:none; flex-direction:column;
+    align-items:center; justify-content:center; gap:24px;
+  }
+  .countdown-overlay.show{display:flex}
+  .countdown-title{font-size:18px;color:var(--ink-dim);letter-spacing:.1em;text-transform:uppercase}
+  .countdown-number{
+    font-family:"Fraunces",serif; font-weight:700; font-size:120px;
+    color:var(--accent); line-height:1; text-shadow:0 0 60px rgba(255,158,138,.4);
+    /* Make countdown number less prominent - subtle, not eye-catching */
+    opacity:.55; font-weight:600; text-shadow:none;
+  }
+  .countdown-number.warning{color:#ffcc66;animation:pulse 1s infinite}
+  .countdown-number.danger{color:#ff5b6b;animation:pulse 0.5s infinite}
+  @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+  .countdown-hint{font-size:14px;color:var(--ink-dim)}
+  .countdown-done-btn{
+    margin-top:16px; padding:14px 32px; font-size:18px;
+    background:rgba(168,230,180,.2); border:2px solid var(--good);
+    border-radius:999px; color:var(--good); cursor:pointer;
+    transition:all .2s ease; font-weight:600;
+  }
+  .countdown-done-btn:hover{background:rgba(168,230,180,.35);transform:scale(1.05)}
+  .countdown-skip{font-size:13px;color:var(--ink-dim);cursor:pointer;padding:8px 16px}
+  .countdown-skip:hover{color:var(--ink)}
+  /* countdown rec button - same style as done button but muted */
+  .countdown-rec-btn{
+    margin-top:8px; padding:14px 32px; font-size:18px;
+    background:rgba(255,91,107,.2); border:2px solid var(--rec);
+    border-radius:999px; color:var(--rec); cursor:pointer;
+    transition:all .2s ease; font-weight:600;
+  }
+  .countdown-rec-btn:hover{background:rgba(255,91,107,.35);transform:scale(1.05)}
+
+  /* === done button states (bigger, white to green) === */
+  .btn-done{
+    padding:12px 20px !important; font-size:15px !important; font-weight:600 !important;
+    background:rgba(255,255,255,.08) !important; border:2px solid rgba(255,255,255,.2) !important;
+    color:var(--ink) !important; border-radius:999px !important;
+    transition:all .25s ease; cursor:pointer;
+  }
+  .btn-done:hover{background:rgba(255,255,255,.14) !important}
+  .btn-done.answered{
+    background:rgba(168,230,180,.25) !important; border-color:var(--good) !important;
+    color:var(--good) !important;
+  }
+
+  /* === question heatmap === */
+  .heatmap-tabs{display:flex;gap:8px;margin:0 0 16px}
+  .heatmap-tab{
+    padding:8px 16px; border-radius:999px; font-size:13px; font-weight:500;
+    background:rgba(255,255,255,.06); border:1px solid var(--line);
+    color:var(--ink-dim); cursor:pointer; transition:all .15s;
+  }
+  .heatmap-tab.active{background:var(--accent);color:#0a1220;border-color:transparent}
+  .question-heatmap{
+    display:grid; grid-template-columns:repeat(auto-fill,minmax(28px,1fr));
+    gap:4px; padding:16px; background:rgba(255,255,255,.03);
+    border:1px solid var(--line); border-radius:12px;
+  }
+  .q-heat-cell{
+    aspect-ratio:1; border-radius:4px; cursor:pointer;
+    background:#2a3548; transition:all .15s;
+    display:flex; align-items:center; justify-content:center;
+    font-size:10px; color:rgba(255,255,255,.5);
+  }
+  .q-heat-cell:hover{transform:scale(1.15);z-index:1}
+  .q-heat-cell.level-0{background:#2a3548}
+  .q-heat-cell.level-1{background:#4a9e6b}
+  .q-heat-cell.level-2{background:#2d8a4e}
+  .q-heat-cell.level-3{background:#1e6b38}
+  .q-heat-cell.level-4{background:#155528}
+  .time-heatmap{
+    display:grid; grid-template-columns:repeat(auto-fill,minmax(20px,1fr));
+    gap:3px; padding:12px; background:rgba(255,255,255,.03);
+    border:1px solid var(--line); border-radius:12px;
+  }
+  .t-heat-cell{
+    aspect-ratio:1; border-radius:3px; cursor:pointer;
+    background:#2a3548; transition:all .15s;
+  }
+  .t-heat-cell:hover{transform:scale(1.2);z-index:1}
+  .t-heat-cell.level-0{background:#2a3548}
+  .t-heat-cell.level-1{background:#9be9a8}
+  .t-heat-cell.level-2{background:#40c463}
+  .t-heat-cell.level-3{background:#30a14e}
+  .t-heat-cell.level-4{background:#216e39}
+  .heatmap-legend{
+    display:flex;align-items:center;gap:6px;font-size:11px;color:var(--ink-dim);margin:12px 0 24px;
+  }
+  .heatmap-legend span{padding:2px 6px;border-radius:3px}
+
+  /* === auth modal === */
+  .auth-tabs{display:flex;gap:8px;margin:0 0 18px}
+  .auth-tab{flex:1;padding:10px;border-radius:10px;border:1px solid var(--line);
+    background:rgba(255,255,255,.05);color:var(--ink-dim);cursor:pointer;font:500 13px/1 inherit;transition:all .15s}
+  .auth-tab:hover{background:rgba(255,255,255,.1)}
+  .auth-tab.active{background:var(--accent);color:#0a1220;border-color:transparent}
+  .auth-field{margin:0 0 14px}
+  .auth-field label{display:block;font-size:12px;color:var(--ink-dim);margin:0 0 6px}
+  .auth-field input{width:100%;padding:12px;border-radius:10px;border:1px solid var(--line);
+    background:rgba(255,255,255,.06);color:var(--ink);font:500 14px/1 inherit;outline:none;box-sizing:border-box}
+  .auth-field input:focus{border-color:var(--accent)}
+  .code-row{display:flex;gap:8px;align-items:center}
+  .code-row input{flex:1;min-width:0}
+  .btn-code{flex-shrink:0;height:42px;padding:0 14px;border-radius:10px;border:1px solid rgba(168,230,180,.35);
+    background:rgba(168,230,180,.12);color:var(--good);font:600 13px/1 inherit;cursor:pointer;transition:all .15s;white-space:nowrap}
+  .btn-code:hover{background:rgba(168,230,180,.22)}
+  .btn-code:disabled{opacity:.45;cursor:not-allowed}
+  .auth-hint{font-size:11px;color:var(--good);margin:-4px 0 14px;min-height:0}
+  .auth-hint:empty{display:none}
+  .auth-err{min-height:18px;font-size:12px;color:var(--rec);margin:0 0 8px}
+  #btnAuth.active{background:rgba(168,230,180,.15);border-color:var(--good);color:var(--good)}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <div class="logo"><i></i><i></i><i></i></div>
+    <div class="title">IELTS Speaking <small>· Part 1 · brand9</small></div>
+  </div>
+  <div class="toolbar">
+      <button class="hamburger" id="hamburger" aria-label="菜单"><span></span><span></span><span></span></button>
+      <span class="saved-pill" id="saveStatus"><span class="dot"></span><span id="saveLabel">未修改</span></span>
+    <button class="tool tb-extra" id="btnEdit">✎ 编辑</button>
+    <button class="tool tb-extra" id="btnExport">⤓ 导出</button>
+    <button class="tool tb-extra" id="btnImport">⤒ 导入</button>
+    <button class="tool tb-extra" id="btnReset">↺ 重置</button>
+    <button class="tool" id="btnAuth" title="登录后进度云端保存">🔑 登录</button>
+    <button class="tool more-trigger" id="btnMore" title="更多操作">⋯ 更多</button>
+    <div class="more-menu" id="moreMenu">
+      <button id="moreEdit">✎ 编辑</button>
+      <button id="moreExport">⤓ 导出</button>
+      <button id="moreImport">⤒ 导入</button>
+      <button id="moreReset">↺ 重置</button>
+    </div>
+        <input id="fileInput" type="file" accept="application/json" hidden>
+      </div>
+    </header>
+
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <nav class="drawer" id="drawer">
+      <h3>brand9 · 导航</h3>
+      <a class="active" data-tab="p1" onclick="switchTab('p1')"><span class="ic">📝</span> Part 1 · 题库</a>
+      <a data-tab="p23" onclick="switchTab('p23')"><span class="ic">🎤</span> Part 2&3 · Cue Cards</a>
+      <a data-tab="overview" onclick="switchTab('overview')"><span class="ic">📊</span> 总览 · 进度</a>
+      <hr style="border-color:var(--line);margin:14px 0">
+      <a onclick="document.getElementById('recBtn').click()"><span class="ic">⏺</span> 录制回答</a>
+      <a onclick="editing=!editing; applyEditingMode(); document.getElementById('drawer').classList.remove('open'); document.getElementById('drawerOverlay').classList.remove('open'); document.getElementById('hamburger').classList.remove('open')"><span class="ic">✎</span> 编辑模式</a>
+      <a onclick="document.getElementById('btnExport').click()"><span class="ic">⤓</span> 导出 JSON</a>
+    </nav>
+
+    <div class="tab-nav">
+  <button class="tab-btn active" data-tab="p1">Part 1 · 题库</button>
+  <button class="tab-btn" data-tab="p23">Part 2&3 · Cue Cards</button>
+  <button class="tab-btn" data-tab="overview">📊 总览 · 进度</button>
+</div>
+
+<div id="tab-p1" class="tab-panel active">
+<div class="layout">
+  <aside class="sidebar" id="sidebar1">
+    <h3>题目列表 (按主题分组)</h3>
+    <input type="text" class="filter-input" id="filterInput" placeholder="🔍 搜索题目、主题…">
+    <div id="topicTree"></div>
+  </aside>
+
+  <section class="main">
+    <button class="qlist-btn" id="qlistBtn1" onclick="toggleSidebar(1)">📋 题目列表</button>
+    <h2 class="topic-title" id="topicTitle">—</h2>
+    <p class="topic-sub" id="topicSub">—</p>
+    <article class="card">
+      <div class="qhead">
+        <div class="qnum" id="qnum">Q1</div>
+        <div class="vmeta">
+          <span class="flag" id="vflag">🇬🇧</span>
+          <span class="vname" id="vname">—</span>
+        </div>
+      </div>
+      <h1 class="qtext editable" id="qtext"></h1>
+      <div class="sections">
+        <div class="sect"><h4>Useful phrases</h4><div class="phrases editable" id="phrases"></div></div>
+        <div class="sect"><h4>Sample answer</h4>
+          <div class="answer-gate" id="answerGate">
+            <div class="answer editable" id="answer"></div>
+            <div class="gate-mask" id="gateMask">
+              <div class="lock">🔒</div>
+              <div>参考答案已隐藏</div>
+              <div style="font-size:11px; opacity:.7">点击此处或播放器条"显示答案"开关</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="actions">
+        <button class="btn star" id="starBtn">★ 收藏</button>
+        <button class="btn" id="recBtn">⏺ 录制我的回答</button>
+        <button class="btn play-own hidden" id="myAudioBtn" title="试听我的录音">🎙 我的录音</button>
+        <button class="btn play-ans hidden" id="ansAudioBtn" title="试听参考答案音频">🔊 参考答案</button>
+        <button class="btn" id="prevBtn">◀ 上一题</button>
+        <button class="btn primary" id="nextBtn">下一题 ▶</button>
+      </div>
+    </article>
+    <footer>
+      <span>brand9 · Part 1 · 共 <b id="totalQ">0</b> 题</span>
+      <span>edge-tts · 4 口音轮换</span>
+    </footer>
+  </section>
+</div>
+</div>
+
+
+<div id="tab-p23" class="tab-panel">
+  <div class="layout">
+    <aside class="sidebar" id="sidebar2">
+      <h3>Cue Cards (按话题)</h3>
+      <input type="text" class="filter-input" id="filterP23" placeholder="🔍 搜索题目…">
+      <div id="p23Tree"></div>
+    </aside>
+    <section class="main">
+    <button class="qlist-btn" id="qlistBtn2" onclick="toggleSidebar(2)">📋 题目列表</button>
+    <h2 class="topic-title" id="p23Topic">—</h2>
+      <p class="topic-sub" id="p23Sub">Part 2&3 · —</p>
+      <article class="card" id="p23Card">
+        <div class="qhead">
+          <div class="qnum" id="p23Label">—</div>
+          <div class="vmeta">
+            <span class="flag" id="p23Flag">🇬🇧</span>
+            <span class="vname" id="p23Voice">—</span>
+          </div>
+        </div>
+        <h1 class="qtext" id="p23Text"></h1>
+        <div id="p23Bullets" style="margin:0 0 18px; padding-left:20px"></div>
+        <div id="p23Analysis" style="margin:0 0 16px"></div>
+        <div class="sections">
+          <div class="sect"><h4>答题参考 (Phrases)</h4><div class="phrases" id="p23Phrases"></div></div>
+          <div class="sect"><h4>Sample Answer</h4>
+            <div class="answer-gate" id="p23AnswerGate">
+              <div class="answer" id="p23Answer"></div>
+              <div class="gate-mask" id="p23GateMask">
+                <div class="lock">🔒</div><div>参考答案已隐藏</div>
+                <div style="font-size:11px;opacity:.7">点击此处或播放器条开关</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h3 style="margin:24px 0 8px; font-family:var(--font-serif)">Part 3 · 讨论题</h3>
+        <div id="p23Part3"></div>
+        <div class="actions" style="margin-top:16px">
+          <button class="btn star" id="p23StarBtn">☆ 收藏</button>
+          <button class="btn" id="p23RecBtn">⏺ 录制</button>
+          <button class="btn play-own hidden" id="p23MyAudioBtn" title="试听我的录音">🎙 我的录音</button>
+          <button class="btn play-ans hidden" id="p23AnsAudioBtn" title="试听参考答案音频">🔊 参考答案</button>
+          <button class="btn" id="p23PrevBtn">◀ 上一题</button>
+          <button class="btn primary" id="p23NextBtn">下一题 ▶</button>
+          <button class="btn btn-done" id="p23DoneBtn">□ 标记已完成</button>
+        </div>
+      </article>
+      <footer><span>brand9 · Part 2&3 · 共 <b id="p23Total">0</b> 题</span><span>edge-tts · 4 口音轮换</span></footer>
+    </section>
+  </div>
+</div>
+
+<div id="tab-overview" class="tab-panel">
+  <div class="overview-page" style="max-width:1400px;margin:0 auto;padding:24px 28px 140px">
+    <h2 style="font-family:var(--font-serif);font-weight:600;font-size:clamp(28px,4vw,42px);margin:0 0 4px">📊 学习进度总览</h2>
+    <p style="color:var(--ink-dim);margin:0 0 24px;font-size:14px">每题练完点击 □ 标记已完成 即自动记录。方块越深 = 当日练习越多。</p>
+    <div class="stats-row" style="display:flex;gap:16px;flex-wrap:wrap;margin:0 0 28px" id="statsRow">
+      <div class="stat-card" style="flex:1;min-width:140px;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:14px;padding:16px">
+        <div style="font-size:12px;color:var(--ink-dim);margin-bottom:4px">🔥 连续打卡</div>
+        <div style="font-family:var(--font-serif);font-weight:600;font-size:28px;color:var(--accent)" id="statStreak">0</div><div style="font-size:12px;color:var(--ink-dim)">天</div>
+      </div>
+      <div class="stat-card" style="flex:1;min-width:140px;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:14px;padding:16px">
+        <div style="font-size:12px;color:var(--ink-dim);margin-bottom:4px">📝 今日已练</div>
+        <div style="font-family:var(--font-serif);font-weight:600;font-size:28px;color:var(--ink)" id="statToday">0</div><div style="font-size:12px;color:var(--ink-dim)">题</div>
+      </div>
+      <div class="stat-card" style="flex:1;min-width:140px;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:14px;padding:16px">
+        <div style="font-size:12px;color:var(--ink-dim);margin-bottom:4px">⏱ 累计练习</div>
+        <div style="font-family:var(--font-serif);font-weight:600;font-size:28px;color:var(--ink)" id="statTotal">0</div><div style="font-size:12px;color:var(--ink-dim)">分钟</div>
+      </div>
+      <div class="stat-card" style="flex:1;min-width:140px;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:14px;padding:16px">
+        <div style="font-size:12px;color:var(--ink-dim);margin-bottom:4px">✅ 总完成</div>
+        <div style="font-family:var(--font-serif);font-weight:600;font-size:28px;color:var(--good)" id="statDone">0</div><div style="font-size:12px;color:var(--ink-dim)">题 / <span id="statDoneOf">0</span></div>
+      </div>
+    </div>
+    <div class="heatmap-tabs">
+      <button class="heatmap-tab active" id="htTabQuestion" onclick="switchHeatmapMode('question')">&#x1F4CA; 题目热力图</button>
+      <button class="heatmap-tab" id="htTabTime" onclick="switchHeatmapMode('time')">&#x23F1; 作答时间热力图</button>
+    </div>
+    <div id="questionHeatmapContainer" class="question-heatmap"></div>
+    <div id="timeHeatmapContainer" class="time-heatmap" style="display:none"></div>
+    <div class="heatmap-legend" id="heatmapLegend">
+      <span style="background:#2a3548;padding:2px 8px;border-radius:3px">未练</span>
+      <span style="background:#4a9e6b;padding:2px 8px;border-radius:3px">1次</span>
+      <span style="background:#2d8a4e;padding:2px 8px;border-radius:3px">2次</span>
+      <span style="background:#1e6b38;padding:2px 8px;border-radius:3px">3次</span>
+      <span style="background:#155528;padding:2px 8px;border-radius:3px">4次+</span>
+    </div>
+    <div id="heatmapContainer"></div>
+    <div style="display:flex;align-items:center;gap:8px;font-size:11px;color:var(--ink-dim);justify-content:flex-end;margin:0 0 24px">
+      <span>Less</span>
+      <span style="width:12px;height:12px;border-radius:3px;background:#ebedf0"></span>
+      <span style="width:12px;height:12px;border-radius:3px;background:#9be9a8"></span>
+      <span style="width:12px;height:12px;border-radius:3px;background:#40c463"></span>
+      <span style="width:12px;height:12px;border-radius:3px;background:#30a14e"></span>
+      <span style="width:12px;height:12px;border-radius:3px;background:#216e39"></span>
+      <span>More</span>
+    </div>
+  </div>
+</div>
+<!-- Countdown Overlay -->
+<div class="countdown-overlay" id="countdownOverlay">
+  <div class="countdown-title" id="countdownTitle">准备答题</div>
+  <div class="countdown-number" id="countdownNumber">45</div>
+  <div class="countdown-hint" id="countdownHint">音频播放完毕，请准备作答</div>
+  <button class="countdown-done-btn" id="countdownDoneBtn">&#x25A1; 我已作答</button>
+  <button class="countdown-rec-btn" id="countdownRecBtn">&#x1F399; 录制我的回答</button>
+  <div class="countdown-skip" id="countdownSkip">跳过 (&#x2192;)</div>
+</div>
+
+<div class="playerbar" id="playerbar">
+  <button class="ctrl" id="pbPrev" title="上一题">⏮</button>
+  <button class="ctrl play" id="pbPlay" title="播放/暂停">▶</button>
+  <button class="ctrl" id="pbNext" title="下一题">⏭</button>
+  <div class="now">
+    <span class="lbl" id="pbLbl">Q1 / 0</span>
+    <span class="txt" id="pbTxt"></span>
+    <span class="voice" id="pbVoice"></span>
+  </div>
+  <div class="progress" id="pbProgress"><div class="bar" id="pbBar"></div></div>
+  <div class="pos" id="pbPos">0:00 / 0:00</div>
+  <div class="sep"></div>
+  <div class="tog" id="pbReveal" title="默认隐藏参考答案"><span class="sw"></span><span>显示答案</span></div>
+  <div class="sep"></div>
+  <div class="tog" id="pbAuto" title="一题播完自动播下一题"><span class="sw"></span><span>连播</span></div>
+</div>
+
+<div class="rec-panel" id="recPanel" hidden>
+  <div class="rec-head">
+    <h2>⏺ 录制你的回答</h2>
+    <button class="rec-reveal-btn" id="recRevealBtn" title="录制时可随时查看/隐藏参考答案">👁 显示参考答案</button>
+  </div>
+  <div class="rec-btn-wrap">
+    <button class="rec-main-btn" id="recMainBtn" type="button">
+      <div class="rec-progress" id="recProgress"></div>
+      <div class="btn-content">
+        <span class="rec-icon" id="recIcon">⏺</span>
+        <span class="rec-label" id="recLabel">开始录音</span>
+        <span class="rec-timer-inline hidden" id="recTimerInline">0:00</span>
+        <span class="rec-vu-inline" id="recVuInline" aria-hidden="true">
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        </span>
+      </div>
+    </button>
+  </div>
+  <p style="color:var(--ink-dim); font-size:12px; text-align:center; margin:8px 0 0">
+    点击按钮开始/停止录音。建议时长 <b>30–60 秒</b>。
+  </p>
+  <div class="rec-playback-row" id="recPlaybackRow">
+    <button class="rec-playback-btn own" id="playOwnBtn" title="试听我的录音">
+      <span class="play-icon">▶</span> 我的录音
+    </button>
+    <button class="rec-playback-btn" id="playAnsBtn" title="试听参考答案音频">
+      <span class="play-icon">🔊</span> 参考答案
+    </button>
+  </div>
+  <div class="rec-mini-player" id="recMiniPlayer">
+    <div class="rec-mini-player-inner">
+      <button class="rec-mini-btn" id="miniPlayBtn">▶</button>
+      <div class="rec-mini-progress" id="miniProgress"><div class="mp-bar" id="miniBar"></div></div>
+      <span class="rec-mini-time" id="miniTime">0:00 / 0:00</span>
+    </div>
+    <audio id="recAudio" preload="metadata"></audio>
+  </div>
+  <div class="modal-actions">
+    <button class="danger" id="recDiscard">丢弃</button>
+    <button class="primary hidden" id="recSave">💾 保存到本地</button>
+    <button id="recClose">关闭</button>
+  </div>
+</div>
+<audio id="ansAudio" preload="none"></audio>
+<audio id="myAudio" preload="none"></audio>
+
+<!-- Auth Modal (login / register) -->
+<div class="modal-bg" id="authModal">
+  <div class="modal" style="max-width:380px">
+    <h2 id="authTitle">🔑 登录</h2>
+    <p class="sub" id="authSub">登录后学习进度自动云端保存，换设备不丢失</p>
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="authTabLogin" onclick="switchAuthMode('login')">登录</button>
+      <button class="auth-tab" id="authTabReg" onclick="switchAuthMode('register')">注册</button>
+    </div>
+    <div class="auth-field">
+      <label for="authUser">用户名</label>
+      <input type="text" id="authUser" placeholder="3-32 个字符" autocomplete="username">
+    </div>
+    <div class="auth-field" id="authEmailWrap" style="display:none">
+      <label for="authEmail">邮箱</label>
+      <div class="code-row">
+        <input type="email" id="authEmail" placeholder="接收验证码的邮箱" autocomplete="email">
+        <button class="btn-code" id="btnSendCode" type="button">发送验证码</button>
+      </div>
+    </div>
+    <div class="auth-field" id="authCodeWrap" style="display:none">
+      <label for="authCode">邮箱验证码</label>
+      <input type="text" id="authCode" placeholder="6 位数字，5 分钟内有效" inputmode="numeric" maxlength="6" autocomplete="one-time-code">
+    </div>
+    <div class="auth-hint" id="authHint"></div>
+    <div class="auth-field">
+      <label for="authPass">密码</label>
+      <input type="password" id="authPass" placeholder="至少 6 位" autocomplete="current-password">
+    </div>
+    <div class="auth-err" id="authErr"></div>
+    <div class="modal-actions">
+      <button class="primary" id="authSubmit">登录</button>
+      <button id="authClose">取消</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<div class="ver-badge" id="verBadge"></div>
+<audio id="sharedAudio" preload="auto"></audio>
+
+<!-- 120 题数据 (72 KB) -->
+<script src="_init_data.js"></script>
+
+<script>
+const STORAGE_KEY = "brand9::doc::v3", STAR_KEY = "brand9::stars::v2", REVEAL_KEY = "brand9::reveal::v2";
+const APP_VERSION = "v2.1.0";
+let doc = loadDoc(), stars = loadStars(), editing = false, currentIdx = 0, autoPlay = false, saveTimer = null;
+let recState = { recorder:null, stream:null, audioCtx:null, analyser:null, rafId:0, chunks:[], blob:null, startedAt:0 };
+let reveal = loadReveal();
+
+function loadDoc(){
+  try{ const r = localStorage.getItem(STORAGE_KEY); if(r){ const j = JSON.parse(r); if(Array.isArray(j)&&j.length) return j; } }catch(e){}
+  return JSON.parse(JSON.stringify(window.INIT_DATA));
+}
+function loadStars(){ try{ return JSON.parse(localStorage.getItem(STAR_KEY)||"{}"); }catch(e){ return {}; } }
+function saveStars(){ localStorage.setItem(STAR_KEY, JSON.stringify(stars)); trackChange(STAR_KEY); }
+function loadReveal(){ try{ return localStorage.getItem(REVEAL_KEY) === "1"; }catch(e){ return false; } }
+function saveReveal(){ try{ localStorage.setItem(REVEAL_KEY, reveal ? "1" : "0"); trackChange(REVEAL_KEY); }catch(e){} }
+function dirty(){
+  setStatus("dirty"); clearTimeout(saveTimer);
+  saveTimer = setTimeout(()=>{ try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(doc)); setStatus("saved"); }catch(e){ toast("保存失败："+e.message); } }, 350);
+}
+function setStatus(s){
+  const p = $("#saveStatus"), l = $("#saveLabel"); p.classList.remove("dirty","saved");
+  if(s==="dirty"){ p.classList.add("dirty"); l.textContent="编辑中…"; }
+  else if(s==="saved"){ p.classList.add("saved"); l.textContent="已保存 ✓"; }
+  else l.textContent="未修改";
+}
+window.bento = { get doc(){ return doc; }, serialize(){ return JSON.stringify(doc,null,2); },
+  loadDoc(next){ if(typeof next==="string") next = JSON.parse(next); if(Array.isArray(next)){ doc=next; render(); markSaved(); } } };
+
+const $ = (s,r=document)=>r.querySelector(s), $$ = (s,r=document)=>Array.from(r.querySelectorAll(s));
+$("#verBadge").textContent = "brand9 " + APP_VERSION;
+const FLAG = {"en-GB":"🇬🇧","en-US":"🇺🇸","en-AU":"🇦🇺","en-CA":"🇨🇦","en-IN":"🇮🇳"};
+const ACCENT_LABEL = {"British (mature female)":"英音·熟女","American (mid male)":"美音·中年男","Australian (female)":"澳音·女","Canadian (male)":"加音·男"};
+function getFlag(v){ return FLAG[v.split("-").slice(0,2).join("-")]||"🌐"; }
+function escape(s){ return String(s??"").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"})[c]); }
+
+// Group questions by topic, preserving original order
+function groupByTopic(){
+  const map = new Map(); // topic -> [indices]
+  doc.forEach((q, i) => {
+    const t = q.topic || "Untitled";
+    if(!map.has(t)) map.set(t, []);
+    map.get(t).push(i);
+  });
+  return map;
+}
+
+let openTopics = new Set(); // currently expanded topic names
+
+function renderSidebar(filter){
+  const tree = $("#topicTree"); tree.innerHTML = "";
+  const groups = groupByTopic();
+  $("#totalQ").textContent = doc.length;
+
+  groups.forEach((indices, topic) => {
+    const allStarred = indices.every(i => stars[doc[i].label]);
+    const someStarred = indices.some(i => stars[doc[i].label]);
+
+    // Apply filter: show only matching questions / topics
+    const matchingIndices = filter
+      ? indices.filter(i => matches(doc[i], topic, filter))
+      : indices;
+    if(filter && matchingIndices.length === 0) return;
+
+    const group = document.createElement("div");
+    group.className = "topic-group" + (openTopics.has(topic) ? " open" : "");
+    const head = document.createElement("div");
+    head.className = "topic-head";
+    head.innerHTML = `
+      <span class="name">${escape(topic)}</span>
+      <span class="star-group ${someStarred ? "on" : ""}" data-star-topic="${escape(topic)}" title="全部收藏/取消">${allStarred ? "★" : (someStarred ? "★" : "☆")}</span>
+      <span class="cnt">${matchingIndices.length}</span>`;
+    head.addEventListener("click", e => {
+      if(e.target.dataset.starTopic !== undefined){
+        const op = allStarred ? "remove" : "add";
+        indices.forEach(i => stars[doc[i].label] = (op === "add"));
+        saveStars(); renderSidebar($("#filterInput").value);
+        return;
+      }
+      if(openTopics.has(topic)) openTopics.delete(topic);
+      else openTopics.add(topic);
+      renderSidebar(filter);
+    });
+    group.appendChild(head);
+
+    if(openTopics.has(topic) || filter){
+      const qsDiv = document.createElement("div");
+      qsDiv.className = "topic-qs";
+      matchingIndices.forEach(i => {
+        const q = doc[i];
+        const item = document.createElement("div");
+        item.className = "qitem" + (i === currentIdx ? " active" : "");
+        item.innerHTML = `
+          <div class="lbl">${escape(q.label)}</div>
+          <div class="qt">${escape(q.text)}</div>
+          <div class="star ${stars[q.label]?"on":"off"}" data-star="${escape(q.label)}" title="收藏">${stars[q.label]?"★":"☆"}</div>`;
+        item.addEventListener("click", e => {
+          if(e.target.dataset.star){ toggleStar(q.label); return; }
+          switchTo(i);
+        });
+        qsDiv.appendChild(item);
+      });
+      group.appendChild(qsDiv);
+    }
+    tree.appendChild(group);
+  });
+}
+function matches(q, topic, filter){
+  const f = filter.toLowerCase();
+  return q.text.toLowerCase().includes(f)
+      || (q.answer||"").toLowerCase().includes(f)
+      || (q.phrases||[]).some(p => p.toLowerCase().includes(f))
+      || topic.toLowerCase().includes(f)
+      || q.label.toLowerCase().includes(f);
+}
+
+function render(){
+  const q = doc[currentIdx];
+  $("#qnum").textContent = q.label;
+  $("#vflag").textContent = getFlag(q.voice);
+  $("#vname").textContent = q.voice;
+  $("#qtext").textContent = q.text;
+  $("#phrases").innerHTML = (q.phrases||[]).map(p=>`<span class="phrase">${escape(p)}</span>`).join("");
+  $("#answer").textContent = q.answer;
+  $("#answerGate").classList.toggle("revealed", reveal);
+  $("#pbReveal").classList.toggle("on", reveal);
+  $("#topicTitle").textContent = q.topic || "Untitled";
+  $("#topicSub").textContent = `Part 1 · ${doc.length} 题 · ${q.voice.split("-").slice(0,2).join("-")} 口音`;
+  $("#pbLbl").textContent = `${q.label} / ${doc.length}`;
+  $("#pbTxt").textContent = q.text;
+  $("#pbVoice").textContent = `${getFlag(q.voice)} ${q.voice} · ${ACCENT_LABEL[q.accent]||q.accent}`;
+  $("#starBtn").textContent = stars[q.label] ? "★ 已收藏" : "☆ 收藏";
+  $("#starBtn").classList.toggle("active", !!stars[q.label]);
+  $("#prevBtn").disabled = currentIdx===0;
+  $("#nextBtn").disabled = currentIdx===doc.length-1;
+  // don't strip src; playCurrent handles source change safely
+  applyEditingMode();
+  renderSidebar($("#filterInput").value);
+  refreshRecButtons();
+}
+function toggleStar(label){ stars[label]=!stars[label]; saveStars(); render(); toast(stars[label]?"已收藏 ⭐":"取消收藏"); }
+function switchTo(i){ if(i<0||i>=doc.length) return; currentIdx=i; render(); }
+function markSaved(){ try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(doc)); }catch(e){} setStatus("saved"); }
+
+const audio = () => $("#sharedAudio");
+async function playCurrent(){
+  const q = doc[currentIdx], a = audio();
+  const targetSrc = q.audio;
+  if(!a.currentSrc.endsWith(targetSrc) && !a.src.endsWith(targetSrc)){
+    a.src = targetSrc; a.dataset.q = q.label; try{ a.load(); }catch(_){}
+  }
+  try{ await a.play(); }
+  catch(e){
+    if(/no supported sources/i.test(e.message || "")){
+      a.src = targetSrc; a.dataset.q = q.label; try{ a.load(); }catch(_){}
+      try{ await a.play(); } catch(e2){ toast("播放失败：" + (e2.message||e2)); }
+    } else { toast("播放失败：" + (e.message||e)); }
+  }
+}
+function bindPlayer(){
+  $("#pbPlay").addEventListener("click", ()=>{ const a = audio(); if(a.paused || a.ended) playCurrent(); else a.pause(); });
+  $("#pbPrev").addEventListener("click", ()=> switchTo(currentIdx-1));
+  $("#pbNext").addEventListener("click", ()=> switchTo(currentIdx+1));
+  $("#prevBtn").addEventListener("click", ()=> switchTo(currentIdx-1));
+  $("#nextBtn").addEventListener("click", ()=> switchTo(currentIdx+1));
+  $("#pbAuto").addEventListener("click", ()=>{ autoPlay=!autoPlay; $("#pbAuto").classList.toggle("on",autoPlay); toast(autoPlay?"连播 ON":"连播 OFF"); });
+  $("#pbReveal").addEventListener("click", ()=>{ reveal=!reveal; saveReveal(); render(); toast(reveal?"答案已显示":"答案已隐藏"); });
+  $("#filterInput").addEventListener("input", e => renderSidebar(e.target.value));
+  const a = audio();
+  a.addEventListener("play",  ()=>{ $("#pbPlay").classList.add("playing"); $("#pbPlay").textContent="⏸"; });
+  a.addEventListener("pause", ()=>{ $("#pbPlay").classList.remove("playing"); $("#pbPlay").textContent="▶"; });
+  a.addEventListener("ended", ()=>{
+    $("#pbPlay").classList.remove("playing"); $("#pbPlay").textContent="▶";
+    // Auto-advance is handled by the countdown flow (COUNTDOWN TIMER section) so the
+    // countdown overlay is not bypassed and questions are not skipped.
+  });
+  a.addEventListener("timeupdate", ()=>{
+    const pct = a.duration ? (a.currentTime/a.duration*100) : 0;
+    $("#pbBar").style.width = pct+"%";
+    $("#pbPos").textContent = `${fmt(a.currentTime)} / ${fmt(a.duration)}`;
+  });
+  $("#pbProgress").addEventListener("click", e=>{
+    const r = e.currentTarget.getBoundingClientRect();
+    const ratio = (e.clientX-r.left)/r.width;
+    if(a.duration) a.currentTime = ratio*a.duration;
+  });
+}
+function fmt(sec){ if(!isFinite(sec)||sec<0) return "0:00"; const m=Math.floor(sec/60), s=Math.round(sec%60); return `${m}:${String(s).padStart(2,"0")}`; }
+
+function applyEditingMode(){
+  document.body.classList.toggle("editing", editing);
+  $("#btnEdit").classList.toggle("active", editing);
+  $$(".editable").forEach(el => el.setAttribute("contenteditable", editing ? "true" : "false"));
+  if(editing) bindEditHandlers();
+}
+function bindEditHandlers(){
+  const q = doc[currentIdx];
+  const txt = $("#qtext"), ans = $("#answer"), ph = $("#phrases");
+  txt.oninput = ()=>{ q.text = txt.innerText.trim(); dirty(); renderSidebar($("#filterInput").value); };
+  ans.oninput = ()=>{ q.answer = ans.innerText; dirty(); };
+  ph.oninput  = ()=>{ q.phrases = ph.innerText.split("\n").map(s=>s.trim()).filter(Boolean); dirty(); };
+}
+
+$("#btnEdit").onclick = ()=>{ editing=!editing; applyEditingMode(); toast(editing?"已进入编辑模式":"已退出编辑模式"); };
+$("#btnExport").onclick = ()=>{ const blob = new Blob([JSON.stringify(doc,null,2)], {type:"application/json"}); const url = URL.createObjectURL(blob); const a = document.createElement("a"); a.href=url; a.download="brand9-part1.json"; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url); toast("已导出 JSON"); };
+$("#btnImport").onclick = ()=> $("#fileInput").click();
+$("#fileInput").onchange = e=>{ const f=e.target.files[0]; if(!f) return; const r=new FileReader(); r.onload = ev=>{ try{ window.bento.loadDoc(ev.target.result); currentIdx=0; render(); toast("已导入"); }catch(err){ toast("导入失败："+err.message); } }; r.readAsText(f); e.target.value=""; };
+$("#btnReset").onclick = ()=>{ if(!confirm("确定重置为初始数据？本地保存的内容将被覆盖。")) return; doc = JSON.parse(JSON.stringify(window.INIT_DATA)); currentIdx=0; render(); markSaved(); toast("已重置"); };
+$("#btnMore").onclick = (e)=>{ e.stopPropagation(); $("#moreMenu").classList.toggle("show"); };
+document.addEventListener("click", e=>{ if(!e.target.closest("#moreMenu") && !e.target.closest("#btnMore")) $("#moreMenu").classList.remove("show"); });
+$("#moreEdit").onclick = ()=> $("#btnEdit").click();
+$("#moreExport").onclick = ()=> $("#btnExport").click();
+$("#moreImport").onclick = ()=> $("#btnImport").click();
+$("#moreReset").onclick = ()=> $("#btnReset").click();
+$("#starBtn").onclick = ()=> toggleStar(doc[currentIdx].label);
+$("#gateMask").onclick = ()=>{ reveal=true; saveReveal(); render(); toast("答案已显示"); };
+
+function fmt2(sec){ const m=Math.floor(sec/60), s=Math.floor(sec%60); return `${m}:${String(s).padStart(2,"0")}`; }
+function curRecLabel(){
+  return document.querySelector(".tab-btn.active")?.dataset.tab === "p23"
+    ? (p23Data[p23Idx]?.label || "")
+    : (doc[currentIdx]?.label || "");
+}
+function resetMiniPlayer(){
+  $("#miniPlayBtn").textContent = "▶"; $("#miniPlayBtn").classList.remove("playing");
+  $("#miniBar").style.width = "0%"; $("#miniTime").textContent = "0:00 / 0:00";
+}
+function bindMiniPlayer(){
+  const a = $("#recAudio");
+  $("#miniPlayBtn").addEventListener("click", ()=>{ if(a.paused || a.ended) a.play(); else a.pause(); });
+  a.addEventListener("play",  ()=>{ $("#miniPlayBtn").textContent="⏸"; $("#miniPlayBtn").classList.add("playing"); });
+  a.addEventListener("pause", ()=>{ $("#miniPlayBtn").textContent="▶"; $("#miniPlayBtn").classList.remove("playing"); });
+  a.addEventListener("ended", ()=>{ $("#miniPlayBtn").textContent="▶"; $("#miniPlayBtn").classList.remove("playing"); });
+  a.addEventListener("timeupdate", ()=>{
+    const pct = a.duration ? (a.currentTime/a.duration*100) : 0;
+    $("#miniBar").style.width = pct+"%";
+    $("#miniTime").textContent = `${fmt(a.currentTime)} / ${fmt(a.duration)}`;
+  });
+  $("#miniProgress").addEventListener("click", e=>{
+    const r = e.currentTarget.getBoundingClientRect();
+    const ratio = (e.clientX-r.left)/r.width;
+    if(a.duration) a.currentTime = ratio*a.duration;
+  });
+}
+function openRec(){
+  const panel = $("#recPanel");
+  /* relocate panel inline inside the currently visible question card */
+  const card = document.querySelector(".tab-panel.active .card");
+  if(card && !card.contains(panel)) card.appendChild(panel);
+  panel.hidden = false;
+  resetRecUI();
+  syncRevealBtn();
+  requestAnimationFrame(()=>{ panel.scrollIntoView({behavior:"smooth", block:"nearest"}); });
+}
+function closeRec(){ stopRec(true); $("#recPanel").hidden = true; }
+function syncRevealBtn(){
+  const b = $("#recRevealBtn");
+  b.classList.toggle("on", reveal);
+  b.textContent = reveal ? "👁 隐藏参考答案" : "👁 显示参考答案";
+}
+function setRecButton(state){
+  const btn = $("#recMainBtn"), icon = $("#recIcon"), label = $("#recLabel"),
+        timer = $("#recTimerInline"), vu = $("#recVuInline");
+  btn.classList.remove("recording","has-recording","playing-rec");
+  timer.classList.add("hidden"); vu.classList.add("hidden");
+  if(state === "recording"){
+    btn.classList.add("recording");
+    icon.textContent = "⏺"; label.textContent = "点击停止";
+    timer.classList.remove("hidden"); vu.classList.remove("hidden");
+  } else if(state === "has-rec"){
+    btn.classList.add("has-recording");
+    icon.textContent = "▶"; label.textContent = "播放录音";
+  } else if(state === "playing-rec"){
+    btn.classList.add("has-recording","playing-rec");
+    icon.textContent = "⏸"; label.textContent = "暂停";
+  } else {
+    icon.textContent = "⏺"; label.textContent = "开始录音";
+  }
+}
+function resetRecUI(){
+  setRecButton("idle");
+  $("#recProgress").style.width = "0%";
+  $("#recPlaybackRow").classList.remove("show");
+  $("#recMiniPlayer").classList.remove("show");
+  $("#recSave").classList.add("hidden");
+  resetMiniPlayer();
+  $$("#recVuInline i").forEach(b => { b.style.height = "6px"; b.style.opacity = ".4"; });
+  recState.blob = null;
+  syncRevealBtn();
+}
+let recTimerTick;
+async function startRec(){
+  // --- Support / secure-context checks first: raw errors are useless to the user ---
+  if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
+    alert("⚠️ 无法访问麦克风。\n\n原因：当前页面不是安全上下文（HTTP 公网地址），浏览器禁止网页调用麦克风。\n\n✅ 解决方法：\n1. 用本地地址访问录音: http://127.0.0.1:8996/\n2. 或为公网地址配置 HTTPS（手机在 http:// 页面上无法录音）");
+    return;
+  }
+  if(!window.MediaRecorder){
+    toast("当前浏览器不支持录音（缺少 MediaRecorder），请用最新版 Chrome / Edge / Safari");
+    return;
+  }
+  let stream;
+  try{ stream = await navigator.mediaDevices.getUserMedia({audio:true}); }
+  catch(e){
+    const name = e.name || "";
+    let msg;
+    if(name === "NotAllowedError" || name === "PermissionDeniedError" || name === "SecurityError")
+      msg = "麦克风权限被拒绝。请在浏览器地址栏点击麦克风图标选择“允许”，或到系统设置中开启麦克风权限，然后重试。";
+    else if(name === "NotFoundError" || name === "DevicesNotFoundError")
+      msg = "未检测到麦克风设备。请检查麦克风是否已连接并启用。";
+    else if(name === "NotReadableError" || name === "TrackStartError" || name === "AbortError")
+      msg = "麦克风正被其他程序占用（如微信、其他网页），请关闭占用该设备的程序后重试。";
+    else
+      msg = "无法访问麦克风：" + (e.message || name);
+    alert("⚠️ " + msg);
+    return;
+  }
+  recState.stream = stream;
+  try{
+    recState.audioCtx = new (window.AudioContext||window.webkitAudioContext)();
+    const src = recState.audioCtx.createMediaStreamSource(recState.stream);
+    recState.analyser = recState.audioCtx.createAnalyser();
+    recState.analyser.fftSize = 256;
+    src.connect(recState.analyser);
+    const data = new Uint8Array(recState.analyser.frequencyBinCount);
+    function tick(){
+      recState.analyser.getByteTimeDomainData(data);
+      let sum = 0; for(let i=0;i<data.length;i++){ const v=(data[i]-128)/128; sum+=v*v; }
+      const rms = Math.sqrt(sum/data.length);
+      const bars = $$("#recVuInline i"); const lit = Math.min(bars.length, Math.round(rms*bars.length*2.5));
+      bars.forEach((b,i)=>{ if(i<lit){ b.style.height=(8+Math.random()*16)+"px"; b.style.opacity="1"; } else { b.style.height="6px"; b.style.opacity=".4"; } });
+      recState.rafId = requestAnimationFrame(tick);
+    }
+    tick();
+  }catch(e){ console.warn("vu meter failed:", e); }
+  recState.chunks = [];
+  try{
+    recState.recorder = new MediaRecorder(recState.stream);
+    recState.recorder.onerror = (ev) => {
+      toast("录音出错：" + ((ev && ev.error && ev.error.message) || "设备异常，请重试"));
+      stopRec();
+    };
+  }catch(e){
+    recState.stream.getTracks().forEach(t=>t.stop());
+    toast("录音初始化失败：" + (e.message || e));
+    return;
+  }
+  recState.recorder.ondataavailable = e => { if(e.data.size) recState.chunks.push(e.data); };
+  recState.recorder.onstop = ()=>{
+    recState.blob = new Blob(recState.chunks, {type: recState.chunks[0]?.type||"audio/webm"});
+    const url = URL.createObjectURL(recState.blob);
+    $("#recAudio").src = url;
+    $("#recAudio").pause(); $("#recAudio").currentTime = 0;
+    $("#recPlaybackRow").classList.add("show");
+    $("#recMiniPlayer").classList.add("show");
+    $("#recSave").classList.remove("hidden");
+    resetMiniPlayer();
+    setRecButton("has-rec");
+    recState.stream.getTracks().forEach(t=>t.stop());
+    if(recState.audioCtx) recState.audioCtx.close();
+    cancelAnimationFrame(recState.rafId);
+    (async ()=>{
+      await saveRecBlob(curRecLabel(), recState.blob);
+      refreshRecButtons();
+      const label = curRecLabel();
+      if(label){
+        const activeTab = document.querySelector(".tab-btn.active")?.dataset.tab;
+        if(activeTab === "p23"){
+          const q = p23Data[p23Idx];
+          if(q) logPractice(label, q.topic, q.section);
+        } else {
+          const q = doc[currentIdx];
+          if(q) logPractice(label, q.topic, "Part 1");
+        }
+      }
+    })();
+  };
+  recState.recorder.start();
+  recState.startedAt = Date.now();
+  setRecButton("recording");
+  recTimerTick = setInterval(()=>{ const sec = (Date.now()-recState.startedAt)/1000; $("#recTimerInline").textContent = fmt2(sec); const pct = Math.min(100, sec/60*100); $("#recProgress").style.width = pct+"%"; }, 200);
+}
+function stopRec(){
+  clearInterval(recTimerTick);
+  if(!recState.recorder||recState.recorder.state==="inactive") return;
+  recState.recorder.stop();
+  setRecButton("has-rec");
+}
+$("#recBtn").onclick = openRec;
+$("#recClose").onclick = closeRec;
+$("#recMainBtn").onclick = ()=>{
+  if(recState.recorder && recState.recorder.state === "recording"){ stopRec(); return; }
+  const a = $("#recAudio");
+  if(recState.blob && a.src){
+    if(a.paused || a.ended) a.play(); else a.pause();
+  } else if(recState.blob){
+    $("#recAudio").src = URL.createObjectURL(recState.blob);
+    $("#recAudio").play();
+  } else {
+    startRec();
+  }
+};
+$("#playOwnBtn").onclick = ()=>{ $("#recAudio").currentTime = 0; $("#recAudio").play(); };
+$("#playAnsBtn").onclick = ()=>{
+  $("#myAudio").pause(); $("#ansAudio").pause();
+  const q = document.querySelector(".tab-btn.active")?.dataset.tab === "p23" ? p23Data[p23Idx] : doc[currentIdx];
+  if(!q) return;
+  const src = "ans/" + q.label + ".mp3";
+  if($("#ansAudio").src && $("#ansAudio").src.endsWith(src) && !$("#ansAudio").paused){ $("#ansAudio").pause(); return; }
+  $("#ansAudio").src = src;
+  $("#ansAudio").play();
+};
+$("#recAudio").addEventListener("play",  ()=>{ setRecButton("playing-rec"); $("#miniPlayBtn").textContent="⏸"; $("#miniPlayBtn").classList.add("playing"); $("#playOwnBtn").classList.add("playing"); });
+$("#recAudio").addEventListener("pause", ()=>{ setRecButton("has-rec"); $("#miniPlayBtn").textContent="▶"; $("#miniPlayBtn").classList.remove("playing"); $("#playOwnBtn").classList.remove("playing"); });
+$("#recAudio").addEventListener("ended", ()=>{ setRecButton("has-rec"); $("#miniPlayBtn").textContent="▶"; $("#miniPlayBtn").classList.remove("playing"); $("#playOwnBtn").classList.remove("playing"); });
+$("#recAudio").addEventListener("timeupdate", ()=>{
+  const pct = $("#recAudio").duration ? ($("#recAudio").currentTime/$("#recAudio").duration*100) : 0;
+  $("#miniBar").style.width = pct+"%";
+  $("#miniTime").textContent = `${fmt($("#recAudio").currentTime)} / ${fmt($("#recAudio").duration)}`;
+});
+bindMiniPlayer();
+$("#recDiscard").onclick = ()=> resetRecUI();
+$("#recRevealBtn").onclick = ()=>{
+  reveal = !reveal; saveReveal(); render(); syncRevealBtn();
+  toast(reveal ? "参考答案已显示（可边看边录）" : "参考答案已隐藏");
+};
+$("#recSave").onclick = ()=>{
+  if(!recState.blob) return;
+  const label = curRecLabel();
+  const ext = (recState.blob.type.includes("mp4")?"m4a":recState.blob.type.includes("ogg")?"ogg":"webm");
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(recState.blob);
+  a.download = `brand9-${label}-${Date.now()}.${ext}`;
+  document.body.appendChild(a); a.click(); a.remove();
+  toast("已下载录音到本地");
+};
+
+/* --- 我的录音 / 参考答案 playback (visible only after recording) --- */
+let myRecURL = null, myRecBlob = null;
+const REC_IDB = "brand9::rec::v1";
+function openRecDB(){
+  return new Promise((resolve, reject)=>{
+    if(!window.indexedDB){ reject(new Error("no indexedDB")); return; }
+    const req = indexedDB.open(REC_IDB, 1);
+    req.onupgradeneeded = ()=>{ try{ req.result.createObjectStore("recs", {keyPath:"label"}); }catch(e){} };
+    req.onsuccess = ()=> resolve(req.result);
+    req.onerror = ()=> reject(req.error);
+  });
+}
+async function saveRecBlob(label, blob){
+  try{
+    const db = await openRecDB();
+    await new Promise((res, rej)=>{
+      const tx = db.transaction("recs", "readwrite");
+      tx.objectStore("recs").put({label, blob, ts:Date.now()});
+      tx.oncomplete = res; tx.onerror = ()=>rej(tx.error);
+    });
+  }catch(e){ console.warn("saveRecBlob:", e); }
+}
+async function getRecBlob(label){
+  try{
+    const db = await openRecDB();
+    return await new Promise((res, rej)=>{
+      const tx = db.transaction("recs", "readonly");
+      const rq = tx.objectStore("recs").get(label);
+      rq.onsuccess = ()=> res(rq.result ? rq.result.blob : null);
+      rq.onerror = ()=> rej(rq.error);
+    });
+  }catch(e){ console.warn("getRecBlob:", e); return null; }
+}
+function setBtnPlaying(btn, playing, idleTxt, playTxt){
+  btn.classList.toggle("playing", !!playing);
+  btn.textContent = playing ? playTxt : idleTxt;
+}
+function playMyRec(){
+  const a = $("#myAudio"), btn = $("#myAudioBtn");
+  if(!myRecBlob) return;
+  if(!a.src){ if(myRecURL) URL.revokeObjectURL(myRecURL); myRecURL = URL.createObjectURL(myRecBlob); a.src = myRecURL; }
+  if(a.paused || a.ended) a.play(); else a.pause();
+}
+function playAnsAudio(){
+  const q = doc[currentIdx], a = $("#ansAudio"), btn = $("#ansAudioBtn");
+  const src = "ans/" + q.label.replace(/\//g, "-") + ".mp3";
+  if(a.src && a.src.endsWith(src) && !a.paused){ a.pause(); return; }
+  a.src = src;
+  a.play();
+}
+async function refreshRecButtons(){
+  const activeTab = document.querySelector(".tab-btn.active")?.dataset.tab;
+  if(activeTab === "p23"){
+    refreshP23RecButtons();
+    return;
+  }
+  const q = doc[currentIdx];
+  const myBtn = $("#myAudioBtn"), ansBtn = $("#ansAudioBtn");
+  myRecBlob = await getRecBlob(q.label);
+  myBtn.classList.toggle("hidden", !myRecBlob);
+  ansBtn.classList.toggle("hidden", !myRecBlob);
+  $("#myAudio").pause(); $("#myAudio").removeAttribute("src");
+  $("#ansAudio").pause(); $("#ansAudio").removeAttribute("src");
+  setBtnPlaying(myBtn, false, "🎙 我的录音", "⏸ 我的录音");
+  setBtnPlaying(ansBtn, false, "🔊 参考答案", "⏸ 参考答案");
+}
+async function refreshP23RecButtons(){
+  const q = p23Data[p23Idx];
+  if(!q) return;
+  const myBtn = $("#p23MyAudioBtn"), ansBtn = $("#p23AnsAudioBtn");
+  myRecBlob = await getRecBlob(q.label);
+  myBtn.classList.toggle("hidden", !myRecBlob);
+  ansBtn.classList.toggle("hidden", !myRecBlob);
+  $("#myAudio").pause(); $("#myAudio").removeAttribute("src");
+  $("#ansAudio").pause(); $("#ansAudio").removeAttribute("src");
+  setBtnPlaying(myBtn, false, "🎙 我的录音", "⏸ 我的录音");
+  setBtnPlaying(ansBtn, false, "🔊 参考答案", "⏸ 参考答案");
+}
+$("#myAudioBtn").onclick = ()=>{ $("#ansAudio").pause(); setBtnPlaying($("#ansAudioBtn"), false, "🔊 参考答案", "⏸ 参考答案"); playMyRec(); };
+$("#ansAudioBtn").onclick = ()=>{ $("#myAudio").pause(); setBtnPlaying($("#myAudioBtn"), false, "🎙 我的录音", "⏸ 我的录音"); playAnsAudio(); };
+$("#p23MyAudioBtn").onclick = ()=>{ $("#ansAudio").pause(); setBtnPlaying($("#p23AnsAudioBtn"), false, "🔊 参考答案", "⏸ 参考答案"); playMyRec(); };
+$("#p23AnsAudioBtn").onclick = ()=>{ $("#myAudio").pause(); setBtnPlaying($("#p23MyAudioBtn"), false, "🎙 我的录音", "⏸ 我的录音"); playP23AnsAudio(); };
+function playP23AnsAudio(){
+  const q = p23Data[p23Idx], a = $("#ansAudio"), btn = $("#p23AnsAudioBtn");
+  if(!q) return;
+  const src = "ans/" + q.label.replace(/\//g, "-") + ".mp3";
+  if(a.src && a.src.endsWith(src) && !a.paused){ a.pause(); return; }
+  a.src = src;
+  a.play();
+}
+$("#myAudio").addEventListener("play", ()=>{ if(document.querySelector(".tab-btn.active")?.dataset.tab === "p23") setBtnPlaying($("#p23MyAudioBtn"), true, "🎙 我的录音", "⏸ 我的录音"); else setBtnPlaying($("#myAudioBtn"), true, "🎙 我的录音", "⏸ 我的录音"); });
+$("#myAudio").addEventListener("pause", ()=>{ if(document.querySelector(".tab-btn.active")?.dataset.tab === "p23") setBtnPlaying($("#p23MyAudioBtn"), false, "🎙 我的录音", "⏸ 我的录音"); else setBtnPlaying($("#myAudioBtn"), false, "🎙 我的录音", "⏸ 我的录音"); });
+$("#myAudio").addEventListener("ended", ()=>{ if(document.querySelector(".tab-btn.active")?.dataset.tab === "p23") setBtnPlaying($("#p23MyAudioBtn"), false, "🎙 我的录音", "⏸ 我的录音"); else setBtnPlaying($("#myAudioBtn"), false, "🎙 我的录音", "⏸ 我的录音"); });
+$("#ansAudio").addEventListener("play", ()=>{ if(document.querySelector(".tab-btn.active")?.dataset.tab === "p23") setBtnPlaying($("#p23AnsAudioBtn"), true, "🔊 参考答案", "⏸ 参考答案"); else setBtnPlaying($("#ansAudioBtn"), true, "🔊 参考答案", "⏸ 参考答案"); });
+$("#ansAudio").addEventListener("pause", ()=>{ if(document.querySelector(".tab-btn.active")?.dataset.tab === "p23") setBtnPlaying($("#p23AnsAudioBtn"), false, "🔊 参考答案", "⏸ 参考答案"); else setBtnPlaying($("#ansAudioBtn"), false, "🔊 参考答案", "⏸ 参考答案"); });
+$("#ansAudio").addEventListener("ended", ()=>{ if(document.querySelector(".tab-btn.active")?.dataset.tab === "p23") setBtnPlaying($("#p23AnsAudioBtn"), false, "🔊 参考答案", "⏸ 参考答案"); else setBtnPlaying($("#ansAudioBtn"), false, "🔊 参考答案", "⏸ 参考答案"); });
+refreshRecButtons();
+
+document.addEventListener("keydown", e=>{
+  if(editing) return;
+  if(e.target.tagName==="INPUT"||e.target.tagName==="TEXTAREA") return;
+  if(e.code==="Space"){ e.preventDefault(); $("#pbPlay").click(); }
+  else if(e.code==="ArrowRight"){ $("#pbNext").click(); }
+  else if(e.code==="ArrowLeft")  { $("#pbPrev").click(); }
+  else if(e.key.toLowerCase()==="r"){ openRec(); }
+  else if(e.key.toLowerCase()==="s"){ toggleStar(doc[currentIdx].label); }
+  else if(e.key.toLowerCase()==="h"){ reveal=!reveal; saveReveal(); render(); toast(reveal?"答案已显示 (H)":"答案已隐藏 (H)"); }
+});
+
+let toastT;
+function toast(msg){ const el = $("#toast"); el.textContent = msg; el.classList.add("show"); clearTimeout(toastT); toastT = setTimeout(()=> el.classList.remove("show"), 1800); }
+
+// Open current question's topic by default, and any starred topics
+const curTopic = doc[currentIdx]?.topic;
+if(curTopic) openTopics.add(curTopic);
+Object.keys(stars).forEach(label => {
+  const q = doc.find(x => x.label === label);
+  if(q && q.topic) openTopics.add(q.topic);
+});
+
+bindPlayer();
+render();
+markSaved();
+console.log("brand9 ready ·", doc.length, "Part 1 questions ·", "4-accent rotation");
+
+/* ============================================================
+   TAB SWITCHING
+      ============================================================ */
+   $$(".tab-btn").forEach(btn => {
+     btn.addEventListener("click", () => switchTab(btn.dataset.tab));
+   });
+
+   function switchTab(tab){
+     $$(".tab-btn").forEach(b => b.classList.remove("active"));
+     const target = document.querySelector(`.tab-btn[data-tab="${tab}"]`);
+     if(target) target.classList.add("active");
+     $$(".tab-panel").forEach(p => p.classList.remove("active"));
+     const panel = document.getElementById("tab-" + tab);
+     if(panel) panel.classList.add("active");
+     if(tab === "overview") renderOverview();
+     // Update drawer active link
+     $$("#drawer a").forEach(a => { a.classList.toggle("active", a.dataset.tab === tab); });
+     // Close drawer
+     document.getElementById("drawer").classList.remove("open");
+     document.getElementById("drawerOverlay").classList.remove("open");
+     document.getElementById("hamburger").classList.remove("open");
+   }
+
+   // Hamburger menu
+   const hamburger = document.getElementById("hamburger");
+   const drawer = document.getElementById("drawer");
+   const drawerOverlay = document.getElementById("drawerOverlay");
+   hamburger.addEventListener("click", () => {
+     const open = !drawer.classList.contains("open");
+     drawer.classList.toggle("open", open);
+     drawerOverlay.classList.toggle("open", open);
+     hamburger.classList.toggle("open", open);
+   });
+   drawerOverlay.addEventListener("click", () => {
+     drawer.classList.remove("open");
+     drawerOverlay.classList.remove("open");
+     hamburger.classList.remove("open");
+   });
+
+/* ============================================================
+   PART 2&3 STATE
+   ============================================================ */
+let p23Data = [];
+let p23Idx  = 0;
+let p23Stars  = loadStarsP23();
+let p23Reveal = false;
+const STARS_P23_KEY = "brand9::stars_p23::v1";
+
+function loadStarsP23(){ try{ return JSON.parse(localStorage.getItem(STARS_P23_KEY)||"{}"); }catch(e){ return {}; } }
+function saveStarsP23(){ localStorage.setItem(STARS_P23_KEY, JSON.stringify(p23Stars)); trackChange(STARS_P23_KEY); }
+
+function loadP23Data(){
+  if(p23Data.length) return;
+  const raw = localStorage.getItem("brand9::p23data::v1");
+  if(raw){
+    try{ p23Data = JSON.parse(raw); return; }catch(e){}
+  }
+  // Fallback: fetch from server
+  fetch("all_questions_part23.json")
+    .then(r => r.json())
+    .then(data => {
+      p23Data = data;
+      localStorage.setItem("brand9::p23data::v1", JSON.stringify(data));
+      renderP23();
+      renderP23Sidebar();
+    })
+    .catch(() => {});
+}
+
+function groupP23ByTopic(){
+  const map = new Map();
+  p23Data.forEach((q, i) => { const t = q.topic || "Untitled"; if(!map.has(t)) map.set(t, []); map.get(t).push(i); });
+  return map;
+}
+
+function renderP23Sidebar(filter){
+  if(!p23Data.length) return;
+  const tree = $("#p23Tree"); tree.innerHTML = "";
+  const groups = groupP23ByTopic();
+  groups.forEach((indices, topic) => {
+    // Show only the cue card entry (first Part 2 entry in this topic)
+    const p2 = indices.find(i => p23Data[i].section === "Part 2");
+    if(p2 === undefined) return;
+    if(filter && !matchesP23(p23Data[p2], topic, filter)) return;
+    const item = document.createElement("div");
+    item.className = "qitem" + (p2 === p23Idx ? " active" : "");
+    item.innerHTML = `<div class="lbl">P2</div><div class="qt">${escape(topic)}</div>`;
+    item.addEventListener("click", () => { p23Idx = p2; renderP23(); renderP23Sidebar(); });
+    tree.appendChild(item);
+  });
+  $("#p23Total").textContent = p23Data.length;
+}
+
+function matchesP23(q, topic, filter){
+  const f = filter.toLowerCase();
+  return topic.toLowerCase().includes(f) || (q.text||"").toLowerCase().includes(f);
+}
+
+/* ============================================================
+   PART 2&3 RENDER
+   ============================================================ */
+function renderP23(){
+  if(!p23Data.length) return;
+  const q = p23Data[p23Idx];
+  const isP2 = q.section === "Part 2";
+  $("#p23Label").textContent = q.label;
+  const v = q.voice || "en-GB-SoniaNeural";
+  $("#p23Flag").textContent = getFlag(v);
+  $("#p23Voice").textContent = v;
+  $("#p23Text").textContent = q.text;
+  $("#p23Topic").textContent = q.topic || "—";
+  $("#p23Sub").textContent = (isP2 ? "Part 2 · Cue Card" : "Part 3 · Follow-up");
+  // bullets
+  const bl = $("#p23Bullets"); bl.innerHTML = "";
+  if(q.bullets) q.bullets.forEach(b => { const li = document.createElement("div"); li.style.cssText="font-size:14px;color:var(--ink-dim);margin:2px 0"; li.textContent="· "+b; bl.appendChild(li); });
+  // phrases
+  $("#p23Phrases").innerHTML = (q.phrases||[]).map(p=>`<span class="phrase">${escape(p.substring(0,60))}${p.length>60?'…':''}</span>`).join("");
+  // answer
+  $("#p23Answer").textContent = q.answer;
+  $("#p23AnswerGate").classList.toggle("revealed", p23Reveal);
+  // analysis
+  const an = $("#p23Analysis"); an.innerHTML = "";
+  if(q.analysis_zh) q.analysis_zh.forEach(a => {
+    const d = document.createElement("details"); d.style.cssText="margin:6px 0;font-size:13px;color:var(--ink-dim)";
+    d.innerHTML = `<summary style="cursor:pointer;color:var(--ink)">📝 ${a.section}</summary><p style="margin:4px 0">${escape(a.text)}</p>`;
+    an.appendChild(d);
+  });
+  // Part 3 sub-questions
+  const p3div = $("#p23Part3"); p3div.innerHTML = "";
+  if(isP2){
+    const p3s = p23Data.filter(x => x.topic === q.topic && x.section === "Part 3");
+    p3s.forEach(p3 => {
+      const card = document.createElement("div");
+      card.style.cssText = "background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:12px;padding:14px;margin:8px 0";
+      card.innerHTML = `<div style="font-weight:600;color:var(--accent);margin:0 0 6px">${escape(p3.label.split("-").pop())}. ${escape(p3.text)}</div>
+        <div style="font-size:12px;color:var(--ink-dim);margin:0 0 4px">${escape(p3.strategy||"")}</div>
+        <div style="font-size:13px;color:#e8edf4">${escape(p3.answer||"")}</div>`;
+      p3div.appendChild(card);
+    });
+  } else {
+    // For Part 3 questions viewed individually
+    p3div.innerHTML = `<div style="font-size:12px;color:var(--ink-dim);margin:8px 0">解题思路: ${escape(q.strategy||"无")}</div>`;
+  }
+  $("#p23PrevBtn").disabled = p23Idx === 0;
+  $("#p23NextBtn").disabled = p23Idx >= p23Data.length - 1;
+  $("#p23StarBtn").textContent = p23Stars[q.label] ? "★ 已收藏" : "☆ 收藏";
+  refreshRecButtons();
+  // Done button state
+  const today = new Date().toISOString().substring(0,10);
+  const log = getPracticeLog();
+  const alreadyDone = log.some(e => e.label === q.label && e.date === today);
+  $("#p23DoneBtn").classList.toggle("answered", alreadyDone);
+  $("#p23DoneBtn").textContent = alreadyDone ? "✅ 今日已完成" : "□ 标记已完成";
+}
+
+function renderP23All(){
+  loadP23Data();
+  renderP23Sidebar($("#filterP23").value);
+  renderP23();
+}
+
+
+/* === mobile sidebar drawer === */
+function toggleSidebar(panel){
+  const id = panel === 1 ? "sidebar1" : "sidebar2";
+  const sb = document.getElementById(id);
+  if(sb) sb.classList.toggle("open");
+}
+// Close mobile sidebar when a question is selected
+document.addEventListener("click", e => {
+  const item = e.target.closest(".qitem");
+  if(item && window.innerWidth <= 880){
+    document.querySelectorAll(".sidebar.open").forEach(s => s.classList.remove("open"));
+  }
+});
+
+/* ============================================================
+   PRACTICE LOG (localStorage)
+   ============================================================ */
+const LOG_KEY = "brand9::practiceLog::v1";
+
+function getPracticeLog(){
+  try{ return JSON.parse(localStorage.getItem(LOG_KEY)||"[]"); }catch(e){ return []; }
+}
+
+function logPractice(label, topic, section, minutes){
+  const log = getPracticeLog();
+  const today = new Date().toISOString().substring(0,10);
+  // Avoid duplicate for same label+date
+  if(log.some(e => e.label === label && e.date === today)) return;
+  log.push({date:today, label, topic, section, minutes:(minutes && minutes > 0) ? Math.round(minutes) : 5});
+  localStorage.setItem(LOG_KEY, JSON.stringify(log));
+  trackChange(LOG_KEY);
+  return true;
+}
+
+function getDailyStats(){
+  const log = getPracticeLog();
+  const map = {}; // date -> {minutes, count}
+  log.forEach(e => {
+    if(!map[e.date]) map[e.date] = {minutes:0, count:0};
+    map[e.date].minutes += e.minutes || 5;
+    map[e.date].count += 1;
+  });
+  return map;
+}
+
+/* ============================================================
+   OVERVIEW / HEATMAP
+   ============================================================ */
+const HEAT_COLORS = ["#ebedf0","#9be9a8","#40c463","#30a14e","#216e39"];
+
+function renderOverview(){
+  const stats = getDailyStats();
+  const days = Object.keys(stats);
+  // streak
+  let streak = 0;
+  const today = new Date();
+  for(let d = new Date(today); ; d.setDate(d.getDate()-1)){
+    const key = d.toISOString().substring(0,10);
+    if(stats[key]) streak++;
+    else break;
+  }
+  // today
+  const tkey = today.toISOString().substring(0,10);
+  const todayQ = (stats[tkey]||{}).count || 0;
+  const todayMin = (stats[tkey]||{}).minutes || 0;
+  // total
+  let totalMin = 0; let totalQ = 0;
+  days.forEach(d => { totalMin += stats[d].minutes; totalQ += stats[d].count; });
+  // part1 + part23 total
+  const p1Total = window.INIT_DATA ? window.INIT_DATA.length : 0;
+  const totalAll = p1Total + (p23Data.length || 0);
+  $("#statStreak").textContent = streak;
+  $("#statToday").textContent = todayQ;
+  $("#statTotal").textContent = totalMin;
+  $("#statDone").textContent = days.length;
+  $("#statDoneOf").textContent = totalAll || "—";
+
+  // heatmap: last 52 weeks x 7 days
+  const container = $("#heatmapContainer"); container.innerHTML = "";
+  const monNames = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  const dayLabels = ["","Mon","","Wed","","Fri",""];
+
+  // build grid
+  const endDate = new Date(today);
+  const startDate = new Date(endDate);
+  startDate.setDate(startDate.getDate() - 364); // 52 weeks back
+
+  // group by week
+  const weeks = [];
+  let cursor = new Date(startDate);
+  // align to Sunday (day 0)
+  cursor.setDate(cursor.getDate() - cursor.getDay());
+  while(cursor <= endDate){
+    const week = [];
+    for(let d=0; d<7; d++){
+      const dd = new Date(cursor);
+      dd.setDate(cursor.getDate() + d);
+      week.push(dd);
+    }
+    weeks.push(week);
+    cursor.setDate(cursor.getDate() + 7);
+  }
+
+  // render as table-like grid
+  const wrapper = document.createElement("div");
+  wrapper.style.cssText = "display:inline-block;font-size:0;line-height:0";
+
+  // month labels row
+  const monRow = document.createElement("div");
+  monRow.style.cssText = "margin-left:32px;margin-bottom:4px;display:flex;gap:1px;font-size:11px;color:var(--ink-dim)";
+  let lastMon = -1;
+  weeks.forEach((w, wi) => {
+    const m = w[0].getMonth();
+    if(m !== lastMon){
+      const lbl = document.createElement("span");
+      lbl.textContent = monNames[m];
+      lbl.style.cssText = "width:13px;flex:none";
+      monRow.appendChild(lbl);
+      lastMon = m;
+    } else {
+      const gap = document.createElement("span");
+      gap.style.cssText = "width:13px;flex:none";
+      monRow.appendChild(gap);
+    }
+  });
+  wrapper.appendChild(monRow);
+
+  // day rows
+  for(let d=0; d<7; d++){
+    const row = document.createElement("div");
+    row.style.cssText = "display:flex;gap:1px;margin:1px 0;align-items:center";
+    const dayLbl = document.createElement("span");
+    dayLbl.textContent = dayLabels[d];
+    dayLbl.style.cssText = "width:32px;flex:none;text-align:right;font-size:10px;color:var(--ink-dim);padding-right:4px";
+    row.appendChild(dayLbl);
+
+    weeks.forEach(w => {
+      const date = w[d];
+      const key = date.toISOString().substring(0,10);
+      const min = (stats[key]||{}).minutes || 0;
+      let level = 0;
+      if(min > 60) level = 4;
+      else if(min > 30) level = 3;
+      else if(min > 15) level = 2;
+      else if(min > 0) level = 1;
+
+      const cell = document.createElement("div");
+      cell.style.cssText = `width:12px;height:12px;border-radius:3px;background:${HEAT_COLORS[level]};cursor:pointer`;
+      cell.title = `${key}: ${min}min`;
+      row.appendChild(cell);
+    });
+    wrapper.appendChild(row);
+  }
+  container.appendChild(wrapper);
+}
+
+/* ============================================================
+   BIND PART 2&3 NAV + DONE BUTTON
+   ============================================================ */
+function bindP23(){
+  loadP23Data();
+  $("#filterP23").addEventListener("input", e => { renderP23Sidebar(e.target.value); });
+  $("#p23PrevBtn").addEventListener("click", ()=>{ p23Idx = Math.max(0, p23Idx-1); renderP23(); renderP23Sidebar(); });
+  $("#p23NextBtn").addEventListener("click", ()=>{ p23Idx = Math.min(p23Data.length-1, p23Idx+1); renderP23(); renderP23Sidebar(); });
+  $("#p23StarBtn").addEventListener("click", ()=>{
+    const q = p23Data[p23Idx];
+    p23Stars[q.label] = !p23Stars[q.label];
+    saveStarsP23(); renderP23(); toast(p23Stars[q.label]?"已收藏":"取消收藏");
+  });
+  $("#p23RecBtn").addEventListener("click", ()=>{
+    openRec();
+  });
+  $("#p23DoneBtn").addEventListener("click", ()=>{
+    const q = p23Data[p23Idx];
+    const logged = logPractice(q.label, q.topic, q.section);
+    if(logged){
+      renderP23();
+      toast("✅ 已记录！到总览页查看进度");
+    } else {
+      toast("今日已记录该题");
+    }
+  });
+  $("#p23GateMask").addEventListener("click", ()=>{
+    p23Reveal = true; renderP23(); toast("答案已显示");
+  });
+  renderP23Sidebar();
+  renderP23();
+}
+
+// Init
+bindP23();
+
+
+
+  /* ============================================================
+     COUNTDOWN TIMER FOR AUTO-PLAY
+     ============================================================ */
+  let countdownInterval = null;
+  let countdownRemaining = 0;
+  let countdownSeconds = 0;
+  let heatmapMode = 'question';
+
+  function getCountdownSeconds(){
+    const activeTab = document.querySelector(".tab-btn.active");
+    if(activeTab){
+      const tab = activeTab.dataset.tab;
+      if(tab === "p23"){
+        const q = p23Data[p23Idx];
+        return q && q.section === "Part 3" ? 65 : 45;
+      }
+    }
+    return 45;
+  }
+
+  function startCountdown(seconds){
+    countdownRemaining = seconds;
+    countdownSeconds = seconds;
+    const overlay = document.getElementById("countdownOverlay");
+    const number = document.getElementById("countdownNumber");
+    
+    number.textContent = countdownRemaining;
+    number.className = "countdown-number";
+    overlay.classList.add("show");
+    
+    if(countdownInterval) clearInterval(countdownInterval);
+    countdownInterval = setInterval(()=>{
+      countdownRemaining--;
+      number.textContent = countdownRemaining;
+      
+      if(countdownRemaining <= 10) number.className = "countdown-number danger";
+      else if(countdownRemaining <= 20) number.className = "countdown-number warning";
+      
+      if(countdownRemaining <= 0){
+        clearInterval(countdownInterval);
+        overlay.classList.remove("show");
+      }
+    }, 1000);
+  }
+
+  function stopCountdown(){
+    if(countdownInterval){
+      clearInterval(countdownInterval);
+      countdownInterval = null;
+    }
+    document.getElementById("countdownOverlay").classList.remove("show");
+  }
+
+  document.getElementById("countdownDoneBtn").addEventListener("click", ()=>{
+    const used = Math.max(1, countdownSeconds - countdownRemaining);
+    stopCountdown();
+    const activeTab = document.querySelector(".tab-btn.active");
+    const tab = activeTab ? activeTab.dataset.tab : "p1";
+    if(tab === "p1"){
+      const q = doc[currentIdx];
+      const logged = logPractice(q.label, q.topic, "Part 1", used);
+      if(logged){ render(); toast("✅ 已记录！到总览页查看进度"); }
+      else toast("今日已记录该题");
+    } else {
+      const q = p23Data[p23Idx];
+      if(q){
+        const logged = logPractice(q.label, q.topic, q.section, used);
+        if(logged){ renderP23(); toast("✅ 已记录！到总览页查看进度"); }
+        else toast("今日已记录该题");
+      }
+    }
+  });
+
+  document.getElementById("countdownSkip").addEventListener("click", ()=>{
+    stopCountdown();
+  });
+
+  document.addEventListener("keydown", e => {
+    if(e.target && (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA")) return;
+    if(document.getElementById("countdownOverlay").classList.contains("show")){
+      if(e.key === "ArrowRight" || e.key === " "){
+        stopCountdown();
+      }
+    }
+  });
+
+  // Countdown overlay: "录制我的回答" button - stop countdown, open recorder
+  document.getElementById("countdownRecBtn").addEventListener("click", ()=>{
+    stopCountdown();
+    openRec();
+  });
+
+  // Intercept audio ended for countdown
+  const audioEl = document.getElementById("sharedAudio");
+  if(audioEl){
+    const origEnded = audioEl.onended;
+    audioEl.addEventListener("ended", ()=>{
+      if(autoPlay){
+        const seconds = getCountdownSeconds();
+        startCountdown(seconds);
+        const checkDone = setInterval(()=>{
+          if(!document.getElementById("countdownOverlay").classList.contains("show")){
+            clearInterval(checkDone);
+            if(currentIdx < doc.length - 1){
+              setTimeout(()=>{ switchTo(currentIdx+1); playCurrent(); }, 500);
+            }
+          }
+        }, 200);
+      }
+      if(origEnded) origEnded();
+    });
+  }
+
+  /* ============================================================
+     HEATMAP MODES
+     ============================================================ */
+  function switchHeatmapMode(mode){
+    heatmapMode = mode;
+    document.getElementById("htTabQuestion").classList.toggle("active", mode === "question");
+    document.getElementById("htTabTime").classList.toggle("active", mode === "time");
+    document.getElementById("questionHeatmapContainer").style.display = mode === "question" ? "grid" : "none";
+    document.getElementById("timeHeatmapContainer").style.display = mode === "time" ? "grid" : "none";
+    
+    const legend = document.getElementById("heatmapLegend");
+    if(mode === "question"){
+      legend.innerHTML = '<span style="background:#2a3548;padding:2px 8px;border-radius:3px">未练</span>' +
+        '<span style="background:#4a9e6b;padding:2px 8px;border-radius:3px">1次</span>' +
+        '<span style="background:#2d8a4e;padding:2px 8px;border-radius:3px">2次</span>' +
+        '<span style="background:#1e6b38;padding:2px 8px;border-radius:3px">3次</span>' +
+        '<span style="background:#155528;padding:2px 8px;border-radius:3px">4次+</span>';
+    } else {
+      legend.innerHTML = '<span style="background:#2a3548;padding:2px 8px;border-radius:3px">无记录</span>' +
+        '<span style="background:#9be9a8;padding:2px 8px;border-radius:3px"><2分钟</span>' +
+        '<span style="background:#40c463;padding:2px 8px;border-radius:3px">2-5分钟</span>' +
+        '<span style="background:#30a14e;padding:2px 8px;border-radius:3px">5-10分钟</span>' +
+        '<span style="background:#216e39;padding:2px 8px;border-radius:3px">>10分钟</span>';
+    }
+    
+    if(mode === "question") renderQuestionHeatmap();
+    else renderTimeHeatmap();
+  }
+
+  function renderQuestionHeatmap(){
+    const container = document.getElementById("questionHeatmapContainer");
+    if(!container) return;
+    container.innerHTML = "";
+    
+    const log = getPracticeLog();
+    const counts = {};
+    log.forEach(e => {
+      counts[e.label] = (counts[e.label] || 0) + 1;
+    });
+    
+    const totalQuestions = doc.length;
+    for(let i = 1; i <= totalQuestions; i++){
+      const label = "Q" + i;
+      const count = counts[label] || 0;
+      let level = 0;
+      if(count >= 4) level = 4;
+      else if(count >= 3) level = 3;
+      else if(count >= 2) level = 2;
+      else if(count >= 1) level = 1;
+      
+      const cell = document.createElement("div");
+      cell.className = "q-heat-cell level-" + level;
+      cell.textContent = i;
+      cell.title = label + (count > 0 ? ": 已练" + count + "次" : ": 未练习");
+      cell.addEventListener("click", ()=>{
+        const idx = doc.findIndex(q => q.label === label);
+        if(idx >= 0){
+          switchTab("p1");
+          switchTo(idx);
+        }
+      });
+      container.appendChild(cell);
+    }
+  }
+
+  function renderTimeHeatmap(){
+    const container = document.getElementById("timeHeatmapContainer");
+    if(!container) return;
+    container.innerHTML = "";
+    
+    const log = getPracticeLog();
+    const times = {};
+    log.forEach(e => {
+      if(!times[e.label]) times[e.label] = 0;
+      times[e.label] += e.minutes || 5;
+    });
+    
+    const totalQuestions = doc.length;
+    for(let i = 1; i <= totalQuestions; i++){
+      const label = "Q" + i;
+      const minutes = times[label] || 0;
+      let level = 0;
+      if(minutes >= 10) level = 4;
+      else if(minutes >= 5) level = 3;
+      else if(minutes >= 2) level = 2;
+      else if(minutes > 0) level = 1;
+      
+      const cell = document.createElement("div");
+      cell.className = "t-heat-cell level-" + level;
+      cell.title = label + (minutes > 0 ? ": " + minutes + "分钟" : ": 无记录");
+      cell.addEventListener("click", ()=>{
+        const idx = doc.findIndex(q => q.label === label);
+        if(idx >= 0){
+          switchTab("p1");
+          switchTo(idx);
+        }
+      });
+      container.appendChild(cell);
+    }
+  }
+
+  // Update renderOverview to call heatmap
+  const originalRenderOverview = renderOverview;
+  renderOverview = function(){
+    originalRenderOverview.call(this);
+    renderQuestionHeatmap();
+  };
+
+  function updateDoneButtonStates(){
+    if(document.querySelector(".tab-btn.active").dataset.tab === "p1"){
+      const p1DoneBtn = document.getElementById("p1DoneBtn");
+      if(p1DoneBtn){
+        const today = new Date().toISOString().substring(0,10);
+        const log = getPracticeLog();
+        const done = log.some(e => e.label === doc[currentIdx].label && e.date === today);
+        p1DoneBtn.classList.toggle("answered", done);
+        p1DoneBtn.textContent = done ? "✅ 今日已完成" : "□ 标记已完成";
+      }
+    }
+  }
+
+  // Wrap origSwitchTab
+  const origSwitchTab = switchTab;
+  switchTab = function(tab){
+    origSwitchTab.call(this, tab);
+    setTimeout(updateDoneButtonStates, 100);
+    if(tab === "overview"){
+      setTimeout(()=>{
+        if(heatmapMode === "question") renderQuestionHeatmap();
+        else renderTimeHeatmap();
+      }, 100);
+    }
+  };
+
+  // Wrap renderP23 for done button state
+  const origRenderP23 = renderP23;
+  renderP23 = function(){
+    origRenderP23.call(this);
+    const q = p23Data[p23Idx];
+    const today = new Date().toISOString().substring(0,10);
+    const log = getPracticeLog();
+    const alreadyDone = log.some(e => e.label === q.label && e.date === today);
+    const btn = document.getElementById("p23DoneBtn");
+    if(btn) btn.classList.toggle("answered", alreadyDone);
+  };
+
+  // Update render() to update done button state
+  const originalRender = render;
+  render = function(){
+    originalRender.call(this);
+    updateDoneButtonStates();
+  };
+
+  // Add p1DoneBtn after bindP23()
+  const p1Actions = document.querySelector(".card .actions");
+  if(p1Actions){
+    const doneBtn = document.createElement("button");
+    doneBtn.className = "btn btn-done";
+    doneBtn.id = "p1DoneBtn";
+    doneBtn.textContent = "□ 标记已完成";
+    doneBtn.addEventListener("click", ()=>{
+      const q = doc[currentIdx];
+      const logged = logPractice(q.label, q.topic, "Part 1");
+      if(logged){
+        render();
+        toast("✅ 已记录！到总览页查看进度");
+      } else {
+        toast("今日已记录该题");
+      }
+    });
+    p1Actions.appendChild(doneBtn);
+    updateDoneButtonStates();
+  }
+
+/* ============================================================
+   ACCOUNTS & CLOUD SYNC
+   localStorage stays as the local cache; when logged in, tracked
+   keys are synced to the server (SQLite) so progress survives
+   browser wipes and device changes.
+   ============================================================ */
+const AUTH_KEY = "brand9::auth::v1";
+const SYNC_META_KEY = "brand9::syncMeta::v1";
+// Reference the app's own storage-key constants so version bumps never drift.
+const SYNC_KEYS = new Set([
+  LOG_KEY,        // brand9::practiceLog::v1
+  STAR_KEY,       // brand9::stars::v2
+  REVEAL_KEY,     // brand9::reveal::v2
+  STARS_P23_KEY,  // brand9::stars_p23::v1
+]);
+
+let authToken = null;
+let authUser  = null;
+let syncMeta  = {};       // key -> {updated_at}
+let dirtyKeys = new Set();
+let syncTimer = null;
+
+const _origSetItem = localStorage.setItem.bind(localStorage);
+const _origGetItem = localStorage.getItem.bind(localStorage);
+
+// Explicitly mark a sync key as changed: update its timestamp, queue a push.
+// Called by the core persistence functions below AND by the setItem wrapper.
+function trackChange(key){
+  if(!SYNC_KEYS.has(key)) return;
+  syncMeta[key] = {updated_at: Date.now()};
+  saveSyncMeta();
+  dirtyKeys.add(key);
+  scheduleSync();
+}
+
+// Best-effort wrapper so ANY write to a sync key (even from code we did not
+// touch) is tracked. Wrapped in try/catch because some engines (jsdom) expose
+// Storage methods as unforgeable and silently ignore the assignment.
+try{
+  const _wrapped = localStorage.setItem.bind(localStorage);
+  localStorage.setItem = function(key, value){
+    _wrapped(key, value);
+    trackChange(key);
+  };
+}catch(e){}
+
+function loadAuth(){
+  try{
+    const r = JSON.parse(_origGetItem(AUTH_KEY) || "null");
+    if(r && r.token){ authToken = r.token; authUser = r.username || ""; }
+  }catch(e){}
+}
+function saveAuth(){
+  if(authToken) _origSetItem(AUTH_KEY, JSON.stringify({token: authToken, username: authUser}));
+  else _origSetItem(AUTH_KEY, "");
+}
+function loadSyncMeta(){
+  try{ syncMeta = JSON.parse(_origGetItem(SYNC_META_KEY) || "{}"); }catch(e){ syncMeta = {}; }
+}
+function saveSyncMeta(){
+  try{ _origSetItem(SYNC_META_KEY, JSON.stringify(syncMeta)); }catch(e){}
+}
+
+async function api(path, opts){
+  opts = opts || {};
+  const headers = {};
+  headers["Content-Type"] = "application/json";
+  if(authToken) headers["Authorization"] = "Bearer " + authToken;
+  let res;
+  try{
+    res = await fetch(path, {
+      method: opts.method || "GET",
+      headers: headers,
+      body: opts.body !== undefined ? JSON.stringify(opts.body) : undefined,
+    });
+  }catch(e){
+    return {ok: false, error: "网络错误，请检查服务器是否运行：" + (e.message || e)};
+  }
+  let data = {};
+  try{ data = await res.json(); }catch(e){}
+  return data;
+}
+
+function scheduleSync(){
+  clearTimeout(syncTimer);
+  syncTimer = setTimeout(()=>{ pushDirty(); }, 1500);
+}
+
+async function pushDirty(){
+  if(!authToken || !dirtyKeys.size) return;
+  const entries = [];
+  for(const key of dirtyKeys){
+    const val = _origGetItem(key);
+    if(val === null) continue;
+    entries.push({key: key, value: val, updated_at: (syncMeta[key]||{}).updated_at || Date.now()});
+  }
+  if(!entries.length){ dirtyKeys.clear(); return; }
+  const res = await api("/api/state/sync", {method: "POST", body: {entries: entries}});
+  if(res.ok) dirtyKeys.clear();
+  // on failure dirty keys are kept and retried on next schedule/visibility change
+}
+
+// Merge cloud state into local. Per key, the newer updated_at wins.
+async function pullCloudState(){
+  if(!authToken) return;
+  const res = await api("/api/state");
+  if(!res.ok) return;
+  const cloud = res.state || {};
+  let changed = false;
+  for(const key of SYNC_KEYS){
+    const c = cloud[key];
+    if(!c) continue;
+    const localTs = (syncMeta[key]||{}).updated_at || 0;
+    if(c.updated_at > localTs){
+      _origSetItem(key, c.value);              // cloud wins (avoid wrapper loop)
+      syncMeta[key] = {updated_at: c.updated_at};
+      changed = true;
+    } else if(c.updated_at < localTs && c.updated_at > 0){
+      dirtyKeys.add(key);                       // local wins -> push back
+    }
+  }
+  saveSyncMeta();
+  if(changed){
+    const active = document.querySelector(".tab-btn.active");
+    if(active && active.dataset.tab === "overview") renderOverview();
+    else { render(); if(p23Data.length) renderP23(); }
+  }
+  await pushDirty();
+}
+
+/* --- auth UI --- */
+let authMode = "login", codeTimer = null;
+function switchAuthMode(mode){
+  authMode = mode;
+  $("#authTabLogin").classList.toggle("active", mode === "login");
+  $("#authTabReg").classList.toggle("active", mode === "register");
+  $("#authTitle").textContent   = mode === "login" ? "🔑 登录" : "✨ 注册";
+  $("#authSub").textContent     = mode === "login" ? "登录后学习进度自动云端保存，换设备不丢失" : "注册账号，学习进度自动云端保存";
+  $("#authSubmit").textContent  = mode === "login" ? "登录" : "注册";
+  $("#authErr").textContent     = "";
+  $("#authHint").textContent    = "";
+  const isReg = mode === "register";
+  $("#authEmailWrap").style.display = isReg ? "" : "none";
+  $("#authCodeWrap").style.display = isReg ? "" : "none";
+  $("#authSubmit").disabled = false;
+}
+function stopCodeTimer(){
+  if(codeTimer){ clearInterval(codeTimer); codeTimer = null; }
+  const btn = $("#btnSendCode");
+  if(btn){ btn.disabled = false; btn.textContent = "发送验证码"; }
+}
+function startCodeCountdown(seconds){
+  const btn = $("#btnSendCode");
+  btn.disabled = true;
+  const tick = () => {
+    if(seconds > 0){
+      btn.textContent = "重新发送(" + seconds + "s)";
+      seconds--;
+    } else {
+      btn.disabled = false;
+      btn.textContent = "发送验证码";
+      clearInterval(codeTimer);
+      codeTimer = null;
+    }
+  };
+  tick();
+  codeTimer = setInterval(tick, 1000);
+}
+async function sendCode(){
+  const email = $("#authEmail").value.trim();
+  const err = $("#authErr");
+  err.textContent = "";
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ err.textContent = "请先填写正确的邮箱"; $("#authEmail").focus(); return; }
+  $("#btnSendCode").disabled = true;
+  const res = await api("/api/send_code", {method: "POST", body: {email: email}});
+  if(res.ok){
+    err.textContent = "";
+    $("#authHint").textContent = "验证码已发送，5 分钟内有效（以最新一封邮件为准）";
+    startCodeCountdown(res.wait || 60);
+  } else {
+    err.textContent = res.error || "发送失败，请稍后再试";
+    const wait = res.wait;
+    if(wait && wait > 0) startCodeCountdown(wait);
+    else $("#btnSendCode").disabled = false;
+  }
+}
+function openAuthModal(){
+  $("#authModal").classList.add("show");
+  switchAuthMode("login");
+  setTimeout(()=>{ try{ $("#authUser").focus(); }catch(e){} }, 60);
+}
+function closeAuthModal(){ $("#authModal").classList.remove("show"); }
+
+function updateAuthUI(){
+  const btn = $("#btnAuth");
+  if(!btn) return;
+  if(authUser){
+    btn.textContent = "👤 " + authUser + " · 退出";
+    btn.classList.add("active");
+    btn.title = "已登录，点击退出登录";
+  } else {
+    btn.textContent = "🔑 登录";
+    btn.classList.remove("active");
+    btn.title = "登录后进度云端保存";
+  }
+}
+
+$("#btnAuth").addEventListener("click", ()=>{ if(authUser) logout(); else openAuthModal(); });
+$("#authClose").addEventListener("click", closeAuthModal);
+$("#authModal").addEventListener("click", e=>{ if(e.target.id === "authModal") closeAuthModal(); });
+
+async function doAuth(){
+  const username = $("#authUser").value.trim();
+  const password = $("#authPass").value;
+  const email    = $("#authEmail").value.trim();
+  const code     = $("#authCode").value.trim();
+  const err = $("#authErr");
+  err.textContent = "";
+  if(!username || !password){ err.textContent = "请输入用户名和密码"; return; }
+  if(authMode === "register"){
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ err.textContent = "请填写正确的邮箱"; return; }
+    if(!/^\d{6}$/.test(code)){ err.textContent = "请输入 6 位邮箱验证码"; return; }
+  }
+  const submit = $("#authSubmit");
+  submit.disabled = true;
+  const body = {username: username, password: password};
+  if(authMode === "register"){ body.email = email; body.code = code; }
+  const res = await api(authMode === "login" ? "/api/login" : "/api/register",
+                        {method: "POST", body: body});
+  submit.disabled = false;
+  if(!res.ok){ err.textContent = res.error || "操作失败，请重试"; return; }
+  const wasRegister = authMode === "register";
+  authToken = res.token;
+  authUser  = res.username;
+  saveAuth();
+  stopCodeTimer();
+  closeAuthModal();
+  updateAuthUI();
+  toast(wasRegister ? "✨ 注册成功，欢迎 " + authUser : "👋 欢迎回来，" + authUser);
+  await pullCloudState();
+  render(); if(p23Data.length) renderP23();
+}
+$("#authSubmit").addEventListener("click", doAuth);
+$("#btnSendCode").addEventListener("click", sendCode);
+$("#authUser").addEventListener("keydown", e=>{ if(e.key === "Enter") doAuth(); });
+$("#authEmail").addEventListener("keydown", e=>{ if(e.key === "Enter") doAuth(); });
+$("#authCode").addEventListener("keydown", e=>{ if(e.key === "Enter") doAuth(); });
+$("#authPass").addEventListener("keydown", e=>{ if(e.key === "Enter") doAuth(); });
+
+async function logout(){
+  if(authToken) await api("/api/logout", {method: "POST"});
+  authToken = null;
+  authUser  = null;
+  saveAuth();
+  updateAuthUI();
+  toast("已退出登录（本地进度保留）");
+}
+
+// Flush pending writes when the tab is hidden or the page is closed.
+document.addEventListener("visibilitychange", ()=>{ if(document.hidden) pushDirty(); });
+window.addEventListener("beforeunload", ()=>{
+  if(!authToken || !dirtyKeys.size) return;
+  const entries = [];
+  for(const key of dirtyKeys){
+    const val = _origGetItem(key);
+    if(val !== null) entries.push({key: key, value: val, updated_at: (syncMeta[key]||{}).updated_at || Date.now()});
+  }
+  if(entries.length && navigator.sendBeacon){
+    try{ navigator.sendBeacon("/api/state/sync", JSON.stringify({entries: entries})); }catch(e){}
+  }
+});
+
+// Init: restore session, verify token, pull cloud state.
+loadAuth();
+loadSyncMeta();
+updateAuthUI();
+if(authToken){
+  api("/api/me").then(res=>{
+    if(res.ok){
+      pullCloudState().then(()=>{ render(); if(p23Data.length) renderP23(); });
+    } else {
+      authToken = null; authUser = null;
+      saveAuth(); updateAuthUI();
+    }
+  });
+}
+
+</script>
+</body>
+</html>

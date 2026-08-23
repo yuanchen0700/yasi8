@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>雅思考点词 · 听力跟读</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; color: #1f2328; background: #f6f8fa; }
+  a { color: #2c5cdc; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .topbar { position: fixed; top: 0; left: 0; right: 0; height: 56px; display: flex; align-items: center; padding: 0 24px; border-bottom: 1px solid #e5e7eb; background: #fff; z-index: 10; }
+  .logo { font-weight: 800; font-size: 20px; letter-spacing: -0.5px; color: #111; }
+  .logo span { color: #6b7280; font-weight: 500; }
+  .topbar-right { margin-left: auto; display: flex; gap: 16px; align-items: center; }
+  .topbar-right a { font-size: 13px; font-weight: 600; white-space: nowrap; }
+
+  .layout { padding: 56px 0 80px; min-height: 100vh; }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+  .hero { padding: 32px 0 16px; }
+  .hero h1 { font-size: 26px; margin: 0 0 8px; }
+  .hero p { margin: 0; color: #6b7280; font-size: 13.5px; line-height: 1.7; }
+  .stats { font-size: 12.5px; color: #4b5563; margin-top: 10px; }
+  .stats b { color: #1d4ed8; }
+
+  .toolbar { display: flex; gap: 10px; align-items: center; margin: 16px 0 8px; flex-wrap: wrap; }
+  .toolbar input[type=search] { flex: 1; min-width: 200px; border: 1px solid #d1d5db; border-radius: 8px; padding: 8px 12px; font-size: 13.5px; background: #fff; }
+  .toolbar input[type=search]:focus { outline: none; border-color: #2c5cdc; box-shadow: 0 0 0 3px rgba(44,92,220,0.12); }
+
+  .filters { display: flex; gap: 8px; flex-wrap: wrap; margin: 8px 0 16px; }
+  .filters button { font-size: 12px; padding: 4px 12px; border-radius: 999px; border: 1px solid #e5e7eb; background: #fff; color: #4b5563; cursor: pointer; }
+  .filters button:hover { border-color: #c7d6f5; color: #1d4ed8; }
+  .filters button.active { background: #eef2ff; border-color: #c7d6f5; color: #1d4ed8; font-weight: 600; }
+
+  .group { background: #fff; border: 1px solid #e5e7eb; border-radius: 10px; margin-bottom: 12px; box-shadow: 0 1px 2px rgba(0,0,0,0.03); overflow: hidden; }
+  .group-head { display: flex; align-items: center; gap: 10px; padding: 12px 18px; background: #fafbfc; border-bottom: 1px solid #eef0f3; cursor: pointer; }
+  .group-head:hover { background: #f3f6fb; }
+  .group-kw { font-size: 15px; font-weight: 700; color: #111; }
+  .group-meaning { font-size: 12.5px; color: #6b7280; }
+  .group-type { font-size: 11px; color: #7c3aed; background: #f5f3ff; border-radius: 6px; padding: 2px 8px; font-weight: 600; }
+  .group-type.syn { color: #0e7490; background: #ecfeff; }
+  .group-toggle { margin-left: auto; font-size: 12px; color: #9ca3af; }
+  .group-body { display: none; padding: 6px 18px 16px; }
+
+  .sentence { padding: 12px 0; border-bottom: 1px dashed #eef0f3; }
+  .sentence:last-child { border-bottom: none; }
+  .sentence-top { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+  .sentence-voice { font-size: 11px; color: #065f46; background: #ecfdf5; border-radius: 6px; padding: 2px 8px; font-weight: 600; }
+  .sentence-en { font-size: 14.5px; line-height: 1.7; color: #111; margin: 2px 0 4px; }
+  .sentence-cn { font-size: 12.5px; line-height: 1.7; color: #6b7280; margin: 0 0 8px; }
+  .sentence-audio { width: 100%; height: 34px; }
+  audio::-webkit-media-controls-panel { background: #f9fafb; }
+
+  .empty { text-align: center; color: #9ca3af; padding: 60px 0; font-size: 14px; }
+  .foot { margin-top: 32px; text-align: center; font-size: 12px; color: #9ca3af; }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="logo">雅思考点词<span> · 听力跟读</span></div>
+  <div class="topbar-right">
+    <a href="player.html">♪ 歌词播放器</a>
+    <a href="../index.html">🏠 学习中心</a>
+    <a href="../HTML/tl-index.html">📖 听力课程</a>
+  </div>
+</header>
+<div class="layout">
+  <div class="wrap">
+    <div class="hero">
+      <h1>雅思阅读考点词 · 听力跟读</h1>
+      <p>1854 个考点词例句，8 种口音（英/美/澳/加/爱尔兰/新西兰）轮换朗读，点击播放精听，对照中文跟读。</p>
+      <div class="stats" id="stats">加载中…</div>
+    </div>
+
+    <div class="toolbar">
+      <input id="search" type="search" placeholder="搜索考点词 / 同义词 / 例句 (如 resemble, 相似, climate)" autocomplete="off">
+    </div>
+    <div class="filters" id="filters">
+      <button class="active" data-type="all">全部</button>
+      <button data-type="word">考点词</button>
+      <button data-type="synonym">同义词</button>
+    </div>
+    <div id="list"></div>
+    <div class="foot">雅思考点词 · 听力跟读 · 数据自动生成</div>
+  </div>
+</div>
+
+<script>
+var DATA = null;
+var activeType = 'all';
+var query = '';
+var list = document.getElementById('list');
+var stats = document.getElementById('stats');
+var search = document.getElementById('search');
+
+var VOICE_LABEL = {
+  'en-GB-RyanNeural': '英音·男', 'en-US-JennyNeural': '美音·女',
+  'en-AU-WilliamNeural': '澳音·男', 'en-GB-SoniaNeural': '英音·女',
+  'en-US-GuyNeural': '美音·男', 'en-CA-ClaraNeural': '加音·女',
+  'en-IE-EmilyNeural': '爱尔兰·女', 'en-NZ-MitchellNeural': '新西兰·男'
+};
+
+function escHtml(s) {
+  return s.replace(/[&<>"']/g, function (c) {
+    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+  });
+}
+
+function matchQuery(entry) {
+  if (!query) return true;
+  var q = query.toLowerCase();
+  var hay = (entry.keyword + ' ' + entry.meaning + ' ' + entry.sentences.map(function (s) { return s.en + ' ' + s.cn; }).join(' ')).toLowerCase();
+  return hay.indexOf(q) >= 0;
+}
+
+function render() {
+  if (!DATA) return;
+  var filtered = DATA.entries.filter(function (e) {
+    return (activeType === 'all' || e.type === activeType) && matchQuery(e);
+  });
+  if (!filtered.length) {
+    list.innerHTML = '<div class="empty">无匹配结果</div>';
+    return;
+  }
+  list.innerHTML = filtered.map(function (entry, gi) {
+    var typeCls = entry.type === 'synonym' ? 'syn' : '';
+    var typeLabel = entry.type === 'synonym' ? '同义词' : '考点词';
+    var sentences = entry.sentences.map(function (s, si) {
+      var voice = VOICE_LABEL[s.voice] || s.voice;
+      return '<div class="sentence">' +
+        '<div class="sentence-top"><span class="sentence-voice">' + voice + '</span></div>' +
+        '<div class="sentence-en">' + escHtml(s.en) + '</div>' +
+        '<div class="sentence-cn">' + escHtml(s.cn) + '</div>' +
+        '<audio class="sentence-audio" controls preload="none" src="' + escHtml(s.audio) + '"></audio>' +
+      '</div>';
+    }).join('');
+    return '<div class="group" data-gi="' + gi + '">' +
+      '<div class="group-head" onclick="toggleGroup(this)">' +
+        '<span class="group-kw">' + escHtml(entry.keyword) + '</span>' +
+        '<span class="group-meaning">' + escHtml(entry.meaning) + '</span>' +
+        '<span class="group-type ' + typeCls + '">' + typeLabel + '</span>' +
+        '<span class="group-toggle">▸</span>' +
+      '</div>' +
+      '<div class="group-body">' + sentences + '</div>' +
+    '</div>';
+  }).join('');
+}
+
+function toggleGroup(head) {
+  var body = head.nextElementSibling;
+  var toggle = head.querySelector('.group-toggle');
+  var open = body.style.display === 'block';
+  body.style.display = open ? 'none' : 'block';
+  toggle.textContent = open ? '▸' : '▾';
+}
+
+document.getElementById('filters').addEventListener('click', function (e) {
+  var btn = e.target.closest('button[data-type]');
+  if (!btn) return;
+  document.querySelectorAll('#filters button').forEach(function (b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+  activeType = btn.getAttribute('data-type');
+  render();
+});
+
+var timer = null;
+search.addEventListener('input', function () {
+  clearTimeout(timer);
+  timer = setTimeout(function () { query = search.value.trim(); render(); }, 150);
+});
+
+fetch('sentences_audio.json').then(function (r) { return r.json(); }).then(function (d) {
+  DATA = d;
+  stats.innerHTML = '共 <b>' + d.total + '</b> 句 · <b>' + d.entries.length + '</b> 个词条 · <b>' + d.voices.length + '</b> 种口音';
+  render();
+}).catch(function () {
+  list.innerHTML = '<div class="empty">数据加载失败</div>';
+});
+</script>
+</body>
+</html>

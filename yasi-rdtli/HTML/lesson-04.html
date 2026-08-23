@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第4讲 · 填空题专题二 · 雅思阅读13讲</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; height: 100%; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; color: #1f2328; background: #fff; }
+  a { color: #2c5cdc; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* 顶部 */
+  .topbar { position: fixed; top: 0; left: 0; right: 0; height: 56px; display: flex; align-items: center; padding: 0 24px; border-bottom: 1px solid #e5e7eb; background: #fff; z-index: 10; }
+  .logo { font-weight: 800; font-size: 20px; letter-spacing: -0.5px; color: #111; }
+  .logo span { color: #6b7280; font-weight: 500; }
+  .topbar-right { margin-left: auto; display: flex; gap: 16px; align-items: center; position: relative; }
+  .topbar-right input { border: 1px solid #d1d5db; border-radius: 6px; padding: 6px 10px; font-size: 13px; width: 240px; background: #f9fafb; }
+  .topbar-right input:focus { outline: none; border-color: #2c5cdc; background: #fff; box-shadow: 0 0 0 3px rgba(44,92,220,0.12); }
+  #search-panel { position: absolute; top: 44px; right: 0; width: 360px; max-height: 70vh; overflow-y: auto; background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); padding: 8px 0; z-index: 100; font-size: 13px; }
+  #search-panel .sp-group { padding: 8px 14px 4px; font-size: 11px; color: #6b7280; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px; }
+  #search-panel ul { list-style: none; padding: 0; margin: 0; }
+  #search-panel li a { display: block; padding: 6px 14px; color: #374151; line-height: 1.4; font-size: 12.5px; }
+  #search-panel li a:hover { background: #f3f4f6; color: #1d4ed8; text-decoration: none; }
+  #search-panel .sp-empty { padding: 24px; text-align: center; color: #9ca3af; font-size: 12px; }
+  mark.search-hl { background: #fff3a3; color: inherit; padding: 0 2px; border-radius: 2px; }
+
+  /* 三栏布局 */
+  .layout { display: flex; padding-top: 56px; min-height: 100vh; }
+  .col-left { width: 240px; flex-shrink: 0; border-right: 1px solid #e5e7eb; padding: 20px 14px 40px; overflow-y: auto; height: calc(100vh - 56px); position: sticky; top: 56px; }
+  .col-left ul { list-style: none; padding: 0; margin: 0 0 16px; }
+  .col-left li { margin: 2px 0; }
+  .col-left a { display: block; padding: 6px 10px; border-radius: 6px; font-size: 13.5px; color: #374151; line-height: 1.4; }
+  .col-left a:hover { background: #f3f4f6; text-decoration: none; }
+  .col-left a.active { background: #eff6ff; color: #1d4ed8; font-weight: 600; }
+  .col-left h3 { font-size: 11px; text-transform: uppercase; color: #6b7280; margin: 18px 8px 8px; letter-spacing: 0.5px; font-weight: 600; }
+  .col-left .sub { padding-left: 24px !important; font-size: 12.5px; color: #4b5563; }
+
+  .col-main { flex: 1; min-width: 0; padding: 40px 56px 80px; max-width: 820px; margin: 0 auto; }
+  .col-main h1 { font-size: 32px; margin-top: 0; border-bottom: 1px solid #e5e7eb; padding-bottom: 12px; line-height: 1.3; }
+  .col-main h2 { font-size: 24px; margin-top: 40px; padding-top: 16px; border-top: 1px solid #f3f4f6; }
+  .col-main h3 { font-size: 18px; margin-top: 28px; color: #1f2937; }
+  .col-main p { line-height: 1.75; color: #374151; }
+
+  .col-right { width: 220px; flex-shrink: 0; border-left: 1px solid #e5e7eb; padding: 24px 18px; font-size: 13px; height: calc(100vh - 56px); position: sticky; top: 56px; overflow-y: auto; }
+  .col-right h4 { font-size: 11px; text-transform: uppercase; color: #6b7280; margin: 0 0 12px; letter-spacing: 0.5px; font-weight: 600; }
+  .col-right ul { list-style: none; padding: 0; margin: 0; }
+  .col-right li { margin: 6px 0; }
+  .col-right a { color: #4b5563; line-height: 1.45; font-size: 12.5px; }
+  .col-right a:hover { color: #1d4ed8; }
+  .col-right .section { color: #1f2937; font-weight: 600; margin-top: 14px; }
+  .col-right .empty { color: #9ca3af; font-size: 12px; padding: 6px 0; }
+
+  @media (max-width: 1100px) { .col-right { display: none; } }
+  @media (max-width: 800px) { .col-left { display: none; } .col-main { padding: 24px; } }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="logo">雅思阅读<span> · 13讲</span></div>
+  <div class="topbar-right">
+    <a href="index.html" style="font-size:13px;color:#2c5cdc;font-weight:600;white-space:nowrap;">🏠 总目录</a>
+    <span style="font-size:18px;">🐙</span>
+    <span style="font-size:18px;">💬</span>
+    <input id="search-input" placeholder="搜索 Ctrl K" autocomplete="off">
+    <div id="search-panel" hidden></div>
+  </div>
+</header>
+<div class="layout">
+  <aside class="col-left">
+    <h3>课程目录</h3>
+    <ul>
+      <li><a href="lesson-01.html">第01讲 · 导学课</a></li>
+<li><a href="lesson-02.html">第2讲 · 填空题专题一</a></li>
+<li><a href="lesson-03.html">第03讲 · 判断题专题：TFNG vs YNNG</a></li>
+<li><a href="lesson-04.html" class="active">第4讲 · 填空题专题二</a></li>
+<li><a href="lesson-05.html">第05讲</a></li>
+<li><a href="lesson-06.html">第06讲 · 雅思阅读填空题专题四</a></li>
+<li><a href="lesson-07.html">第7讲 · 配对题专题一</a></li>
+<li><a href="lesson-08.html">第8讲 · 配对题专题二</a></li>
+<li><a href="lesson-09.html">第9讲 · 配对题专题三</a></li>
+<li><a href="lesson-10.html">第10讲</a></li>
+<li><a href="lesson-11.html">第11讲</a></li>
+<li><a href="lesson-12.html">第12讲</a></li>
+<li><a href="lesson-13.html">第13讲 · 雅思阅读核心技巧</a></li>
+<li><a href="lesson-14.html">第14讲 · 进阶阅读</a></li>
+    </ul>
+    <h3>本页问题</h3><p class="empty" style="padding:6px 10px;font-size:12px;color:#9ca3af;margin:0;">无小节</p>
+  </aside>
+  <main class="col-main">
+    <h1>雅思阅读全解13讲</h1>
+<h2><a id="04"></a>04</h2>
+<p>内容总时长：内容总时长：32分钟</p>
+<p>[00:00 - 00:15]
+Hello,各位同学大家好。 Welcome back我是带你一起刷雅思的三老师，另外两种新的填空题类型。但这两种题目呢，虽然我说它是新的填空题类型，但其实他俩是一种题型，所以大家不要有特别大的心理压力。</p>
+<p>[00:00 - 00:15]</p>
+<p>[00:15 - 00:30]
+而且这两种题型呢说实话，其实其中的一种线出题频率是比较低的。就是这个简答题，简答题其实已经好久好久都没有出现了，因为它和句子填空题是完全可以等价替换的。比如说我问你一个问题，what's your name,那这是一个简答题，对吧？</p>
+<p>[00:15 - 00:30]</p>
+<p>[00:30 - 00:47]
+因为你要用一个句子来回答我my name is什么什么？那如果我给你my name ismy name is画了个空，那你是不是直接答这个人名就可以了。所以其实本质上他们考察的一个宗旨是一样，只不过就是不同的不同的形式去体现了出来。</p>
+<p>[00:30 - 00:47]</p>
+<p>[00:47 - 01:00]
+那么因此这两种题型就是完全可以等价替换。我们其实只重点去讲一套就ok了啊，希望大家能够触类旁通。好，我们先来看一下这种题型，它的一个特点是什么？以及呢它出现的篇章。</p>
+<p>[00:47 - 01:00]</p>
+<p>[01:00 - 01:13]
+我先说这个事儿啊，他出现的篇章p1 p2 p3众所周知，雅思阅读一共就三篇文章。为什么在三篇文章里面都有可能会出现句子完成题啊，因为它就是一种夹缝当中求生存的题目。</p>
+<p>[01:00 - 01:13]</p>
+<p>[01:09 - 01:30]
+嗯，他每次可能呢一组当中题目数量也不是特别多，从3~8题都有出现过，可能这一组就三道简答题啊，或者三道句子完成题。然后你在文章里边很分散的地方去找到他们。也有可能呢这一组题目数量还是非常的啊。</p>
+<p>[01:09 - 01:30]</p>
+<p>[01:30 - 01:46]
+这个友好的啊，比如说有五六道、六七道这样子。所以这种题型就是他是塞缝的啊，别的题目出不够了，就拿这个题目来凑一凑啊，别的题目又出不够了，再拿这个题目来凑一凑，所以它可以handle住各种各样的难度啊，所以它的这个变化还是非常大的。</p>
+<p>[01:30 - 01:46]</p>
+<p>[01:46 - 02:04]
+它不会像这个笔记填空题啊，表格填空题啊，就这种他只会出现在第一篇文章，其他文章里面肯定就是其他篇章当中，一般来说是不出的，就是可攻，可受可难可易啊。那题目的一个特点呢就是比较分散，这个比较分散。</p>
+<p>[01:46 - 02:04]</p>
+<p>[02:04 - 02:25]
+我觉得是相对的是相对于我们之前学过的，比如说表格填空或者笔记填空这些题目当中内部是有非常好的逻辑。但句子填空题内部是没有逻辑的。也就是说我上一道题做完了之后，对于我下一道题来讲，我依旧不知道下一道题来自于哪，所以我还需要重新定位啊，就是每一道题都需要重新定位。</p>
+<p>[02:04 - 02:25]</p>
+<p>[02:25 - 02:42]
+但是呢对于表格完成题，或者对于这个笔记完成题，我上一道题做完了，我下一道题就在那个后面不远处，我就直接找就行了。题目是相对来说比较密集的。所以这也可能就是句子完成题或者说简答题它的一个难点吧，就是每一道题我都需要单独定位。</p>
+<p>[02:25 - 02:42]</p>
+<p>[02:42 - 02:59]
+所以花在定位上的时间可能相对来说是比较长的考点。其实考点这个东西没什么新鲜玩意儿啊，基本上都是一致的。比如说并列信息，什么叫做并列信息啊？学到这儿，大家应该对于这个考点非常的清晰了，就是给你来了一个。</p>
+<p>[02:42 - 02:59]</p>
+<p>[02:56 - 03:14]
+And前面给了你一个东西，后面让你去填另外一个东西。在阅读和听力当中，这都叫做并列信息考点非常的重要。所以回原文，我要先找到a好了，a找到了。然后我发现他这个地方说到了as wellas,那这个b就是我的答案直接填回来就可以了。</p>
+<p>[02:56 - 03:14]</p>
+<p>[03:14 - 03:31]
+这个就叫做并列信息，考点这个句子里面也会考你并列信息。所以就如同我们学过的这种表格，完成体和这个笔记完成题是一样的。第二个考点逻辑，这个在表格完成和句子啊，这个呃笔记完成里面是没有的啊，什么叫做逻辑呢？</p>
+<p>[03:14 - 03:31]</p>
+<p>[03:31 - 03:48]
+就是一个句子，内部有句内逻辑，这个剧内逻辑指的是什么呢？我给大家举个例子，你就明白了。比如说前面有一段铺垫，然后逗号。 But后面给你说了一个事，那前面这个事情是正方，后面就是反方，因为他们是一个转折逻辑。</p>
+<p>[03:31 - 03:48]</p>
+<p>[03:48 - 04:05]
+对于我们来说，逻辑这种词，它在原文当中应该是不会消失的。但是你要相信它一定会替换它，给你替换成另外一个逻辑连接词啊，甚至有可能呢它这个句子的整体画风或者整体结构会有一定的变化。</p>
+<p>[03:48 - 04:05]</p>
+<p>[04:05 - 04:29]
+但是不管怎么说，这个逻辑是可以帮助我们去解题的。只要找到了这个逻辑，那大概率可能我们就离找到正确答案并不远了啊。好，第三点呢就是题干限定，这是什么意思啊？比如说类似于像这样的单词叫做immediately a这个单词表示的是立即的那有一个题呢，今天我们也会做到说这个东西的发明立即带来了一个什么样的好处。</p>
+<p>[04:05 - 04:29]</p>
+<p>[04:29 - 04:45]
+文章当中的呀，还给大家擦了immediately.文章当中啊，它会洋洋洒洒的会怎么讲呢？他说首先啊这个东西的诞生给我们立即带来了一个好处。那从长远来看in the long run,它又给我们带来了一个好处。</p>
+<p>[04:29 - 04:45]</p>
+<p>[04:45 - 04:59]
+那所以我们要的是前面这个而非后面这个这个其实就相当于我们定位成功之后，可能会有干扰信息啊，那你要把住这个题干限定，最后一种呢就是长难句，其实我并不是特别耍赖的那种。</p>
+<p>[04:45 - 04:59]</p>
+<p>[04:59 - 05:10]
+雅思老师就说，哎呀，各位同学们，你们跟着我学，肯定就不用看到文章，就完全靠技巧就能解题。Actually not不可以的。你想如果我们完全靠技巧，就能把这些题目完全做对。</p>
+<p>[04:59 - 05:10]</p>
+<p>[05:10 - 05:30]
+那剑桥大学天天研究这些题目，天天研究语言规律的这些出题者，他们是不是就要失业了呀？所以其实呢技巧只不过是一个方面，更重要的是我们的语言能力。那我们这个系列的课程呢着重于给大家强调一些技巧，但并不意味着技巧很重要啊，并不意味着在你们考取雅思分数的时候，技巧是最重要的语言能力。</p>
+<p>[05:10 - 05:30]</p>
+<p>[05:28 - 05:45]
+当然也很重要。比如说有些同学可能就读不懂长难句，这个长难句啊，读不懂的同学，我教你一个方法啊，其实所谓的这个长难句，它无非就是修饰的成分非常的多。那比如说什么成分可以是修饰呢？</p>
+<p>[05:28 - 05:45]</p>
+<p>[05:45 - 06:08]
+类似于像定语啦。那定语如果是从句的话，它就变成了定语从句对吧？再比如说像副词啦，如果副词这个地方变成句子的话，它就变成了状语。从句啊哎状语从句，所以类似于还有插入语的成分，逗号和逗号中间，这是一个插入语啊，那类似于像这样的东西呢，可以都影响整个句子的一个长度。</p>
+<p>[05:45 - 06:08]</p>
+<p>[06:08 - 06:25]
+所以我们众所周知啦，这个英文当中的句子呢是可以写的无限长。因为你每一个部分都可以再拓展出来一个从句再把从句套从句套从句这样的一种形式。所以其实在读长难句的时候，我就教给你们一个方式，这个方式啊叫做先脱衣服。</p>
+<p>[06:08 - 06:25]</p>
+<p>[06:26 - 06:43]
+因为衣服都是修饰的部分，所以你就先把这些修饰的成分都给它去掉，不看先找到句子的主干。然后你再一件一件的去给它往上穿啊，因为一下穿多了，你可能反应不过来，理解不了这个啊，忽然穿上这么多东西，到底都是什么意思。</p>
+<p>[06:26 - 06:43]</p>
+<p>[06:43 - 06:55]
+所以我们一件一件的往上穿，哎，修饰主语的有什么东西啊，修饰谓语的有什么东西？修饰宾语的有什么东西，作为时间状语的，有什么作为地点状语的，有什么作为条件？状语的有什么等等等等。</p>
+<p>[06:43 - 06:55]</p>
+<p>[06:55 - 07:10]
+我们所有的修饰成分，单独把它当做一个句子来看。因此在读句子的时候，一定要试图找到句子的。主谓宾。你说老师我语法不好，我找不到主谓宾这个跟语法没有关系，这个确实跟语法没有关系啊，跟你读的文章的数量是有关的。</p>
+<p>[06:55 - 07:10]</p>
+<p>[07:10 - 07:26]
+你说我语法贼棒，但我从来没有进行过英文阅读，那也没有用，你真的也找不到这个主谓宾啊。所以大家从现在开始，我们就试图去训练自己在读一个长难句的时候，先找到主谓宾，或者当然因为简单句的结构是有五种的，今天不赘不赘述，不给大家展开啊。</p>
+<p>[07:10 - 07:26]</p>
+<p>[07:26 - 07:42]
+但大家要知道，就是我在找这个句子的时候，我先把它的主干给捞出来。然后我再一件一件的衣服往上穿啊，所以呢这个就叫做长难句这个考点。另外我这特地拿红笔给大家写了一点叫出坑，不要被一些修饰的成分混淆双眼，这是什么意思呢？</p>
+<p>[07:26 - 07:42]</p>
+<p>[07:42 - 08:07]
+有的时候啊，同学在读文章的时候，嗯，你明明知道这是一个并列结构的考点，你也明明知道并列结构就是在这个句子当中，换句话说，定位你已经成功了，成功的找到了定位句。但是就是在搜索答案的时候，你被它的修饰性成分给干扰了，直接填了一个修饰性的词，放到了这个空里边，本身应该是一个和前者名词，形成并列关系的并列考点啊，好多同学这样，特别是那个修饰成分。</p>
+<p>[07:42 - 08:07]</p>
+<p>[08:07 - 08:24]
+如果这个词再稍微难一点，你不认识可能就更加如此了。我为什么要告诉大家强调这一点一定不要被修饰成分蒙蔽双眼。因为雅思的文章长度是挺长的，他写的时候其实是蛮啰嗦的，所以它可能会这里边增加很多修饰性的部分。</p>
+<p>[08:07 - 08:24]</p>
+<p>[08:24 - 08:45]
+你要把修饰性的部分先拿括号给我括起来，先找到它最重要的这个主干的这个部分。 Ok所以这就是这两种题型，它的一个共通的特点。那我们今天要看的这个例题呢，其实它是一个简答题，但这个简答题因为它出现的非常的少啊，所以我找的这个题呢也只能是从老题当中去找，但这个题其实非常有代表性。</p>
+<p>[08:24 - 08:45]</p>
+<p>[08:45 - 09:06]
+因为每一个题目其实都是卡在了考点上。好，我们拿到这个题之后呢，首先要干第一件事情。第一件事情永远是这里啊，题目要求不能超过两个单词。在这啊我要稍微讲一讲啊，就是有的同学总觉得老师啊不能超过两个单词呢，是不是答案形式基本上都是两个单词，这种的很少会有一个单词吧。</p>
+<p>[08:45 - 09:06]</p>
+<p>[09:06 - 09:24]
+如果我这所有答案都是一个单词，是不是我错了呀？嗯，大家不要有这样的担忧啊，如果这道题你真的是因为读懂了意思，找到了替换而做出来的答案。即便它是一个单词，那就是一个单词，它不会说这个就是no more than two words,你的所有的这个答案都是两个单词，肯定会有一个单词的情况。</p>
+<p>[09:06 - 09:24]</p>
+<p>[09:24 - 09:36]
+所以大家一定要放下心中的这个戒备和防备啊，嗯当然就是等你做完题目，你可以再check一遍。但是呢大家一定要不要认为就不要想当然的认为no more than two words,就意味着所有的答案都是两个单词。</p>
+<p>[09:24 - 09:36]</p>
+<p>[09:36 - 09:45]
+那no more than three words,难道还所有的答案都是三个单词，没有啊，肯定不会是这样的。好，接下来我们就每一道题目来进行分析，我们逐一看一下考点。</p>
+<p>[09:36 - 09:45]</p>
+<p>[09:45 - 10:01]
+首先第一道题啊，他说的是before perkins discovery with what group in society was the purplecolorpurple associated.这里面有一个很重要的考点词叫这个associated这个单词。</p>
+<p>[09:45 - 10:01]</p>
+<p>[09:57 - 10:16]
+其实啊它表示的是联系啊，那它的这个名词形式叫做associationassociation,也经常考a s s o c i a t i o n,它还有一个和他替换的单词叫做link,那后面加的是to link to.所以这个考点词大家务必要会。</p>
+<p>[09:57 - 10:16]</p>
+<p>[10:16 - 10:43]
+其实这题问的就是能有关系的。其实也就是那么几种，比如说上流社会，我们一般叫做什么样叫做第一upper classok好middle classthe middle class啊。</p>
+<p>[10:16 - 10:43]</p>
+<p>[10:44 - 10:58]
+那穷人阶级呢像这个稍微不太好一点的呢，唉，the poor那么与the poor相对应的是不是有一个the rich对吧？嗯，因为the rich和这个上流社会其实是差不多的。</p>
+<p>[10:44 - 10:58]</p>
+<p>[11:01 - 11:19]
+那么这题问我们的就是是能够发生关系的。好，我们的定位信息找什么呢？肯定是group in the society,对吧？因为全篇其实在探讨的就是parking这个人，他发明了一种紫色的染料啊，这种紫色的染料发明了之后呢，就是风靡一时。</p>
+<p>[11:01 - 11:19]</p>
+<p>[11:16 - 11:37]
+好，我们先来看一下文章，在我们扫描答案的时候，这个题可能就没有办法。像我们之前学表格完成，或者像这个笔记完成就那么快。那你就要一点一点的来看这个文章啊。但在看的时候，我教大家一个方法叫眼神飘着看什么叫做飘着看呢？</p>
+<p>[11:16 - 11:37]</p>
+<p>[11:41 - 12:01]
+是不是就可以略读了，跟我一起飘着看一下，说这个人出生于这个时间，在伦敦，在英国，他小孩的时候，他就喜欢艺术，然后喜欢这些东西啊。但是呢他嗯有实验室，他的爷爷有实验室，所以他的热情就投放在了化学。</p>
+<p>[11:41 - 12:01]</p>
+<p>[12:01 - 12:17]
+这所以整个第一段是给我们进行这个人的生平。简介。 O好，接着来啊我们进行看第二段。其实啊如果是做题经验比较丰富的同学读到这自然而然就会知道答案，肯定不会在这个位置，不会在文章的头半面。</p>
+<p>[12:01 - 12:17]</p>
+<p>[12:17 - 12:31]
+为什么呢？因为头发面其实讲解的就是这个人，他的生平从小时候开始讲了吗？那真正等他这个紫色的染料这个紫色出现，那岂不就是已经是这个染料开始稍微流行一点的这个时间了。</p>
+<p>[12:17 - 12:31]</p>
+<p>[12:31 - 12:48]
+诶，所以呢其实啊啊但是嗯我还是要本着负责的态度，帮助大家就是教会你们飘着读这种方式啊。好，然后他作为一个学生，在这个学校，他很有天赋。然后他老师发现了他的天赋，老师叫做这个名字。</p>
+<p>[12:31 - 12:48]</p>
+<p>[12:48 - 13:06]
+然后后来呢他又上了这个人的课，在这样的一个学校，这些演讲点燃了他的热情。然后后来呢他又到了这个学校，一路求学来到了15岁啊，所以这一段讲的是从小到15岁的一个求学经历。</p>
+<p>[12:48 - 13:06]</p>
+<p>[13:06 - 13:24]
+刚才我带着大家就是不断的圈圈，这个就是真的我眼睛会扫描到，或者说能留在我脑子里有印象的词啊。好，接下来下一段，然后在parking注册了之后，开始正儿八经讲他的应该是算作高等教育了吧。</p>
+<p>[13:06 - 13:24]</p>
+<p>[13:24 - 13:39]
+唉，所以在读之前，我可能会进行一个脑补啊。好，他注册这个学校之后呢，他们的那个老师啊叫做这个名字啊，挺老长的。然后后来呢他就呃这个人他抓住了这个老师的一个关注，这老师非常的关注他。</p>
+<p>[13:24 - 13:39]</p>
+<p>[13:39 - 13:59]
+然后再后来他就成为老师一个年轻的助手。啊，在那之后不久呢，他就做了一个科学上的突破，这个突破使他又变得很有名，又使他变得非常有钱。所以这个确实就是他高等教育阶段和他变得有名有钱，我们叫做名利双收，它是一个过渡段啊。</p>
+<p>[13:39 - 13:59]</p>
+<p>[13:59 - 14:14]
+好，这一段我们也读完了，整个文章我们读了1/4,但是费劲吗？不太费劲。当然文章也比较简单啊。嗯，如果是比较难的文章，你也没有办法飘着读。所以这个这种飘着读这种方式是适合比较简单的文章。</p>
+<p>[13:59 - 14:14]</p>
+<p>[14:14 - 14:27]
+好，接着我们再来看，在那个时期啊，这个玩意儿was only valuable and treatment for这个东西。所以啊就这个东西是用来治这个东西的，咱也不知道这个q和这个m到底是什么。</p>
+<p>[14:14 - 14:27]</p>
+<p>[14:27 - 14:43]
+反正总而言之就是这个q是用来治这个m的。然后说这个药啊嗯它是从这个树里边弄出来的。这个树长在南美1856年的时候呢，说这个对于这个这个药的一个需求非常的旺盛。因此啊这个人这个人是谁来着？</p>
+<p>[14:27 - 14:43]</p>
+<p>[14:43 - 15:16]
+好像是他的老师吧，但你读的时候可能捋不出来这么好的逻辑结构。无所谓的继续过说这个人呢他就开始做一些评论啊，关于这个啊desirability就是这个可获得性或者这个渴望嗯这个化学物质，然后这个q啊，然后说呢这个嗯unsurprising that就是不怎么太惊讶啊，嗯就是他的这个学生啊move to take up the challenge.所以就是他的明星学生想要去来解决这样的一个挑战。</p>
+<p>[14:43 - 15:16]</p>
+<p>[15:16 - 15:32]
+哎，这句话其实其实写的还是多少有点隐晦的啊。但因为可能我们在读的时候，你也不用读的那么细，飘着一读就行。你要找的是什么来着？颜色对不对？到这说到了紫色吗？没有说到，好像没有说到，紫色继续飘着多。</p>
+<p>[15:16 - 15:32]</p>
+<p>[15:31 - 15:54]
+在他假期的时候1856年，然后他就在实验室里边呆着，在他的家里边有个实验室，他就试图去生产出来这个q从这个东西里边，那这玩意儿是一个什么玩意儿呢？就不怎么贵的一个东西，这东西不怎么贵，它是一个化石燃料的废弃物啊，就尽管他非常非常努力，但是呢他依旧没有获得这个q,但是他获得了一个额外的东西。</p>
+<p>[15:31 - 15:54]</p>
+<p>[15:54 - 16:20]
+ Instead他produce啊，就是他得到了一种什么神秘的啊这个黑色的一个什么东西，而且非常幸运呢。Parking啊他的这个嗯科学的这个训练，以及他的这个直觉，就让他开始研究这种物质，要更加研究这种物质啊，然后他就好好开始研究这种紫色的这个solution这个单词，在这里是有特殊含义的，不叫解决方案啊。</p>
+<p>[15:54 - 16:20]</p>
+<p>[16:20 - 16:37]
+Solution这个单词在这表示的是溶液的意思。所以这个单词大家抄在本子上solution两个含义，一个叫做解决方案啊，另一个呢叫做溶液。 Ok所以这个溶液在一些化学场景的文章当中是非常经常考的。</p>
+<p>[16:20 - 16:37]</p>
+<p>[16:37 - 16:55]
+所以他就开始研究这些紫色的这个呃就是这个深紫色的这样的溶液啊。好了，紫色终于第一次出现了，那么我们是不是就要开始警觉一下，到底哪个是相关的呀？我们来看啊，然后接着他就提供了一个事实。</p>
+<p>[16:37 - 16:55]</p>
+<p>[16:55 - 17:12]
+然后著名的化学家lp的这个语言。呃，这个lp说了一句话，机会总是给有准备的人，然后perky呢就看到了哎他的这个领域的一个这个前景啊，然后接着往后看啊，从历史上来看呢，所以我们总结一下刚才这两段说的一个内容。</p>
+<p>[16:55 - 17:12]</p>
+<p>[17:12 - 17:37]
+首先这个地方给我们介绍了一个背景，这个背景就是关于q这个东西，它特别难以获取。然后啊这为这个parking他的一个科学研究奠定了一些基础。然后接着这句话，其实指的是他的研究过程，他本来是很想生啊，就是这个创造出来q这个东西的，但是很不幸，但也是幸运吧，反正就是他没创造出来。</p>
+<p>[17:12 - 17:37]</p>
+<p>[17:37 - 17:51]
+那取而代之的是呢，它创造出来了一种紫色的溶液。这个溶液在后来发生了什么事情呢？开始给我们讲历史上的事儿了。历史上啊这个纺织品的这个染料啊，嗯一般都是由一些天然的材料去制成的。</p>
+<p>[17:37 - 17:51]</p>
+<p>[17:51 - 18:18]
+比如说这个植物和动物的一些提取液啊，嗯然后从这些东西上，比如说什么蜗牛啦，然后再比如说啊这个呃什么其他的一些自然类的一些物质啊，从这些物质里面去提取出来，但是这个过程是非常困难的啊，很艰难去获取，而且还很贵啊，而且确确实实紫色呢，其实它是从蜗牛里边去提取出来的，而且他非常非常的贵。</p>
+<p>[17:51 - 18:18]</p>
+<p>[18:20 - 18:47]
+今天这篇文章它不是考点词，但是不见得以后的文章，它不是，所以大家必须要会说这个玩意儿它特别特别的贵啊，而且在当时的那个社会呢only the rich could afford it,我是不是其实给大家写到过这个单词啊，the rich等于uer classmiddle classthe poor诶，所以rich和这个上流社会是一致的。</p>
+<p>[18:20 - 18:47]</p>
+<p>[18:47 - 19:00]
+那那个时候什么人能负担得起紫色这个颜色呀？那所以就是我们文章里面所说到的这个the richonly the rich could afford it.所以这道题的答案我们就写the rich就可以了啊。</p>
+<p>[18:47 - 19:00]</p>
+<p>[19:00 - 19:16]
+嗯，the rich关于这个答案书写的一个形式啊，嗯其实大家不用太过纠结。因为现在其实官方也说的很明白，只要能不给大家扣分的细节问题，其实就不给大家扣分。所以你不用纠结，说这个的我是不是要进行大写呀，是不是要这样写呀？</p>
+<p>[19:00 - 19:16]</p>
+<p>[19:16 - 19:32]
+不用纠结，大小写在这儿是不扣分的啊。哎，你其实甚至都不用纠结这个的，到底有没有你就写rich就可以了。但我更偏向于让大家写出来这个的原因是呢the rich特指的就是那些富人阶级啊，所以如果你写出来这个的是更好的。</p>
+<p>[19:16 - 19:32]</p>
+<p>[19:29 - 19:45]
+好，那所以这道题第一题的答案我们就已经成功的做出来了。刚才我是本着一个什么原则给大家做的题啊，我是本着和你们一样的心态去做题啊。这个题我不能说我直接刷了一下，就直接过渡到文章。</p>
+<p>[19:29 - 19:45]</p>
+<p>[19:44 - 19:59]
+第二页直接告诉你来就来自于文章。第二页，那我是怎么知道的呀？所以我在前面呢，我就带着你去飘着读一读了一读这个文章。当然，文章前半部分本身也有自己匹配的题目啊，叫做true force log问题就是判断题。</p>
+<p>[19:44 - 19:59]</p>
+<p>[19:59 - 20:13]
+所以如果有兴趣的同学可以回头再去做做这几个题目。总而言之呢，我刚才就完全还原了大家平时在读阅读的时候的一个样子，太难的单词，其实我也并没有跟你解释，但是一些你们必须要会的单词，我是多说了两句的对吧？</p>
+<p>[19:59 - 20:13]</p>
+<p>[20:13 - 20:37]
+好，我们成功的做完了第一题。那么接下来看第二题的考点啊，说what potential did parking immediately understand题，干限定里边有一个immediately.我刚才在开篇的时候设的那个伏笔说的时候，这道题啊说他突然意识到自己的这个新的染料，有什么潜力potential好，我们回到文章里面继续去往后飘着读文章。</p>
+<p>[20:13 - 20:37]</p>
+<p>[20:37 - 20:57]
+在我想要找到它的潜力的时候，我就要飘着读文章。好在那之后啊嗯还是换回紫色啊，因为紫色很贵吗？好在那之后呢自然的染料啊，然后他们会褪色很快啊，而且呢这个就使得这个parking and discover啊能够来填补这样的一个空白。</p>
+<p>[20:37 - 20:57]</p>
+<p>[20:57 - 21:17]
+然后parking 1 quicklyquicklyquickly was meaning of quickly,那他是immediately对吧？哎，他立即把目光投向在这个紫色的solution上，然后could be used to color the fabricfabric这个单词叫做纤维，也是必会单词啊，他知道他的这个紫色染料呢是可以来染一些纤维的。</p>
+<p>[20:57 - 21:17]</p>
+<p>[21:17 - 21:31]
+然后有同学觉得哎这个地方会不会是答案呢？你看他立即投放他的目光，紫色染料染纤维，这叫potential吗？这应该不叫普檀手，这就非常直白的一个功能染料，你不染你不染，纤维染什么呢？</p>
+<p>[21:17 - 21:31]</p>
+<p>[21:31 - 21:45]
+继续往后看啊，that's making the world first人工染料，它就成为第一个人工染料。所以这个到底是不是答案是他第一下子那个当下就意识到他的这个染料可以成为人工染料吗？</p>
+<p>[21:31 - 21:45]</p>
+<p>[21:45 - 21:59]
+这个叫做immediately potentialno,这不叫做potential,这是他的一个实际的一个应用，而不是它的potential继续往后看realize the importance of this breakthrough就是发知道了这个突破的一个重要性啊。</p>
+<p>[21:45 - 21:59]</p>
+<p>[21:59 - 22:27]
+嗯，他没有花费太多的时间去等待它。但是呢也许啊这个最迷人的是parking他的一个行为。他找到啊，他就是他自己立即的instantrecognitioninstant,这个叫做立即的迅速的，他迅速的意识到这个new die这个染料啊，有commercial possibility,所以commercial possibility才是它的潜力，对吧？</p>
+<p>[21:59 - 22:27]</p>
+<p>[22:27 - 22:41]
+所以这个东西才叫潜力，那它作为一种人工合成的染料，这不叫做它的潜力ht. So no这个不是，那真正的potential是商业价值，就他这玩意儿是非常有商业价值的。</p>
+<p>[22:27 - 22:41]</p>
+<p>[22:41 - 22:54]
+ Ok所以第二道题答案就给我抄commerci嗯，possibilities就可以了啊。单复数都不要变化，因为我们所有的填空题都是要原文原词抄回来，所以单复数都不要有任何的变化。</p>
+<p>[22:41 - 22:54]</p>
+<p>[22:54 - 23:07]
+第二道题，我们成功搞定，接着我们来看。第十题说what was the name finally又出现了副词，什么叫做final?最终啊最终他想要把自己的这个这个紫色染料叫做什么名字？</p>
+<p>[22:54 - 23:07]</p>
+<p>[23:07 - 23:24]
+找名字既然让我们找名字，那在找名字的时候，我为什么这么激动啊？因为名字这个东西也许是一个大写吧。下一段里边a originally这个名字叫这个，那这个是finally吗？</p>
+<p>[23:07 - 23:24]</p>
+<p>[23:24 - 23:39]
+Originally是finally吗？朋友们应该不是吧，originally这个叫做原始的啊，所以呢就是说它这个紫色染料啊，它的这个名字一开始叫做什么？那后来呢又发生了一些变化。</p>
+<p>[23:24 - 23:39]</p>
+<p>[23:39 - 23:50]
+好，接下来我们再来看一下第十题，第十题这题干呢问我们说what was the namefinally used to refer the first color?这里边有一个finallyfinally,这又是一个题干限定词。</p>
+<p>[23:39 - 23:50]</p>
+<p>[23:50 - 24:05]
+刚才那道题限定我们immediately,这道题就限定了我们finally啊，所以你看两道题都是有题干，限定的，稍微有点坑，对不对？好，我们要找一个名字，名字，这个东西是不是就应该很好找，因为它怎么着应该长得稍微高大一些吧，看起来就很特别哈。</p>
+<p>[23:50 - 24:05]</p>
+<p>[24:05 - 24:24]
+好，我们回到文章继续来找啊啊，说到他一开始诶，originally这个单词是什么意思啊，叫做原始的对吧？所以它原始的这个名字叫做t,虽然它看起来非常像正确答案，但对不起，它不是因为他这是一开始我们要找的是最终的好看看最终啊。</p>
+<p>[24:05 - 24:24]</p>
+<p>[24:24 - 24:37]
+ But later在那之后呢，这个名字又叫做mars啊，所以我们这个答案就应该是marve这个单词，对吧？因为finally对应的是laterfinally这题限定了我们。</p>
+<p>[24:24 - 24:37]</p>
+<p>[24:37 - 24:51]
+所以大家看到了吧，两道题都是有坑题。所以你要在对应定位成功之后，好好分析到底哪一个文章当中答案才是符合题目的一个限定啊。好，接这第11第十题我们就做完了，接着我们来看第11题。</p>
+<p>[24:37 - 24:51]</p>
+<p>[24:51 - 25:04]
+第11题呢问我们说啊这个what was the name,又让我们去找一个名字，这次这个名字是什么呢？说parking consultconsult这个单词啊叫做咨询啊，这也是一个考点词。</p>
+<p>[24:51 - 25:04]</p>
+<p>[25:04 - 25:21]
+那有一种工作叫做consultant,就是在后面加了一个a n t consultant,这个叫做顾问啊，比如说呢这个啊很多公司有一些很高级的那种咨询顾问啊，所以他们都叫做consultant.这个perkin呢咨询了谁？</p>
+<p>[25:04 - 25:21]</p>
+<p>[25:21 - 25:41]
+在开始他自己的这个染料工作之前，我们来看看perkin咨询了谁，这种找答案就应该非常有指向性的去找人名啊，人名和东西的名字还不太一样。东西的名字，咱刚才那个mark,它也不是专有名词，但人名是不是肯定得是专有名词往后看，那这些东西都不用看，看看这个robot polar是什么人。</p>
+<p>[25:21 - 25:41]</p>
+<p>[25:41 - 25:55]
+ Robert puler啊说he asked adviceask advice是不是就咨询的意思？所以他咨询了一个在苏格兰的染料场主，它叫做robot polar,所以答案就是robot polar了。</p>
+<p>[25:41 - 25:55]</p>
+<p>[25:55 - 26:06]
+这两套题离得可真近啊，送分题啊，嗯他咨询了robot polar,然后呢这个跟他保证说manufacturing就是制造这个染料would be wellworth很值得啊。</p>
+<p>[25:55 - 26:06]</p>
+<p>[26:06 - 26:19]
+如果这个color啊就非常的嗯就是remain fastremain fast的意思就是它不会褪色fade.这个单词其实咱刚才已经遇到了啊，刚才我们给大家说这次重点说一说这个叫做褪色的意思。</p>
+<p>[26:06 - 26:19]</p>
+<p>[26:19 - 26:30]
+因为一些人工染料会经常褪色，所以如果你这个染料不褪色，那肯定会特别流行，就直接就发家了啊，发家致富了。所以他咨询了robot polar第11题，我们解决掉了。</p>
+<p>[26:19 - 26:30]</p>
+<p>[26:30 - 26:48]
+接着我们来看第12题12题这道题啊，其实如果你好好做的话，细节感是非常强的。那在哪个国家？这是一个国家啊题干，限定了你这个国家。然后parking呢发明的这个染料first became fashionablefashionable叫做流行的流行的。</p>
+<p>[26:30 - 26:48]</p>
+<p>[26:48 - 27:04]
+他发明的这个染料迅速在这个国家流行起来，我们继续往后，这次你都不用飘着读了，你就给我找国家看看这文章到这结束之后有国家吗？好像没有了，接着我们来看文章，这半截儿啊，这半截诶这地方有一个londonlondon是country吗？</p>
+<p>[26:48 - 27:04]</p>
+<p>[27:04 - 27:19]
+ London它是一个城市，英国由四个部分构成，英格兰、苏格兰、威尔士和北爱尔兰。但是呢即使你说英格兰它可以是一个country,但是我不认为英格兰当中的伦敦是可以作为一个country,所以这肯定不是不用读了。</p>
+<p>[27:04 - 27:19]</p>
+<p>[27:19 - 27:37]
+接着往后啊，看看看看有什么什么国家呢？啊诶这地方又出现了一个france,那法国是不是他这个第一个流行的国家，我们迅速来看一看啊，说这个公司啊，他收到了a commercial boostwhat is commercial boostcommercial叫做商业的boost叫做爆发。</p>
+<p>[27:19 - 27:37]</p>
+<p>[27:37 - 27:53]
+所以他收到了商业的爆发在法国。那所以也就是在法国它流行了起来呗。所以答案这个国家就是法国。刚才我们在找答案的时候，是不是非常的粗鲁很粗暴。因为我告诉了大家，我们找的是名字。</p>
+<p>[27:37 - 27:53]</p>
+<p>[27:53 - 28:16]
+那如果你想找名字，直接指向性的去找大写字母就可以了啊。好，在接下来我们来看最后一道题。最后一道题说的是according to the passagewhich disease is now being targeted by researcher. Using这个东西哪种疾病，现在被这个作者针对了，所以我们要找的是一种疾病，targeted其实就是被控制被解决的一个意思啊。</p>
+<p>[27:53 - 28:16]</p>
+<p>[28:16 - 28:28]
+ Target本意表示的是目标，那targeted在这就是被解决了啊，哪一种疾病被作者给解决了呢？被这个parking给搞定了呢。我们来看啊，刚才呢咱们在这是飘着读的，现在就不能了。</p>
+<p>[28:16 - 28:28]</p>
+<p>[28:28 - 28:43]
+因为这种疾病的名字估计不能专有名词。虽然疾病这词长得应该挺特殊的，但它肯定不会是专有名词。那所以咱们就还是一点点往后读啊，说在那之后还不久呢，这个紫色啊就开始流行起来。</p>
+<p>[28:28 - 28:43]</p>
+<p>[28:43 - 28:56]
+然后在整个国家，所以这地方再次验证，这地方就是答案啊。嗯，然后接着呢英格兰的这个女王啊，她也出现在公众场合穿着紫色的长袍，这就使得这个在英格兰也迅速流行起来了。</p>
+<p>[28:43 - 28:56]</p>
+<p>[28:56 - 29:32]
+这个染料呢它非常的持久，而且非常的鲜艳啊，嗯然后公众们都会更喜欢这个燃料，然后parking就立即开始就开始了。他进一步的这个生产。那即使呢parking的名声啊和他的这个财富确保了他的嗯first discovery就是他的这个发现the chemist continue his research,就是这个化学家啊，这个chemist表示的是化学家，就即使在他发明了这个染料之后啊，他的这个名声和财富名利双收，但毕竟他还是有一个科学家情节的对吧？</p>
+<p>[28:56 - 29:32]</p>
+<p>[29:32 - 29:50]
+所以他就继续研究啊，然后among another dies啊，在另外的一个燃料当中，他啊发明出来以及啊这个用了一个这个东西，然后这个东西和这个东西啊，就这两个东西咱就不读了啊，这两个东西它毕竟是专有名词啊，就是那种学科类的词啊，咱也不知道是什么。</p>
+<p>[29:32 - 29:50]</p>
+<p>[29:50 - 30:17]
+所以这两个东西，然后之后呢在1860嗯，然后有了这个东西，所以这大概就是三种颜色。好，继续啊。 It is important to know that啊，就是我们应该关注一下perk的这个人工合成染料呢，它的这个发明had outcome far beyond啊，就是已经有非常好的这个结果了啊，然后而且不仅仅是这个不仅仅是这个装饰的这个效果，这个染料啊，还有一些重要的医疗。</p>
+<p>[29:50 - 30:17]</p>
+<p>[30:17 - 30:38]
+哎呀，要开始讲医疗了，既然要讲这个医疗，那么我们可能就要看一看这个这个颜色，或者说这个人工染料它到底和什么病解决了什么病啊？好，我们来看举个例子来看啊，我们呢去啊看一些这个看不见的这些微生物invisible,就看不见微生物和一些细菌。</p>
+<p>[30:17 - 30:38]</p>
+<p>[30:38 - 30:53]
+然后允许呢这些啊researcher to identify这个东西such as这个东西，这个东西按照这个东西并列了这么多东西，那能是答案吗？不能是并列这么多东西，一定不是答案，为什么呀？</p>
+<p>[30:38 - 30:53]</p>
+<p>[30:53 - 31:06]
+因为你不可能写四个单词作为打单词，所以这地方也有一个技巧啊，这个技巧就是并列的东西。如果特别多的话，它一定不是答案所出现的位置。因为我们的答案不可能是前四个单词。</p>
+<p>[30:53 - 31:06]</p>
+<p>[31:06 - 31:27]
+好，接着往后说成功啊，这个人工合成的染料啊，它持续去扮演了一个重要的角色。在今天，而且呢它还非常呃我们应该尤其感谢perkin.因为它的这个应用啊，尤其是在疫苗这个单词叫疫苗啊，嗯在现在口罩情况的这个下面啊，大家对疫苗这个单词应该是有所知道的。</p>
+<p>[31:06 - 31:27]</p>
+<p>[31:27 - 31:42]
+ Against抵御抵御什么东西？Malariamalaria是什么东西啊？哎，这单词其实在雅思里面经常出现它叫做疟疾啊、疟疾哎，也是一种肆虐，在非洲特别热的那种地方的一种疾病，由文字来进行传播的。</p>
+<p>[31:27 - 31:42]</p>
+<p>[31:42 - 31:59]
+所以呢这个东西咱也不知道为什么啊，但反正就是他发明这个染料的过程当中，哎，也弄出来了这个疫苗，然后可以去抵御这个疟疾答案，是不是就已经出来了？这种病就是疟疾来自于文章的最后一个单词啊，可见这个文章出题也是非常有心机。</p>
+<p>[31:42 - 31:59]</p>
+<p>[31:56 - 32:17]
+好，我们总结一下，对于这种无论是句子完成题还是简答题来说，他在文章当中的定位是相对来说比较分散的。所以我们读文章要飘着读。今天大家跟我学的绝不是这种题型如何解决，而是如何飘着读文章的这种感觉。</p>
+<p>[31:56 - 32:17]</p>
+<p>[32:17 - 32:33]
+所以刚才其实整篇文章这个故事我是完全给大家讲了下来，大家应该对于这个parking他做了什么事情，这个前因和后果非常的了解，对吧？哎，所以我们刚才在操作的这种方式要飘着读，为什么我们要学会飘着读啊，因为这种题目它定位非常的分散。</p>
+<p>[32:17 - 32:33]</p>
+  </main>
+  <aside class="col-right">
+    <h4>本页章节</h4><ul><li><a href="#04">04</a></li></ul>
+  </aside>
+</div>
+<script>
+(function(){
+  var input = document.getElementById('search-input');
+  var panel = document.getElementById('search-panel');
+  if (!input || !panel) return;
+  var main = document.querySelector('.col-main');
+  var leftLinks = Array.prototype.slice.call(document.querySelectorAll('.col-left ul li a'));
+  var rightLinks = Array.prototype.slice.call(document.querySelectorAll('.col-right ul li a'));
+
+  function escHtml(s){
+    return s.replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+  function escapeRegex(s){
+    return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+  function clearHighlights(){
+    if (!main) return;
+    var marks = main.querySelectorAll('mark.search-hl');
+    for (var i = 0; i < marks.length; i++) {
+      var m = marks[i];
+      var text = document.createTextNode(m.textContent);
+      m.parentNode.replaceChild(text, m);
+    }
+    main.normalize();
+  }
+  function highlightInMain(kw){
+    if (!main) return;
+    clearHighlights();
+    if (!kw) return;
+    var re = new RegExp(escapeRegex(kw), 'gi');
+    var walker = document.createTreeWalker(main, NodeFilter.SHOW_TEXT, {
+      acceptNode: function(n){
+        if (!n.nodeValue || !n.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        var p = n.parentElement;
+        if (!p) return NodeFilter.FILTER_REJECT;
+        var tag = p.tagName;
+        if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'CODE' || tag === 'PRE') return NodeFilter.FILTER_REJECT;
+        if (p.closest && p.closest('mark.search-hl')) return NodeFilter.FILTER_REJECT;
+        return n.nodeValue.toLowerCase().indexOf(kw.toLowerCase()) >= 0 ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+      }
+    });
+    var nodes = [];
+    var n;
+    while ((n = walker.nextNode())) nodes.push(n);
+    for (var i = 0; i < nodes.length; i++) {
+      var node = nodes[i];
+      var src = node.nodeValue;
+      var html = '';
+      var last = 0;
+      var match;
+      re.lastIndex = 0;
+      while ((match = re.exec(src)) !== null) {
+        html += escHtml(src.slice(last, match.index));
+        html += '<mark class="search-hl">' + escHtml(match[0]) + '</mark>';
+        last = match.index + match[0].length;
+        if (match[0].length === 0) re.lastIndex++;
+      }
+      html += escHtml(src.slice(last));
+      var tmp = document.createElement('span');
+      tmp.innerHTML = html;
+      var parent = node.parentNode;
+      while (tmp.firstChild) parent.insertBefore(tmp.firstChild, node);
+      parent.removeChild(node);
+    }
+  }
+  function search(q){
+    q = (q || '').trim();
+    panel.innerHTML = '';
+    if (!q) {
+      panel.hidden = true;
+      leftLinks.forEach(function(a){ a.parentElement.style.display = ''; });
+      rightLinks.forEach(function(a){ a.parentElement.style.display = ''; });
+      clearHighlights();
+      return;
+    }
+    var qLower = q.toLowerCase();
+    var courseHits = leftLinks.filter(function(a){
+      return a.textContent.toLowerCase().indexOf(qLower) >= 0;
+    });
+    leftLinks.forEach(function(a){
+      a.parentElement.style.display = courseHits.indexOf(a) >= 0 ? '' : 'none';
+    });
+    var sectionHits = rightLinks.filter(function(a){
+      return a.textContent.toLowerCase().indexOf(qLower) >= 0;
+    });
+    rightLinks.forEach(function(a){
+      a.parentElement.style.display = sectionHits.indexOf(a) >= 0 ? '' : 'none';
+    });
+    var parts = [];
+    if (courseHits.length) {
+      parts.push('<div class="sp-group">课程（' + courseHits.length + '）</div>');
+      parts.push('<ul>' + courseHits.map(function(a){
+        return '<li><a href="' + a.getAttribute('href') + '">' + escHtml(a.textContent) + '</a></li>';
+      }).join('') + '</ul>');
+    }
+    if (sectionHits.length) {
+      parts.push('<div class="sp-group">本页小节（' + sectionHits.length + '）</div>');
+      parts.push('<ul>' + sectionHits.map(function(a){
+        return '<li><a href="' + a.getAttribute('href') + '">' + escHtml(a.textContent) + '</a></li>';
+      }).join('') + '</ul>');
+    }
+    if (!parts.length) parts.push('<div class="sp-empty">无匹配结果</div>');
+    panel.innerHTML = parts.join('');
+    panel.hidden = false;
+    highlightInMain(q);
+  }
+  var timer = null;
+  input.addEventListener('input', function(e){
+    clearTimeout(timer);
+    timer = setTimeout(function(){ search(e.target.value); }, 80);
+  });
+  input.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') { input.value = ''; search(''); input.blur(); panel.hidden = true; }
+  });
+  document.addEventListener('click', function(e){
+    if (panel.contains(e.target) || e.target === input) return;
+    panel.hidden = true;
+  });
+  document.addEventListener('keydown', function(e){
+    if ((e.ctrlKey || e.metaKey) && (e.key === 'k' || e.key === 'K')) {
+      e.preventDefault();
+      input.focus();
+      input.select();
+    }
+  });
+  panel.addEventListener('click', function(e){
+    var a = e.target.closest('a');
+    if (a) panel.hidden = true;
+  });
+})();
+</script>
+</body>
+</html>

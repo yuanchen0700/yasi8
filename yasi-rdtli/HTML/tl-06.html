@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第06讲 · 多选题题型：避坑技巧、真题规则、实战带练全攻略 · 雅思听力8讲</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; height: 100%; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; color: #1f2328; background: #fff; }
+  a { color: #2c5cdc; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* 顶部 */
+  .topbar { position: fixed; top: 0; left: 0; right: 0; height: 56px; display: flex; align-items: center; padding: 0 24px; border-bottom: 1px solid #e5e7eb; background: #fff; z-index: 10; }
+  .logo { font-weight: 800; font-size: 20px; letter-spacing: -0.5px; color: #111; }
+  .logo span { color: #6b7280; font-weight: 500; }
+  .topbar-right { margin-left: auto; display: flex; gap: 16px; align-items: center; position: relative; }
+  .topbar-right input { border: 1px solid #d1d5db; border-radius: 6px; padding: 6px 10px; font-size: 13px; width: 240px; background: #f9fafb; }
+  .topbar-right input:focus { outline: none; border-color: #2c5cdc; background: #fff; box-shadow: 0 0 0 3px rgba(44,92,220,0.12); }
+  #search-panel { position: absolute; top: 44px; right: 0; width: 360px; max-height: 70vh; overflow-y: auto; background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); padding: 8px 0; z-index: 100; font-size: 13px; }
+  #search-panel .sp-group { padding: 8px 14px 4px; font-size: 11px; color: #6b7280; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px; }
+  #search-panel ul { list-style: none; padding: 0; margin: 0; }
+  #search-panel li a { display: block; padding: 6px 14px; color: #374151; line-height: 1.4; font-size: 12.5px; }
+  #search-panel li a:hover { background: #f3f4f6; color: #1d4ed8; text-decoration: none; }
+  #search-panel .sp-empty { padding: 24px; text-align: center; color: #9ca3af; font-size: 12px; }
+  mark.search-hl { background: #fff3a3; color: inherit; padding: 0 2px; border-radius: 2px; }
+
+  /* 三栏布局 */
+  .layout { display: flex; padding-top: 56px; min-height: 100vh; }
+  .col-left { width: 240px; flex-shrink: 0; border-right: 1px solid #e5e7eb; padding: 20px 14px 40px; overflow-y: auto; height: calc(100vh - 56px); position: sticky; top: 56px; }
+  .col-left ul { list-style: none; padding: 0; margin: 0 0 16px; }
+  .col-left li { margin: 2px 0; }
+  .col-left a { display: block; padding: 6px 10px; border-radius: 6px; font-size: 13.5px; color: #374151; line-height: 1.4; }
+  .col-left a:hover { background: #f3f4f6; text-decoration: none; }
+  .col-left a.active { background: #eff6ff; color: #1d4ed8; font-weight: 600; }
+  .col-left h3 { font-size: 11px; text-transform: uppercase; color: #6b7280; margin: 18px 8px 8px; letter-spacing: 0.5px; font-weight: 600; }
+  .col-left .sub { padding-left: 24px !important; font-size: 12.5px; color: #4b5563; }
+
+  .col-main { flex: 1; min-width: 0; padding: 40px 56px 80px; max-width: 820px; margin: 0 auto; }
+  .col-main h1 { font-size: 32px; margin-top: 0; border-bottom: 1px solid #e5e7eb; padding-bottom: 12px; line-height: 1.3; }
+  .col-main h2 { font-size: 24px; margin-top: 40px; padding-top: 16px; border-top: 1px solid #f3f4f6; }
+  .col-main h3 { font-size: 18px; margin-top: 28px; color: #1f2937; }
+  .col-main p { line-height: 1.75; color: #374151; }
+
+  .col-right { width: 220px; flex-shrink: 0; border-left: 1px solid #e5e7eb; padding: 24px 18px; font-size: 13px; height: calc(100vh - 56px); position: sticky; top: 56px; overflow-y: auto; }
+  .col-right h4 { font-size: 11px; text-transform: uppercase; color: #6b7280; margin: 0 0 12px; letter-spacing: 0.5px; font-weight: 600; }
+  .col-right ul { list-style: none; padding: 0; margin: 0; }
+  .col-right li { margin: 6px 0; }
+  .col-right a { color: #4b5563; line-height: 1.45; font-size: 12.5px; }
+  .col-right a:hover { color: #1d4ed8; }
+  .col-right .section { color: #1f2937; font-weight: 600; margin-top: 14px; }
+  .col-right .empty { color: #9ca3af; font-size: 12px; padding: 6px 0; }
+
+  @media (max-width: 1100px) { .col-right { display: none; } }
+  @media (max-width: 800px) { .col-left { display: none; } .col-main { padding: 24px; } }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="logo">雅思听力<span> · 8讲</span></div>
+  <div class="topbar-right">
+    <a href="index.html" style="font-size:13px;color:#2c5cdc;font-weight:600;white-space:nowrap;">🏠 总目录</a>
+    <a href="qa-tl-index.html" style="font-size:13px;color:#2c5cdc;font-weight:600;white-space:nowrap;">💡 问答精要</a>
+    <span style="font-size:18px;">🐙</span>
+    <span style="font-size:18px;">💬</span>
+    <input id="search-input" placeholder="搜索 Ctrl K" autocomplete="off">
+    <div id="search-panel" hidden></div>
+  </div>
+</header>
+<div class="layout">
+  <aside class="col-left">
+    <h3>课程目录</h3>
+    <ul>
+      <li><a href="tl-00.html">雅思听力概述</a></li>
+<li><a href="tl-01.html">第01讲 · 导学课</a></li>
+<li><a href="tl-02.html">第02讲 · Form Completion 个人信息表</a></li>
+<li><a href="tl-03.html">第03讲 · 地图题</a></li>
+<li><a href="tl-04.html">第04讲 · 表格题table completion核心方法论与实战训练</a></li>
+<li><a href="tl-05.html">第05讲 · 听力单选题核心做题方法与实战技巧</a></li>
+<li><a href="tl-06.html" class="active">第06讲 · 多选题题型：避坑技巧、真题规则、实战带练全攻略</a></li>
+<li><a href="tl-07.html">第07讲 · 填空题全流程方法论+真题实操</a></li>
+<li><a href="tl-08.html">第08讲 · 题型方法论精讲：考点拆解、实操步骤、真题带练与提分方案</a></li>
+    </ul>
+    <h3>本页问题</h3><ul><li><a class="sub" href="#-">-</a></li><li><a class="sub" href="#章节概要">📅 章节概要</a></li><li><a class="sub" href="#金句精选">✨ 金句精选</a></li><li><a class="sub" href="#关键洞察">💡 关键洞察</a></li></ul>
+    <h3>速查</h3>
+    <ul>
+      <li><a href="qa-tl-index.html">问答精要版</a></li>
+    </ul>
+  </aside>
+  <main class="col-main">
+    <h1>雅思听力全解8讲</h1>
+<h2><a id="06-多选题题型避坑技巧真题规则实战带练全攻略"></a>06 多选题题型：避坑技巧、真题规则、实战带练全攻略</h2>
+<p>内容总时长：26分钟</p>
+<p>[00:00 - 00:14]
+哈喽各位小伙伴欢迎回来，今天到了我们一起学习雅思听力的第五天了。今天我们来要一起讲解，一种非常容易错的题型，叫做多选题。那我为什么用这样的限定词去修饰它呢？叫做一种非常容易错的题。</p>
+<p>[00:14 - 00:30]
+因为经常这个题，要么就是快跟不上两个选项都错过，要么就是啊五个选项竟然都出现了，我到底要选哪两个。然后于是大家在纠结的情况下，又错过了后面的题目啊，就非常的尴尬了。</p>
+<p>[00:30 - 00:43]
+好，那我先给大家编了一道题啊，这是一个简单的例。 In那这道题呢不是雅思题啊，是关于根根据我的情况就给大家编的那所以大家现在听我来讲一讲，然后来选择出来正确的。</p>
+<p>[00:43 - 01:00]
+我之所以去英国读书的两个原因，好吗？嗯，helloeveryonei'm very glad to introduce myselfand i study in uk for my master degreethe reasonwhy. I decided to go to ukis, not because the beautiful scenery there啊。</p>
+<p>[01:00 - 01:23]
+And although you can not is a nice countrybut, that is not reason for me啊，of course, i don't like the weather in youcame, a went to ukjust, because i have a close friends thereand. My relatives told me嗯，uk is the best choice好即兴，给大家编了一个题啊。</p>
+<p>[01:23 - 01:41]
+那刚才我说了嗯，我们来选一选正确的选项吧，非常好选，对吧？嗯，首先我说了，我去uk,不是因为now because beautiful这词没变scory there啊，不是由于那里美好的风景，所以不是。</p>
+<p>[01:40 - 01:54]
+嗯，虽然我知道，虽然我知道uk是一个好国家啊，uk是一个好国家，但是that is not a reason for me,对我来说不是这个原因啊，所以这也不对了啊，然后我卡住了。</p>
+<p>[01:54 - 02:12]
+我说哦一想到英国的天气我就非常的难过。就是英国的天气让我觉得非常头疼的一件事情啊，大概是在34月份的时候依旧很冷，56月份的时候依旧很冷。 67月份的时候也将将巴巴穿不了短裤啊，基本上全年你都穿不了短裤。</p>
+<p>[02:12 - 02:34]
+所以我当时去英国之前呢，嗯因为当时我还是个大学生嘛，就大学刚毕业。然后我觉得哎呀好不容易去了国外，我一定要自由奔放露肉露的多一点。于是我带了好多小短裤，小短裙去到英国压根穿不了啊，朋友们，所以就别带什么小小短裤小短裙了，但你的长裤子长袖这个是最经常会穿的衣服。</p>
+<p>[02:34 - 02:53]
+那有同学可能会问老师的冬天是不是也特别冷啊，其实也没有啊，冬天他还真的因为我是一个东北人啊，就冬天还真的没有东北冷，但是呢就非常的湿，就这种湿的感觉。嗯，可能南方的同学应该会喜欢，就这种湿湿冷冷的感觉经常会下雨。</p>
+<p>[02:53 - 03:07]
+然后我当时生活的城市是在英国稍微靠北部，当时还没有到苏格兰啊，是在英格兰。那英国的结构是这样，就是这个地方是英格兰。然后上面接了一块是苏格兰啊，然后呢我的那个城市大概在这个位置，就是也多少有点靠北了。</p>
+<p>[03:07 - 03:35]
+那冬天会下雪，你会看到雪。嗯，所以我就是我们那那边就是有一张学校的照片，当时非常吸引我的，就是雪景特别好看。然后在城堡上有一些雪景什么的，但是呢就是下了雪之后，它会化，然后就会搞得它不像东北那个雪就堆在那儿了，他会化，然后搞的那个街道吧，就黏黏的腻腻的，就是感觉让我一想到就浑身打颤啊，所以我肯定是不喜欢那wether的。</p>
+<p>[03:32 - 03:45]
+嗯，然后我说我有一个close friends there啊，我我有close friends,有我的好朋友们，他们都去英国，所以我就一块儿也去了，所以这个肯定是一个选项了。</p>
+<p>[03:45 - 03:59]
+然后接下来我说我有个亲戚告诉我啊，说那个在英国啊特别好，所以选了这个啊，其实本身我没有想编排这两个选项，我想往上编排一下。但是呢诶一下子a b c d全都说了，不然我就想那后面只能说对了啊。</p>
+<p>[03:59 - 04:17]
+好，所以可见什么呢？可见多选题，它有一个共同的套路。那虽然我刚才说的这一段并不是雅思，那但是它有一个什么样共同的套路，就是五个选项轮番给你出现。那你说老师刚才你的a b c d e是按顺序出来的，那真题也会这样吗？</p>
+<p>[04:17 - 04:35]
+不会啊，真题不一定是按顺序的那可能人家先说了。Oh, i don't like the weather in ukbut. I have close friends there.那可能会用这样的话，就先跟你说，c和d再跟你说，a和b那都有可能，所以顺序不一定是从a到e这样一个顺序，但是五个选项都会都会说到。</p>
+<p>[04:35 - 04:49]
+那因此你一定要用到的方法就是排除法。当他说到哪个选项明显不是答案它前面有否定词的时候，你就把它排除掉。所以我说雅思的这个听力啊，其实比四级的听力要显得更加友好一些。</p>
+<p>[04:49 - 05:07]
+就四级听力在做之前，你是看不到题干的，你只能看到选项。那这个题到底问的什么只能靠你盲猜，但雅思你会看到完整的题目，你甚至还可以看好几遍完整的题目，那所以它就更加友好一点啊，那明显不对的，你就直接把它排除掉啊，把它划掉。</p>
+<p>[05:07 - 05:32]
+然后呢，你再去往后继续听明显对了的，你就直接选出来啊。好，那多选题呢基本上是出现在第二或者第三个section现在不说section了啊，说part嗯从这个剑16开始，它变成了part听力，也是四个part,口语是三个part.说part啊那一般一次考试出现几题呢，大概是4~6个题啊，嗯整数出现绝对不会出现单数的。</p>
+<p>[05:32 - 05:50]
+另外多选题他一道题是算两道的，什么意思啊？就刚才我给大家看的这道题啊，这道题嗯它正常来说它是两个题。虽然你只能看到一个题干，他在你抄答案的时候，你要分别把它抄到两个格里。</p>
+<p>[05:50 - 06:05]
+如果你是机考的话，因为现在雅思基本上都是机考了啊，那机考就无所谓了，你就选肯定你要选到两个才能跳过到下一个题。但如果是纸笔考试，我之前就有学生栽了个跟头。这个学生考完试告诉我，老师这一次考试只考了39个题。</p>
+<p>[06:05 - 06:20]
+所以你呀你骗我，你说每一次听力肯定是40个题，怎么我就遇到过39个题，你就是在骗我，我说完了，你肯定是多选题，只抄在了一个格里，导致你所有的题目都往上窜了。完了完了你快重新报一次吧。</p>
+<p>[06:20 - 06:35]
+所以确实啊就是这个原因，那多选题。如果你是考纸笔的同学，一定要把他的答案分别抄在两个格里。第一题，你写一个答案。第二题你也写一个答案，你说如果正确答案都是你就都得分了。</p>
+<p>[06:35 - 06:54]
+那如果正确答案，你是这样写的，第一题，你写了e第二题，你写了d那也得分啊，这样也是可以的。哎，所以它no order,但是你每个空只能写一个答案，那这是对于纸笔考试，但纸笔考试现在疫情影响的非常厉害啊，纸笔考试逐渐都被取消了。</p>
+<p>[06:54 - 07:11]
+那我基本上大家现在都是考这个机考，机考就无所谓。因为机考你必须五个选项，你要点掉点点出来，两个你才能过到下一个题，不然你系统也过不去，所以就没有这个担心了啊。好多选题和单选题做题的方法呢都是排除法。</p>
+<p>[07:06 - 07:36]
+嗯，你把错误选项排除了，正确选项不就露出来了吗？对吧？先读题干，然后再读诶题写错了啊，再读选项啊，一定要分步骤去读啊，然后读题干的时候注意定位词。定位词是告诉你，哎呀呀，题要来了，快点注意呀，哎以及限定词。</p>
+<p>[07:36 - 07:52]
+限定词是告诉你，哎呀，哎呀，正确选项必须得把我包含在内呀。哎所以注意这两个东西啊。嗯，然后呢，这个刚才排除法，我就已经说完了，所以就不填了。注意同义替换和同义转述。</p>
+<p>[07:52 - 08:07]
+那同义替换和同义转述，它是经常会出现在雅思听力当中的。无论是哪一个part,无论是什么题型，它都会出现这个同义替换和同义转述。所以呢大家一定要注意这件事情啊，好，接下来我们就就提说题吧，好吗？</p>
+<p>[08:07 - 08:25]
+那首先我们拿过来一个题目，简单一浏览哇，哦，一共有四个题干，所以它算做几道题呀，朋友们八道题啊，这是八道题。好吧，当然这个题还不是剑桥真题啊，它是一个我们其他书上的题目，我给他摘过来了，因为它非常好啊，所以我就把它摘过来了。</p>
+<p>[08:25 - 08:39]
+好，接着我们就读题干啊，对吧？读完题干再翻回来再读选项。读题干wish to reason does arena go for visit exp那题主干arena visit exhibition让你选的是reason啊。</p>
+<p>[08:39 - 08:52]
+然后接下来which to device has a realbut recently时间限定啊，recently时间限定我写在旁边，咱们以后就要注意了。 Arena ba,这是一个主谓结构。</p>
+<p>[08:52 - 09:01]
+那宾语哪去了？宾语式选项啊？好，接着wish two things that arena like about the building,关于building,这是一个地点限定。</p>
+<p>[09:01 - 09:12]
+然后arena like而rena like的宾语哪去了？宾语在选项啊。好，这样wish to problem that are gonna have come to exhibition啊。</p>
+<p>[09:12 - 09:28]
+那arena have宾语是problem,这是主干，接着看to exhibition啊，这也是一个限定啊，就是他来exhibition的过程当中，好，接下来的选项选项其实不怎么太用读，因为都是单词比较短。</p>
+<p>[09:28 - 09:47]
+那短选项有陷阱，每个选项都给你读一遍，对吧？好，那呃meet friend,这没什么说的，提升知识buy somethingcheck pricecheck price叫做比价啊，这个叫做比价格entertained her child,这个entertain叫做娱乐。</p>
+<p>[09:47 - 10:03]
+那它的名词大家可能更熟吧。 Entertainment啊，那娱乐的名词，这是一个动词啊，entertain是一个动词。好，那买了什么calculatorcalculator啊？</p>
+<p>[10:03 - 10:19]
+它不是电，它不是电脑，它是计算器啊、计算器啊、computer cameraphonedigital recorder这个东西叫做录音机啊，录音机或者叫录音笔啊，大家可能都不知道什么叫录音笔了。</p>
+<p>[10:19 - 10:41]
+像我这种老姐姐呢，嗯我们那时候在上学的时候，我们是上大学的时候啊，在国内上大学还好呢，国外上大学我当时不是去美国交换了一段时间吗？嗯，然后上课一开始是听不懂的，你要拿录音笔把它录下来，你之前就没有什么啊，就是电脑啊或者软件啊，就这种非常高级的这个操作。</p>
+<p>[10:41 - 11:01]
+那我们当时当时拿录音笔给他录下来，然后回去再去重新听，再回放啊。现在好了，现在好多同学其实这个我觉得疫情上网课也是一个非常好的一点。因为我们现在很多软件都会有那种同屏，直接给你翻译了，你就不用去，你就不用去再录一遍，再听一遍再学一遍了啊，还是非常好的时代在进步啊。</p>
+<p>[11:01 - 11:22]
+好，然后呢接下来说阿瑞娜喜欢的这个楼是什么呢？ Electric light这个叫电电子，光就是光啊叫灯电灯啊，它是电灯好，space是空间activity活动，这个sailing是天花板，哈哈大家会不会觉得好神奇，他有天花板，有什么可喜欢的？</p>
+<p>[11:22 - 11:46]
+你要知道在一些展览，比如说博物馆啊或者一些公共的设施，公共的建筑，那个天花板都是有设计的那比如说人家在天花板放了满天的星星啊，然后在天花板上画出了大海的模样。那所以这个天花板还是很美的啊，然后entrance叫做入口啊，入口处好，然后接着有什么问题heavy traffic叫做车流量很大啊。</p>
+<p>[11:46 - 12:12]
+那如果是堵车呢，叫做traffic或者congestion啊，那呃两种说法要不就是traffic jam,要么是traffic congestion啊。那找到停车场，停下车这两个动作啊，找停车场是一个动作，停下车又是一个动作，那可能停车场蛮好找的，但是停车场满了，那就停不下车啊。</p>
+<p>[12:12 - 12:24]
+好，willing to enter exhibition,那等着进入以及standing outside in the rain.那在雨中站着啊，好这样的一个题一共八道啊，就你要选八个正确的选项。</p>
+<p>[12:24 - 13:14]
+那接下来我就放听力，大家如果没有读完题呢，就可以再看一看。那然后我们一块儿来完成这个题目准备好啊，马上开始了unit for listeningexercise fiveexcuse meyesbefore. You go throughi wonderif. You could help us by answering a few questions for a surveyitwon't take long. No problemwe are not in any hurry finethanks nowlet's look at the questionsokayherethey are at first onewhy, you visiting the exhibition题干。</p>
+<p>[13:11 - 13:29]
+基本上是原词重现给你的，对吧？你为什么要来看展呀？我们来听听这个女生有什么样的阐述啊，大家有没有感受？这个女生多多少少是有一点点口音的口音。这件事情在雅思听力当中是频繁出现的啊，大概会有20%到30%的其他口音。</p>
+<p>[13:29 - 13:48]
+那正常的口音就是英音，对吧？哎，就是英美音，其实都叫做正常的口音啊，那其他的口音包括什么呢？包括印度口音、日本口音、中国口音以及欧洲口音啊，欧洲有一些国家可能会说英语的时候多多少少是带一些口音的。</p>
+<p>[13:48 - 14:12]
+所以大概这个比例会有20%到30.所以大家要习惯有口音，不要说诶怎么一出现印度的口音，我就听不懂了，那都是英语，有什么听不懂的。你就比如说那我们去中国的五湖四海去旅游一下，你听上海人说话和成都人说话，那还不一样呢，对吧？</p>
+<p>[14:08 - 14:54]
+哎，所以一定要习惯有口音这件事情的存在啊。好，那继续听啊。这个女生为什么要去看展？ Welli want to keep up with the latest developments in electronicsyou know i was recommended by a friend to come. Herei was recommend.我要把这个词写下来啊，recommrecommend这个叫做建议啊，recommendation这个词是建议的名词，这个可能大家更熟悉啊recommendation.那我刚出国的时候，我在餐馆点餐最经常用的一句话，因为当时看不懂menu国外的餐馆点餐，它不是像我们就是现在可能还得用手机点餐哦，或者拿ipad点餐，还有图国外没有，全都是文字。</p>
+<p>[14:54 - 15:08]
+我当时看不懂，然后我就说could you give me some recommendations,我一般都会这么问他，然后他就说啊什么什么什么特别好。 Ok that's one,嗯，我就直接点了，所以recommend叫建议recommendation,就是也是提供了一些建议啊。</p>
+<p>[15:08 - 15:38]
+Ok那所以他来这儿呢是被他朋友建议来的，并不是来看他的朋友啊，这动词不对，a错了and see what new devices and inventions are coming outand learn a biti meani, don't generally go shopping for new electronicsi, don't generally go shopping for new electronics.那所以他来不是shopping的啊，这个shopping前面有个否定词，因此这件事也不对。</p>
+<p>[15:38 - 15:56]
+嗯，not the sort of personwho goes, outand buys all the latest gadgetsthe prices are too highwhen. They knewbut it interests methe price is too highwhen and new.就是它这个价啊，在它是新的东西的时候都特别贵啊。</p>
+<p>[15:56 - 16:26]
+嗯所以我不买，所以他来呢也不是为了比价的。哎，这个也不对。 And i thought there would be thingswhich would interest my son, something in trustmy son,这就是他的child小孩啊，interest就是entertain.所以e选项正确，刚才b选项也正确啊，因为他来这是为了去catch up the latest啊，就是赶上潮流，赶上时代。</p>
+<p>[16:26 - 16:48]
+那所以b两个选项正确，第一题完事了。And he enjoyed it as wellso. That's why we're hereokayand here's a question to find outwhat sort of consumeryou, are you bought any electronicsrecently题干？</p>
+<p>[16:46 - 17:13]
+基本上又是原词重现的，对吧？唉，你最近买了啥呀？好，听一听他最近买了什么五个选项都跟你说了，咱们一定要注意力集中啊。 Recently, surei was thinking of buying a new calculator for the officebut. I decided it wasn't really necessarybecause. I can do all the calculationsjust as easily on a computer出来两个选项对吧？</p>
+<p>[17:13 - 17:28]
+他说我最近呢在考虑think of哎，我最近在考虑要买一个calculator给我的office给我的办公室啊，但是我又想了想，我发现这个东西啊不是特别的necessarynecessary叫做必要，所以不是特别的必要。</p>
+<p>[17:28 - 17:55]
+因为我可以做所有的计算在电脑上，所以a不对，但这个电脑对吗？也不见得。对呀，我可以做计算，在电脑上不见得。我最近买了一台电脑，兴许是他原本就有的呢anywayi got a new laptorecentlybut anywayi got a new lap laptop,诶，laptop叫做笔记本电脑啊，recently人家用了recently这个词。</p>
+<p>[17:55 - 18:08]
+所以我最近买了一个笔记本电脑，because you know they have so many applicationsthey have so many applicationsapplication就是应用啊，就有很多的应用。</p>
+<p>[18:06 - 18:38]
+嗯，刚才说了，电脑可以有一个应用，就是计算算数，and they don't take up much spaceeitherbetter to have lots of things. On the same devicei, think the other thingi bought was a present for my husband's birthdayi thought it would be nice to have a record of our holidaysso. I bought in the camerai bought him a camera.哎，这个东西之前其实说了一些信息啊，我们一块来捋一下啊，我最近还买了一个什么呢？</p>
+<p>[18:38 - 19:08]
+这个东西是我的a present for my husband,就给我老公买了一个礼物啊，然后她说我给她买了一个camera,这camera呢就它的功能是record记录啊，camera的功能是record.所以这个recorder这就是一个糊弄人的选项啊，它就不对，and i'm hoping to get him more interested in photography.我希望我老公能够get interest in photographyphotography叫做摄影啊。</p>
+<p>[19:08 - 19:22]
+那我希望她能感兴趣摄影这件事i'm not very keen on the sort of picturesyou can take with a mobile phoneyou. See, i'm not keen on the pictureyou can take on这个phone啊。</p>
+<p>[19:22 - 19:42]
+那king on叫做热爱，我一点都不喜欢那个用手机拍出来的照片啊，所以这个不对啊，手机也是一个糊弄人的选项，不是最近买的，只是他对比的时候去提到了，i think it's better to go for higher quality is better for high quality啊。</p>
+<p>[19:42 - 20:01]
+哎最好有高高质量的照片。嗯，rightand here's a question about this buildingi know. You haven't had a chance to look around a lot yetbut at first sightwhat. Do you think of it说到building了，对吧？</p>
+<p>[20:01 - 20:57]
+说on the first sightfirst sight,哎，first这个叫做第一眼，你第一眼的时候觉得这个building怎么样啊？ Oh, it looks pretty good to meit's. Got lots of natural lightso. You don't have to put up with lots of electric lighting,唉，所以这里边压根儿都没有那么多electric lighting.那因为我们有的是自然光诶，所以a选项又是一个糊弄人的选项不对啊，which can be quite tiring on the eyesit feels very large and spaciouswhich is great. I呀，他这个地方这个building啊非常large and spacious,这个which is good很好，所以b选项又正确了，because although it's full of activityand, although it's full of activity,就是这里面活动特别多啊。</p>
+<p>[20:57 - 21:32]
+但我对于活动我没有说喜欢还是不喜欢，只是在举陈述的时候举到了这个词而已，所以这不是正确选项啊。 And quite noisyit doesn't feel too crowdedalsowhen. You look up at the ceilingnear, the entrance with the design of stars and planets on itthat's something i really likethat's something really like.那什么东西是他really like前面啊，这里面that指代的肯定是前面内容，前面说到了什么，说到了ceiling在入口处的那个ceiling啊，那那里面有一些个什么？</p>
+<p>[21:30 - 21:59]
+唉，star,哎，我这还拼成了stars啊，这个stars and planet.诶，就是有很多星星，有很多星球这样的设计让我觉得哦好可爱好棒。所以这d选项正确啊，至于这个entrance,那他又是一个糊弄人的选项不对，人家只是说到了在入口处的那个天花板，所以他喜欢的不是入口，而是天花板啊。</p>
+<p>[21:59 - 22:08]
+I'm not so keen on the revolving doorso, i'm not so keen on the moolving doorinvolving door就旋转门啊。</p>
+<p>[22:08 - 22:24]
+所以其实他是在说我不喜欢旋转门，我不喜欢入口。唉，他为你怕就是怕避免这个叫什么奇异。二、所以呢人家还特地说了，我并不喜欢那个旋转门。哎，所以e选项不对。好，最后一个题，那有什么样的problem呢？</p>
+<p>[22:25 - 22:41]
+I'm going to get stuck in oneand. Did you have any difficulties getting to the exhibitionwellcoming at this time of daythe? Roads were too busy,你有什么difficulties啊，有什么困难啊？</p>
+<p>[22:41 - 23:02]
+The road want too busy啊，这里边用的是这个。那the road want too busy,就是在这个时间点来，这个道上一点也不懂啊。所以这个不是我的problemthat was all rightand. There were plenty of signpostsso. The car park was easy to find car park也很好找，所以这也不是problem啊。</p>
+<p>[23:03 - 23:20]
+The only problem was it was full when i arrivedi guess i should have come earlierso. I had to find another one quite a long walk. Awaywhich was a pity,唉，他来了之后发现唉呀停车场竟然满了。</p>
+<p>[23:16 - 23:39]
+哦，好晒的呀，他只能找另外一个停车场，所以它叫做停不下车啊，c选项正确，then we had to stand outside for quite a long timequeuing to get in this exhibition is pretty popular,又听到了kill这个单词啊，q叫做排队。</p>
+<p>[23:39 - 24:23]
+所以我们必须要stand outside killing啊，那就是进不去啊，所以d选项对了啊，而至于最后一个选项，我们在听他怎么解释呢？ That was a bit of a problembecause, my son gets impatientbut fortunatelyit wasn't trainingfortunatelyit wasn't raining啊，并没有下雨啊，这太幸运了，所以standing outside the rain瞎扯呢，不不对，所以正确选项c和d好到这儿我们做了一个单选题，一共八道题啊，这八道题如果是考试的话，且你考的是纸笔考试，请分别抄在八个格里，千万别回来跟我说，老师，我知道我这次考试少了四道题，那完了，那这一次基本上你就要重考了，后边可能全串了。</p>
+<p>[24:23 - 24:39]
+唉，好，我们总结一下，回顾一下，对于多选题的解决方案，多选题基本上所有的选项都会给你。包括啊至少你会听到那个词，听到好像是个选项来了，哪个选项才是正确的答案，哪个选项不是正确答案，一定要排除法去做。</p>
+<p>[24:39 - 25:04]
+它只有你把错误的选项给排除掉了，正确的选项，自然就会选出来。那什么东西会是你排除的选项呢？那我们总结啊，首先由否定词否定词的选项，否定词的选项。比如说it want to buy,那it doesn'tit didn't那有否定词的选项是一定要排除的。</p>
+<p>[25:04 - 25:21]
+第二，不符合限定的选项，那不符合题干当中限定词的选项。那如果题干让你选，现在正在发生的事情。但是那这个文章给我一顿介绍过去的那这过去的都要被排除的啊，所以不符合限定的要被排除掉。</p>
+<p>[25:21 - 25:43]
+第三种要被排除掉的呢，就是张冠李戴的啊，什么叫张冠李戴呀？哎，就是人家明明是在说这个事情呢，结果你会扯到别的那比如说人家说哦好，幸运呢没有下雨，然后你你非得说你站在雨里张冠李戴啊，所以这三种是一定要被排除的那什么选项才能被选出来呢？</p>
+<p>[25:43 - 26:02]
+那有一些特点啊，第一个特点呢它有同义替换，嗯，就是它基本上不会出现原词，不是基本上啊就是一定不会出现原词。你看我们的这个呃正确选项就是entered the expansion人家说的是stay outside and q对吧？</p>
+<p>[26:02 - 26:25]
+所以有同意替换的才是正确的选项啊，符合限定的符合限定词的。所以这个才叫正确的选项。所以这是正确的选项的标志，这是错误选项的标志。好，up to now两种选择题，一种单选，一种多选，我都给大家讲清楚了啊，后面的这些练习，大家可以要来我的讲义之后，大家自己去做一下。</p>
+<p>[--:-- - --:--] 嗯，当然也可以去尝试做一下剑桥题目里面的题目啊，剑桥真题我也有电子版，大家可以跟我来领取一下。Ok那今天呢我们这节课就到这儿，下一节课继续给大家带来雅思听力的题型的讲解啊，see you next time.</p>
+<h3><a id="-"></a>-</h3>
+<h4>内容信息</h4>
+<ul>
+<li><strong>时长</strong>：约 26 分钟</li>
+<li><strong>内容类型</strong>：课程讲座</li>
+</ul>
+<h4>内容总结</h4>
+<p>这是雅思听力阅读9分老师带来的雅思听力多选题专项教学课，通过自编例题引入题型痛点，讲解题型规则、应试方法，搭配8道实战题目带练，总结正误选项判断标准，帮助学员掌握多选题得分技巧。</p>
+<p><strong>雅思听力多选题常见答题痛点</strong></p>
+<ul>
+<li><strong>选项信息全覆盖干扰</strong>：多选题的5个选项通常会在音频中全部出现，考生很容易因纠结选项错过后续题目。</li>
+<li><strong>音频语速快漏听答案</strong>：音频播放速度较快，考生经常出现跟不上节奏、两个正确选项全部错过的情况。</li>
+<li><strong>选项顺序不固定干扰</strong>：真题音频不会严格按照A到E的选项顺序播报内容，打乱顺序的信息会增加考生定位难度。</li>
+</ul>
+<p><strong>英国留学相关生活经验分享</strong></p>
+<ul>
+<li><strong>英国气候特点</strong>：英国3-7月气温依旧偏低，全年基本无法穿短裤，冬季没有东北寒冷但整体湿冷，降雨频繁。</li>
+<li><strong>英国地理区域划分</strong>：英国由英格兰和苏格兰等区域组成，英格兰北部冬季会降雪，但积雪落地后很快融化，街道会变得黏腻湿滑。</li>
+<li><strong>出行行李建议</strong>：去英国留学不需要携带过多短裤、短裙，长裤和长袖衣物是日常穿着频率最高的品类。</li>
+</ul>
+<p><strong>雅思听力多选题基础题型规则</strong></p>
+<ul>
+<li><strong>题型出现位置</strong>：多选题基本出现在雅思听力的第2或第3个part，从剑16开始官方将原section表述调整为part。</li>
+<li><strong>题量分值设置</strong>：单场雅思听力考试多选题总题量为4-6题，且题量一定是偶数，不会出现单数题量。</li>
+<li><strong>答题填写要求</strong>：一道标注为双选的多选题实际对应2个答题空格，纸笔考试必须将两个答案分别填入不同空格，不能合并填写。</li>
+<li><strong>机考纸笔差异</strong>：雅思目前以机考为主，机考系统要求考生选满2个选项才能进入下一题，不会出现答案串位问题。</li>
+</ul>
+<p><strong>雅思听力与四级听力的差异对比</strong></p>
+<ul>
+<li><strong>题干可见性差异</strong>：四级听力播放前考生只能看到选项，看不到题干，需要盲猜题目考察方向。</li>
+<li><strong>雅思考试优势</strong>：雅思听力允许考生提前查看完整题干和选项，还可以反复浏览题目，对考生更加友好。</li>
+</ul>
+<p><strong>雅思听力多选题核心应试方法</strong></p>
+<ul>
+<li><strong>排除法核心应用</strong>：音频中出现的选项如果前面带有否定词，直接将该选项划掉排除，剩余选项即为正确答案。</li>
+<li><strong>审题两步走规则</strong>：先读题干提取定位词和限定词，再回头阅读所有选项，短选项不存在长难句，每个选项都会在音频中提及。</li>
+<li><strong>同义替换考察要求</strong>：同义替换和同义转述是雅思听力所有part、所有题型的核心考察点，多选题也不例外。</li>
+</ul>
+<p><strong>雅思听力口音考察特点说明</strong></p>
+<ul>
+<li><strong>口音占比数据</strong>：雅思听力音频中20%-30%的内容会出现非标准口音，主流口音为英音、美音。</li>
+<li><strong>小众口音类型</strong>：出现的小众口音包含印度口音、日本口音、中国口音以及欧洲多国的英语口音。</li>
+<li><strong>备考应对建议</strong>：考生需要提前适应不同口音的英语，避免因口音差异出现听不懂内容的情况。</li>
+</ul>
+<p><strong>留学时期录音笔使用经历分享</strong></p>
+<ul>
+<li><strong>海外学习场景</strong>：老师早年去美国交换时，刚到国外听不懂课程内容，需要用录音笔把整节课内容录下，课后反复回放学习。</li>
+<li><strong>网课时代便利</strong>：疫情后上网课的普及，各类软件自带同屏实时翻译功能，学生不需要再用录音笔录制课程回放，学习效率大幅提升。</li>
+</ul>
+<p><strong>多选题实战例题题干拆解</strong></p>
+<ul>
+<li><strong>第一题题干拆解</strong>：第一题考察Arena参观展览的两个原因，核心定位词为visit exhibition。</li>
+<li><strong>第二题题干拆解</strong>：第二题考察Arena最近购买的两个电子设备，带有明确的时间限定词recently。</li>
+<li><strong>第三题题干拆解</strong>：第三题考察Arena喜欢这栋建筑的两个点，带有明确的地点限定词the building。</li>
+<li><strong>第四题题干拆解</strong>：第四题考察Arena前往展览途中遇到的两个问题，限定场景为come to exhibition的过程。</li>
+</ul>
+<p><strong>多选题实战选项词义讲解</strong></p>
+<ul>
+<li><strong>基础选项词义</strong>：包含meet friend（见朋友）、improve knowledge（提升知识）、buy something（买东西）、check price（比价）、entertain her child（陪孩子玩）5个基础选项。</li>
+<li><strong>电子设备词义</strong>：包含calculator（计算器）、computer（电脑）、camera（相机）、phone（手机）、digital recorder（录音笔）5个电子设备选项。</li>
+<li><strong>建筑相关词义</strong>：包含electric light（电灯）、space（空间）、activity（活动）、ceiling（天花板）、entrance（入口）5个建筑相关选项。</li>
+<li><strong>出行问题词义</strong>：包含heavy traffic（堵车）、find car park（找停车场）、park car（停车）、wait to enter exhibition（排队入场）、standing outside in the rain（在雨中等待）5个出行问题选项。</li>
+</ul>
+<p><strong>第一组多选题实战带练讲解</strong></p>
+<ul>
+<li><strong>错误选项排除</strong>：音频中明确说明不是来见朋友、不是来购物、不是为了比价，三个选项全部被否定词排除。</li>
+<li><strong>正确选项确认</strong>：音频提到想要跟进电子领域的最新发展，对应提升知识选项；提到内容能让儿子感兴趣，对应陪孩子玩选项。</li>
+<li><strong>词汇拓展讲解</strong>：重点讲解recommend（推荐）及其名词形式recommendation，分享早年在国外餐馆点餐用该词询问店员推荐的经历。</li>
+</ul>
+<p><strong>第二组多选题实战带练讲解</strong></p>
+<ul>
+<li><strong>错误选项排除</strong>：音频提到只是考虑买计算器但最终没买，电脑是原有设备并非新购，手机拍照效果不好不喜欢，录音笔是功能干扰项全部排除。</li>
+<li><strong>正确选项确认</strong>：音频明确提到最近买了新的笔记本电脑，还给丈夫买了相机作为生日礼物，两个选项符合recently时间限定。</li>
+<li><strong>词汇拓展讲解</strong>：重点讲解photography（摄影）、application（应用）等相关词汇的含义和使用场景。</li>
+</ul>
+<p><strong>第三组多选题实战带练讲解</strong></p>
+<ul>
+<li><strong>错误选项排除</strong>：音频提到建筑内自然光充足不需要过多电灯，只是陈述建筑内活动多没有表达喜爱，喜欢的是入口处的天花板而非入口本身，还明确表示不喜欢旋转门，全部错误选项排除。</li>
+<li><strong>正确选项确认</strong>：音频提到建筑宽敞不拥挤，对应空间选项；提到入口处天花板有星星和星球的设计非常喜欢，对应天花板选项。</li>
+<li><strong>细节干扰说明</strong>：音频特意提到不喜欢入口处的旋转门，进一步避免考生误将入口判定为正确选项。</li>
+</ul>
+<p><strong>第四组多选题实战带练讲解</strong></p>
+<ul>
+<li><strong>错误选项排除</strong>：音频提到出行时段道路不拥堵，沿途路标清晰停车场很容易找到，当天没有下雨，三个选项全部排除。</li>
+<li><strong>正确选项确认</strong>：音频提到到达时停车场已满，只能步行很远找其他停车场，对应停车困难选项；提到在门外排队很久才能入场，对应排队等待入场选项。</li>
+<li><strong>答题提醒强调</strong>：这组8道多选题如果参加纸笔考试，必须将答案分别抄入8个不同空格，避免后续所有题目答案串位导致失分。</li>
+</ul>
+<p><strong>雅思听力正误选项判定标准总结</strong></p>
+<ul>
+<li><strong>错误选项三类特征</strong>：第一类是带有明确否定词的选项，第二类是不符合题干限定词要求的选项，第三类是张冠李戴、信息错位的选项。</li>
+<li><strong>正确选项两类特征</strong>：第一类是存在明确同义替换的选项，不会直接使用原词表述；第二类是完全符合题干所有限定条件的选项。</li>
+<li><strong>后续学习建议</strong>：考生可以领取老师的配套讲义和剑桥真题电子版，自行完成剩余的雅思听力选择题练习。</li>
+</ul>
+<h3><a id="章节概要"></a>📅 章节概要</h3>
+<p>[00:00 - 00:30]
+<strong>雅思听力多选题题型痛点引入</strong> 老师欢迎学员回到雅思听力第五天的课程，点明本次讲解的是雅思听力中极易出错的多选题题型。该题型常见两类答题困境：一是音频语速快，考生跟不上节奏错过两个正确选项；二是5个选项全部在音频中出现，考生纠结选项的同时错过后续题目。</p>
+<p>[00:30 - 03:59]
+<strong>自编模拟例题与英国留学经验分享</strong> 老师自编一道关于自己去英国读书原因的模拟多选题，音频内容覆盖风景、国家好感、天气、好友、亲戚建议5个选项。老师同步分享英国留学的生活经验：英国3-7月气温依旧偏低，全年基本穿不了短裤，冬季湿冷多雨，英格兰北部冬季降雪后很快融化，街道湿滑黏腻，去英国不需要携带过多短裤短裙。最终模拟题的两个正确答案为当地有好友、亲戚给出建议。</p>
+<p>[03:59 - 05:07]
+<strong>多选题通用核心套路讲解</strong> 老师点明雅思多选题的通用核心套路：5个选项全部会在音频中出现，且音频不会严格按照A到E的固定顺序播报选项。应对该题型的核心方法是排除法，听到带有否定词的选项直接划掉排除。同时对比雅思听力与四级听力的差异：四级听力播放前考生只能看到选项，看不到题干，需要盲猜考察方向，而雅思听力允许考生提前查看完整题干和选项，对考生更加友好。</p>
+<p>[05:07 - 07:36]
+<strong>雅思多选题官方题型规则详解</strong> 老师讲解雅思多选题的官方规则：该题型基本出现在听力第2或第3个part，从剑16开始官方将原section表述调整为part。单场考试多选题总题量为4-6题，且题量一定是偶数，不会出现单数。一道标注为双选的多选题实际对应2个答题空格，纸笔考试必须将两个答案分别填入不同空格，不能合并填写，否则会导致后续所有题目答案串位失分。目前雅思以机考为主，机考系统要求考生选满2个选项才能进入下一题，不会出现答案串位问题。多选题和单选题通用排除法，审题时先读题干提取定位词和限定词，再回头阅读所有选项。</p>
+<p>[07:36 - 12:24]
+<strong>实战例题题干与选项逐词拆解</strong> 老师引入一套非剑桥真题的实战练习题，整套题目包含4组双选题，合计8道题。逐题拆解题干核心信息：第一题考察Arena参观展览的两个原因，第二题考察Arena最近购买的两个电子设备，带有明确时间限定词recently，第三题考察Arena喜欢这栋建筑的两个点，带有地点限定词the building，第四题考察Arena前往展览途中遇到的两个问题。同时逐词讲解所有选项的词义，分享早年去美国交换时用录音笔录课、课后回放学习的经历，对比当下网课软件自带实时翻译功能的学习便利。</p>
+<p>[12:24 - 16:48]
+<strong>第一组多选题实战带练</strong> 老师播放第一组题目的音频，音频开头出现考官邀请Arena参与调研的对话，题干原词重现。老师提醒学员雅思听力音频中20%-30%的内容会出现非标准口音，包含印度口音、日本口音、中国口音以及欧洲多国口音，主流口音为英音、美音，考生需要提前适应不同口音避免听不懂内容。最终通过排除法确认两个正确选项：为了跟进电子领域最新发展提升知识、为了让儿子获得娱乐体验。同步拓展recommend、recommendation等相关词汇，分享早年在国外餐馆点餐用该词询问店员推荐的经历。</p>
+<p>[16:48 - 20:01]
+<strong>第二组多选题实战带练</strong> 老师播放第二组题目的音频，题干原词重现。通过排除法依次排除计算器、原有电脑、手机、录音笔四个干扰选项，最终确认两个正确选项：最近新买了一台笔记本电脑、给丈夫买了相机作为生日礼物。同步拓展photography、application等相关词汇的含义和使用场景。</p>
+<p>[20:01 - 22:24]
+<strong>第三组多选题实战带练</strong> 老师播放第三组题目的音频，题干原词重现。通过排除法依次排除电灯、活动、入口三个干扰选项，音频还特意提到不喜欢入口处的旋转门，进一步避免考生误判。最终确认两个正确选项：喜欢建筑宽敞的空间、喜欢入口处带有星星星球设计的天花板。</p>
+<p>[22:24 - 24:23]
+<strong>第四组多选题实战带练</strong> 老师播放第四组题目的音频，题干原词重现。通过排除法依次排除交通拥堵、找停车场困难、在雨中等待三个干扰选项，最终确认两个正确选项：到达时停车场已满找不到空位停车、需要在门外排队很久才能入场。再次提醒参加纸笔考试的考生，这8道题的答案必须分别抄入8个不同空格，避免后续所有题目答案串位导致整部分失分。</p>
+<p>[24:23 - 26:30]
+<strong>课程总结与后续学习指引</strong> 老师总结雅思听力多选题的正误选项判定标准：错误选项有三类特征，分别是带有明确否定词、不符合题干限定词要求、张冠李戴信息错位；正确选项有两类特征，分别是存在明确同义替换、完全符合题干所有限定条件。告知学员可以领取配套讲义和剑桥真题电子版，自行完成剩余的雅思听力选择题练习，后续课程会继续讲解其他雅思听力题型。</p>
+<h3><a id="金句精选"></a>✨ 金句精选</h3>
+<ul>
+<li>"雅思听力你会看到完整的题目，你甚至还可以看好几遍完整的题目，那所以它就更加友好一点。" (行业判断)</li>
+<li>"五个选项轮番给你出现，你一定要用到的方法就是排除法。" (方法技巧)</li>
+<li>"雅思听力音频当中大概会有20%到30%的其他口音，你要习惯有口音这件事情的存在。" (数据洞察)</li>
+<li>"同义替换和同义转述，它是经常会出现在雅思听力当中的，无论是哪一个part，无论是什么题型。" (行业判断)</li>
+<li>"把错误的选项给排除掉了，正确的选项，自然就会选出来。" (方法技巧)</li>
+</ul>
+<h3><a id="关键洞察"></a>💡 关键洞察</h3>
+<ul>
+<li><strong>纸笔考试答题空格风险</strong>：双选题对应两个独立答题空格，合并填写会导致后续所有答案串位整部分失分。大部分考生备考时只会关注选项正确率，完全忽略答题填写规则，这一细节失误可能直接导致雅思听力单项分数低于目标分，需要考生特别留意。</li>
+<li><strong>非标准口音占比明确</strong>：雅思听力20%-30%的内容带有非标准口音，考生不能只练习英音、美音素材，需要提前接触印度、日本等地区的英语口音，避免考场上因口音差异出现大面积漏听。</li>
+<li><strong>干扰选项的三类典型特征</strong>：错误选项并非完全不出现音频中，而是全部通过否定、限定不符、信息错位三种方式设置干扰，掌握该规律后考生不需要完全听懂音频每一句话，也能通过排除法锁定正确答案。</li>
+</ul>
+  </main>
+  <aside class="col-right">
+    <h4>本页章节</h4><ul><li><a href="#06-多选题题型避坑技巧真题规则实战带练全攻略">06 多选题题型：避坑技巧、真题规则、实战带练全攻略</a></li></ul>
+  </aside>
+</div>
+<script>
+(function(){
+  var input = document.getElementById('search-input');
+  var panel = document.getElementById('search-panel');
+  if (!input || !panel) return;
+  var main = document.querySelector('.col-main');
+  var leftLinks = Array.prototype.slice.call(document.querySelectorAll('.col-left ul li a'));
+  var rightLinks = Array.prototype.slice.call(document.querySelectorAll('.col-right ul li a'));
+
+  function escHtml(s){
+    return s.replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+  function escapeRegex(s){
+    return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+  function clearHighlights(){
+    if (!main) return;
+    var marks = main.querySelectorAll('mark.search-hl');
+    for (var i = 0; i < marks.length; i++) {
+      var m = marks[i];
+      var text = document.createTextNode(m.textContent);
+      m.parentNode.replaceChild(text, m);
+    }
+    main.normalize();
+  }
+  function highlightInMain(kw){
+    if (!main) return;
+    clearHighlights();
+    if (!kw) return;
+    var re = new RegExp(escapeRegex(kw), 'gi');
+    var walker = document.createTreeWalker(main, NodeFilter.SHOW_TEXT, {
+      acceptNode: function(n){
+        if (!n.nodeValue || !n.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        var p = n.parentElement;
+        if (!p) return NodeFilter.FILTER_REJECT;
+        var tag = p.tagName;
+        if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'CODE' || tag === 'PRE') return NodeFilter.FILTER_REJECT;
+        if (p.closest && p.closest('mark.search-hl')) return NodeFilter.FILTER_REJECT;
+        return n.nodeValue.toLowerCase().indexOf(kw.toLowerCase()) >= 0 ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+      }
+    });
+    var nodes = [];
+    var n;
+    while ((n = walker.nextNode())) nodes.push(n);
+    for (var i = 0; i < nodes.length; i++) {
+      var node = nodes[i];
+      var src = node.nodeValue;
+      var html = '';
+      var last = 0;
+      var match;
+      re.lastIndex = 0;
+      while ((match = re.exec(src)) !== null) {
+        html += escHtml(src.slice(last, match.index));
+        html += '<mark class="search-hl">' + escHtml(match[0]) + '</mark>';
+        last = match.index + match[0].length;
+        if (match[0].length === 0) re.lastIndex++;
+      }
+      html += escHtml(src.slice(last));
+      var tmp = document.createElement('span');
+      tmp.innerHTML = html;
+      var parent = node.parentNode;
+      while (tmp.firstChild) parent.insertBefore(tmp.firstChild, node);
+      parent.removeChild(node);
+    }
+  }
+  function search(q){
+    q = (q || '').trim();
+    panel.innerHTML = '';
+    if (!q) {
+      panel.hidden = true;
+      leftLinks.forEach(function(a){ a.parentElement.style.display = ''; });
+      rightLinks.forEach(function(a){ a.parentElement.style.display = ''; });
+      clearHighlights();
+      return;
+    }
+    var qLower = q.toLowerCase();
+    var courseHits = leftLinks.filter(function(a){
+      return a.textContent.toLowerCase().indexOf(qLower) >= 0;
+    });
+    leftLinks.forEach(function(a){
+      a.parentElement.style.display = courseHits.indexOf(a) >= 0 ? '' : 'none';
+    });
+    var sectionHits = rightLinks.filter(function(a){
+      return a.textContent.toLowerCase().indexOf(qLower) >= 0;
+    });
+    rightLinks.forEach(function(a){
+      a.parentElement.style.display = sectionHits.indexOf(a) >= 0 ? '' : 'none';
+    });
+    var parts = [];
+    if (courseHits.length) {
+      parts.push('<div class="sp-group">课程（' + courseHits.length + '）</div>');
+      parts.push('<ul>' + courseHits.map(function(a){
+        return '<li><a href="' + a.getAttribute('href') + '">' + escHtml(a.textContent) + '</a></li>';
+      }).join('') + '</ul>');
+    }
+    if (sectionHits.length) {
+      parts.push('<div class="sp-group">本页小节（' + sectionHits.length + '）</div>');
+      parts.push('<ul>' + sectionHits.map(function(a){
+        return '<li><a href="' + a.getAttribute('href') + '">' + escHtml(a.textContent) + '</a></li>';
+      }).join('') + '</ul>');
+    }
+    if (!parts.length) parts.push('<div class="sp-empty">无匹配结果</div>');
+    panel.innerHTML = parts.join('');
+    panel.hidden = false;
+    highlightInMain(q);
+  }
+  var timer = null;
+  input.addEventListener('input', function(e){
+    clearTimeout(timer);
+    timer = setTimeout(function(){ search(e.target.value); }, 80);
+  });
+  input.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') { input.value = ''; search(''); input.blur(); panel.hidden = true; }
+  });
+  document.addEventListener('click', function(e){
+    if (panel.contains(e.target) || e.target === input) return;
+    panel.hidden = true;
+  });
+  document.addEventListener('keydown', function(e){
+    if ((e.ctrlKey || e.metaKey) && (e.key === 'k' || e.key === 'K')) {
+      e.preventDefault();
+      input.focus();
+      input.select();
+    }
+  });
+  panel.addEventListener('click', function(e){
+    var a = e.target.closest('a');
+    if (a) panel.hidden = true;
+  });
+})();
+</script>
+</body>
+</html>

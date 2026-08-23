@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第08讲 配对题专题二：句子结尾配对 · 雅思阅读13讲</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; height: 100%; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; color: #1f2328; background: #fff; }
+  a { color: #2c5cdc; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .topbar { position: fixed; top: 0; left: 0; right: 0; height: 56px; display: flex; align-items: center; padding: 0 24px; border-bottom: 1px solid #e5e7eb; background: #fff; z-index: 10; }
+  .logo { font-weight: 800; font-size: 20px; letter-spacing: -0.5px; color: #111; }
+  .logo span { color: #6b7280; font-weight: 500; }
+  .topbar-right { margin-left: auto; display: flex; gap: 16px; align-items: center; position: relative; }
+  .topbar-right input { border: 1px solid #d1d5db; border-radius: 6px; padding: 6px 10px; font-size: 13px; width: 240px; background: #f9fafb; }
+  .topbar-right input:focus { outline: none; border-color: #2c5cdc; background: #fff; box-shadow: 0 0 0 3px rgba(44,92,220,0.12); }
+  #search-panel { position: absolute; top: 44px; right: 0; width: 360px; max-height: 70vh; overflow-y: auto; background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); padding: 8px 0; z-index: 100; font-size: 13px; }
+  #search-panel .sp-group { padding: 8px 14px 4px; font-size: 11px; color: #6b7280; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px; }
+  #search-panel ul { list-style: none; padding: 0; margin: 0; }
+  #search-panel li a { display: block; padding: 6px 14px; color: #374151; line-height: 1.4; font-size: 12.5px; }
+  #search-panel li a:hover { background: #f3f4f6; color: #1d4ed8; text-decoration: none; }
+  #search-panel .sp-empty { padding: 24px; text-align: center; color: #9ca3af; font-size: 12px; }
+  mark.search-hl { background: #fff3a3; color: inherit; padding: 0 2px; border-radius: 2px; }
+
+  .layout { display: flex; padding-top: 56px; min-height: 100vh; }
+  .col-left { width: 240px; flex-shrink: 0; border-right: 1px solid #e5e7eb; padding: 20px 14px 40px; overflow-y: auto; height: calc(100vh - 56px); position: sticky; top: 56px; }
+  .col-left ul { list-style: none; padding: 0; margin: 0 0 16px; }
+  .col-left li { margin: 2px 0; }
+  .col-left a { display: block; padding: 6px 10px; border-radius: 6px; font-size: 13.5px; color: #374151; line-height: 1.4; }
+  .col-left a:hover { background: #f3f4f6; text-decoration: none; }
+  .col-left a.active { background: #eff6ff; color: #1d4ed8; font-weight: 600; }
+  .col-left h3 { font-size: 11px; text-transform: uppercase; color: #6b7280; margin: 18px 8px 8px; letter-spacing: 0.5px; font-weight: 600; }
+  .col-left .sub { padding-left: 24px !important; font-size: 12.5px; color: #4b5563; }
+
+  .col-main { flex: 1; min-width: 0; padding: 40px 56px 80px; max-width: 820px; margin: 0 auto; }
+  .col-main h1 { font-size: 32px; margin-top: 0; border-bottom: 1px solid #e5e7eb; padding-bottom: 12px; line-height: 1.3; }
+  .col-main h2 { font-size: 23px; margin-top: 40px; padding-top: 16px; border-top: 1px solid #f3f4f6; }
+  .col-main h3 { font-size: 18px; margin-top: 28px; color: #1f2937; }
+  .col-main p { line-height: 1.75; color: #374151; }
+  .col-main blockquote { border-left: 3px solid #dbeafe; background: #f8fafc; margin: 16px 0; padding: 10px 16px; color: #4b5563; border-radius: 0 6px 6px 0; }
+  .col-main blockquote p { margin: 0; }
+  .col-main table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 14px; }
+  .col-main th, .col-main td { border: 1px solid #e5e7eb; padding: 8px 12px; text-align: left; }
+  .col-main th { background: #f9fafb; font-weight: 600; }
+  .col-main tr:nth-child(even) td { background: #fcfcfd; }
+
+  .col-right { width: 220px; flex-shrink: 0; border-left: 1px solid #e5e7eb; padding: 24px 18px; font-size: 13px; height: calc(100vh - 56px); position: sticky; top: 56px; overflow-y: auto; }
+  .col-right h4 { font-size: 11px; text-transform: uppercase; color: #6b7280; margin: 0 0 12px; letter-spacing: 0.5px; font-weight: 600; }
+  .col-right ul { list-style: none; padding: 0; margin: 0; }
+  .col-right li { margin: 6px 0; }
+  .col-right a { color: #4b5563; line-height: 1.45; font-size: 12.5px; }
+  .col-right a:hover { color: #1d4ed8; }
+  .col-right .empty { color: #9ca3af; font-size: 12px; padding: 6px 0; }
+
+  @media (max-width: 1100px) { .col-right { display: none; } }
+  @media (max-width: 800px) { .col-left { display: none; } .col-main { padding: 24px; } }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="logo">雅思阅读<span> · 问答精要</span></div>
+  <div class="topbar-right">
+    <a href="index.html" style="font-size:13px;color:#2c5cdc;font-weight:600;white-space:nowrap;">🏠 总目录</a>
+    <a href="qa-index.html" style="font-size:13px;color:#6b7280;">目录</a>
+    <input id="search-input" placeholder="搜索 Ctrl K" autocomplete="off">
+    <div id="search-panel" hidden></div>
+  </div>
+</header>
+<div class="layout">
+  <aside class="col-left">
+    <h3>问答文档</h3>
+    <ul>
+      <li><a href="qa-01.html">第01讲 导学课</a></li>
+<li><a href="qa-02.html">第02讲 填空题专题一：表格填空 + 笔记填空</a></li>
+<li><a href="qa-03.html">第03讲 判断题专题：TFNG vs YNNG</a></li>
+<li><a href="qa-04.html">第04讲 填空题专题二：句子填空 + 简答题</a></li>
+<li><a href="qa-05.html">第05讲 填空题专题三：流程图填空 + 图形填空</a></li>
+<li><a href="qa-06.html">第06讲 填空题专题四：总结填空</a></li>
+<li><a href="qa-07.html">第07讲 配对题专题一：人物观点配对</a></li>
+<li><a href="qa-08.html" class="active">第08讲 配对题专题二：句子结尾配对</a></li>
+<li><a href="qa-09.html">第09讲 配对题专题三：信息匹配</a></li>
+<li><a href="qa-10.html">第10讲 判断题考点速查</a></li>
+<li><a href="qa-11.html">第11讲 选择题专题一：多选题</a></li>
+<li><a href="qa-12.html">第12讲 选择题专题二：单选题</a></li>
+<li><a href="qa-13.html">第13讲 平行阅读法</a></li>
+<li><a href="qa-14.html">第14讲 进阶阅读：To Catch a King</a></li>
+    </ul>
+    <h3>本页问题</h3><ul><li><a class="sub" href="#第一步逐题读题画关键词">第一步：逐题读题，画关键词</a></li><li><a class="sub" href="#第二步读文章找定位句">第二步：读文章，找定位句</a></li><li><a class="sub" href="#第三步理解定位句的逻辑选选项">第三步：理解定位句的逻辑，选选项</a></li><li><a class="sub" href="#31题employees-who-value-match-those-of-their-employer-are-more-likely-to">31题：`employees who value match those of their employer are more likely to`</a></li><li><a class="sub" href="#32题at-times-of-change-people-tend-to">32题：`at times of change, people tend to`</a></li><li><a class="sub" href="#33题if-people-are-aware-of-what-they-might-lose-they-will-often">33题：`if people are aware of what they might lose, they will often`</a></li><li><a class="sub" href="#34题people-working-under-a-dominant-boss-are-liable-to">34题：`people working under a dominant boss are liable to`</a></li><li><a class="sub" href="#35题最后一道">35题（最后一道）</a></li><li><a class="sub" href="#做题体验">做题体验</a></li></ul>
+  </aside>
+  <main class="col-main">
+    <h1>雅思阅读全解13讲 · 第08讲 配对题专题二：句子结尾配对（问答精要）</h1>
+<blockquote>
+<p>本讲定位：四种配对题中最特殊的一种——它是<strong>顺序题型</strong>（其他配对题是乱序）。难点不在理解而在<strong>定位</strong>（题目有时分散有时密集）。核心方法：画关键词 → 读文章找定位句 → 理解定位句逻辑选选项。</p>
+</blockquote>
+<hr>
+<h2><a id="q1-四种配对题分别是哪些本讲讲哪种"></a>Q1. 四种配对题分别是哪些？本讲讲哪种？</h2>
+<ul>
+<li>四种配对题：<strong>人物观点匹配</strong>（已学）→ <strong>句子结尾匹配</strong>（本讲）→ 信息匹配 → 标题匹配。</li>
+<li>句子结尾匹配和人物观点匹配<strong>出题频率都较低</strong>（信息匹配和标题匹配出题频率高），但必须学。</li>
+</ul>
+<hr>
+<h2><a id="q2-句子结尾配对最特殊的特点是什么"></a>Q2. 句子结尾配对最特殊的特点是什么？</h2>
+<ul>
+<li><strong>题目是顺序的</strong>！这是配对题里的一大特点（人物观点是选项顺序；信息/标题配对是乱序题型）。</li>
+<li>所以做它就像做判断题：<strong>一道一道挨着往下做</strong>。</li>
+<li>但题目位置<strong>有时分散、有时密集</strong>，需要"火眼金睛"定位——<strong>定位是这个题目的难点</strong>。</li>
+</ul>
+<hr>
+<h2><a id="q3-做题步骤是什么三步法"></a>Q3. 做题步骤是什么？（三步法）</h2>
+<h3><a id="第一步逐题读题画关键词"></a>第一步：逐题读题，画关键词</h3>
+<ul>
+<li>画<strong>动词信息</strong>和<strong>句子中不可省略的含义</strong>。</li>
+<li>不要画没用的词：如全文都是 employee/employer 时，画这对词没帮助。</li>
+</ul>
+<h3><a id="第二步读文章找定位句"></a>第二步：读文章，找定位句</h3>
+<ul>
+<li>用词是"<strong>读</strong>文章"不是"浏览"——太快会错过定位词。</li>
+<li>找到关键词 → 锁定定位句。</li>
+</ul>
+<h3><a id="第三步理解定位句的逻辑选选项"></a>第三步：理解定位句的逻辑，选选项</h3>
+<ul>
+<li>重点理解定位句的<strong>逻辑</strong>，看哪个选项填回来符合逻辑。</li>
+</ul>
+<hr>
+<h2><a id="q4-同义替换有哪三个层级"></a>Q4. 同义替换有哪三个层级？</h2>
+<ol>
+<li><strong>词 / 词组的替换</strong>：如 value match ↔ value fit。</li>
+<li><strong>抽象到具体的替换</strong>：之前的课已多次遇到。</li>
+<li><strong>语言含义的替换</strong>：说不清哪个词对应哪个词，但整体表达的意思一致。</li>
+</ol>
+<hr>
+<h2><a id="q5-为什么不能过度揣测"></a>Q5. 为什么不能"过度揣测"？</h2>
+<ul>
+<li>做题要<strong>严格对应原文</strong>，不能自己脑补。</li>
+<li>反例：题干说"价值观契合决定两年后是否留在公司"，有同学推断"留下来的人一定升职了"（get promotion）——这是自己的揣测，原文没这么说，<strong>排除</strong>。</li>
+<li>对应正确项：<code>remain in their job</code>（留在原岗位）才是字面对应。</li>
+</ul>
+<hr>
+<h2><a id="q6-真题全解创新心理学psychology-of-innovation5-题全解"></a>Q6. 真题全解：创新心理学（Psychology of Innovation，5 题全解）</h2>
+<p>文章副标题：为什么几乎没有公司真正在创新。</p>
+<h3><a id="31题employees-who-value-match-those-of-their-employer-are-more-likely-to"></a>31题：<code>employees who value match those of their employer are more likely to</code></h3>
+<ul>
+<li>关键含义：value match。</li>
+<li>原文：<code>fit between employees' values and companies' values</code>（fit ↔ match），决定两件事：<strong>a. 做多大贡献</strong>（make a difference to contribution）；<strong>b. 两年后是否留在公司</strong>。</li>
+<li>选项 G：<code>remain in their job</code> ↔ 两年后留在公司 → <strong>G</strong>。</li>
+</ul>
+<h3><a id="32题at-times-of-change-people-tend-to"></a>32题：<code>at times of change, people tend to</code></h3>
+<ul>
+<li>唯一关键词：<strong>change</strong>（at times of / people tend to 无实际含义）。</li>
+<li>中间几段（学者研究、哈佛研究、照片例子）都没有 change，坚持往后找。</li>
+<li>原文：<code>a process of change ... when things change, we are hard-wired to play it safe</code>（天生倾向求安全）。</li>
+<li>选项 E：<code>avoid risk</code> ↔ play it safe → <strong>E</strong>。</li>
+</ul>
+<h3><a id="33题if-people-are-aware-of-what-they-might-lose-they-will-often"></a>33题：<code>if people are aware of what they might lose, they will often</code></h3>
+<ul>
+<li>与 32 题位置很近（"面对改变"和"面对失去"连着讲）。</li>
+<li>原文：<code>manager should explain what would be lost</code> → 意味着建议员工 <strong>seize the opportunity</strong>（抓住机会）。</li>
+<li>选项 A：<code>take the chance</code> ↔ seize the opportunity → <strong>A</strong>。</li>
+</ul>
+<h3><a id="34题people-working-under-a-dominant-boss-are-liable-to"></a>34题：<code>people working under a dominant boss are liable to</code></h3>
+<ul>
+<li>关键信息：<strong>dominant boss</strong>（强势控制欲的老板）。</li>
+<li>一路扫过：团队合作、DNA 发现例子、早餐麦片比赛例子——都没有强势老板。</li>
+<li>原文：<code>authority ... under wrong leadership, team members tend to ignore their own responsibilities</code>。</li>
+<li>选项 F：<code>ignore their duty</code> → <strong>F</strong>。</li>
+</ul>
+<h3><a id="35题最后一道"></a>35题（最后一道）</h3>
+<ul>
+<li>答案通过排除剩余选项得出（过程略，可回看课程）。</li>
+</ul>
+<h3><a id="做题体验"></a>做题体验</h3>
+<ul>
+<li>题目间距"一会儿远一会儿近"，毫无章法——<strong>分散和密集交替</strong>，这更考验定位耐心和对文章结构的把控。</li>
+</ul>
+<hr>
+<h2><a id="q7-这道例题为什么说为平行阅读法做铺垫"></a>Q7. 这道例题为什么说"为平行阅读法做铺垫"？</h2>
+<ul>
+<li>句子结尾配对 5 题分散在全文——如果按题型做题（先做句子结尾匹配、再做单选……），<strong>一篇文章要读三遍</strong>。</li>
+<li>学会<strong>平行阅读法</strong>（本系列第 13 讲）后，文章读一遍，其他题型顺带做完，大幅省时间。</li>
+</ul>
+<hr>
+<h2><a id="q8-一句话总结本讲"></a>Q8. 一句话总结本讲</h2>
+<ul>
+<li>顺序题、挨着做；难点是<strong>定位</strong>（分散/密集不定）。</li>
+<li>画关键词 → 读文章 → 理解定位句<strong>逻辑</strong> → 选选项。</li>
+<li>牢记：<strong>不脑补、不揣测</strong>，只认原文字面对应。</li>
+</ul>
+  </main>
+  <aside class="col-right">
+    <h4>本页章节</h4><ul><li><a href="#q1-四种配对题分别是哪些本讲讲哪种">Q1. 四种配对题分别是哪些？本讲讲哪种？</a></li><li><a href="#q2-句子结尾配对最特殊的特点是什么">Q2. 句子结尾配对最特殊的特点是什么？</a></li><li><a href="#q3-做题步骤是什么三步法">Q3. 做题步骤是什么？（三步法）</a></li><li><a href="#q4-同义替换有哪三个层级">Q4. 同义替换有哪三个层级？</a></li><li><a href="#q5-为什么不能过度揣测">Q5. 为什么不能&quot;过度揣测&quot;？</a></li><li><a href="#q6-真题全解创新心理学psychology-of-innovation5-题全解">Q6. 真题全解：创新心理学（Psychology of Innovation，5 题全解）</a></li><li><a href="#q7-这道例题为什么说为平行阅读法做铺垫">Q7. 这道例题为什么说&quot;为平行阅读法做铺垫&quot;？</a></li><li><a href="#q8-一句话总结本讲">Q8. 一句话总结本讲</a></li></ul>
+  </aside>
+</div>
+<script>
+(function(){
+  var input = document.getElementById('search-input');
+  var panel = document.getElementById('search-panel');
+  if (!input || !panel) return;
+  var main = document.querySelector('.col-main');
+  var leftLinks = Array.prototype.slice.call(document.querySelectorAll('.col-left ul li a'));
+  var rightLinks = Array.prototype.slice.call(document.querySelectorAll('.col-right ul li a'));
+
+  function escHtml(s){
+    return s.replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+  function escapeRegex(s){
+    return s.replace(/[.*+?^${}()|[\]\\]/g, function(m){ return '\\' + m; });
+  }
+  function clearHighlights(){
+    if (!main) return;
+    var marks = main.querySelectorAll('mark.search-hl');
+    for (var i = 0; i < marks.length; i++) {
+      var m = marks[i];
+      var text = document.createTextNode(m.textContent);
+      m.parentNode.replaceChild(text, m);
+    }
+    main.normalize();
+  }
+  function highlightInMain(kw){
+    if (!main) return;
+    clearHighlights();
+    if (!kw) return;
+    var re = new RegExp(escapeRegex(kw), 'gi');
+    var walker = document.createTreeWalker(main, NodeFilter.SHOW_TEXT, {
+      acceptNode: function(n){
+        if (!n.nodeValue || !n.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        var p = n.parentElement;
+        if (!p) return NodeFilter.FILTER_REJECT;
+        var tag = p.tagName;
+        if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'CODE' || tag === 'PRE') return NodeFilter.FILTER_REJECT;
+        if (p.closest && p.closest('mark.search-hl')) return NodeFilter.FILTER_REJECT;
+        return n.nodeValue.toLowerCase().indexOf(kw.toLowerCase()) >= 0 ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+      }
+    });
+    var nodes = [];
+    var n;
+    while ((n = walker.nextNode())) nodes.push(n);
+    for (var i = 0; i < nodes.length; i++) {
+      var node = nodes[i];
+      var src = node.nodeValue;
+      var html = '';
+      var last = 0;
+      var match;
+      re.lastIndex = 0;
+      while ((match = re.exec(src)) !== null) {
+        html += escHtml(src.slice(last, match.index));
+        html += '<mark class="search-hl">' + escHtml(match[0]) + '</mark>';
+        last = match.index + match[0].length;
+        if (match[0].length === 0) re.lastIndex++;
+      }
+      html += escHtml(src.slice(last));
+      var tmp = document.createElement('span');
+      tmp.innerHTML = html;
+      var parent = node.parentNode;
+      while (tmp.firstChild) parent.insertBefore(tmp.firstChild, node);
+      parent.removeChild(node);
+    }
+  }
+  function search(q){
+    q = (q || '').trim();
+    panel.innerHTML = '';
+    if (!q) {
+      panel.hidden = true;
+      leftLinks.forEach(function(a){ a.parentElement.style.display = ''; });
+      rightLinks.forEach(function(a){ a.parentElement.style.display = ''; });
+      clearHighlights();
+      return;
+    }
+    var qLower = q.toLowerCase();
+    var courseHits = leftLinks.filter(function(a){
+      return a.textContent.toLowerCase().indexOf(qLower) >= 0;
+    });
+    leftLinks.forEach(function(a){
+      a.parentElement.style.display = courseHits.indexOf(a) >= 0 ? '' : 'none';
+    });
+    var sectionHits = rightLinks.filter(function(a){
+      return a.textContent.toLowerCase().indexOf(qLower) >= 0;
+    });
+    rightLinks.forEach(function(a){
+      a.parentElement.style.display = sectionHits.indexOf(a) >= 0 ? '' : 'none';
+    });
+    var parts = [];
+    if (courseHits.length) {
+      parts.push('<div class="sp-group">课程（' + courseHits.length + '）</div>');
+      parts.push('<ul>' + courseHits.map(function(a){
+        return '<li><a href="' + a.getAttribute('href') + '">' + escHtml(a.textContent) + '</a></li>';
+      }).join('') + '</ul>');
+    }
+    if (sectionHits.length) {
+      parts.push('<div class="sp-group">本页小节（' + sectionHits.length + '）</div>');
+      parts.push('<ul>' + sectionHits.map(function(a){
+        return '<li><a href="' + a.getAttribute('href') + '">' + escHtml(a.textContent) + '</a></li>';
+      }).join('') + '</ul>');
+    }
+    if (!parts.length) parts.push('<div class="sp-empty">无匹配结果</div>');
+    panel.innerHTML = parts.join('');
+    panel.hidden = false;
+    highlightInMain(q);
+  }
+  var timer = null;
+  input.addEventListener('input', function(e){
+    clearTimeout(timer);
+    timer = setTimeout(function(){ search(input.value); }, 80);
+  });
+  input.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') { input.value = ''; search(''); input.blur(); panel.hidden = true; }
+  });
+  document.addEventListener('click', function(e){
+    if (panel.contains(e.target) || e.target === input) return;
+    panel.hidden = true;
+  });
+  document.addEventListener('keydown', function(e){
+    if ((e.ctrlKey || e.metaKey) && (e.key === 'k' || e.key === 'K')) {
+      e.preventDefault();
+      input.focus();
+      input.select();
+    }
+  });
+  panel.addEventListener('click', function(e){
+    var a = e.target.closest('a');
+    if (a) panel.hidden = true;
+  });
+})();
+</script>
+</body>
+</html>

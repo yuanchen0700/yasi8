@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>管理后台 - DW Shop</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="{{ url_for('index') }}">DW<span class="dot">.</span>Shop</a>
+    <nav class="admin-nav">
+      <a href="{{ url_for('admin_dashboard') }}" class="active">订单</a>
+      <a href="{{ url_for('admin_products') }}">商品</a>
+      <a href="{{ url_for('admin_vouchers') }}">卡券</a>
+      <a href="{{ url_for('admin_logout') }}">退出</a>
+    </nav>
+  </div>
+</div>
+<main>
+  <h1 style="font-size: 24px;">订单管理</h1>
+
+  <div class="stats">
+    <div class="stat"><div class="num">{{ stats['orders'] }}</div><div class="label">总订单</div></div>
+    <div class="stat"><div class="num">{{ stats['pending'] }}</div><div class="label">待处理</div></div>
+    <div class="stat"><div class="num">{{ stats['products'] }}</div><div class="label">商品数</div></div>
+  </div>
+
+  {% if orders %}
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>商品</th>
+            <th>称呼</th>
+            <th>联系方式</th>
+            <th>微信</th>
+            <th>留言</th>
+            <th>时间</th>
+            <th>状态</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for o in orders %}
+            <tr>
+              <td>{{ o['id'] }}</td>
+              <td>{{ o['product_title'] }}</td>
+              <td>{{ o['name'] }}</td>
+              <td>{{ o['contact'] }}</td>
+              <td>{{ o['wechat'] or '-' }}</td>
+              <td>{{ o['message'] or '-' }}</td>
+              <td class="small muted">{{ o['created_at'] }}</td>
+              <td>
+                {% set cls = 'pending' if o['status'] == '待处理' else ('done' if o['status'] in ('已付款', '已成交') else 'closed') %}
+                <span class="status {{ cls }}">{{ o['status'] }}</span>
+                {% if o['remark'] %}<div class="small muted" style="margin-top: 2px;">备注: {{ o['remark'] }}</div>{% endif %}
+              </td>
+              <td>
+                <form class="inline-form" method="POST" action="{{ url_for('admin_order_status', oid=o['id']) }}">
+                  <select name="status">
+                    <option value="待处理" {{ 'selected' if o['status'] == '待处理' else '' }}>待处理</option>
+                    <option value="已付款" {{ 'selected' if o['status'] == '已付款' else '' }}>已付款</option>
+                    <option value="已成交" {{ 'selected' if o['status'] == '已成交' else '' }}>已成交</option>
+                    <option value="已关闭" {{ 'selected' if o['status'] == '已关闭' else '' }}>已关闭</option>
+                  </select>
+                  <button class="btn btn-small" type="submit">保存</button>
+                </form>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <div class="empty">还没有订单。</div>
+  {% endif %}
+</main>
+</body>
+</html>

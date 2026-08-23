@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第9讲 · 配对题专题三 · 雅思阅读13讲</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; height: 100%; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; color: #1f2328; background: #fff; }
+  a { color: #2c5cdc; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* 顶部 */
+  .topbar { position: fixed; top: 0; left: 0; right: 0; height: 56px; display: flex; align-items: center; padding: 0 24px; border-bottom: 1px solid #e5e7eb; background: #fff; z-index: 10; }
+  .logo { font-weight: 800; font-size: 20px; letter-spacing: -0.5px; color: #111; }
+  .logo span { color: #6b7280; font-weight: 500; }
+  .topbar-right { margin-left: auto; display: flex; gap: 16px; align-items: center; position: relative; }
+  .topbar-right input { border: 1px solid #d1d5db; border-radius: 6px; padding: 6px 10px; font-size: 13px; width: 240px; background: #f9fafb; }
+  .topbar-right input:focus { outline: none; border-color: #2c5cdc; background: #fff; box-shadow: 0 0 0 3px rgba(44,92,220,0.12); }
+  #search-panel { position: absolute; top: 44px; right: 0; width: 360px; max-height: 70vh; overflow-y: auto; background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); padding: 8px 0; z-index: 100; font-size: 13px; }
+  #search-panel .sp-group { padding: 8px 14px 4px; font-size: 11px; color: #6b7280; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px; }
+  #search-panel ul { list-style: none; padding: 0; margin: 0; }
+  #search-panel li a { display: block; padding: 6px 14px; color: #374151; line-height: 1.4; font-size: 12.5px; }
+  #search-panel li a:hover { background: #f3f4f6; color: #1d4ed8; text-decoration: none; }
+  #search-panel .sp-empty { padding: 24px; text-align: center; color: #9ca3af; font-size: 12px; }
+  mark.search-hl { background: #fff3a3; color: inherit; padding: 0 2px; border-radius: 2px; }
+
+  /* 三栏布局 */
+  .layout { display: flex; padding-top: 56px; min-height: 100vh; }
+  .col-left { width: 240px; flex-shrink: 0; border-right: 1px solid #e5e7eb; padding: 20px 14px 40px; overflow-y: auto; height: calc(100vh - 56px); position: sticky; top: 56px; }
+  .col-left ul { list-style: none; padding: 0; margin: 0 0 16px; }
+  .col-left li { margin: 2px 0; }
+  .col-left a { display: block; padding: 6px 10px; border-radius: 6px; font-size: 13.5px; color: #374151; line-height: 1.4; }
+  .col-left a:hover { background: #f3f4f6; text-decoration: none; }
+  .col-left a.active { background: #eff6ff; color: #1d4ed8; font-weight: 600; }
+  .col-left h3 { font-size: 11px; text-transform: uppercase; color: #6b7280; margin: 18px 8px 8px; letter-spacing: 0.5px; font-weight: 600; }
+  .col-left .sub { padding-left: 24px !important; font-size: 12.5px; color: #4b5563; }
+
+  .col-main { flex: 1; min-width: 0; padding: 40px 56px 80px; max-width: 820px; margin: 0 auto; }
+  .col-main h1 { font-size: 32px; margin-top: 0; border-bottom: 1px solid #e5e7eb; padding-bottom: 12px; line-height: 1.3; }
+  .col-main h2 { font-size: 24px; margin-top: 40px; padding-top: 16px; border-top: 1px solid #f3f4f6; }
+  .col-main h3 { font-size: 18px; margin-top: 28px; color: #1f2937; }
+  .col-main p { line-height: 1.75; color: #374151; }
+
+  .col-right { width: 220px; flex-shrink: 0; border-left: 1px solid #e5e7eb; padding: 24px 18px; font-size: 13px; height: calc(100vh - 56px); position: sticky; top: 56px; overflow-y: auto; }
+  .col-right h4 { font-size: 11px; text-transform: uppercase; color: #6b7280; margin: 0 0 12px; letter-spacing: 0.5px; font-weight: 600; }
+  .col-right ul { list-style: none; padding: 0; margin: 0; }
+  .col-right li { margin: 6px 0; }
+  .col-right a { color: #4b5563; line-height: 1.45; font-size: 12.5px; }
+  .col-right a:hover { color: #1d4ed8; }
+  .col-right .section { color: #1f2937; font-weight: 600; margin-top: 14px; }
+  .col-right .empty { color: #9ca3af; font-size: 12px; padding: 6px 0; }
+
+  @media (max-width: 1100px) { .col-right { display: none; } }
+  @media (max-width: 800px) { .col-left { display: none; } .col-main { padding: 24px; } }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="logo">雅思阅读<span> · 13讲</span></div>
+  <div class="topbar-right">
+    <a href="index.html" style="font-size:13px;color:#2c5cdc;font-weight:600;white-space:nowrap;">🏠 总目录</a>
+    <span style="font-size:18px;">🐙</span>
+    <span style="font-size:18px;">💬</span>
+    <input id="search-input" placeholder="搜索 Ctrl K" autocomplete="off">
+    <div id="search-panel" hidden></div>
+  </div>
+</header>
+<div class="layout">
+  <aside class="col-left">
+    <h3>课程目录</h3>
+    <ul>
+      <li><a href="lesson-01.html">第01讲 · 导学课</a></li>
+<li><a href="lesson-02.html">第2讲 · 填空题专题一</a></li>
+<li><a href="lesson-03.html">第03讲 · 判断题专题：TFNG vs YNNG</a></li>
+<li><a href="lesson-04.html">第4讲 · 填空题专题二</a></li>
+<li><a href="lesson-05.html">第05讲</a></li>
+<li><a href="lesson-06.html">第06讲 · 雅思阅读填空题专题四</a></li>
+<li><a href="lesson-07.html">第7讲 · 配对题专题一</a></li>
+<li><a href="lesson-08.html">第8讲 · 配对题专题二</a></li>
+<li><a href="lesson-09.html" class="active">第9讲 · 配对题专题三</a></li>
+<li><a href="lesson-10.html">第10讲</a></li>
+<li><a href="lesson-11.html">第11讲</a></li>
+<li><a href="lesson-12.html">第12讲</a></li>
+<li><a href="lesson-13.html">第13讲 · 雅思阅读核心技巧</a></li>
+<li><a href="lesson-14.html">第14讲 · 进阶阅读</a></li>
+    </ul>
+    <h3>本页问题</h3><p class="empty" style="padding:6px 10px;font-size:12px;color:#9ca3af;margin:0;">无小节</p>
+  </aside>
+  <main class="col-main">
+    <h1>雅思阅读全解13讲</h1>
+<h2><a id="09"></a>09</h2>
+<p>内容总时长：内容总时长：26分钟</p>
+<p>[00:00 - 00:15]
+Hello,各位同学大家好，来到了我们今天第八个专题啦，今天第八个专题讲的还是配对题啊。在最近的这四节课当中，我们讲的都是配对题。今天的这个配对题非常的重要，因为它几乎是每一次考试一定会遇到的题目叫做信息匹配题。</p>
+<p>[00:00 - 00:15]</p>
+<p>[00:15 - 00:30]
+我估计也是绝大多数同学可能非常讨厌的一种题目啊，因为这种题目没有顺序，它的一大特点就是它是无序题。这题他不可能有顺序啊。各位同学，你想象一下，如果他有顺序的话，那我就闭着眼睛直接写就行了。</p>
+<p>[00:15 - 00:30]</p>
+<p>[00:30 - 00:47]
+好14题对应a段。 15题对应b段、c段、d段a段，这就直接写就行了，所以它不可能存在顺序啊，不要抢别的，所以它是一种无序题。而且呢它在原文当中是非常的分散的那一段里边顶多了，也就是一两个啊，顶多了是两个。</p>
+<p>[00:30 - 00:47]</p>
+<p>[00:47 - 01:08]
+因为有的时候可能会出现nb嘛，对吧？所以一段里边顶多就是两个信息，所以它非常非常的分散做起来其实是有一定的困难的那这种题目我们要怎么来做呢？我们本着对文章要进行通读的这样一个心态去做这个题啊，文章就是要进行通读，而且还不能是那种快快的读过去。</p>
+<p>[00:47 - 01:08]</p>
+<p>[01:08 - 01:23]
+为什么呢？我知道大家可能在考四级考试的时候，四六级考试的时候肯定是有常阅读的。大家可能会觉得四六级那个长阅读其实就是看我眼神好不好使。因为它对应的这个信息和段落当中，如果有一样的单词，我可能选出来a就能做。</p>
+<p>[01:08 - 01:23]</p>
+<p>[01:21 - 01:42]
+对。但是我们在雅思绝对不是看你考就这个眼神好不好使啊，而是看你是否真的理解了这句话的含义，以及你是否能够去对应出来这句话在原文当中的替换形式。所以其实这种题目其实考是考察大家段落的一个理解，以及对于段落信息的一个处理能力。</p>
+<p>[01:21 - 01:42]</p>
+<p>[01:42 - 02:03]
+考察内容对于段落当中的信息的处理能力。诶，我为什么啊这个没有直接说是对于段落的理解呢？因为它并不是对于一个段落的总结，大家能理解啊，就这题他不是说这一句话是对于某一个段的一个总结。</p>
+<p>[01:42 - 02:03]</p>
+<p>[02:03 - 02:25]
+然后你去看看它是对于哪个段的总结。不是的，它可能来自于段落当中的某一句或者某两句，具体的话，具体的这个内容啊，这是一种情况。还有一种情况呢，可能来自于这个段落，比如说唉两三句话，我适当的小小的总结一下。</p>
+<p>[02:03 - 02:25]</p>
+<p>[02:25 - 02:43]
+所以他大概是这样的一种形式，就是说啊一个非常明显的一个特点。就是说嗯我如果这一个句子这个信息，我想选它来自于某一段。那在这一段当中，你一定能够给我画出来一句话，就是这个信息或者画出来两句话，就是这个信息或者画出三句话都行。</p>
+<p>[02:25 - 02:43]</p>
+<p>[02:43 - 02:54]
+反正总而言之，你是肯定能画出来一些句子，说的就是这个事儿啊，所以这是不需要大家对于整个段落，你说哎呀，我必须得对这个段落有个deeply understandingno不需要啊。</p>
+<p>[02:43 - 02:54]</p>
+<p>[02:54 - 03:06]
+但是呢你能不能理解这些信息，你得理解啊，不然的话你怎么处理这些信息呢？你怎么能够知道这块和那块是一个对应关系呢？对吧？所以这种题目它是属于中上难度的题型啊，那怎么做呢？</p>
+<p>[02:54 - 03:06]</p>
+<p>[03:06 - 03:28]
+我现在就要给大家讲一下做题的一个方法了。首先我们以五题为界，如果是大于五题的，就你一看这题有六个有七个。那么我们先读文章，先读文章啊，好比说我们文章读完了a段，读完了a段之后，你来检查一下以下的这些信息当中有没有来自于a段呢？</p>
+<p>[03:06 - 03:28]</p>
+<p>[03:28 - 03:48]
+你发现诶，这个信息来自于a段，那你就把这个选上。然后接下来呢你再读b段，读完b段，你看剩下的信息当中有没有来自于b端的？你发现诶又有一个信息来自于b端。好，你再把他给选上，在读c段，所以是以段落为单位，那么如果是少于五题，我们怎么做呢？</p>
+<p>[03:28 - 03:48]</p>
+<p>[03:48 - 04:06]
+如果是少于五题上来先读题干题干的一个构成啊，在这儿给大家记一下啊，题干的构成等于题干功能词加事实信息，然后加考点信息啊，当然这个考点信息和事实信息有可能是一致的。</p>
+<p>[03:48 - 04:06]</p>
+<p>[04:06 - 04:28]
+那么什么叫做题干功能词这个题干功能词啊分成两种，这块写不开，我给大家拉到这儿写啊，分成第一种叫做有用的功能词。第二种叫做无用的功能词。什么叫做有用的功能词呢？比如说他提到了诶，在这个段落当中有一个example,那这个example就是一个有用的信息。</p>
+<p>[04:06 - 04:28]</p>
+<p>[04:28 - 04:40]
+如果你想选这一段作为答案的话，你一定要告诉我这个example是什么？如果你选了这段，但这一段里边一个example都没有，那你这段肯定选的是有问题的，就不对啊。</p>
+<p>[04:28 - 04:40]</p>
+<p>[04:40 - 04:59]
+所以这个大家一定要非常明确，唉，这种就叫做有用的题干功能词，那啥叫没用的题干功能词啊，比如说像这种题干功能词就很无用。 Reference mentiondescription很give information about这种就很没用，就有它没它一个样啊，这种叫没用的题干功能子。</p>
+<p>[04:40 - 04:59]</p>
+<p>[04:59 - 05:16]
+所以也就意味着我们在读这些信息的时候，你要先把这个题干功能词以及这个句子当中具体的含义先整理出来。本题呢一共有五个。所以我们来先读一下这些题目啊，在读题目之前看到这里有一个nb,那nb的意思是什么来着？</p>
+<p>[04:59 - 05:16]</p>
+<p>[05:16 - 05:49]
+有选项可能会被用到两次啊，被用两次。也就意味着可能有两条信息是来自于文章同样的一个段落啊，这个是可能不绝对啊，有没有可能我读完做完之后发现哎，怎么这五个选项我选的都不一样啊，非常有可能哈非常有可能啊，就很有可能你读完做完发现哎这五个选项你你这个嗯都不一样，没有任何一个选项被用到两次，有可能的。</p>
+<p>[05:16 - 05:49]</p>
+<p>[05:48 - 06:05]
+好，接下来我们逐一题目去来阅读和这个梳理信息。这个和我们刚才上一种啊，就是上一个这个篇章当中，我们讲的句子结尾配对就完全不一样。因为句子结尾配对是有有序题。那我们一个一个题来处理就行。</p>
+<p>[05:48 - 06:05]</p>
+<p>[06:05 - 06:20]
+这儿我们是先把题目都统一处理掉啊，来看一下14题a reference to type of tomato that that can resist叫抵抗，这个叫抵抗严重的感染。</p>
+<p>[06:05 - 06:20]</p>
+<p>[06:20 - 06:41]
+所以这是一种西红柿，西红柿，这次画不画无所谓了，为啥呀？因为你看看这文章，文章标题当中是不是含有西红柿全篇都是西红柿啊，提到了一种特定西红柿可以抵抗感染的好第15题and explanation你看这功能词我都不管它，因为不重要how problem can raise,就可会产生问题。</p>
+<p>[06:20 - 06:41]</p>
+<p>[06:41 - 06:51]
+什么事产生问题呢？这个事儿产生问题啊，focusing only on a certain type of tomato pl,就是关注这一种西红柿可能会产生出来的一种问题啊。</p>
+<p>[06:41 - 06:51]</p>
+<p>[06:51 - 07:11]
+好，接着16题a number of example,哎，有一堆examplebut could be used as food sources,就是有一些例子，这些植物呢它现在并没有被种植，但是未来它可以成为食物来源。</p>
+<p>[06:51 - 07:11]</p>
+<p>[07:11 - 07:39]
+所以我边读就边画下来这些信息无论你是机考还是纸笔考，你画信息都是可以画的啊。那机考的界面，你可以直接点击鼠标右键进行highlight这工作都可以的。好，接着17题说a comparison这个叫做对比啊between the early tomato and recent research.所以就是过去和现在的一个对比18题，a personal reaction,一个个人的反应，关于西红柿的味道。</p>
+<p>[07:11 - 07:39]</p>
+<p>[07:37 - 07:59]
+嗯，你这个西红柿是一个什么样的西红柿呢？那这个西红柿是一个被基因编辑的西红柿。好，那我们这些信息都读完了。接下来我给大家一个做题的法宝。这个法宝就是我们在这个题干当中题干当中的所有信息。</p>
+<p>[07:37 - 07:59]</p>
+<p>[08:00 - 08:17]
+如果你想选这个段落，那么在这个段落当中是必有解释。一会儿呢我就会问大家，比如说我会问你什么呢？我说他抵抗的这个感染是什么感染呢？嗯，到底是什么样的西红柿啊，哎这个problem到底是什么呀？</p>
+<p>[08:00 - 08:17]</p>
+<p>[08:17 - 08:49]
+哎，这个东西挺没体现出来啊，我会来问你们这些信息的。好，接下来我们就按照步骤一步一步的去操操作。我们刚才的步骤是什么？首先我们先处理了题目，对吧？题目处理完了之后，我们来读a段a段，读完了读b段b段，读完了读c段c段，读完了读d段d段，读完了读一段以此类推一段，读完了之后，每一段读完了之后，我都看看有没有题来自于这一段有就选，没有就算了，再读完看有没有题来自于这一段有就选没有就算了。</p>
+<p>[08:17 - 08:49]</p>
+<p>[08:49 - 09:01]
+那读这个有没有题来自于c段，有就选没有就算了，以此类推，直到完成。好，那么接下来我们就开始通读这篇文章了。说实话啊，有同学可能会觉得哎呀，那这样做题的压力岂不是会很大？</p>
+<p>[08:49 - 09:01]</p>
+<p>[09:01 - 09:17]
+哎呀，我这个本来这个文章我就看不怎么太懂，然后我还要通读，那岂不是压力会很大，确实因为这种题目它就是中上难度的题目。那如果您什么文章都看不懂的话，那其实你并没有达到雅思对你的一个要求，那回炉重造哈。</p>
+<p>[09:01 - 09:17]</p>
+<p>[09:17 - 09:39]
+嗯，所以这个我们是一定要啃硬骨头的啊，类似于像这样难度的文章，就是就是要人家官方就是要求你把这个硬骨头给啃下来，我们怎么能够不肯呢？对吧？好，上来读一下这个a段，a段一看有这么多个小节，一个小节，两个小节，三个小节，四个小节，五个小节，这么多个小节，你都读完之后，信息能记住吗？</p>
+<p>[09:17 - 09:39]</p>
+<p>[09:39 - 09:53]
+我觉得不一定吧，应该记不住了，所以我们给它拆分一下，先读这一节。读完了之后，我们看有没有信息啊。好，我们来读一下，说花了3000年人类驯服这词，驯服了啊，驯服了野生西红柿作为一种食物。</p>
+<p>[09:39 - 09:53]</p>
+<p>[09:53 - 10:10]
+然后现在有两个研究小组，一个是来自于巴西，一个是来自于中国。然后他们呢要花3年的时间重新对于这个西红柿进行一个研究。因为他认为啊在很多方面是可以做得更好的，所以他们要重新来驯服这个西红柿，让它更具有营养。</p>
+<p>[09:53 - 10:10]</p>
+<p>[10:10 - 10:29]
+嗯，比我们现在吃的这一种，所以我们这个段子读完了啊，我们来看看有没有信息是来自于这一段的挨个儿题去检索14题，说的是抵抗感染并没有问题，并没有例子并没有对比。嗯，对比哎呀，好像确实是有对比。</p>
+<p>[10:10 - 10:29]</p>
+<p>[10:29 - 10:52]
+那early关于早期的驯服，早期的驯服有3000年吗？ 3000年我们就驯服了西红柿啊，然后more recent有没有巴西和中国和china的这个项目小组，想要使得西红柿更加的富有营养，这是不是more recent research?哎呀，所以这所有的信息是不是基本上都可以得到解释。</p>
+<p>[10:29 - 10:52]</p>
+<p>[10:52 - 11:07]
+那既然这样上来就送了我们一道题啊，心情非常愉悦。哎，我估计我同学可能上来不怎么太敢选吧，但是你就都已经完全找到内容，为什么不敢选好，接下来啊我们还是要继续往后读，这一段还是要读的，为什么呀？</p>
+<p>[10:52 - 11:07]</p>
+<p>[11:07 - 11:20]
+因为这有ng啊啊有这个n有n b啊，对吧？这个就是你有可能会在这一段里面找到俩信息呢，所以我们还是要读一读啊。那我们最近使用的这项基因编辑的这个技术叫做什么呢？</p>
+<p>[11:07 - 11:20]</p>
+<p>[11:20 - 11:41]
+叫做c r i pr啊这个东西。那这个东西啊就是我们故意的把它这个dna的片段去进行一个处理。要么是增加，要么是移除，要么是给它替换这个技术呢，不光会使用在现存的这些作物上，它还会呢呃使用到一些野生的作物上，使得这些野生的作物可以成为食物。</p>
+<p>[11:20 - 11:41]</p>
+<p>[11:38 - 11:55]
+啊，事实上已经有第三个研究小组是来自于美国的，他们已经把这项技术用在了这个东西上。 Ok好了，这一段信息我读完了。那接下来我再来看一下，这有没有来自于这个段的内容呢？</p>
+<p>[11:38 - 11:55]</p>
+<p>[11:55 - 12:15]
+14题叫做抵抗感染。没有15题问题没有16题examples,有没有example,这一段有什么example,对吧？啊，然后说呢嗯not divated at presentbut could use as food source作为一种食物来源，食物来源。</p>
+<p>[11:55 - 12:15]</p>
+<p>[12:13 - 12:29]
+诶，这个好像没说呀。哎我们这一段当中有说到有同学说这不在这吗？老师，你自己画下来的appearing food,你如果认认真真仔细读这一块，他这一块在说什么呢？</p>
+<p>[12:13 - 12:29]</p>
+<p>[12:29 - 12:47]
+他说这个技术不光可以运用在现有的这个作物上，而且它还可以运用在野生的作物上，把野生的作物变成食物。但是它是一个把特定的example变成作物的一个说法吗？不是，况且我再给大家说一个非常有说服性的理由。</p>
+<p>[12:29 - 12:47]</p>
+<p>[12:47 - 13:03]
+这个段落你读完了，你看到了几个具体的example一个吧，还有没有？第二个具体的example没有了。那所以也就是意味着我的example 4在这能得到解释吗？</p>
+<p>[12:47 - 13:03]</p>
+<p>[13:03 - 13:27]
+解释不了，所以这个信息他不来自于a段啊。哎，咱们好，那么接下来继续往后读了，继续往后读这两段放一起读吧，毕竟它也不长嘛。好，读一读说am嗯这个驯服世界上啊这个驯服的这个工作可能会给世界食物供给带来一些好的影响，因为会有更健康的，以及呢而抵御疾病的唉，抵御什么疾病？</p>
+<p>[13:03 - 13:27]</p>
+<p>[13:27 - 13:43]
+比如说这个病的这个wait,这个叫小麦，对吧？嗯，可能会有这个东西啊，然后另外呢可能还改变我们吃的这个东西的结构。这个学者说了，这个学者是在巴西这个组啊，他说我们现在有5万个可以食用的。</p>
+<p>[13:27 - 13:43]</p>
+<p>[13:39 - 14:00]
+嗯，这个东西在地球上，但是我们90%的能量能量来源是来源于15种作物的。好，整个这两小节我们读完了，我们来看啊有没有对应的内容。首先，14题抵抗感染a我怎么看到这个地方说到了抵抗疾病呢？</p>
+<p>[13:39 - 14:00]</p>
+<p>[14:00 - 14:26]
+哎，一种什么什么病啊？我们来看一看那个，请问他是tomato吗？不是吧？他是什么东西啊？如果你还记得深刻，再来看一下这个抵抗疾病的。嗯，就是这个wait它并不是tomato,所以你看他这个题非常的有心机，好多同学在这栽了，栽了跟头了，因为他会发现这不嘛resistant to disease,这不是抵抗感染。</p>
+<p>[14:00 - 14:26]</p>
+<p>[14:26 - 14:41]
+那请问是tomato在抵抗感染吗？不是的，是其他的经济作物在抵抗感染。所以这也不是真正这个信息出现的位置啊。好，那接下来继续往后看啊，说这个个人的反应没有ok,这个地方也没有信息了。</p>
+<p>[14:26 - 14:41]</p>
+<p>[14:41 - 15:02]
+那接着往后这一段weekend知道啊，驯服这个这个东西，比如说驯服这些东西，我们可以呢驯服这些东西。 Never被驯服过啊，所以这个学者的意思就是说我们以前驯服过这些东西，未来我们可能会驯服别的东西，也没有信息来自于这一段吧。</p>
+<p>[14:41 - 15:02]</p>
+<p>[15:02 - 15:14]
+嗯，我们再来看一下啊，说这个抵抗感染没有problem,没有example of not cultivatedcould be for food sources.那前面他提供的这几个example,这已经是负的sources了。</p>
+<p>[15:02 - 15:14]</p>
+<p>[15:14 - 15:26]
+人家的意思就是未来我在驯服别的，所以这也不是啊，当然15 18题a personal reaction不对，没有什么个人反应。所以整个这个a段我们就相当于都通读了一遍。</p>
+<p>[15:14 - 15:26]</p>
+<p>[15:26 - 15:43]
+有同学说老师这题性价比这么低呀。我这读完了之后啊，这这这读这么半天才做一个题，你别忘了你在读的过程当中，其实你是可以做别的题的。因为这个信息匹配题，就像每次你读完一个段落，会随机赠送给你一个题目一样，也许会赠给你一个，也许不会赠你一个。</p>
+<p>[15:26 - 15:43]</p>
+<p>[15:43 - 15:58]
+所以其实你不需要把这个题目当成一种负担，反而在通读文章的时候，再解决其他题目之后，你把它当成一个奖励啊，然后你再做它，这不心情就会更好吗？好了，接着进入到b段啊，b段在说什么呢？</p>
+<p>[15:43 - 15:58]</p>
+<p>[15:58 - 16:15]
+我们来看他说野生的这个tomato啊，大概是来自于南美，然后他就像那个豆子一样大，但经过了很多代，我们产生出来了这种现在的这个tomato怎么产生的呢？通过基因突变这种方式去产生的啊，是它基因结构当中的一个突变。</p>
+<p>[15:58 - 16:15]</p>
+<p>[16:15 - 16:31]
+然后这样的话就使得它产生了我们想要的一些特点。比如说有更大的果实啊，有更大的果实。嗯，然后接着。但是每一次我们在基因突变的时候呢，都是要有一个很大很大的样本，这就使得基因的多样性有一定的损失。</p>
+<p>[16:15 - 16:31]</p>
+<p>[16:31 - 16:44]
+然后另外呢在我们获得想要的这个突变的时候，我们可能就会同时也获得一些我们不想要的这个变化。举个例子啊，那比如说像在超市里边的这个tomato,他就失去了自己的风味。</p>
+<p>[16:31 - 16:44]</p>
+<p>[16:44 - 16:59]
+超市里边这个tomato大家吃的时候有没有觉得特别没味儿啊，确实我我有同感啊。好，那接下来我们来看啊这些信息有没有来自于b端的呢？ B段呃，这个说了，刚才这两段我就放在一块读了啊。</p>
+<p>[16:44 - 16:59]</p>
+<p>[16:59 - 17:11]
+因为我们节约时间14题，说的是这种tomato抵抗感染没有啊，15题说problem a problem有没有problem,是不是说了超市里边tomato没味儿，这是不是problem是吧？</p>
+<p>[16:59 - 17:11]</p>
+<p>[17:11 - 17:23]
+好，rase from from什么呢？ Focusing only a certain type of tomato plant,就是在我们对于这个西红柿，我们想让它变大的过程当中，这个就是我们关注的这个点，对吧？</p>
+<p>[17:11 - 17:23]</p>
+<p>[17:23 - 17:42]
+在想让它变大的时候，它就为此而失去了自己的风味。诶，那所以这是不是由于这个基因技术带来的一些问题，确实吧是给我们解释了这个东西吧，解释了。所以这个信息来自于b端，大家有没有问题啊，这个信息就来自于b端当中的这个小节。</p>
+<p>[17:23 - 17:42]</p>
+<p>[17:42 - 17:58]
+就是在我们对于这个基因突变的过程当中，然后我们会获得一些自己并不是很喜欢的特点。比如说他怕你不理解给你举例子啦。超市里边的西红柿失去了自己的风味儿，所以就来自于这儿。</p>
+<p>[17:42 - 17:58]</p>
+<p>[17:58 - 18:14]
+这就是这个problem.我们关注于具体的这个植物，它的一个problemok.好，接下来b段还不能放弃呢，b段还得有后面的信息呢嗯说对比了这个基因啊，然后对比了这些植物和它们的野生亲戚之间的一些基因。</p>
+<p>[17:58 - 18:14]</p>
+<p>[18:14 - 18:37]
+然后科学家呢他们开始去弄一些基因的改善。嗯，然后巴西和中国的这个小组，他们就用了这些技术，重新去嗯引入一些啊，或者去重新提啊提升啊，这些我们更想要的这些特点啊，对于野生的植株来说，好，整个b段我们就说完了b段其实分了这三个小节，应该是三个吧。</p>
+<p>[18:14 - 18:37]</p>
+<p>[18:37 - 18:50]
+对，后面分段了啊，那这三个小节首先呢他就说到了啊野生的西红柿不好，我们有技术给它改变了。但是改变的时候面对了一些问题。那么现在科学家又开始致力于研究，怎么能够避免这些问题了？</p>
+<p>[18:37 - 18:50]</p>
+<p>[18:50 - 19:17]
+整个这三个小节的结构非常的好啊，那我们是找到了一个信息。好，接着我们继续看c段c段呢，这地方就说了这个人他的一个研究小队，他花了六次啊，有六个这个改变。然后举个例子呢，他们获得了三倍大的果实，我们管这个果实叫做巨型果实啊，而且呢还提升了嗯它可使用的这个部分啊，我们叫做这个东西，所以这是他做了什么事。</p>
+<p>[18:50 - 19:17]</p>
+<p>[19:17 - 19:35]
+接下来与此同时呢，我们在历史上去驯服西红柿，是减少了它的这个红色的色素。红色的色素叫做这个名字，这是一个什么样的色素呢？就是对身体很好的色素，然后巴西的这个项目小组，他们决定啊重新去刺激这个色素的量，让它变得多一点点。</p>
+<p>[19:17 - 19:35]</p>
+<p>[19:35 - 19:51]
+然后野生的西红柿据研究表明，野生的西红柿是我们人工的这个西红柿。但是巴西这个队伍新弄出来的这个西红柿，是啊这个原本野生西红柿的五倍，所以是不是相对来说解决了这个问题。</p>
+<p>[19:35 - 19:51]</p>
+<p>[19:51 - 20:06]
+然后接下来说到了这个人啊，他吃这个西红柿的一个体验，他说怎么了呢？他说这个西红柿非常的tasty很好吃，而且呢味儿有点冲啊，非常的冲哈。所以这个就是他自己吃这个西红柿的一个反应，对不对？</p>
+<p>[19:51 - 20:06]</p>
+<p>[20:06 - 20:18]
+我们有没有一道题说的是一个personal reaction,这个personal reaction对应的句子是不是就这个句子找到了吧。好，看看哪个题，说的是personal reaction来着。</p>
+<p>[20:06 - 20:18]</p>
+<p>[20:18 - 20:39]
+嗯，应该是18题。对吧personal reaction to the flavor of tomato,那这个tomato是不是被基因改善的？是，所以也就意味着这个句子当中这一节原文里面有解释的flavor原文里面有解释的tomato原文里面有解释的那什么样的tomato,原文里面依旧有解释的。</p>
+<p>[20:18 - 20:39]</p>
+<p>[20:39 - 20:51]
+所以也就意味着我给大家的这个法宝啊就题干当中的每一个信息，在原文里面是必须要给你进行解释的。好，c段结束，我们现在只剩14题和16题了。14题说的是抵抗感染的问题。</p>
+<p>[20:39 - 20:51]</p>
+<p>[20:51 - 21:19]
+ 16题说的是嗯现在还没有被生产，但是以后会成为食物来源的那我们还有这么多段呢着什么急，慢慢看咯。好，接着我们来看啊，这个c段还有一小截呢没看完，说在中国呢他花了一些研究的时间，然后想要去这个啊驯服这个西红柿失去的一些部分，然后他们去得到了一种resistant to common diseasecalled dd ddwhich can be a这是什么意思啊？</p>
+<p>[20:51 - 21:19]</p>
+<p>[21:19 - 21:42]
+中国的这个研究小组，他们开发出来了一个什么东西啊，是不是西红柿啊，是西红柿吧。因为这一段他总共就在讲西红柿呢，就是他中国的研究小组开发出来了一种可以抵遇一个病，就抵御这个病的一个西红柿，所以抵抗感染是不是出来了？</p>
+<p>[21:19 - 21:42]</p>
+<p>[21:42 - 21:56]
+这个题的nb是没有旁落的，确实是有一个段落用到两次，就是c这个段落抵抗感染出现了c段再次用到一次。好，那接下来我们就剩一个信息了，就是现在没种植，但是以后可能会成为食物来源的。</p>
+<p>[21:42 - 21:56]</p>
+<p>[21:56 - 22:18]
+我们必须要在这个段落当中找到对应的例子才可以啊。呃，为了本着耐心做题的一个原则，那各位一定要相信你在做题做这个题型的过程当中，其实你是可以变相解决其他题目的。所以读段落并不是那么的亏啊，我比较担心，大家觉得哎我怎么读的这么费劲，然后还那么亏不亏。</p>
+<p>[21:56 - 22:18]</p>
+<p>[22:18 - 22:36]
+因为你可以同时解决其他的题目。好，接着他说与此同时诶这个研究人员啊，然后他们用了相同的方法去驯服了一个这个东西啊，或者我们叫做这个东西。然后这是他们第一次驯服这个果实呢，看起来和这个这个东西看起来很像。</p>
+<p>[22:18 - 22:36]</p>
+<p>[22:37 - 22:52]
+我确实看到了一些example,但这并不是说成为食物来源，对吧？好，继续往后读啊，说这个东西呢，他们现在呢呃这个在美国卖得非常的有限啊，因为它非常难以生产，为什么它难以生产呢？</p>
+<p>[22:37 - 22:52]</p>
+<p>[22:52 - 23:08]
+它的果实不但很小，而且当果实成熟的时候，会for all of the branches,就是rap这个叫成熟啊，就果实成熟之后呢，你想啊谁会去买那种从树枝上已经落下来的，果已经摔摔瘪了呢，对吧？</p>
+<p>[22:52 - 23:08]</p>
+<p>[23:08 - 23:30]
+所以肯定不会有人买啊，所以他们的这个小队呢就啊这个把这个植物可食用的部分，也就是说它的这个水果啊就把它的尺寸变大，而且让他们能够停留啊，不让他们掉下来。呃，但是这有一个风险啊，嗯这个呃有一个潜力，这是什么样的潜力呢？</p>
+<p>[23:08 - 23:30]</p>
+<p>[23:30 - 23:47]
+就是这个东西啊，有一个成为经济经济作物的这么个潜力。但他又说了说啊，这个可能需要以后，哎，这个很贵嗯，为什么呢？因为我们要买一些执照啊，关于这个事情的这个执照，这可能这个技术吧，它相应的需要这个执照啊。</p>
+<p>[23:30 - 23:47]</p>
+<p>[23:47 - 24:03]
+好，那到这一段我们读完了这一段其实就给我们讲的是一种植物。这种植物咱虽然不知道它是什么，但是总而言之它是有一些问题的。他这个问题就是它太小了，而且当它成熟之后，它就掉地掉地上了，那也不能吃了。</p>
+<p>[23:47 - 24:03]</p>
+<p>[24:03 - 24:19]
+那么学学者正在致力于解决这个问题，那这个作物会不会有一些经济效益以后会不会被人吃有可以的对吧？因为这句话，人家明明是说到了，他确实是有这些potential to be commercial car,对吧？</p>
+<p>[24:03 - 24:19]</p>
+<p>[24:19 - 24:42]
+但是是个单数吧，我们来看咱这个题，你这个题他说到是一系列的例子，有一系列的吗？我只看到了一个，所以没有一系列上来就阵亡了。不来自于这一段。既然不来自于这一段的话，那么肯定就来自于文章最后一段了，我们就本着找题的原则，咱们看一看文章最后一段是不是有提这件事情呢？</p>
+<p>[24:19 - 24:42]</p>
+<p>[24:42 - 24:58]
+跟我一块再读一下啊，说这一种方法呢刺激了一些食物。这个人说啊这个人在这个单位工作，但是呢呃也非常难以让新的食物就变得很流行。因为农民伯伯和消费者也许他们并不会接受的。</p>
+<p>[24:42 - 24:58]</p>
+<p>[24:58 - 25:12]
+然后接着这三个组啊已经把他们的眼睛放在了什么呢？放在了一些植物上，这些植物啊可能会被捕获，进而成为一种主流。比如说像这个东西啦，这个东西啦，这个东西了诶，这是什么意思啊？</p>
+<p>[24:58 - 25:12]</p>
+<p>[25:12 - 25:30]
+这个作物这是不是一系列的作物捕获成为主流，是什么意思啊？让它被培养成为主流是啥意思？就是成为我们的经济作物吧，那经济作物又是什么？也就是我们的食物来源吧，这里边我为什么敢这么自信大胆的去选择？</p>
+<p>[25:12 - 25:30]</p>
+<p>[25:30 - 25:46]
+因为这里边不止一个植物被提到是仨，这仨是不是符合number of k诶，刚才是哪一段来着？没看标号啊一段。所以e段的这一句话我们就找到了对应最后一个信息的出处，它来自于e段。</p>
+<p>[25:30 - 25:46]</p>
+<p>[25:46 - 26:05]
+ Ok好，所以到这儿我们这个题目就相当于给大家演示完毕了。在演示的过程当中，我也没用到什么特别好的好办法。所谓的好办法就是那些所谓的什么技巧啦。这种嗯在这个题者不奏效，你真的要非常笨拙地去把文章读懂。</p>
+<p>[25:46 - 26:05]</p>
+<p>[26:05 - 26:19]
+但是在读文章的时候，那就看你聪明还是不聪明了。文章也不是说每个字每个字眼都需要抠。那对于这个文章大面能看懂，其实你能找到对应答案的位置，只不过你需要再多做一个步骤。</p>
+<p>[26:05 - 26:19]</p>
+<p>[26:19 - 26:36]
+反问一下你自己这个一系列的example到底是什么呀？嗯这个严重的感染到底是什么呀？这个人的反应对于味道的个人的反应到底是什么呀？所以需要有自问自答这样的一个检核的步骤，有了这个检核的步骤。</p>
+<p>[26:19 - 26:36]</p>
+<p>[26:36 - 26:48]
+我相信这种题目大概是凭借着你们的耐心，应该是可以保证正确率的啊。 Ok好了，那今天给大家讲解的呢，就是段落信息匹配题，希望对大家有帮助。See you next time bye.</p>
+<p>[26:36 - 26:48]</p>
+  </main>
+  <aside class="col-right">
+    <h4>本页章节</h4><ul><li><a href="#09">09</a></li></ul>
+  </aside>
+</div>
+<script>
+(function(){
+  var input = document.getElementById('search-input');
+  var panel = document.getElementById('search-panel');
+  if (!input || !panel) return;
+  var main = document.querySelector('.col-main');
+  var leftLinks = Array.prototype.slice.call(document.querySelectorAll('.col-left ul li a'));
+  var rightLinks = Array.prototype.slice.call(document.querySelectorAll('.col-right ul li a'));
+
+  function escHtml(s){
+    return s.replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+  function escapeRegex(s){
+    return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+  function clearHighlights(){
+    if (!main) return;
+    var marks = main.querySelectorAll('mark.search-hl');
+    for (var i = 0; i < marks.length; i++) {
+      var m = marks[i];
+      var text = document.createTextNode(m.textContent);
+      m.parentNode.replaceChild(text, m);
+    }
+    main.normalize();
+  }
+  function highlightInMain(kw){
+    if (!main) return;
+    clearHighlights();
+    if (!kw) return;
+    var re = new RegExp(escapeRegex(kw), 'gi');
+    var walker = document.createTreeWalker(main, NodeFilter.SHOW_TEXT, {
+      acceptNode: function(n){
+        if (!n.nodeValue || !n.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        var p = n.parentElement;
+        if (!p) return NodeFilter.FILTER_REJECT;
+        var tag = p.tagName;
+        if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'CODE' || tag === 'PRE') return NodeFilter.FILTER_REJECT;
+        if (p.closest && p.closest('mark.search-hl')) return NodeFilter.FILTER_REJECT;
+        return n.nodeValue.toLowerCase().indexOf(kw.toLowerCase()) >= 0 ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+      }
+    });
+    var nodes = [];
+    var n;
+    while ((n = walker.nextNode())) nodes.push(n);
+    for (var i = 0; i < nodes.length; i++) {
+      var node = nodes[i];
+      var src = node.nodeValue;
+      var html = '';
+      var last = 0;
+      var match;
+      re.lastIndex = 0;
+      while ((match = re.exec(src)) !== null) {
+        html += escHtml(src.slice(last, match.index));
+        html += '<mark class="search-hl">' + escHtml(match[0]) + '</mark>';
+        last = match.index + match[0].length;
+        if (match[0].length === 0) re.lastIndex++;
+      }
+      html += escHtml(src.slice(last));
+      var tmp = document.createElement('span');
+      tmp.innerHTML = html;
+      var parent = node.parentNode;
+      while (tmp.firstChild) parent.insertBefore(tmp.firstChild, node);
+      parent.removeChild(node);
+    }
+  }
+  function search(q){
+    q = (q || '').trim();
+    panel.innerHTML = '';
+    if (!q) {
+      panel.hidden = true;
+      leftLinks.forEach(function(a){ a.parentElement.style.display = ''; });
+      rightLinks.forEach(function(a){ a.parentElement.style.display = ''; });
+      clearHighlights();
+      return;
+    }
+    var qLower = q.toLowerCase();
+    var courseHits = leftLinks.filter(function(a){
+      return a.textContent.toLowerCase().indexOf(qLower) >= 0;
+    });
+    leftLinks.forEach(function(a){
+      a.parentElement.style.display = courseHits.indexOf(a) >= 0 ? '' : 'none';
+    });
+    var sectionHits = rightLinks.filter(function(a){
+      return a.textContent.toLowerCase().indexOf(qLower) >= 0;
+    });
+    rightLinks.forEach(function(a){
+      a.parentElement.style.display = sectionHits.indexOf(a) >= 0 ? '' : 'none';
+    });
+    var parts = [];
+    if (courseHits.length) {
+      parts.push('<div class="sp-group">课程（' + courseHits.length + '）</div>');
+      parts.push('<ul>' + courseHits.map(function(a){
+        return '<li><a href="' + a.getAttribute('href') + '">' + escHtml(a.textContent) + '</a></li>';
+      }).join('') + '</ul>');
+    }
+    if (sectionHits.length) {
+      parts.push('<div class="sp-group">本页小节（' + sectionHits.length + '）</div>');
+      parts.push('<ul>' + sectionHits.map(function(a){
+        return '<li><a href="' + a.getAttribute('href') + '">' + escHtml(a.textContent) + '</a></li>';
+      }).join('') + '</ul>');
+    }
+    if (!parts.length) parts.push('<div class="sp-empty">无匹配结果</div>');
+    panel.innerHTML = parts.join('');
+    panel.hidden = false;
+    highlightInMain(q);
+  }
+  var timer = null;
+  input.addEventListener('input', function(e){
+    clearTimeout(timer);
+    timer = setTimeout(function(){ search(e.target.value); }, 80);
+  });
+  input.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') { input.value = ''; search(''); input.blur(); panel.hidden = true; }
+  });
+  document.addEventListener('click', function(e){
+    if (panel.contains(e.target) || e.target === input) return;
+    panel.hidden = true;
+  });
+  document.addEventListener('keydown', function(e){
+    if ((e.ctrlKey || e.metaKey) && (e.key === 'k' || e.key === 'K')) {
+      e.preventDefault();
+      input.focus();
+      input.select();
+    }
+  });
+  panel.addEventListener('click', function(e){
+    var a = e.target.closest('a');
+    if (a) panel.hidden = true;
+  });
+})();
+</script>
+</body>
+</html>

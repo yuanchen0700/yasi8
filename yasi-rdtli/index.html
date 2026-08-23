@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>雅思学习中心 · 总导航</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; color: #1f2328; background: #f6f8fa; }
+  a { color: #2c5cdc; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .topbar { position: fixed; top: 0; left: 0; right: 0; height: 56px; display: flex; align-items: center; padding: 0 24px; border-bottom: 1px solid #e5e7eb; background: #fff; z-index: 10; }
+  .logo { font-weight: 800; font-size: 20px; letter-spacing: -0.5px; color: #111; }
+  .logo span { color: #6b7280; font-weight: 500; }
+
+  .layout { padding: 56px 0 80px; min-height: 100vh; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  .hero { padding: 40px 0 24px; }
+  .hero h1 { font-size: 30px; margin: 0 0 8px; letter-spacing: -0.5px; }
+  .hero p { margin: 0; color: #6b7280; font-size: 14px; line-height: 1.7; }
+  .hero .badge { display: inline-block; margin-right: 8px; padding: 3px 10px; border-radius: 999px; background: #eef2ff; color: #4f46e5; font-size: 12px; font-weight: 600; }
+
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+
+  .card { background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 20px 22px; box-shadow: 0 1px 2px rgba(0,0,0,0.03); }
+  .card-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 4px; }
+  .card-title { font-size: 17px; font-weight: 700; color: #111; }
+  .card-title small { display: block; font-size: 12px; font-weight: 500; color: #6b7280; margin-top: 2px; }
+  .card-desc { font-size: 12.5px; color: #6b7280; line-height: 1.6; margin: 6px 0 12px; }
+  .card .enter { flex-shrink: 0; font-size: 12.5px; font-weight: 600; color: #2c5cdc; border: 1px solid #d6e0f8; background: #f5f8ff; border-radius: 6px; padding: 5px 12px; white-space: nowrap; }
+  .card .enter:hover { background: #eaf1ff; text-decoration: none; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chips a { font-size: 12.5px; color: #374151; background: #f6f8fa; border: 1px solid #e9ecef; border-radius: 6px; padding: 4px 10px; line-height: 1.5; }
+  .chips a:hover { background: #eef2ff; border-color: #c7d6f5; color: #1d4ed8; text-decoration: none; }
+  .chips a.audio { color: #065f46; background: #ecfdf5; border-color: #a7f3d0; }
+  .chips a.audio:hover { background: #d1fae5; color: #047857; }
+
+  .foot { margin-top: 32px; text-align: center; font-size: 12px; color: #9ca3af; }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="logo">雅思学习中心<span> · 总导航</span></div>
+</header>
+<div class="layout">
+  <div class="wrap">
+    <div class="hero">
+      <h1>雅思学习中心</h1>
+      <p><span class="badge">阅读 13 讲</span><span class="badge">听力 8 讲</span><span class="badge">精讲 + 问答双版本</span><span class="badge">听力音频练习</span></p>
+      <p>本站整合雅思阅读、听力全部课程精讲与问答精要，以及听力音频练习。点击下方入口进入各系列。</p>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="card-head">
+          <div class="card-title">雅思听力 · 音频练习<small>口语/听力句子 · 多口音跟读</small></div>
+          <a class="enter" href="tli/index.html">进入练习 ↗</a>
+        </div>
+        <p class="card-desc">雅思听力/口语句子音频，不同人物、不同口音，适合精听与跟读。</p>
+        <div class="chips">
+          <a class="audio" href="tli/player.html">♪ 歌词播放器（网易云风）</a>
+          <a class="audio" href="tli/index.html">🎧 听力播放页</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-title">雅思听力 · 课程中心<small>概述 + 精讲 8 讲 + 问答 8 讲</small></div>
+          <a class="enter" href="HTML/tl-index.html">进入系列 ↗</a>
+        </div>
+        <p class="card-desc">考试概述、评分表、题型方法论，覆盖 Form、地图、表格、单选、多选、填空、配对全题型。</p>
+        <div class="chips">
+          <a href="HTML/tl-00.html">00 考试概述</a>
+          <a href="HTML/tl-01.html">01 导学课</a>
+          <a href="HTML/tl-02.html">02 Form 表</a>
+          <a href="HTML/tl-03.html">03 地图题</a>
+          <a href="HTML/tl-04.html">04 表格题</a>
+          <a href="HTML/tl-05.html">05 单选</a>
+          <a href="HTML/tl-06.html">06 多选</a>
+          <a href="HTML/tl-07.html">07 填空</a>
+          <a href="HTML/tl-08.html">08 方法论</a>
+          <a href="HTML/qa-tl-index.html">问答精要</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-title">雅思阅读 · 精讲版<small>完整逐字稿 · 三栏排版 · 14 讲</small></div>
+          <a class="enter" href="HTML/lesson-01.html">进入系列 ↗</a>
+        </div>
+        <p class="card-desc">13 讲核心方法逐字稿，涵盖填空、判断、配对、选择、平行阅读法等全部题型。</p>
+        <div class="chips">
+          <a href="HTML/lesson-01.html">01 导学</a>
+          <a href="HTML/lesson-02.html">02 填空一</a>
+          <a href="HTML/lesson-03.html">03 判断</a>
+          <a href="HTML/lesson-04.html">04 填空二</a>
+          <a href="HTML/lesson-07.html">07 配对一</a>
+          <a href="HTML/lesson-08.html">08 配对二</a>
+          <a href="HTML/lesson-13.html">13 核心技巧</a>
+          <a href="HTML/lesson-14.html">14 进阶</a>
+          <a href="HTML/qa-index.html">问答精要</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="card-title">雅思阅读 · 问答精要版<small>Q&amp;A 速查 · 14 讲</small></div>
+          <a class="enter" href="HTML/qa-index.html">进入系列 ↗</a>
+        </div>
+        <p class="card-desc">逐讲问答化速查，把每讲的结论、方法、真题答案浓缩成可快速翻阅的要点。</p>
+        <div class="chips">
+          <a href="HTML/qa-01.html">01 导学</a>
+          <a href="HTML/qa-02.html">02 填空一</a>
+          <a href="HTML/qa-03.html">03 判断</a>
+          <a href="HTML/qa-04.html">04 填空二</a>
+          <a href="HTML/qa-07.html">07 配对一</a>
+          <a href="HTML/qa-10.html">10 判断速查</a>
+          <a href="HTML/qa-11.html">11 多选</a>
+          <a href="HTML/qa-12.html">12 单选</a>
+          <a href="HTML/qa-13.html">13 平行阅读</a>
+          <a href="HTML/qa-14.html">14 进阶</a>
+        </div>
+      </div>
+    </div>
+
+    <p class="foot">雅思学习中心 · 阅读/听力课程与音频练习</p>
+  </div>
+</div>
+</body>
+</html>

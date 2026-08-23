@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第05讲 听力单选题 · 雅思听力8讲</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; height: 100%; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; color: #1f2328; background: #fff; }
+  a { color: #2c5cdc; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .topbar { position: fixed; top: 0; left: 0; right: 0; height: 56px; display: flex; align-items: center; padding: 0 24px; border-bottom: 1px solid #e5e7eb; background: #fff; z-index: 10; }
+  .logo { font-weight: 800; font-size: 20px; letter-spacing: -0.5px; color: #111; }
+  .logo span { color: #6b7280; font-weight: 500; }
+  .topbar-right { margin-left: auto; display: flex; gap: 16px; align-items: center; position: relative; }
+  .topbar-right input { border: 1px solid #d1d5db; border-radius: 6px; padding: 6px 10px; font-size: 13px; width: 240px; background: #f9fafb; }
+  .topbar-right input:focus { outline: none; border-color: #2c5cdc; background: #fff; box-shadow: 0 0 0 3px rgba(44,92,220,0.12); }
+  #search-panel { position: absolute; top: 44px; right: 0; width: 360px; max-height: 70vh; overflow-y: auto; background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); padding: 8px 0; z-index: 100; font-size: 13px; }
+  #search-panel .sp-group { padding: 8px 14px 4px; font-size: 11px; color: #6b7280; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px; }
+  #search-panel ul { list-style: none; padding: 0; margin: 0; }
+  #search-panel li a { display: block; padding: 6px 14px; color: #374151; line-height: 1.4; font-size: 12.5px; }
+  #search-panel li a:hover { background: #f3f4f6; color: #1d4ed8; text-decoration: none; }
+  #search-panel .sp-empty { padding: 24px; text-align: center; color: #9ca3af; font-size: 12px; }
+  mark.search-hl { background: #fff3a3; color: inherit; padding: 0 2px; border-radius: 2px; }
+
+  .layout { display: flex; padding-top: 56px; min-height: 100vh; }
+  .col-left { width: 240px; flex-shrink: 0; border-right: 1px solid #e5e7eb; padding: 20px 14px 40px; overflow-y: auto; height: calc(100vh - 56px); position: sticky; top: 56px; }
+  .col-left ul { list-style: none; padding: 0; margin: 0 0 16px; }
+  .col-left li { margin: 2px 0; }
+  .col-left a { display: block; padding: 6px 10px; border-radius: 6px; font-size: 13.5px; color: #374151; line-height: 1.4; }
+  .col-left a:hover { background: #f3f4f6; text-decoration: none; }
+  .col-left a.active { background: #eff6ff; color: #1d4ed8; font-weight: 600; }
+  .col-left h3 { font-size: 11px; text-transform: uppercase; color: #6b7280; margin: 18px 8px 8px; letter-spacing: 0.5px; font-weight: 600; }
+  .col-left .sub { padding-left: 24px !important; font-size: 12.5px; color: #4b5563; }
+
+  .col-main { flex: 1; min-width: 0; padding: 40px 56px 80px; max-width: 820px; margin: 0 auto; }
+  .col-main h1 { font-size: 32px; margin-top: 0; border-bottom: 1px solid #e5e7eb; padding-bottom: 12px; line-height: 1.3; }
+  .col-main h2 { font-size: 23px; margin-top: 40px; padding-top: 16px; border-top: 1px solid #f3f4f6; }
+  .col-main h3 { font-size: 18px; margin-top: 28px; color: #1f2937; }
+  .col-main p { line-height: 1.75; color: #374151; }
+  .col-main blockquote { border-left: 3px solid #dbeafe; background: #f8fafc; margin: 16px 0; padding: 10px 16px; color: #4b5563; border-radius: 0 6px 6px 0; }
+  .col-main blockquote p { margin: 0; }
+  .col-main table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 14px; }
+  .col-main th, .col-main td { border: 1px solid #e5e7eb; padding: 8px 12px; text-align: left; }
+  .col-main th { background: #f9fafb; font-weight: 600; }
+  .col-main tr:nth-child(even) td { background: #fcfcfd; }
+
+  .col-right { width: 220px; flex-shrink: 0; border-left: 1px solid #e5e7eb; padding: 24px 18px; font-size: 13px; height: calc(100vh - 56px); position: sticky; top: 56px; overflow-y: auto; }
+  .col-right h4 { font-size: 11px; text-transform: uppercase; color: #6b7280; margin: 0 0 12px; letter-spacing: 0.5px; font-weight: 600; }
+  .col-right ul { list-style: none; padding: 0; margin: 0; }
+  .col-right li { margin: 6px 0; }
+  .col-right a { color: #4b5563; line-height: 1.45; font-size: 12.5px; }
+  .col-right a:hover { color: #1d4ed8; }
+  .col-right .empty { color: #9ca3af; font-size: 12px; padding: 6px 0; }
+
+  @media (max-width: 1100px) { .col-right { display: none; } }
+  @media (max-width: 800px) { .col-left { display: none; } .col-main { padding: 24px; } }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="logo">雅思听力<span> · 问答精要</span></div>
+  <div class="topbar-right">
+    <a href="index.html" style="font-size:13px;color:#2c5cdc;font-weight:600;white-space:nowrap;">🏠 总目录</a>
+    <a href="qa-tl-index.html" style="font-size:13px;color:#6b7280;">目录</a>
+    <input id="search-input" placeholder="搜索 Ctrl K" autocomplete="off">
+    <div id="search-panel" hidden></div>
+  </div>
+</header>
+<div class="layout">
+  <aside class="col-left">
+    <h3>问答文档</h3>
+    <ul>
+      <li><a href="qa-tl-01.html">第01讲 导学课</a></li>
+<li><a href="qa-tl-02.html">第02讲 Form Completion 个人信息表</a></li>
+<li><a href="qa-tl-03.html">第03讲 地图题</a></li>
+<li><a href="qa-tl-04.html">第04讲 表格题 Table Completion</a></li>
+<li><a href="qa-tl-05.html" class="active">第05讲 听力单选题</a></li>
+<li><a href="qa-tl-06.html">第06讲 多选题</a></li>
+<li><a href="qa-tl-07.html">第07讲 填空题</a></li>
+<li><a href="qa-tl-08.html">第08讲 配对题</a></li>
+    </ul>
+    <h3>本页问题</h3><ul><li><a class="sub" href="#干扰项套路">干扰项套路</a></li></ul>
+  </aside>
+  <main class="col-main">
+    <h1>雅思听力全解8讲 · 第05讲 听力单选题（问答精要）</h1>
+<blockquote>
+<p>本讲定位：单选是<strong>拉开分数档次</strong>的题型——做得好冲 7.5/8，做不好掉到 6 以下。它最难的不是听，而是<strong>读题</strong>：官方每题只给 6 秒读题时间。本讲解决"读不快、选不对"两个核心问题。</p>
+</blockquote>
+<hr>
+<h2><a id="q1-为什么说单选题是卡分题型"></a>Q1. 为什么说单选题是"卡分"题型？</h2>
+<ul>
+<li>雅思听力 <strong>6 分 = 做对 23-26 题</strong>，27-28 题才 6.5——<strong>6 分区间特别宽</strong>，大量考生卡在 5.5-6 上不去下不来。</li>
+<li>单选题每次考 <strong>6-10 题</strong>：蒙对率看似 33%（高于四六级 25%），但<strong>错 7 道就基本告别 7 分</strong>——靠蒙必死。</li>
+</ul>
+<hr>
+<h2><a id="q2-单选题的读题步骤是什么三步走"></a>Q2. 单选题的读题步骤是什么？（三步走）</h2>
+<ol>
+<li><strong>看标题</strong>：部分选择题有主题标题，先了解场景。</li>
+<li><strong>区分单选/多选</strong>：<strong>3 个选项 = 单选（3 选 1）</strong>，5 个选项 = 多选（5 选 2）——只靠数选项就能分清。</li>
+<li><strong>先浏览全部题干</strong>，再回头看选项（读题两步走，见 Q5）。</li>
+</ol>
+<hr>
+<h2><a id="q3-题干里要划出什么限定词和定位词各干嘛"></a>Q3. 题干里要划出什么？限定词和定位词各干嘛？</h2>
+<p><strong>定位词</strong> = 句子主干（主谓宾/主系表），功能是<strong>提示"题来了"</strong>——听到定位词就进入听题状态。</p>
+<p><strong>限定词</strong> = 帮你<strong>筛选正确选项</strong>的依据，共 4 类：</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>标志词</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>时间限定</td>
+<td>now / future / 时态（has been done）</td>
+<td></td>
+</tr>
+<tr>
+<td>频率频度限定</td>
+<td>most frequent / only / limited</td>
+<td>approximately（大约）</td>
+</tr>
+<tr>
+<td>地点限定</td>
+<td>具体地点名词</td>
+<td>in the restaurant</td>
+</tr>
+<tr>
+<td>名词限定</td>
+<td>形容词+名词（覆盖最广）</td>
+<td>reduced price（降价）</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2><a id="q4-选项怎么处理短选项有陷阱长选项找不同"></a>Q4. 选项怎么处理？"短选项有陷阱，长选项找不同"</h2>
+<p><strong>短选项有陷阱：</strong>
+- 短选项（如 627/628/629 三个数字）<strong>三个选项在原文里都会提到</strong>——网传"听到哪个选哪个"纯属胡扯。
+- 必须靠<strong>题干限定词 + 同义替换</strong>筛选：approximately ≈ <strong>about</strong>，能对上同义替换的才是正确答案。</p>
+<p><strong>长选项找不同：</strong>
+- 长选项不用通读记忆，<strong>只抓每个选项的核心差异点</strong>（如 government / family / former employer——三个资金来源主体）。
+- 听题时直接匹配核心主体即可。</p>
+<blockquote>
+<p>雅思听力和四六级最大的区别：<strong>正确选项通常都有同义替换</strong>，听到原词的往往是干扰项。</p>
+</blockquote>
+<hr>
+<h2><a id="q5-读题时间不够怎么办读题两步走"></a>Q5. 读题时间不够怎么办？（读题两步走）</h2>
+<ol>
+<li><strong>先读完所有题干</strong>，划出限定词和定位词——题干都没读，放听力时跟不上节奏。</li>
+<li><strong>再回头看选项</strong>——没读完选项不要紧：<strong>定位成功之后再去读选项也来得及</strong>（不是 impossible）。</li>
+</ol>
+<hr>
+<h2><a id="q6-剑桥-11-section-1-真题怎么拆5-题实战"></a>Q6. 剑桥 11 Section 1 真题怎么拆？（5 题实战）</h2>
+<table>
+<thead>
+<tr>
+<th>题</th>
+<th>限定词</th>
+<th>原文关键</th>
+<th>答案</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>approximately（约）</td>
+<td>晚 7 点离港，航行 12h45m，<strong>about</strong> 8am 到；9 点是火车时间</td>
+<td>早上 8 点</td>
+</tr>
+<tr>
+<td>2</td>
+<td>in the restaurant</td>
+<td>餐厅有儿童区：<strong>kids food</strong> + play area；"早点来占位"≠更早用餐，"party"没提</td>
+<td>children's menu</td>
+</tr>
+<tr>
+<td>3</td>
+<td>reduced price</td>
+<td>船上买火车票 <strong>20% off</strong>；纪念品 4.5 欧、升舱都没降价</td>
+<td>火车票打折</td>
+</tr>
+<tr>
+<td>4</td>
+<td>in the lounge</td>
+<td>有 <strong>wireless</strong>，但<strong>要自备 laptop</strong>；lounge 和旁边咖啡吧可看 <strong>TV</strong>；没提咖啡机</td>
+<td>可看电视节目</td>
+</tr>
+<tr>
+<td>5</td>
+<td>special event</td>
+<td>补全句子"I like sea and ferries because…"比赛，赢瑞士度假；<strong>fashion show 是干扰</strong></td>
+<td>写作比赛</td>
+</tr>
+</tbody>
+</table>
+<h3><a id="干扰项套路"></a>干扰项套路</h3>
+<ul>
+<li>"提前到场占位置"被包装成"更早吃饭时间"——<strong>相关 ≠ 正确</strong>。</li>
+<li>20% off 是<strong>打八折</strong>（付 80%）；国外标 <strong>80% off 才是打两折</strong>——折扣表述和国内相反，别中招。</li>
+</ul>
+<hr>
+<h2><a id="q7-一句话总结本讲"></a>Q7. 一句话总结本讲</h2>
+<ul>
+<li>单选是分水岭题型，6-10 题/次，别蒙。</li>
+<li>读题：先题干（划限定+定位）后选项；限定词 4 类负责筛选，定位词负责报时。</li>
+<li>选项：短选项全被提及是陷阱，靠同义替换选；长选项只抓核心差异点。</li>
+</ul>
+  </main>
+  <aside class="col-right">
+    <h4>本页章节</h4><ul><li><a href="#q1-为什么说单选题是卡分题型">Q1. 为什么说单选题是&quot;卡分&quot;题型？</a></li><li><a href="#q2-单选题的读题步骤是什么三步走">Q2. 单选题的读题步骤是什么？（三步走）</a></li><li><a href="#q3-题干里要划出什么限定词和定位词各干嘛">Q3. 题干里要划出什么？限定词和定位词各干嘛？</a></li><li><a href="#q4-选项怎么处理短选项有陷阱长选项找不同">Q4. 选项怎么处理？&quot;短选项有陷阱，长选项找不同&quot;</a></li><li><a href="#q5-读题时间不够怎么办读题两步走">Q5. 读题时间不够怎么办？（读题两步走）</a></li><li><a href="#q6-剑桥-11-section-1-真题怎么拆5-题实战">Q6. 剑桥 11 Section 1 真题怎么拆？（5 题实战）</a></li><li><a href="#q7-一句话总结本讲">Q7. 一句话总结本讲</a></li></ul>
+  </aside>
+</div>
+<script>
+(function(){
+  var input = document.getElementById('search-input');
+  var panel = document.getElementById('search-panel');
+  if (!input || !panel) return;
+  var main = document.querySelector('.col-main');
+  var leftLinks = Array.prototype.slice.call(document.querySelectorAll('.col-left ul li a'));
+  var rightLinks = Array.prototype.slice.call(document.querySelectorAll('.col-right ul li a'));
+
+  function escHtml(s){
+    return s.replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+  function escapeRegex(s){
+    return s.replace(/[.*+?^${}()|[\]\\]/g, function(m){ return '\\' + m; });
+  }
+  function clearHighlights(){
+    if (!main) return;
+    var marks = main.querySelectorAll('mark.search-hl');
+    for (var i = 0; i < marks.length; i++) {
+      var m = marks[i];
+      var text = document.createTextNode(m.textContent);
+      m.parentNode.replaceChild(text, m);
+    }
+    main.normalize();
+  }
+  function highlightInMain(kw){
+    if (!main) return;
+    clearHighlights();
+    if (!kw) return;
+    var re = new RegExp(escapeRegex(kw), 'gi');
+    var walker = document.createTreeWalker(main, NodeFilter.SHOW_TEXT, {
+      acceptNode: function(n){
+        if (!n.nodeValue || !n.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        var p = n.parentElement;
+        if (!p) return NodeFilter.FILTER_REJECT;
+        var tag = p.tagName;
+        if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'CODE' || tag === 'PRE') return NodeFilter.FILTER_REJECT;
+        if (p.closest && p.closest('mark.search-hl')) return NodeFilter.FILTER_REJECT;
+        return n.nodeValue.toLowerCase().indexOf(kw.toLowerCase()) >= 0 ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+      }
+    });
+    var nodes = [];
+    var n;
+    while ((n = walker.nextNode())) nodes.push(n);
+    for (var i = 0; i < nodes.length; i++) {
+      var node = nodes[i];
+      var src = node.nodeValue;
+      var html = '';
+      var last = 0;
+      var match;
+      re.lastIndex = 0;
+      while ((match = re.exec(src)) !== null) {
+        html += escHtml(src.slice(last, match.index));
+        html += '<mark class="search-hl">' + escHtml(match[0]) + '</mark>';
+        last = match.index + match[0].length;
+        if (match[0].length === 0) re.lastIndex++;
+      }
+      html += escHtml(src.slice(last));
+      var tmp = document.createElement('span');
+      tmp.innerHTML = html;
+      var parent = node.parentNode;
+      while (tmp.firstChild) parent.insertBefore(tmp.firstChild, node);
+      parent.removeChild(node);
+    }
+  }
+  function search(q){
+    q = (q || '').trim();
+    panel.innerHTML = '';
+    if (!q) {
+      panel.hidden = true;
+      leftLinks.forEach(function(a){ a.parentElement.style.display = ''; });
+      rightLinks.forEach(function(a){ a.parentElement.style.display = ''; });
+      clearHighlights();
+      return;
+    }
+    var qLower = q.toLowerCase();
+    var courseHits = leftLinks.filter(function(a){
+      return a.textContent.toLowerCase().indexOf(qLower) >= 0;
+    });
+    leftLinks.forEach(function(a){
+      a.parentElement.style.display = courseHits.indexOf(a) >= 0 ? '' : 'none';
+    });
+    var sectionHits = rightLinks.filter(function(a){
+      return a.textContent.toLowerCase().indexOf(qLower) >= 0;
+    });
+    rightLinks.forEach(function(a){
+      a.parentElement.style.display = sectionHits.indexOf(a) >= 0 ? '' : 'none';
+    });
+    var parts = [];
+    if (courseHits.length) {
+      parts.push('<div class="sp-group">课程（' + courseHits.length + '）</div>');
+      parts.push('<ul>' + courseHits.map(function(a){
+        return '<li><a href="' + a.getAttribute('href') + '">' + escHtml(a.textContent) + '</a></li>';
+      }).join('') + '</ul>');
+    }
+    if (sectionHits.length) {
+      parts.push('<div class="sp-group">本页小节（' + sectionHits.length + '）</div>');
+      parts.push('<ul>' + sectionHits.map(function(a){
+        return '<li><a href="' + a.getAttribute('href') + '">' + escHtml(a.textContent) + '</a></li>';
+      }).join('') + '</ul>');
+    }
+    if (!parts.length) parts.push('<div class="sp-empty">无匹配结果</div>');
+    panel.innerHTML = parts.join('');
+    panel.hidden = false;
+    highlightInMain(q);
+  }
+  var timer = null;
+  input.addEventListener('input', function(e){
+    clearTimeout(timer);
+    timer = setTimeout(function(){ search(input.value); }, 80);
+  });
+  input.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') { input.value = ''; search(''); input.blur(); panel.hidden = true; }
+  });
+  document.addEventListener('click', function(e){
+    if (panel.contains(e.target) || e.target === input) return;
+    panel.hidden = true;
+  });
+  document.addEventListener('keydown', function(e){
+    if ((e.ctrlKey || e.metaKey) && (e.key === 'k' || e.key === 'K')) {
+      e.preventDefault();
+      input.focus();
+      input.select();
+    }
+  });
+  panel.addEventListener('click', function(e){
+    var a = e.target.closest('a');
+    if (a) panel.hidden = true;
+  });
+})();
+</script>
+</body>
+</html>

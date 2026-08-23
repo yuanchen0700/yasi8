@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第04讲 填空题专题二：句子填空 + 简答题 · 雅思阅读13讲</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; height: 100%; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; color: #1f2328; background: #fff; }
+  a { color: #2c5cdc; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .topbar { position: fixed; top: 0; left: 0; right: 0; height: 56px; display: flex; align-items: center; padding: 0 24px; border-bottom: 1px solid #e5e7eb; background: #fff; z-index: 10; }
+  .logo { font-weight: 800; font-size: 20px; letter-spacing: -0.5px; color: #111; }
+  .logo span { color: #6b7280; font-weight: 500; }
+  .topbar-right { margin-left: auto; display: flex; gap: 16px; align-items: center; position: relative; }
+  .topbar-right input { border: 1px solid #d1d5db; border-radius: 6px; padding: 6px 10px; font-size: 13px; width: 240px; background: #f9fafb; }
+  .topbar-right input:focus { outline: none; border-color: #2c5cdc; background: #fff; box-shadow: 0 0 0 3px rgba(44,92,220,0.12); }
+  #search-panel { position: absolute; top: 44px; right: 0; width: 360px; max-height: 70vh; overflow-y: auto; background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); padding: 8px 0; z-index: 100; font-size: 13px; }
+  #search-panel .sp-group { padding: 8px 14px 4px; font-size: 11px; color: #6b7280; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px; }
+  #search-panel ul { list-style: none; padding: 0; margin: 0; }
+  #search-panel li a { display: block; padding: 6px 14px; color: #374151; line-height: 1.4; font-size: 12.5px; }
+  #search-panel li a:hover { background: #f3f4f6; color: #1d4ed8; text-decoration: none; }
+  #search-panel .sp-empty { padding: 24px; text-align: center; color: #9ca3af; font-size: 12px; }
+  mark.search-hl { background: #fff3a3; color: inherit; padding: 0 2px; border-radius: 2px; }
+
+  .layout { display: flex; padding-top: 56px; min-height: 100vh; }
+  .col-left { width: 240px; flex-shrink: 0; border-right: 1px solid #e5e7eb; padding: 20px 14px 40px; overflow-y: auto; height: calc(100vh - 56px); position: sticky; top: 56px; }
+  .col-left ul { list-style: none; padding: 0; margin: 0 0 16px; }
+  .col-left li { margin: 2px 0; }
+  .col-left a { display: block; padding: 6px 10px; border-radius: 6px; font-size: 13.5px; color: #374151; line-height: 1.4; }
+  .col-left a:hover { background: #f3f4f6; text-decoration: none; }
+  .col-left a.active { background: #eff6ff; color: #1d4ed8; font-weight: 600; }
+  .col-left h3 { font-size: 11px; text-transform: uppercase; color: #6b7280; margin: 18px 8px 8px; letter-spacing: 0.5px; font-weight: 600; }
+  .col-left .sub { padding-left: 24px !important; font-size: 12.5px; color: #4b5563; }
+
+  .col-main { flex: 1; min-width: 0; padding: 40px 56px 80px; max-width: 820px; margin: 0 auto; }
+  .col-main h1 { font-size: 32px; margin-top: 0; border-bottom: 1px solid #e5e7eb; padding-bottom: 12px; line-height: 1.3; }
+  .col-main h2 { font-size: 23px; margin-top: 40px; padding-top: 16px; border-top: 1px solid #f3f4f6; }
+  .col-main h3 { font-size: 18px; margin-top: 28px; color: #1f2937; }
+  .col-main p { line-height: 1.75; color: #374151; }
+  .col-main blockquote { border-left: 3px solid #dbeafe; background: #f8fafc; margin: 16px 0; padding: 10px 16px; color: #4b5563; border-radius: 0 6px 6px 0; }
+  .col-main blockquote p { margin: 0; }
+  .col-main table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 14px; }
+  .col-main th, .col-main td { border: 1px solid #e5e7eb; padding: 8px 12px; text-align: left; }
+  .col-main th { background: #f9fafb; font-weight: 600; }
+  .col-main tr:nth-child(even) td { background: #fcfcfd; }
+
+  .col-right { width: 220px; flex-shrink: 0; border-left: 1px solid #e5e7eb; padding: 24px 18px; font-size: 13px; height: calc(100vh - 56px); position: sticky; top: 56px; overflow-y: auto; }
+  .col-right h4 { font-size: 11px; text-transform: uppercase; color: #6b7280; margin: 0 0 12px; letter-spacing: 0.5px; font-weight: 600; }
+  .col-right ul { list-style: none; padding: 0; margin: 0; }
+  .col-right li { margin: 6px 0; }
+  .col-right a { color: #4b5563; line-height: 1.45; font-size: 12.5px; }
+  .col-right a:hover { color: #1d4ed8; }
+  .col-right .empty { color: #9ca3af; font-size: 12px; padding: 6px 0; }
+
+  @media (max-width: 1100px) { .col-right { display: none; } }
+  @media (max-width: 800px) { .col-left { display: none; } .col-main { padding: 24px; } }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="logo">雅思阅读<span> · 问答精要</span></div>
+  <div class="topbar-right">
+    <a href="index.html" style="font-size:13px;color:#2c5cdc;font-weight:600;white-space:nowrap;">🏠 总目录</a>
+    <a href="qa-index.html" style="font-size:13px;color:#6b7280;">目录</a>
+    <input id="search-input" placeholder="搜索 Ctrl K" autocomplete="off">
+    <div id="search-panel" hidden></div>
+  </div>
+</header>
+<div class="layout">
+  <aside class="col-left">
+    <h3>问答文档</h3>
+    <ul>
+      <li><a href="qa-01.html">第01讲 导学课</a></li>
+<li><a href="qa-02.html">第02讲 填空题专题一：表格填空 + 笔记填空</a></li>
+<li><a href="qa-03.html">第03讲 判断题专题：TFNG vs YNNG</a></li>
+<li><a href="qa-04.html" class="active">第04讲 填空题专题二：句子填空 + 简答题</a></li>
+<li><a href="qa-05.html">第05讲 填空题专题三：流程图填空 + 图形填空</a></li>
+<li><a href="qa-06.html">第06讲 填空题专题四：总结填空</a></li>
+<li><a href="qa-07.html">第07讲 配对题专题一：人物观点配对</a></li>
+<li><a href="qa-08.html">第08讲 配对题专题二：句子结尾配对</a></li>
+<li><a href="qa-09.html">第09讲 配对题专题三：信息匹配</a></li>
+<li><a href="qa-10.html">第10讲 判断题考点速查</a></li>
+<li><a href="qa-11.html">第11讲 选择题专题一：多选题</a></li>
+<li><a href="qa-12.html">第12讲 选择题专题二：单选题</a></li>
+<li><a href="qa-13.html">第13讲 平行阅读法</a></li>
+<li><a href="qa-14.html">第14讲 进阶阅读：To Catch a King</a></li>
+    </ul>
+    <h3>本页问题</h3><ul><li><a class="sub" href="#出题特点">出题特点</a></li><li><a class="sub" href="#做题难点">做题难点</a></li><li><a class="sub" href="#考点1并列信息">考点1：并列信息</a></li><li><a class="sub" href="#考点2句内逻辑">考点2：句内逻辑</a></li><li><a class="sub" href="#考点3题干限定">考点3：题干限定</a></li><li><a class="sub" href="#考点4长难句">考点4：长难句</a></li><li><a class="sub" href="#防坑出坑别被修饰成分蒙蔽双眼">防坑：出坑——别被修饰成分蒙蔽双眼</a></li><li><a class="sub" href="#第1题before-perkins-discovery-the-purple-colour-was-associated-with-which-group-in-society">第1题：`before Perkin&#x27;s discovery, the purple colour was associated with which group in society?`</a></li><li><a class="sub" href="#第2题what-potential-did-perkin-immediately-understand">第2题：`what potential did Perkin immediately understand?`</a></li><li><a class="sub" href="#第3题what-was-the-name-finally-used-to-refer-to-the-first-colour">第3题：`what was the name finally used to refer to the first colour?`</a></li><li><a class="sub" href="#第4题perkin-consulted-____-before-starting-his-dye-work">第4题：`Perkin consulted ____ before starting his dye work?`</a></li><li><a class="sub" href="#第5题in-which-country-did-perkins-dye-first-become-fashionable">第5题：`in which country did Perkin&#x27;s dye first become fashionable?`</a></li><li><a class="sub" href="#第6题which-disease-is-now-being-targeted-by-researchers-using-the-dye">第6题：`which disease is now being targeted by researchers using the dye?`</a></li><li><a class="sub" href="#实用技巧并列项特别多时">实用技巧：并列项特别多时</a></li><li><a class="sub" href="#飘着读示例perkin-文章前-14">飘着读示例（Perkin 文章前 1/4）</a></li></ul>
+  </aside>
+  <main class="col-main">
+    <h1>雅思阅读全解13讲 · 第04讲 填空题专题二：句子填空 + 简答题（问答精要）</h1>
+<blockquote>
+<p>本讲定位：句子完成题和简答题本质是同一题型（可等价替换），属于"夹缝中求生存"的塞缝题型，三道难度递进。核心收获除了考点，还有"飘着读文章"的能力。</p>
+</blockquote>
+<hr>
+<h2><a id="q1-句子填空和简答题为什么合在一起讲"></a>Q1. 句子填空和简答题为什么合在一起讲？</h2>
+<ul>
+<li>两者<strong>完全可以等价替换</strong>：问"what's your name"（简答）和填"my name is ____"（句子填空）考察宗旨一样，只是形式不同。</li>
+<li>只重点学一套方法，触类旁通即可。</li>
+</ul>
+<hr>
+<h2><a id="q2-这种题型有什么特点"></a>Q2. 这种题型有什么特点？</h2>
+<h3><a id="出题特点"></a>出题特点</h3>
+<ul>
+<li><strong>出现在 P1、P2、P3 都可以</strong>（不像笔记/表格填空只出现在第一篇文章），是"塞缝"题型：别的题目不够数就拿它凑。</li>
+<li>一组题量 3-8 道不等，可难可易。</li>
+</ul>
+<h3><a id="做题难点"></a>做题难点</h3>
+<ul>
+<li><strong>题目分散，内部无逻辑</strong>：上一题做完，下一题不知道来自哪，<strong>每道题都需要重新定位</strong>。</li>
+<li>定位花的时间比笔记/表格填空长。</li>
+</ul>
+<hr>
+<h2><a id="q3-有哪些考点四大考点-一个防坑"></a>Q3. 有哪些考点？（四大考点 + 一个防坑）</h2>
+<h3><a id="考点1并列信息"></a>考点1：并列信息</h3>
+<ul>
+<li>与之前学的一致：<code>A and ____</code> → 回原文找 A 和并列词（as well as 等），后面就是答案。</li>
+</ul>
+<h3><a id="考点2句内逻辑"></a>考点2：句内逻辑</h3>
+<ul>
+<li>句子内部有转折等逻辑（如 <code>but</code> 前正后反）。</li>
+<li>逻辑连接词在原文<strong>不会消失，但会替换</strong>成另一个逻辑词，甚至整个句式结构变化。</li>
+<li>抓住逻辑大概率就离答案不远了。</li>
+</ul>
+<h3><a id="考点3题干限定"></a>考点3：题干限定</h3>
+<ul>
+<li>题干里的限定词必须把住，防止被干扰信息带偏。</li>
+<li>例：<code>immediately</code>（立即）——文章可能说"立即带来好处 X，<strong>长远来看</strong>（in the long run）好处 Y"，要的是 X 不是 Y。</li>
+</ul>
+<h3><a id="考点4长难句"></a>考点4：长难句</h3>
+<ul>
+<li>技巧是<strong>"先脱衣服"</strong>：
+  1. 去掉所有修饰成分（定语/定语从句、状语/状语从句、插入语）；
+  2. 先找到句子<strong>主干（主谓宾）</strong>；
+  3. 再一件一件把修饰"穿"回去单独理解。</li>
+<li>找主谓宾靠的是<strong>阅读量</strong>，不是语法知识——语法好但从不阅读，照样找不到主干。</li>
+</ul>
+<h3><a id="防坑出坑别被修饰成分蒙蔽双眼"></a>防坑：出坑——别被修饰成分蒙蔽双眼</h3>
+<ul>
+<li>定位成功后，明明该填与前者名词并列的答案词，却因被修饰成分干扰填了修饰性词汇。</li>
+<li>做法：<strong>先括号括起修饰部分，找到主干名词</strong>再下笔。</li>
+</ul>
+<hr>
+<h2><a id="q4-no-more-than-two-words-是不是答案都必须是两个单词"></a>Q4. "no more than two words" 是不是答案都必须是两个单词？</h2>
+<ul>
+<li><strong>不是</strong>。限制是"不超过"，答案可以是 1 个单词。</li>
+<li>只要是通过读懂意思、找到替换做出来的答案，一个单词就是一个单词，别自己吓自己。</li>
+<li>同理 no more than three words 也不是每题都三个单词。</li>
+</ul>
+<hr>
+<h2><a id="q5-真题全解perkin-紫色染料的发现简答题6-题"></a>Q5. 真题全解：Perkin 紫色染料的发现（简答题，6 题）</h2>
+<p>文章背景：Perkin 发明人工紫色染料的故事。做题方式是"飘着读"——简单文章用眼神扫描略读，抓人名、大写、关键词。</p>
+<h3><a id="第1题before-perkins-discovery-the-purple-colour-was-associated-with-which-group-in-society"></a>第1题：<code>before Perkin's discovery, the purple colour was associated with which group in society?</code></h3>
+<ul>
+<li>考点词：<code>associated</code> ↔ <code>link to</code> / <code>association</code>；定位：group in society。</li>
+<li>原文：紫色从蜗牛提取，极其昂贵，<code>only the rich could afford it</code>。</li>
+<li>答案：<strong>the rich</strong>（富裕阶层）。</li>
+<li>写法提醒：大小写不扣分，写 <code>rich</code> 也可以，但 <code>the rich</code> 更精确（特指富人阶级）。</li>
+</ul>
+<h3><a id="第2题what-potential-did-perkin-immediately-understand"></a>第2题：<code>what potential did Perkin immediately understand?</code></h3>
+<ul>
+<li>题干限定：<strong>immediately</strong> ↔ <code>quickly</code> / <code>instant recognition</code>。</li>
+<li>原文：他立即意识到新染料有 <code>commercial possibility</code>（商业价值）——注意"能染纤维""第一个人工染料"都不是"潜力"，潜力 = 商业价值。</li>
+<li>答案：<strong>commercial possibilities</strong>（单复数照抄原文）。</li>
+</ul>
+<h3><a id="第3题what-was-the-name-finally-used-to-refer-to-the-first-colour"></a>第3题：<code>what was the name finally used to refer to the first colour?</code></h3>
+<ul>
+<li>题干限定：<strong>finally</strong> ↔ <code>later</code>；<code>originally</code> 是干扰（最初叫别的名字）。</li>
+<li>原文：最初叫 X，<code>but later</code> 叫 <strong>mauve</strong>。</li>
+<li>答案：<strong>mauve</strong>。</li>
+</ul>
+<h3><a id="第4题perkin-consulted-____-before-starting-his-dye-work"></a>第4题：<code>Perkin consulted ____ before starting his dye work?</code></h3>
+<ul>
+<li>考点词：<code>consult</code> ↔ <code>ask advice</code>；找<strong>人名</strong>（专有名词，直接扫大写）。</li>
+<li>原文：<code>he asked advice</code> of 苏格兰染料场主 <strong>Robert Pullar</strong>。</li>
+<li>答案：<strong>Robert Pullar</strong>。</li>
+</ul>
+<h3><a id="第5题in-which-country-did-perkins-dye-first-become-fashionable"></a>第5题：<code>in which country did Perkin's dye first become fashionable?</code></h3>
+<ul>
+<li>题干限定：<strong>country</strong>（国家）——London 是城市不是国家，直接排除。</li>
+<li>原文：公司收到 <code>commercial boost in France</code>。</li>
+<li>答案：<strong>France</strong>（法国）。</li>
+<li>技巧：找名字/国家时，<strong>直接向大写字母扫射</strong>。</li>
+</ul>
+<h3><a id="第6题which-disease-is-now-being-targeted-by-researchers-using-the-dye"></a>第6题：<code>which disease is now being targeted by researchers using the dye?</code></h3>
+<ul>
+<li>考点词：<code>targeted</code>（被针对/解决）；找疾病名（非专有名词，需仔细读）。</li>
+<li>原文：人工染料用于 <code>vaccines against malaria</code>。</li>
+<li>答案：<strong>malaria</strong>（疟疾）——出在文章<strong>最后一个单词</strong>，出题很有心机。</li>
+</ul>
+<h3><a id="实用技巧并列项特别多时"></a>实用技巧：并列项特别多时</h3>
+<ul>
+<li>原文并列 4 个东西的地方<strong>一定不是答案</strong>——答案不可能让你填 4 个单词。</li>
+</ul>
+<hr>
+<h2><a id="q6-什么叫飘着读什么时候用"></a>Q6. 什么叫"飘着读"？什么时候用？</h2>
+<ul>
+<li><strong>飘着读</strong> = 略读 + 只抓关键信息（人名、大写、动词、重要名词、范围定位词），不逐字理解。</li>
+<li>适用场景：<strong>文章比较简单</strong>时（难文章没法飘着读）。</li>
+<li>为什么必须会：这种题型定位分散，飘着读能快速判断"这段有没有我的信息"，没有就跳。</li>
+</ul>
+<h3><a id="飘着读示例perkin-文章前-14"></a>飘着读示例（Perkin 文章前 1/4）</h3>
+<ul>
+<li>第1段：出生在伦敦，喜欢艺术，爷爷有实验室，热情转向化学 → 生平简介，跳过。</li>
+<li>第2段：求学经历到 15 岁 → 跳过。</li>
+<li>第3段：注册学校、成为老师年轻助手、做科学突破、名利双收 → 过渡段，略读。</li>
+<li>遇到紫色第一次出现 → 开始警觉，仔细读。</li>
+</ul>
+<hr>
+<h2><a id="q7-一句话总结本讲"></a>Q7. 一句话总结本讲</h2>
+<ul>
+<li>句子填空 + 简答题：等价题型，分散定位，每道重新定位。</li>
+<li>考点：并列、逻辑、题干限定、长难句（先脱衣服）；防坑：不被修饰成分迷惑。</li>
+<li>核心技能：<strong>飘着读文章</strong>——这是本讲真正要带走的东西。</li>
+</ul>
+  </main>
+  <aside class="col-right">
+    <h4>本页章节</h4><ul><li><a href="#q1-句子填空和简答题为什么合在一起讲">Q1. 句子填空和简答题为什么合在一起讲？</a></li><li><a href="#q2-这种题型有什么特点">Q2. 这种题型有什么特点？</a></li><li><a href="#q3-有哪些考点四大考点-一个防坑">Q3. 有哪些考点？（四大考点 + 一个防坑）</a></li><li><a href="#q4-no-more-than-two-words-是不是答案都必须是两个单词">Q4. &quot;no more than two words&quot; 是不是答案都必须是两个单词？</a></li><li><a href="#q5-真题全解perkin-紫色染料的发现简答题6-题">Q5. 真题全解：Perkin 紫色染料的发现（简答题，6 题）</a></li><li><a href="#q6-什么叫飘着读什么时候用">Q6. 什么叫&quot;飘着读&quot;？什么时候用？</a></li><li><a href="#q7-一句话总结本讲">Q7. 一句话总结本讲</a></li></ul>
+  </aside>
+</div>
+<script>
+(function(){
+  var input = document.getElementById('search-input');
+  var panel = document.getElementById('search-panel');
+  if (!input || !panel) return;
+  var main = document.querySelector('.col-main');
+  var leftLinks = Array.prototype.slice.call(document.querySelectorAll('.col-left ul li a'));
+  var rightLinks = Array.prototype.slice.call(document.querySelectorAll('.col-right ul li a'));
+
+  function escHtml(s){
+    return s.replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+  function escapeRegex(s){
+    return s.replace(/[.*+?^${}()|[\]\\]/g, function(m){ return '\\' + m; });
+  }
+  function clearHighlights(){
+    if (!main) return;
+    var marks = main.querySelectorAll('mark.search-hl');
+    for (var i = 0; i < marks.length; i++) {
+      var m = marks[i];
+      var text = document.createTextNode(m.textContent);
+      m.parentNode.replaceChild(text, m);
+    }
+    main.normalize();
+  }
+  function highlightInMain(kw){
+    if (!main) return;
+    clearHighlights();
+    if (!kw) return;
+    var re = new RegExp(escapeRegex(kw), 'gi');
+    var walker = document.createTreeWalker(main, NodeFilter.SHOW_TEXT, {
+      acceptNode: function(n){
+        if (!n.nodeValue || !n.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        var p = n.parentElement;
+        if (!p) return NodeFilter.FILTER_REJECT;
+        var tag = p.tagName;
+        if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'CODE' || tag === 'PRE') return NodeFilter.FILTER_REJECT;
+        if (p.closest && p.closest('mark.search-hl')) return NodeFilter.FILTER_REJECT;
+        return n.nodeValue.toLowerCase().indexOf(kw.toLowerCase()) >= 0 ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+      }
+    });
+    var nodes = [];
+    var n;
+    while ((n = walker.nextNode())) nodes.push(n);
+    for (var i = 0; i < nodes.length; i++) {
+      var node = nodes[i];
+      var src = node.nodeValue;
+      var html = '';
+      var last = 0;
+      var match;
+      re.lastIndex = 0;
+      while ((match = re.exec(src)) !== null) {
+        html += escHtml(src.slice(last, match.index));
+        html += '<mark class="search-hl">' + escHtml(match[0]) + '</mark>';
+        last = match.index + match[0].length;
+        if (match[0].length === 0) re.lastIndex++;
+      }
+      html += escHtml(src.slice(last));
+      var tmp = document.createElement('span');
+      tmp.innerHTML = html;
+      var parent = node.parentNode;
+      while (tmp.firstChild) parent.insertBefore(tmp.firstChild, node);
+      parent.removeChild(node);
+    }
+  }
+  function search(q){
+    q = (q || '').trim();
+    panel.innerHTML = '';
+    if (!q) {
+      panel.hidden = true;
+      leftLinks.forEach(function(a){ a.parentElement.style.display = ''; });
+      rightLinks.forEach(function(a){ a.parentElement.style.display = ''; });
+      clearHighlights();
+      return;
+    }
+    var qLower = q.toLowerCase();
+    var courseHits = leftLinks.filter(function(a){
+      return a.textContent.toLowerCase().indexOf(qLower) >= 0;
+    });
+    leftLinks.forEach(function(a){
+      a.parentElement.style.display = courseHits.indexOf(a) >= 0 ? '' : 'none';
+    });
+    var sectionHits = rightLinks.filter(function(a){
+      return a.textContent.toLowerCase().indexOf(qLower) >= 0;
+    });
+    rightLinks.forEach(function(a){
+      a.parentElement.style.display = sectionHits.indexOf(a) >= 0 ? '' : 'none';
+    });
+    var parts = [];
+    if (courseHits.length) {
+      parts.push('<div class="sp-group">课程（' + courseHits.length + '）</div>');
+      parts.push('<ul>' + courseHits.map(function(a){
+        return '<li><a href="' + a.getAttribute('href') + '">' + escHtml(a.textContent) + '</a></li>';
+      }).join('') + '</ul>');
+    }
+    if (sectionHits.length) {
+      parts.push('<div class="sp-group">本页小节（' + sectionHits.length + '）</div>');
+      parts.push('<ul>' + sectionHits.map(function(a){
+        return '<li><a href="' + a.getAttribute('href') + '">' + escHtml(a.textContent) + '</a></li>';
+      }).join('') + '</ul>');
+    }
+    if (!parts.length) parts.push('<div class="sp-empty">无匹配结果</div>');
+    panel.innerHTML = parts.join('');
+    panel.hidden = false;
+    highlightInMain(q);
+  }
+  var timer = null;
+  input.addEventListener('input', function(e){
+    clearTimeout(timer);
+    timer = setTimeout(function(){ search(input.value); }, 80);
+  });
+  input.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') { input.value = ''; search(''); input.blur(); panel.hidden = true; }
+  });
+  document.addEventListener('click', function(e){
+    if (panel.contains(e.target) || e.target === input) return;
+    panel.hidden = true;
+  });
+  document.addEventListener('keydown', function(e){
+    if ((e.ctrlKey || e.metaKey) && (e.key === 'k' || e.key === 'K')) {
+      e.preventDefault();
+      input.focus();
+      input.select();
+    }
+  });
+  panel.addEventListener('click', function(e){
+    var a = e.target.closest('a');
+    if (a) panel.hidden = true;
+  });
+})();
+</script>
+</body>
+</html>

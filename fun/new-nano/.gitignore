@@ -1,0 +1,15 @@
+# 实例配置含 API key，不入库
+config.json
+
+# 虚拟环境
+.venv/
+
+# 运行时数据
+workspace/
+media/
+webui/
+*.log
+.pids
+
+# nanobot 源码（GitHub clone，含 node_modules 构建产物，可随时重新 clone）
+nanobot/

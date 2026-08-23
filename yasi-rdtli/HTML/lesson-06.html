@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第06讲 · 雅思阅读填空题专题四 · 雅思阅读13讲</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; height: 100%; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; color: #1f2328; background: #fff; }
+  a { color: #2c5cdc; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* 顶部 */
+  .topbar { position: fixed; top: 0; left: 0; right: 0; height: 56px; display: flex; align-items: center; padding: 0 24px; border-bottom: 1px solid #e5e7eb; background: #fff; z-index: 10; }
+  .logo { font-weight: 800; font-size: 20px; letter-spacing: -0.5px; color: #111; }
+  .logo span { color: #6b7280; font-weight: 500; }
+  .topbar-right { margin-left: auto; display: flex; gap: 16px; align-items: center; position: relative; }
+  .topbar-right input { border: 1px solid #d1d5db; border-radius: 6px; padding: 6px 10px; font-size: 13px; width: 240px; background: #f9fafb; }
+  .topbar-right input:focus { outline: none; border-color: #2c5cdc; background: #fff; box-shadow: 0 0 0 3px rgba(44,92,220,0.12); }
+  #search-panel { position: absolute; top: 44px; right: 0; width: 360px; max-height: 70vh; overflow-y: auto; background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); padding: 8px 0; z-index: 100; font-size: 13px; }
+  #search-panel .sp-group { padding: 8px 14px 4px; font-size: 11px; color: #6b7280; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px; }
+  #search-panel ul { list-style: none; padding: 0; margin: 0; }
+  #search-panel li a { display: block; padding: 6px 14px; color: #374151; line-height: 1.4; font-size: 12.5px; }
+  #search-panel li a:hover { background: #f3f4f6; color: #1d4ed8; text-decoration: none; }
+  #search-panel .sp-empty { padding: 24px; text-align: center; color: #9ca3af; font-size: 12px; }
+  mark.search-hl { background: #fff3a3; color: inherit; padding: 0 2px; border-radius: 2px; }
+
+  /* 三栏布局 */
+  .layout { display: flex; padding-top: 56px; min-height: 100vh; }
+  .col-left { width: 240px; flex-shrink: 0; border-right: 1px solid #e5e7eb; padding: 20px 14px 40px; overflow-y: auto; height: calc(100vh - 56px); position: sticky; top: 56px; }
+  .col-left ul { list-style: none; padding: 0; margin: 0 0 16px; }
+  .col-left li { margin: 2px 0; }
+  .col-left a { display: block; padding: 6px 10px; border-radius: 6px; font-size: 13.5px; color: #374151; line-height: 1.4; }
+  .col-left a:hover { background: #f3f4f6; text-decoration: none; }
+  .col-left a.active { background: #eff6ff; color: #1d4ed8; font-weight: 600; }
+  .col-left h3 { font-size: 11px; text-transform: uppercase; color: #6b7280; margin: 18px 8px 8px; letter-spacing: 0.5px; font-weight: 600; }
+  .col-left .sub { padding-left: 24px !important; font-size: 12.5px; color: #4b5563; }
+
+  .col-main { flex: 1; min-width: 0; padding: 40px 56px 80px; max-width: 820px; margin: 0 auto; }
+  .col-main h1 { font-size: 32px; margin-top: 0; border-bottom: 1px solid #e5e7eb; padding-bottom: 12px; line-height: 1.3; }
+  .col-main h2 { font-size: 24px; margin-top: 40px; padding-top: 16px; border-top: 1px solid #f3f4f6; }
+  .col-main h3 { font-size: 18px; margin-top: 28px; color: #1f2937; }
+  .col-main p { line-height: 1.75; color: #374151; }
+
+  .col-right { width: 220px; flex-shrink: 0; border-left: 1px solid #e5e7eb; padding: 24px 18px; font-size: 13px; height: calc(100vh - 56px); position: sticky; top: 56px; overflow-y: auto; }
+  .col-right h4 { font-size: 11px; text-transform: uppercase; color: #6b7280; margin: 0 0 12px; letter-spacing: 0.5px; font-weight: 600; }
+  .col-right ul { list-style: none; padding: 0; margin: 0; }
+  .col-right li { margin: 6px 0; }
+  .col-right a { color: #4b5563; line-height: 1.45; font-size: 12.5px; }
+  .col-right a:hover { color: #1d4ed8; }
+  .col-right .section { color: #1f2937; font-weight: 600; margin-top: 14px; }
+  .col-right .empty { color: #9ca3af; font-size: 12px; padding: 6px 0; }
+
+  @media (max-width: 1100px) { .col-right { display: none; } }
+  @media (max-width: 800px) { .col-left { display: none; } .col-main { padding: 24px; } }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="logo">雅思阅读<span> · 13讲</span></div>
+  <div class="topbar-right">
+    <a href="index.html" style="font-size:13px;color:#2c5cdc;font-weight:600;white-space:nowrap;">🏠 总目录</a>
+    <span style="font-size:18px;">🐙</span>
+    <span style="font-size:18px;">💬</span>
+    <input id="search-input" placeholder="搜索 Ctrl K" autocomplete="off">
+    <div id="search-panel" hidden></div>
+  </div>
+</header>
+<div class="layout">
+  <aside class="col-left">
+    <h3>课程目录</h3>
+    <ul>
+      <li><a href="lesson-01.html">第01讲 · 导学课</a></li>
+<li><a href="lesson-02.html">第2讲 · 填空题专题一</a></li>
+<li><a href="lesson-03.html">第03讲 · 判断题专题：TFNG vs YNNG</a></li>
+<li><a href="lesson-04.html">第4讲 · 填空题专题二</a></li>
+<li><a href="lesson-05.html">第05讲</a></li>
+<li><a href="lesson-06.html" class="active">第06讲 · 雅思阅读填空题专题四</a></li>
+<li><a href="lesson-07.html">第7讲 · 配对题专题一</a></li>
+<li><a href="lesson-08.html">第8讲 · 配对题专题二</a></li>
+<li><a href="lesson-09.html">第9讲 · 配对题专题三</a></li>
+<li><a href="lesson-10.html">第10讲</a></li>
+<li><a href="lesson-11.html">第11讲</a></li>
+<li><a href="lesson-12.html">第12讲</a></li>
+<li><a href="lesson-13.html">第13讲 · 雅思阅读核心技巧</a></li>
+<li><a href="lesson-14.html">第14讲 · 进阶阅读</a></li>
+    </ul>
+    <h3>本页问题</h3><p class="empty" style="padding:6px 10px;font-size:12px;color:#9ca3af;margin:0;">无小节</p>
+  </aside>
+  <main class="col-main">
+    <h1>雅思阅读填空题专题四</h1>
+<h2><a id="06"></a>06</h2>
+<p>内容总时长：内容总时长:34分钟</p>
+<p>[00:00 - 00:25] 哈喽，各位同学，大家好。我是在B站上和你一起学雅思的萨老师。今天啊，咱们一起来研究两种题型。当然，虽然这是两种题型，只不过它们的长相其实前半截儿看着是一模一样的，只不过就后面有点不一样啊。它是总结填空和那种带选项的总结填空。其实说实话，这也确确实实就是一种题型啦。只不过呢，就是它两种题型它是在考察的难度上有一定差异的，所以我硬给它扒成了两种题啊。</p>
+<p>[00:00 - 00:25] 哈喽，各位同学，大家好。我是在B站上和你一起学雅思的萨老师。今天啊，咱们一起</p>
+<p>[00:25 - 00:53] 那个总结填空呢，来看看这个题的长相，就是一大堆文字，让你在这些文字当中去填空。那如果带选项的总结填空长成什么样呢？也给大家选了一个例题来看一看，还是一大堆文字，只不过下面多了这样的一个框框。如果体现在机考的界面上呢，就是你，下面会有那种蓝色的选项，你要把它拖拽到上面对应正确的这个位置上。所以这是这两种题型啊，我为什么硬给它扒成两种，因为做题方法上有差别，所以我就硬给它扒成两种啊。</p>
+<p>[00:25 - 00:53] 那个总结填空呢，来看看这个题的长相，就是一大堆文字，让你在这些文字当中去填</p>
+<p>[00:53 - 01:15] 好，咱们先从简单的来，先从简单的这个总结填空来，总结填空这个题目它是不是填空题？是天空。所以它就符合填空题的原则。填空题有什么原则呢？顺序题，但是总结填空往往有一些小乱序、小乱序。我已经给大家多次强调了，所以大家呃，这个看过我视频的同学啊，应该在考场上如果你们遇到小乱序，千万不要慌。</p>
+<p>[00:53 - 01:15] 好，咱们先从简单的来，先从简单的这个总结填空来，总结填空这个题目它是不是填空</p>
+<p>[01:15 - 01:31] 你要知道小乱序是考官对你的测验，他要看你读文章的时候是不是足够灵活。不然的话，你两个这个如果就是那种非常死板的按部就班的去读，你可能就直接错过某个题了。但如果你很灵活，真的是理解文章的含义了，那么我们就能真的去做对啊。</p>
+<p>[01:15 - 01:31] 你要知道小乱序是考官对你的测验，他要看你读文章的时候是不是足够灵活。不然的</p>
+<p>[01:31 - 02:10] 大家一定要抽出一个思维，就说，哎，雅思这个阅读完全靠技巧，不是这样的。如果说你没有一定的词汇量的基础，没有一些语法的基础，没有一些阅读能力的这个积累，那你在做雅思阅读的时候，这不就跟做天书没什么差别吗？即使你知道你要去找一些什么定位的信息，但你依旧看不懂这个定位的句子，有啥用？也没有什么用处啊。所以大家在听我课的同时呢，也要安安心心的，按部就班的去提升你们自己其他方面的能力，比如。说要背词的，要刷题的，不能说哎呀我就听听课，然后我这灵光乍现。毕竟你我都不是神仙，咱们还是得好好为自己的这个成绩做负责啊。</p>
+<p>[01:31 - 02:10] 大家一定要抽出一个思维，就说，哎，雅思这个阅读完全靠技巧，不是这样的。如果说</p>
+<p>[02:10 - 02:47] 好，所以我刚才说过，就是会有小乱序，而且非常的频繁。何为频繁啊？就是它总出现，甚至有的同学会跟我讲，我考试的时候怎么乱序这么多呀？嗯，因为它可能有两种题型都会有这种小乱序啊，所以小乱序也确实是越来越频繁了，但是它绝对不会说颠三倒四的给你所有的题都给它乱序了，不会的。就是两道题的顺序给你搞颠倒，一下子让你先在文章这地方找到了第十三题，再在文章后面找到了第十二题。甚至有可能这十三题和十二题是来自于同一句话，但是由于这个语言顺序和结构发生了一些变化，导致了一些乱序啊。</p>
+<p>[02:10 - 02:47] 好，所以我刚才说过，就是会有小乱序，而且非常的频繁。何为频繁啊？就是它总出</p>
+<p>[02:47 - 03:32] 好，那什么时候会发生小乱序呢？总结填空有一个自己的特点，嗯，大家想一下，为什么要对一个文字进行总结？你就想象一下当你在什么时候可能会对文字做一个总结。就它首先得有必要吧，比如说我就是简单的给你介绍了一下这个蝙蝠，它是一种什么昼伏夜出的动物，然后靠声波进行导航，就这种非常简单的地方，它肯定不会给你总结。但凡总结呢，要么就是实验，或者说我们的研究得出了一定的结论啊，在结论的这个位置，我对于我的结论进行一个总结。哎，这个结论呢，它可能不光是一条结论，有可能是一二三四很多条这个结论啊，所以正是因为这样有点乱，我需要总结一下，所以这是一种情况。</p>
+<p>[02:47 - 03:32] 好，那什么时候会发生小乱序呢？总结填空有一个自己的特点，嗯，大家想一下，为什</p>
+<p>[03:32 - 03:59] 再一种情况呢，就是有非常多的那种并列的细节的时候。哎，然后我可能会总结一下，因为怕你读乱了呀，所以可能总结一下啊，以下一二三四这些细节都导致了一个什么事情的发生，OK 那所以类似于像这样的地方会出总结填空，那。那也就意味着我们总结填空当中可能总有这样并列的东西，好，这些并列的东西在题目和原文当中的对应关系会发生乱序。</p>
+<p>[03:32 - 03:59] 再一种情况呢，就是有非常多的那种并列的细节的时候。哎，然后我可能会总结一下，</p>
+<p>[04:00 - 04:27] 呃，给大家举一个例子啊。比如说我们有四个因素，四个FACTORS可能会影响一件事情的发生。这个因素啊，在原文当中你看到的是A、B、C AND D啊，然后这一共是四个因素。然后在题目当中呢，你非常也期待看到的是A撇儿、B撇儿、C撇儿、D撇儿。但如果它非常愚蠢地以这样一种形式去给到你，是不是没看懂文章的人也能理解呀？对吧？</p>
+<p>[04:00 - 04:27] 呃，给大家举一个例子啊。比如说我们有四个因素，四个FACTORS可能会影响一件事</p>
+<p>[04:27 - 05:10] 哎，所以呢，他就故意给你刁难一下子。人家就不给你按照这个这么好的顺序来了，上来你没发现 a 撇，你发现的是 b 撇，哎，它对应在第二个这个点上，然后你发现了 c 撇，哎，对应到第三个这个点上，然后你发现了 d 撇，哎，对应到第四个点上，然后你发现了 a 撇，哎，对应回来。所以啊，它的这个 factor 是不是那些个 factor 呢？是那些 factor，乱没乱序呢？哎，有点乱序。所以这就得意味着你得真的去把这个 factor 理解了。你说我要是没理解，我就是靠那种 a 和 a 撇对应，b 和 b 撇对应，就是简单机械的去看它的位置关系，是不是这事就实现不了了？你就理解不了了。</p>
+<p>[04:27 - 05:10] 哎，所以呢，他就故意给你刁难一下子。人家就不给你按照这个这么好的顺序来了，上</p>
+<p>[05:10 - 05:38] 所以啊，大家一定要去真的理解到底是什么因素导致了这个事情，然后在题目当中你看到啊，原来这个 a 撇它换了换位置呀，哎呀，原来这个 b 撇它也是换了换位置。这是一种情况，还有另外一种情况，这个情况二啊，就是人家可能在文章当中说，一共有6个因素会影响这个事情，分别是 a  b  c  d  e。F，还少一个 g 啊，一共有6个因素。</p>
+<p>[05:10 - 05:38] 所以啊，大家一定要去真的理解到底是什么因素导致了这个事情，然后在题目当中你看</p>
+<p>[05:39 - 06:16] 然后接着呢，我在题目当中我给你进行总结，哎呀，我就给你省略了两个因素，因为其中有两个因素不怎么重要，我就把这个 e 和 f 就给你省略了。然后我变成 b 撇、a 撇、c 撇、d 撇、g 撇，啊，这个乱没乱序啊？也乱序了啊，但这个我就没给大家乱的那么厉害。哎，所以也乱序了，但是呢，有同学说，哎，老师这俩哪去了？人只不过是给你省略了而已，可不可以省略啊？谁说了你在总结的时候是文章里边所有的信息都必须要包括吗？没人说吧，你自己在记老师课堂笔记的时候，也不是老师讲到信息你都记下来了呀。</p>
+<p>[05:39 - 06:16] 然后接着呢，我在题目当中我给你进行总结，哎呀，我就给你省略了两个因素，因为其</p>
+<p>[06:16 - 06:46] 所以总结的时候呢，可以有个别信息进行省略或者删减，这个是没问题的啊。所以在这样两种情况下呢，可能会使得你和原文的对应关系没那么好对应。这是一个比较重要的考点，但是我们今天呢，涉及到的例题里边没有这个考点啊，只不过因为例题选择的过程当中，我还是想给大家选一些普适性强的这种例题，就没有选到，不过不代表这个点不重要，希望大家能够好好消化吸收。</p>
+<p>[06:16 - 06:46] 所以总结的时候呢，可以有个别信息进行省略或者删减，这个是没问题的啊。所以在这</p>
+<p>[06:46 - 07:22] 如果你感兴趣的话，你可以做一下剑桥16 test one 的第二篇文章和 test two 的第二篇文章、第三篇文章啊，这里边都会有涉及到信息点的乱序，ok？好，那这个我们再说一下。这个总结填空它考察的一个要点啊，其实是考察你句子理解能力的。诶，你得真的理解了这个句子，我们才能够把这个答案做对。今天给大家选的这个例题呢，其实是来自于第一篇文章的一个例题啊，呃，就是PASSAGE ONE的一个例题。但总结填空这个题型一般来说在第二篇文章和第三篇文章更多。</p>
+<p>[06:46 - 07:22] 如果你感兴趣的话，你可以做一下剑桥16 test one 的第二篇文章和 test two 的第二篇文</p>
+<p>[07:23 - 07:43] 为什么给大家选了一个第一篇文章的例题呢？就是这一大篇文字，好多同学告诉我老师，我这次遇到题老难了。一大篇文字，你甭管这是一大篇文字还是一小篇文字，耐心认真去做，它逐一去突破它。所以我们今天就就这么个例题，简简单单的咱们就上上手看看总结填空，真的这么难为人吗？</p>
+<p>[07:23 - 07:43] 为什么给大家选了一个第一篇文章的例题呢？就是这一大篇文字，好多同学告诉我老</p>
+<p>[07:43 - 07:59] 好，那我们先来看题目要求：only one word，对吧？然后简简单来看一下这个呃总结填空有一个标题呀，叫做 worship and merchantship。Warship 叫战船，merchant ship 呢叫做商船啊，所以这个 merchant 叫做商。用。</p>
+<p>[07:43 - 07:59] 好，那我们先来看题目要求：only one word，对吧？然后简简单来看一下这个呃总结填</p>
+<p>[08:00 - 08:40] 的，ok，好，然后一共三段，这是第一段，这是第二段，这是第三段。我们先看一下每段的开头，这样帮助我们进行粗定位。上一节课我带着大家学习这个流程图填空和这个图形填空的时候呢，给大家讲到了一个观点，叫不拘一格去定位，总结填空一样适用啊。那我们来看一看有没有不拘一格去定位的东西。首先上来第一段说的是 worship，哎，就是战船。第二段呢，说的是 merchant ship，就是商船。然后接下来他说到了一些什么农业产品。因为它没有特别好定位的东西，所以呢，咱们就简简单单用一下开头这两个词，这三个词去做一个定位吧。</p>
+<p>[08:00 - 08:40] 的，ok，好，然后一共三段，这是第一段，这是第二段，这是第三段。我们先看一下每</p>
+<p>[08:41 - 09:17] 文章放在这，咱们来看文章的标题叫做罗马的造船技术和导航技术啊。然后上来我一看，第一段肯定不会上来讲这么细节的东西，接着往第二段看，哎呦，第二段这么一长闹，一大长段啊，这么一大长段其实讲的是造船的方法，和这个战船啊、商船还没具体给你划分。开呢，接着往后开始了。你看，说到了这个 worship，对吧？这个就叫做战船，这是战船的第一段。接下来我问问大家，这一段写的是什么呀？是不是也是 worship 呀？所以也就意味着总结天空的第一段是不是对应的是这个位置？</p>
+<p>[08:41 - 09:17] 文章放在这，咱们来看文章的标题叫做罗马的造船技术和导航技术啊。然后上来我一</p>
+<p>[09:17 - 09:36] 这是总结天空的第一段，总结天空的第二段呢，merchant ship，这个是总结天空的第二段。我们找的第三个关键词是什么来着？ agricultural goods 啊，就是这个农业农业货物啊，农业货物，哎呀， agricultural product。对吧？所以这是总结填空的第三段。</p>
+<p>[09:17 - 09:36] 这是总结天空的第一段，总结天空的第二段呢，merchant ship，这个是总结天空的第二</p>
+<p>[09:37 - 10:06] 选这个例题的目的是想告诉大家，你看这两段是不是并成了总结填空是一段，所以大家千万不要想当然的认为说这个是不是就必须得是一段对一段，一段对一段。在过去可能这个对应规律会比较明显一些，但是现在嗯这个对应规律不明显了，而且文章也是越来越灵活了。我用三段给你写一写战船，我总结成一段。行不行啊？所以就大家这个对应，千万不要非常死板的对应一段对一段了啊。</p>
+<p>[09:37 - 10:06] 选这个例题的目的是想告诉大家，你看这两段是不是并成了总结填空是一段，所以大家</p>
+<p>[10:06 - 10:27] 好，接下来我们要干嘛呀？逐一题目去阅读进行分析。首先他说了这个 worship was design so that they were什么 and move quickly。哟，这题什么考点呀？做惯了配呃这个填空题的同学应该对考点很熟悉了吧？并列结构考点，并列结构考点怎么做来着？就定位这个 move quickly，别的东西都不用看了。</p>
+<p>[10:06 - 10:27] 好，接下来我们要干嘛呀？逐一题目去阅读进行分析。首先他说了这个 worship was</p>
+<p>[10:27 - 10:54]  move quickly，你能不能识别出来 move quickly 呀？它是speedy，对吧？嗯，就很速度的啊。very speedy，然后并列结构考点，然后答案词是不是就已经出现了？答案词我用红笔画叫做lightweight。所以他说的是战船很轻，而且呢还非常的快。嗯，它的这个对应关系非常好啊，一个并列结构。所以这题简直就非常的简单，没啥好说的。</p>
+<p>[10:27 - 10:54]  move quickly，你能不能识别出来 move quickly 呀？它是speedy，对吧？嗯，就很速</p>
+<p>[10:54 - 11:17] 第二道题。第二道题我们来看中间这个没有句子的啊就没有题的这个句。句子啊，有同学总来问我说：老师，没有题的句子你读还是不读啊？它取决于你下一道题有没有好的定位词。如果你下一道题有好的定位词，中间这句就不用读了；如果下一道题没有好的定位词，中间这句就要读。下一题里有没有好定位词啊？有就这玩意儿我就不怎么认识啊。</p>
+<p>[10:54 - 11:17] 第二道题。第二道题我们来看中间这个没有句子的啊就没有题的这个句。句子啊，有同</p>
+<p>[11:18 - 11:54] 那这个东西呃，什么玩意儿啊？这个 battering ram，这个东西其实指的就是那个大家想象一下，就古代的那种船，它可能会有一个棍子，就是打仗用用的啊，就把一个棍子哎伸在那儿，就是打仗用的。这玩意儿就叫做 battering 啊 battering 啊 ram。它 made of 这个问你材料，那所以其实它本质上来说也是一个 a of b 这样的一个结构。a of b 等于什么来着？b a 好，我们来看 battering ram 在哪？迅速的给我扫描文章， battering ram 在哪啊？在这里。</p>
+<p>[11:18 - 11:54] 那这个东西呃，什么玩意儿啊？这个 battering ram，这个东西其实指的就是那个大家想</p>
+<p>[11:54 - 12:18] 那如果 a of b 等于 b a 的话，那我是不是这个 b 应该来自于它。前面的这一个单词，所以应该是这玩意儿。这玩意儿如果你认识它的话，你知道它的含义叫青铜。那既然它是青铜，是不是一种材料？因为这题本身考你的是made off，对吧？就是用什么来制成的青铜，显然是一种材料。答案就被我们找到了。</p>
+<p>[11:54 - 12:18] 那如果 a of b 等于 b a 的话，那我是不是这个 b 应该来自于它。前面的这一个单词，所</p>
+<p>[12:18 - 12:54] 嗯，所以这道题大家一定要注意啊。如果你找到定位词之后，你就直接往这后边读，读个懵懵懂懂的，其实你会非常影响做题的自信。但如果说你直接考虑到了考点问题，当你在读题的时候你就分析出来了，这是一个 a of b 的考点，等于 ba，你直接就找到定位词前面这一个单词进行反验证，那你做题是不是就非常的爽？所以这道题的答案啊，就是这个 bronze 这第二道题的答案，很快我们就搞定了。后边这是一个非限制性定语从句，用来修饰这个前面这件事的啊，那所以我们就不读了。</p>
+<p>[12:18 - 12:54] 嗯，所以这道题大家一定要注意啊。如果你找到定位词之后，你就直接往这后边读，读</p>
+<p>[12:54 - 13:23] 接下来，下一道题。第八题嗯这道题这儿啊有同学又要。问了，说老师，上面这个我还读不读了？你读什么呀？这地方不有一个挺好挺好的定位词吗？这定位词就表示的是有一个引号啊，咱也不知道什么意思，但是它肯定好用了。然后他说 rower on three different 哎呀，这还有一个数字信息，three different 一个复数名词啊。好，我们找这个带引号的单词，大家眼神快不快，能不能帮我迅速找到它？</p>
+<p>[12:54 - 13:23] 接下来，下一道题。第八题嗯这道题这儿啊有同学又要。问了，说老师，上面这个我还</p>
+<p>[13:23 - 13:51] 然后再找什么东西啊？rower，rower 在这啊，rower 出现了，three different three different 三个不同的名词复数名词复数，哎呀，这地方有一个名词复数，它到底是答案还是不是答案呢？我得看看它是不是三个啊，这是在顶上，在中间，在底下，一个、两个、三个，所以它确实是三个，三个不同的 levels 所以这个 levels 就是我的答案。</p>
+<p>[13:23 - 13:51] 然后再找什么东西啊？rower，rower 在这啊，rower 出现了，three different three</p>
+<p>[13:51 - 14:01] 其实这文章说实话我都没有怎么正正儿八经的去认真读，但是妨碍你把答案做出来吗？完全不妨碍啊。好，那我们的这。这个 levels 就已经找出来了。</p>
+<p>[13:51 - 14:01] 其实这文章说实话我都没有怎么正正儿八经的去认真读，但是妨碍你把答案做出来吗？</p>
+<p>[14:02 - 14:31] 当你的 levels 找出来之后，你告诉我这个段落剩下的信息要读还是不要读呢？大家给我刷个弹幕，告诉我，跟我互动一下，读还是不读？读敲一，不读敲二。我此处已经把这个第八题做完了，然后这段还剩好几行我没读，读还是不读？一读，二不读。显然不能读了，对吧？哎，为什么不能读了呀？因为我们这个 worship 这个段已经讲完了，我们下一个议题已经是到了 merchantship 了，所以和 worship 没有任何关系了。</p>
+<p>[14:02 - 14:31] 当你的 levels 找出来之后，你告诉我这个段落剩下的信息要读还是不要读呢？大家给我</p>
+<p>[14:31 - 14:53] 好，那我们就换一段啊，先看一看要找什么东西啊。和战船不同，商船有一个更宽广的 abroad，这个叫做更宽广的什么东西？然后这是一个定语从句，修饰更宽广的这个东西啊，lay far below the surface of the sea。好，接下来我们去找这个商船的这一段。</p>
+<p>[14:31 - 14:53] 好，那我们就换一段啊，先看一看要找什么东西啊。和战船不同，商船有一个更宽广的</p>
+<p>[14:53 - 15:38] 商船的这一段，在翻过来的这一页的第一段。我们要找一个更宽广的啊，找更宽。宽广的这个形容词的替换。说这个东西用来远距离运输货物，布拉布拉，不像战船。然后它们呢，有一个 v 字形的底，可以吃水很深，这就意味着他们并不能在近海岸啊。然后接着我们要找的是更宽广的呀，往后看啊，they usually have two huge side rudder 这个 rudder，located of the stern and control by 什么 small tailor bar 这也没有说更宽广的呀。那继续往后看啊，继续往后看，说它有一个什么什么风帆。</p>
+<p>[14:53 - 15:38] 商船的这一段，在翻过来的这一页的第一段。我们要找一个更宽广的啊，找更宽。宽广</p>
+<p>[15:39 - 16:01] 哎，更宽广的这个概念哪去了呢？当你读了半天，你就没有发现自己的答案的时候，这个时候我们要怎么操作呀？问问大家，大家觉得应该怎么操作啊？看一看下一道题呀，因为当你读了半天，你没有发现你的答案，那你就看看下一道题，以防自己错过答案啊。下一道题说他们用了，哎呀，这题是个并列结构，所以我。就找这个Ssquare就好了。</p>
+<p>[15:39 - 16:01] 哎，更宽广的这个概念哪去了呢？当你读了半天，你就没有发现自己的答案的时候，这</p>
+<p>[16:01 - 16:20] 那如果我能找到这个Ssqu，就意味着上一道题在上面，下一道题在下面也行。好，那我还是不要忘记，我要找两个东西，一个是更宽广的，一个是Ssqu，一个形状。嗯，那我继续再回到这个文章这里，好好来读一读啊。嗯，不像战船，然后他们什么近海岸，然后布拉布拉布拉、布拉，布拉、布拉，布拉布拉。</p>
+<p>[16:01 - 16:20] 那如果我能找到这个Ssqu，就意味着上一道题在上面，下一道题在下面也行。好，那我</p>
+<p>[16:20 - 16:45] 诶，这个地方说到了SsquARE，QU已经出现了，所以也就意味着在这儿我找到了这个下一道题的定位词。那么上一道题怎么着，也应该是在上面对吧？啊，那我们先把这个并列结构给找到吧。AND一个形状出现啦，所以我把这个标成红色，诶，叫做TRIANGULAR啊。好，这就是我们下一道题的答案。那么接下来我还得再上上一道题，好好去找。</p>
+<p>[16:20 - 16:45] 诶，这个地方说到了SsquARE，QU已经出现了，所以也就意味着在这儿我找到了这个</p>
+<p>[16:45 - 16:59] 这个时候你就要慢慢读了，更宽广的一个更宽广的什么东西啊？那继续来读啊！哎呀更宽广的不是在这儿吗a wider答案应该是什么呢哎这不就是这个所以大家在做题。</p>
+<p>[16:45 - 16:59] 这个时候你就要慢慢读了，更宽广的一个更宽广的什么东西啊？那继续来读啊！哎呀更</p>
+<p>[17:00 - 17:19] 时候可能难免会有这样的情况，就是你突然有一道题你找不到了，那如果你突然找不到了，那你怎么办呀？找下一道题，毕竟填空题大概率都是顺序的。当你把后面的题目都找到了，那前面题不就在它前面，然后后面题就在它后面啊。所以那 wider 和那个 broad 同一替换，答案是不是已经出现啦？</p>
+<p>[17:00 - 17:19] 时候可能难免会有这样的情况，就是你突然有一道题你找不到了，那如果你突然找不到</p>
+<p>[17:20 - 17:40] 哎，就是这个 who 啊，ok，就是这个 who，这是我们的答案。好，接下来再下一道题目，再下一道题目就是这个11题了。on merchant ship and warship，就是在两个船里面有一个共同特色，什么东西 was used to ensure 这个叫 rower 啊，确保 rower move their 这个叫做桨。</p>
+<p>[17:20 - 17:40] 哎，就是这个 who 啊，ok，就是这个 who，这是我们的答案。好，接下来再下一道题</p>
+<p>[17:40 - 18:45]  in and out water at the same time 这句话你可得好好理解一下，就是他说啊，在商船和战船上呢，我们用什么东西来确保划船那个人把这个桨拿出水面和放入水面保持同样的节奏。因为划船时候大家不知道有没有过这个体验啊，就是大家节奏得一致，如果节奏不一。比如说，我正在划呢，结果你这个桨抽出来了，你划呢，我又抽出来了。这船就这这就只能会在原地打转转，就不往前进了。所以这个节奏非常的重要。那么我们是用什么东西来保持这样统一的节奏呢？跟我一起往后看文章啊，嗯，然后继续看他说。Just like wor- just like worship merchant ship use 这个东西，然后 but coordinating hundreds of rower rower 出现了啊，就是我们协调这么多个划船的人，然后而且还在不同的层，不是一个简单的方，不是一个简单的任务。为了能够帮助他， music would be played on instrument 然后这样的话，这些人他们就 keep the 这个 keep the time with this。</p>
+<p>[17:40 - 18:45]  in and out water at the same time 这句话你可得好好理解一下，就是他说啊，在商船和</p>
+<p>[18:45 - 19:34] 所以我们的答案应该是来自于这个部分，呃，因为这个后边说他们保持同样的节奏嘛，你首先肯定得用到什么东西啊，才能保持同样的节奏，所以答案来自于我括号号这块，这括号里边呢，有两个状。重要的名词一个是music，一个是instrument。我就问问大家，答案你想选什么？就是到底用什么东西保持统一的节奏啊？是用音乐保持统一的节奏，还是用乐器保持统一的节奏？这道题其实就涉及到我们当时在讲的这个填空题的时候有一个很重要的考点，就是介词结构这个考点啊。你要考虑语言含义，我们真正用的东西，那这个帮助他们的东西离得很近的，这个是music。那这个instrument是用来演奏music的，所以这就很像我当时给大家举的那个题啊。</p>
+<p>[18:45 - 19:34] 所以我们的答案应该是来自于这个部分，呃，因为这个后边说他们保持同样的节奏嘛，</p>
+<p>[19:34 - 20:11] 就是袋狼生活在育儿袋里，育儿袋在妈妈的肚子啊，在肚子上，肚子在妈妈的身上。哎，所以很像这种介词结构，你要明白的一个逻辑关系就是帮助我们用的是music。那什么东西弹music呀？instrument弹music。所以我们最终填的这个答案是instrument还是music呢？因为最终帮助我们的是music。换句话说为了保持节奏一致。我用这个乐器没有用，我得用乐器演奏出来的音乐啊。所以这题可能呃需要大家就思考思考，但其实只要你意思看懂了啊，我觉得大家应该没问题的对吧？</p>
+<p>[19:34 - 20:11] 就是袋狼生活在育儿袋里，育儿袋在妈妈的肚子啊，在肚子上，肚子在妈妈的身上。</p>
+<p>[20:11 - 20:34] 嗯，主要还是一个含义啊。好，接下来最后一道题了啊。SORRY，最后一个段落了啊。这最后一个段落就是农业产品，比如说什么东西啊？它 TRANSPORTED BY MERCHANTSHIP TO MAIN，呃，TO TWO MAIN PORT，呃，PORT，这个叫做港口啊。就什么农业产品，举了个例子，肯定是具体的一种农业产品，他们去运到两个港口里边。</p>
+<p>[20:11 - 20:34] 嗯，主要还是一个含义啊。好，接下来最后一道题了啊。SORRY，最后一个段落了啊。</p>
+<p>[20:34 - 20:52] 刚才这一段我已经读完了，接着我来读第三段啊。这个农业产品在这儿诶，举个例子。举个例子，这不在这呢吗？green 啊，谷物啊，所以这个答案是不是已经出来了？哎，这个一点这一点，它就表示的是举例，它就等于那个 for example 所以这题只要你细心，很快就做出来了啊。</p>
+<p>[20:34 - 20:52] 刚才这一段我已经读完了，接着我来读第三段啊。这个农业产品在这儿诶，举个例子。</p>
+<p>[20:53 - 21:16] 好，接着是不是到了最后一道题了？最后一道题，说 the ship was pulled to shore，shore 叫做上岸啊。by 什么东。东西，就是什么东西把这个船拉上岸？那我们来找找到底是什么东西把这个船拉上岸呢？继续往后看啊，这个往后继续看。这个在这一段啊，往后继续看，什么这两个港口中间这一大堆你就不用管了。</p>
+<p>[20:53 - 21:16] 好，接着是不是到了最后一道题了？最后一道题，说 the ship was pulled to shore，</p>
+<p>[21:17 - 21:46] 然后接着呢，他说大的这个商船呢，他们也要到达港口，approach 这个单词表示的是接近。接近 destination，叫做目的地啊，大的商船呢，要接近目的地，然后就像今天一样，这是一个插入语，被谁来拉着呢？被 tall boat。所以我们的答案就是这个 tow boat 这个东西叫做拖船啊，被拖船拉上了岸。 ok 这个就是答案啊。好了，这几道题我们的答案就相当于都做出来了。</p>
+<p>[21:17 - 21:46] 然后接着呢，他说大的这个商船呢，他们也要到达港口，approach 这个单词表示的是接</p>
+<p>[21:46 - 22:08] 总结填空，虽然文章覆盖的这个段落还是有一些广的，但是因为答案非常符合考点，以及呢非常有指向性，做起题来其实应该挺快的，就这种填空型的总结填空，换句话说就是填空型的总结。填空吗？你这个空上单词不用认识，文章里边抄回来就行。如果你考机考，那就更开心了，直接 ctrl c，ctrl v 粘回来就行。</p>
+<p>[21:46 - 22:08] 总结填空，虽然文章覆盖的这个段落还是有一些广的，但是因为答案非常符合考点，以</p>
+<p>[22:08 - 22:22] 那如果现在画风一变，我们进入到这个带选项的总结填空这。哎，这地方给大家空的这个部分是要给大家记记笔记的啊，不是这个讲义这个窜了，是要给大家记记笔记。那带选项的总结填空怎么办呢？</p>
+<p>[22:08 - 22:22] 那如果现在画风一变，我们进入到这个带选项的总结填空这。哎，这地方给大家空的这</p>
+<p>[22:22 - 23:13] 我要把这一分为二，咱们先说一下不带选项总结填空的做题的步骤啊，首先我们刚才先看了题目要求，知道空上让我们填了几个单词，接着呢，我们不拘一格去定位了。找到了它出现的一个大致的段落，我们也匹配到了对应的这个段落上，接着逐一题目啊，逐一题目去做题理解，然后如果我能看出考点更开心。比如说刚才我们考到了并列结构考点啊，然后我们还考到了 a of b 这样的考点，以及我们还有。介词结构，介词结构的这样的考点。嗯，有形容词替换那个 wider，还使得我们并没有怎么找到啊，broad 和 wider 的替换。所以这些对应的都是考点。</p>
+<p>[22:22 - 23:13] 我要把这一分为二，咱们先说一下不带选项总结填空的做题的步骤啊，首先我们刚才先</p>
+<p>[23:13 - 23:46] 那么如果现在画风变到了这种带选项的总结填空，我们同样还是这样的步骤，只不过要多一个，多出来了一个什么步骤呢？当我在文中文章中找到了这个词之后，我得知道这个词是什么意思。然后我再到这个方块当中去选出合适的选项，去和文章这个词是对应关系。所以也就意味着我多了一步叫做找同义词，ok？</p>
+<p>[23:13 - 23:46] 那么如果现在画风变到了这种带选项的总结填空，我们同样还是这样的步骤，只不过要</p>
+<p>[23:47 - 24:10] 好，嗯，今天给大家选的这两个例题，其实难度差异挺大的。因为刚才就挺简单的啊，我这次给大家找一个稍微难一点的题目，这个题目是来自于一个第三篇文章的题目啊。那第三篇文章的题目，它文章可能就不是特别好读啊。讲的是这个 ai 会不会影响我们未来工作的一个问题，所以整篇文章的背景呢，略带科技感啊。</p>
+<p>[23:47 - 24:10] 好，嗯，今天给大家选的这两个例题，其实难度差异挺大的。因为刚才就挺简单的啊，</p>
+<p>[24:11 - 24:33] 上来第一个步骤，咱们先不拘一格去定位。那你看这标题里边有一个带引号的这个单词，就这东西是不是挺好的呀？可以帮我们去找到它的位置。另外呢，是不是有一个人的名字呀？对吧？好，我们先找找他在哪啊？为了便于大家做题，我特地给他标了出来， stella 在这，所以他肯定定位这一段算成功了。</p>
+<p>[24:11 - 24:33] 上来第一个步骤，咱们先不拘一格去定位。那你看这标题里边有一个带引号的这个单</p>
+<p>[24:33 - 24:51] 那接下来我就想问大家另外一个问题啊，这个题我之所以选它当例题，因为它很特殊。它的特殊在于，我们正常来讲，总结填空它是对于文章某一个段落去进行总结，对吧？或者某几个段落进行总结，它中间应该不会跨好几段，但这题中间给你跨了好几段。</p>
+<p>[24:33 - 24:51] 那接下来我就想问大家另外一个问题啊，这个题我之所以选它当例题，因为它很特殊。</p>
+<p>[24:52 - 25:18] 这个中间给你跨段了，我怎么知道的呢？你看这个 telecommunications company 这么老长的一个单词啊，我们看。看一看，在下一段当中有 telecommunication company 吗？读一下这一段，有还是没有？没有，对吧？再下一段有 telecommunication company 吗？也没有。那么再下一段是不是才有？也就意味着我们中间的这两个段落没提没提，跨了至少两个段落。</p>
+<p>[24:52 - 25:18] 这个中间给你跨段了，我怎么知道的呢？你看这个 telecommunications company 这么</p>
+<p>[25:18 - 26:12] 至于第三个段落有还是没有呢？我先给大家剧透一下啊，这个段落也没有信息，因为这个段落是在告诉你，这个 telecommunication company 它具体的工作是要进，如何开展的。这个冒号和引号中间都是在讲在电信公司当中的工作是要如何开展，和我们这个总结填空的题没有任何关系。所以这就使得有很多同学花了大量的时间和精力浪费在阅读这三个段落当中，使得他做题时间来不及了，没有有效的去做题啊，那我们怎么去解决这个问题呢？类似于像这样这么。老长的单词，你先得在文章里面对应这位置找到这个单词，你再去认认真真阅读去做题。不要说我就只是呃顺着做啊，我就觉得一段对应一段，我就顺着做，不要这样啊。</p>
+<p>[25:18 - 26:12] 至于第三个段落有还是没有呢？我先给大家剧透一下啊，这个段落也没有信息，因为这</p>
+<p>[26:13 - 26:41] 先把这些非常重要的定位信息先找到，然后你再去做好。那我们先来做第三十一题吧。嗯，他说呀，他这个嗯focus on这个东西，然后说这个rely not on production。所以动词结构rely not on production but on什么？这个玩意儿我认为它也是一个并列结构，只不过是not on production but on什么东西啊，我得找到这个production才行。</p>
+<p>[26:13 - 26:41] 先把这些非常重要的定位信息先找到，然后你再去做好。那我们先来做第三十一题吧。</p>
+<p>[26:41 - 26:57] 好，我们在这一段里边你看看对应我画勾的这一段能不能找到production呢？咦，这不是production吗？然后。哎， rather than， on，那 rather than 是不是就是 not？那 on 什么呀？往前看， on data。</p>
+<p>[26:41 - 26:57] 好，我们在这一段里边你看看对应我画勾的这一段能不能找到production呢？咦，这不</p>
+<p>[26:57 - 27:26] 好了， on data，这是我想填回空上的单词。你可以直接填回来吗？不可以，因为要它找到同一替换词了。哎，框框里边你看A到G啊，哪个词可以和DATA构成同一替换呀？很简单，即使你有单词不认识，但我一定能相信你选出来这个G对吧？哎，这是一道相对简单的题目啊，它送了一个分数给到你。G叫做INFORMATION，它和DATA在这样的场景里，你就应该能够感受到它们是一样的啊。</p>
+<p>[26:57 - 27:26] 好了， on data，这是我想填回空上的单词。你可以直接填回来吗？不可以，因为要它</p>
+<p>[27:27 - 27:59] 好了，接下来就到了问题的关键啦。我们到了这个电信公司，然后在电信公司当中呢，有一个增长，on recommendation made by ai。看我画来黄色的东西啊，那这一段他在说电信公司的工作范围或者工作职责，我们就不看了。接着我们来看这一段啊，好，那增长有一个变的增长，干什么东西啊？增长，哎，我们来看，在他这，他们会发现。变得become become.</p>
+<p>[27:27 - 27:59] 好了，接下来就到了问题的关键啦。我们到了这个电信公司，然后在电信公司当中呢，</p>
+<p>[28:00 - 28:35] 是不是就叫做变得？那变得和这个growing是不是同一替换？哎，好像有点像，但又不敢确定。嗯，然后become instruction是什么意思啊？recommendation对吧？recommendation这个叫做建议，instruction叫指导。所以它们变得答案是不是叫做depend呀？对不对？dependent啊，dependent on就是依赖的意思。好，我们来看一看框框里边单词有没有和依赖是同一替换的。哎，这个也比较简单，对吧？一看 reliance，这不就是 rely on 吗？</p>
+<p>[28:00 - 28:35] 是不是就叫做变得？那变得和这个growing是不是同一替换？哎，好像有点像，但又不</p>
+<p>[28:36 - 28:58] 但这个题的难点是什么来着？中间跨了一个段，中间跨了一个段，两个段，三个段。所以这题难点在于跨段问题。那如果你找到了跨段问题，那且你知道了这个 recommendation 替换的是 instruction， growing 替换的是 become，答案是不是就锁死了？基本上就锁死了啊。</p>
+<p>[28:36 - 28:58] 但这个题的难点是什么来着？中间跨了一个段，中间跨了一个段，两个段，三个段。所</p>
+<p>[28:58 - 29:38] 好，接着继续往后看。他说呢，这个与此同时啊，staff 啊，这个单词大家猜一猜，deterred 啊，这个单词大家猜一猜是好词还是坏词？那我揭秘了啊，以 d e 开头的单词大概率都是坏词。比如说 decrease 表示的是下降，damage 表示的是损坏，destruct 表示的是破坏，所以以 d e 开头单词大概率就是坏坏的词啊。好，所以呢，员工怎么的不实验，以及呢？And using their own，哎，并列结构，experimenting using their own，用他们自己的什么东西。</p>
+<p>[28:58 - 29:38] 好，接着继续往后看。他说呢，这个与此同时啊，staff 啊，这个单词大家猜一猜，</p>
+<p>[29:38 - 30:28] 继续往后看啊，它既然是在同一段的，那所以可能就不会跨段了。alternative exploration，这就对应的那个 meanwhile 啊，然后呢，哎哎，这东西也找到了，and 也找到了，自己的 own，哎，instinct，这叫什么呀？直觉，对不对？好，自己的直觉。然后我们不是还有一个不好的词儿，不好的词儿在这个句子当中体现出来了吗？这词儿 DIS 开头也不是什么好玩意儿啊。所以我们的答案就应该是这个 INSTINCT 直觉，INSTINCT 直觉能同一替换的词，考词汇量了啊，INTUITION 灵感。所以这俩同一替换选出来，这题，这俩题，32、33，你想做出来的一个关键最重要的因素是找对段落，怎么能找对段落？</p>
+<p>[29:38 - 30:28] 继续往后看啊，它既然是在同一段的，那所以可能就不会跨段了。alternative</p>
+<p>[30:28 - 31:23] 第一个你得先知道 telecommunications company 发生在哪里，也就是那个电信公司发生在哪里。然后其次呢，你还能识别出来电信公司出现的第一段并不是答案段，原因是他在介绍电信公司的工作职责，和我们真正观察到的东西千差万别。好，最后一段了，最后一段只有一个题啊，为了避免这样的情况呢，我们就使得 ai 的过程易于理解，and 并列结构，这题其实就考了一个并列结构。易于理解和提升用户的什么？好，我们继续往后看吧。嗯，这一段里边有答案吗？这一段应该没有答案，为什么呢？因为我们来看这个题目啊，他说为了避免 avoid，这段里边我好像也没有看到 avoid，对不对？那下一段里边有 avoid 吗？哎呀，好像有 scenario avoid，所以答案应该是在这一段，看到没？</p>
+<p>[30:28 - 31:23] 第一个你得先知道 telecommunications company 发生在哪里，也就是那个电信公司发</p>
+<p>[31:24 - 31:36] 又跨了一段，这就是这题的难点。啊，它中间老跨段儿就真特别烦人。大家做题一定要非常的谨慎才行啊。好，那为了避免这个情况，找并列结构就可以了。</p>
+<p>[31:24 - 31:36] 又跨了一段，这就是这题的难点。啊，它中间老跨段儿就真特别烦人。大家做题一定要</p>
+<p>[31:36 - 31:59] 并列结构这不在这儿吗？那一个叫做 trustworthy，一个叫做 transparent。我就问一下大家，transparent 是什么意思啊？transparent 这个单词叫做透明的，然后 trustworthy 叫做信赖的。那易于理解是不是就透明了？如果一个人在你面前，他是完全透明的，是不是你 fully understand him 对吧？就完全理解他。</p>
+<p>[31:36 - 31:59] 并列结构这不在这儿吗？那一个叫做 trustworthy，一个叫做 transparent。我就问一下</p>
+<p>[32:00 - 32:16] 所以呢，这个 transparent 就是易于理解，那么 trustworthy 就是我要填的另一个单词。那么这空格里边能和 trustworthy 构成同一替换的，信赖和信任相关的，那就只有这个 confidence，对吧？ f 选项正确。</p>
+<p>[32:00 - 32:16] 所以呢，这个 transparent 就是易于理解，那么 trustworthy 就是我要填的另一个单词。</p>
+<p>[32:16 - 32:35] 哎，有同学觉得，哎， satisfaction 不行吗？ satisfaction 这个叫做满意，你对一个东西满意，你信赖它吗？不一定吧，你满意不一定信赖啊。所以这个满意和信赖并非一个意思。那既然我们找的那个单词是 trustworthy，那么我们肯定要写的是 confidence。</p>
+<p>[32:16 - 32:35] 哎，有同学觉得，哎， satisfaction 不行吗？ satisfaction 这个叫做满意，你对一个东西</p>
+<p>[32:35 - 33:28]  ok，总结一下这个题目啊，其实在操作步骤上比刚才我们写这个填空型总结题啊总结填空题多了两个步骤，一个步骤叫做重新定位，每一段我是不是都重新定了个位？用什么东西定位的？大长词以及关键意思，关键意思。大长词我们刚才用的是 telecommunications company 关键意思是 avoid 用的是这个 avoid 用了这两个关键词进行了定位，我知道啊，这一共有三段没有用，这一共有一段没有用，所以我才成功定位到了这个段落，这是第一个难点。第二个难点呢，就是我在做题的时候，咱们是不是要充分的去理解这个含义，进而选它的同义词。有没有简单呢？</p>
+<p>[32:35 - 33:28]  ok，总结一下这个题目啊，其实在操作步骤上比刚才我们写这个填空型总结题啊总结填</p>
+<p>[33:28 - 34:15] 有，比如说像那个 dependent 和那个 reliance 它俩的同义就太简单了，data 和 information 也不难，但有没有难的也有，你比如说 trustworthy 和 confidence 我觉得就得需要你去思考思考，对不对？所以有难的也有简单的，需要我们充分理解之后呢，找相应的这个同义词啊。同义词替换，OK，好，今天给大家带来这个内容呢，就是总结填空，总结填空频频出现在第二篇文章和第三篇。文章当中，大家在课后可以找剑桥真题进行自由练习啊。如果在做题过程当中有什么问题，可以在留言区给我留言，我一定知无不言。OK，那我们今天的课程就到这里啦，SEE YOU NEXT TIME，BYE！</p>
+<p>[33:28 - 34:15] 有，比如说像那个 dependent 和那个 reliance 它俩的同义就太简单了，data 和</p>
+  </main>
+  <aside class="col-right">
+    <h4>本页章节</h4><ul><li><a href="#06">06</a></li></ul>
+  </aside>
+</div>
+<script>
+(function(){
+  var input = document.getElementById('search-input');
+  var panel = document.getElementById('search-panel');
+  if (!input || !panel) return;
+  var main = document.querySelector('.col-main');
+  var leftLinks = Array.prototype.slice.call(document.querySelectorAll('.col-left ul li a'));
+  var rightLinks = Array.prototype.slice.call(document.querySelectorAll('.col-right ul li a'));
+
+  function escHtml(s){
+    return s.replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+  function escapeRegex(s){
+    return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+  function clearHighlights(){
+    if (!main) return;
+    var marks = main.querySelectorAll('mark.search-hl');
+    for (var i = 0; i < marks.length; i++) {
+      var m = marks[i];
+      var text = document.createTextNode(m.textContent);
+      m.parentNode.replaceChild(text, m);
+    }
+    main.normalize();
+  }
+  function highlightInMain(kw){
+    if (!main) return;
+    clearHighlights();
+    if (!kw) return;
+    var re = new RegExp(escapeRegex(kw), 'gi');
+    var walker = document.createTreeWalker(main, NodeFilter.SHOW_TEXT, {
+      acceptNode: function(n){
+        if (!n.nodeValue || !n.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        var p = n.parentElement;
+        if (!p) return NodeFilter.FILTER_REJECT;
+        var tag = p.tagName;
+        if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'CODE' || tag === 'PRE') return NodeFilter.FILTER_REJECT;
+        if (p.closest && p.closest('mark.search-hl')) return NodeFilter.FILTER_REJECT;
+        return n.nodeValue.toLowerCase().indexOf(kw.toLowerCase()) >= 0 ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+      }
+    });
+    var nodes = [];
+    var n;
+    while ((n = walker.nextNode())) nodes.push(n);
+    for (var i = 0; i < nodes.length; i++) {
+      var node = nodes[i];
+      var src = node.nodeValue;
+      var html = '';
+      var last = 0;
+      var match;
+      re.lastIndex = 0;
+      while ((match = re.exec(src)) !== null) {
+        html += escHtml(src.slice(last, match.index));
+        html += '<mark class="search-hl">' + escHtml(match[0]) + '</mark>';
+        last = match.index + match[0].length;
+        if (match[0].length === 0) re.lastIndex++;
+      }
+      html += escHtml(src.slice(last));
+      var tmp = document.createElement('span');
+      tmp.innerHTML = html;
+      var parent = node.parentNode;
+      while (tmp.firstChild) parent.insertBefore(tmp.firstChild, node);
+      parent.removeChild(node);
+    }
+  }
+  function search(q){
+    q = (q || '').trim();
+    panel.innerHTML = '';
+    if (!q) {
+      panel.hidden = true;
+      leftLinks.forEach(function(a){ a.parentElement.style.display = ''; });
+      rightLinks.forEach(function(a){ a.parentElement.style.display = ''; });
+      clearHighlights();
+      return;
+    }
+    var qLower = q.toLowerCase();
+    var courseHits = leftLinks.filter(function(a){
+      return a.textContent.toLowerCase().indexOf(qLower) >= 0;
+    });
+    leftLinks.forEach(function(a){
+      a.parentElement.style.display = courseHits.indexOf(a) >= 0 ? '' : 'none';
+    });
+    var sectionHits = rightLinks.filter(function(a){
+      return a.textContent.toLowerCase().indexOf(qLower) >= 0;
+    });
+    rightLinks.forEach(function(a){
+      a.parentElement.style.display = sectionHits.indexOf(a) >= 0 ? '' : 'none';
+    });
+    var parts = [];
+    if (courseHits.length) {
+      parts.push('<div class="sp-group">课程（' + courseHits.length + '）</div>');
+      parts.push('<ul>' + courseHits.map(function(a){
+        return '<li><a href="' + a.getAttribute('href') + '">' + escHtml(a.textContent) + '</a></li>';
+      }).join('') + '</ul>');
+    }
+    if (sectionHits.length) {
+      parts.push('<div class="sp-group">本页小节（' + sectionHits.length + '）</div>');
+      parts.push('<ul>' + sectionHits.map(function(a){
+        return '<li><a href="' + a.getAttribute('href') + '">' + escHtml(a.textContent) + '</a></li>';
+      }).join('') + '</ul>');
+    }
+    if (!parts.length) parts.push('<div class="sp-empty">无匹配结果</div>');
+    panel.innerHTML = parts.join('');
+    panel.hidden = false;
+    highlightInMain(q);
+  }
+  var timer = null;
+  input.addEventListener('input', function(e){
+    clearTimeout(timer);
+    timer = setTimeout(function(){ search(e.target.value); }, 80);
+  });
+  input.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') { input.value = ''; search(''); input.blur(); panel.hidden = true; }
+  });
+  document.addEventListener('click', function(e){
+    if (panel.contains(e.target) || e.target === input) return;
+    panel.hidden = true;
+  });
+  document.addEventListener('keydown', function(e){
+    if ((e.ctrlKey || e.metaKey) && (e.key === 'k' || e.key === 'K')) {
+      e.preventDefault();
+      input.focus();
+      input.select();
+    }
+  });
+  panel.addEventListener('click', function(e){
+    var a = e.target.closest('a');
+    if (a) panel.hidden = true;
+  });
+})();
+</script>
+</body>
+</html>

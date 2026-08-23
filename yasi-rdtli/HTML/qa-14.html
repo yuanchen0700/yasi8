@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第14讲 进阶阅读：To Catch a King · 雅思阅读13讲</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; height: 100%; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; color: #1f2328; background: #fff; }
+  a { color: #2c5cdc; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .topbar { position: fixed; top: 0; left: 0; right: 0; height: 56px; display: flex; align-items: center; padding: 0 24px; border-bottom: 1px solid #e5e7eb; background: #fff; z-index: 10; }
+  .logo { font-weight: 800; font-size: 20px; letter-spacing: -0.5px; color: #111; }
+  .logo span { color: #6b7280; font-weight: 500; }
+  .topbar-right { margin-left: auto; display: flex; gap: 16px; align-items: center; position: relative; }
+  .topbar-right input { border: 1px solid #d1d5db; border-radius: 6px; padding: 6px 10px; font-size: 13px; width: 240px; background: #f9fafb; }
+  .topbar-right input:focus { outline: none; border-color: #2c5cdc; background: #fff; box-shadow: 0 0 0 3px rgba(44,92,220,0.12); }
+  #search-panel { position: absolute; top: 44px; right: 0; width: 360px; max-height: 70vh; overflow-y: auto; background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); padding: 8px 0; z-index: 100; font-size: 13px; }
+  #search-panel .sp-group { padding: 8px 14px 4px; font-size: 11px; color: #6b7280; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px; }
+  #search-panel ul { list-style: none; padding: 0; margin: 0; }
+  #search-panel li a { display: block; padding: 6px 14px; color: #374151; line-height: 1.4; font-size: 12.5px; }
+  #search-panel li a:hover { background: #f3f4f6; color: #1d4ed8; text-decoration: none; }
+  #search-panel .sp-empty { padding: 24px; text-align: center; color: #9ca3af; font-size: 12px; }
+  mark.search-hl { background: #fff3a3; color: inherit; padding: 0 2px; border-radius: 2px; }
+
+  .layout { display: flex; padding-top: 56px; min-height: 100vh; }
+  .col-left { width: 240px; flex-shrink: 0; border-right: 1px solid #e5e7eb; padding: 20px 14px 40px; overflow-y: auto; height: calc(100vh - 56px); position: sticky; top: 56px; }
+  .col-left ul { list-style: none; padding: 0; margin: 0 0 16px; }
+  .col-left li { margin: 2px 0; }
+  .col-left a { display: block; padding: 6px 10px; border-radius: 6px; font-size: 13.5px; color: #374151; line-height: 1.4; }
+  .col-left a:hover { background: #f3f4f6; text-decoration: none; }
+  .col-left a.active { background: #eff6ff; color: #1d4ed8; font-weight: 600; }
+  .col-left h3 { font-size: 11px; text-transform: uppercase; color: #6b7280; margin: 18px 8px 8px; letter-spacing: 0.5px; font-weight: 600; }
+  .col-left .sub { padding-left: 24px !important; font-size: 12.5px; color: #4b5563; }
+
+  .col-main { flex: 1; min-width: 0; padding: 40px 56px 80px; max-width: 820px; margin: 0 auto; }
+  .col-main h1 { font-size: 32px; margin-top: 0; border-bottom: 1px solid #e5e7eb; padding-bottom: 12px; line-height: 1.3; }
+  .col-main h2 { font-size: 23px; margin-top: 40px; padding-top: 16px; border-top: 1px solid #f3f4f6; }
+  .col-main h3 { font-size: 18px; margin-top: 28px; color: #1f2937; }
+  .col-main p { line-height: 1.75; color: #374151; }
+  .col-main blockquote { border-left: 3px solid #dbeafe; background: #f8fafc; margin: 16px 0; padding: 10px 16px; color: #4b5563; border-radius: 0 6px 6px 0; }
+  .col-main blockquote p { margin: 0; }
+  .col-main table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 14px; }
+  .col-main th, .col-main td { border: 1px solid #e5e7eb; padding: 8px 12px; text-align: left; }
+  .col-main th { background: #f9fafb; font-weight: 600; }
+  .col-main tr:nth-child(even) td { background: #fcfcfd; }
+
+  .col-right { width: 220px; flex-shrink: 0; border-left: 1px solid #e5e7eb; padding: 24px 18px; font-size: 13px; height: calc(100vh - 56px); position: sticky; top: 56px; overflow-y: auto; }
+  .col-right h4 { font-size: 11px; text-transform: uppercase; color: #6b7280; margin: 0 0 12px; letter-spacing: 0.5px; font-weight: 600; }
+  .col-right ul { list-style: none; padding: 0; margin: 0; }
+  .col-right li { margin: 6px 0; }
+  .col-right a { color: #4b5563; line-height: 1.45; font-size: 12.5px; }
+  .col-right a:hover { color: #1d4ed8; }
+  .col-right .empty { color: #9ca3af; font-size: 12px; padding: 6px 0; }
+
+  @media (max-width: 1100px) { .col-right { display: none; } }
+  @media (max-width: 800px) { .col-left { display: none; } .col-main { padding: 24px; } }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="logo">雅思阅读<span> · 问答精要</span></div>
+  <div class="topbar-right">
+    <a href="index.html" style="font-size:13px;color:#2c5cdc;font-weight:600;white-space:nowrap;">🏠 总目录</a>
+    <a href="qa-index.html" style="font-size:13px;color:#6b7280;">目录</a>
+    <input id="search-input" placeholder="搜索 Ctrl K" autocomplete="off">
+    <div id="search-panel" hidden></div>
+  </div>
+</header>
+<div class="layout">
+  <aside class="col-left">
+    <h3>问答文档</h3>
+    <ul>
+      <li><a href="qa-01.html">第01讲 导学课</a></li>
+<li><a href="qa-02.html">第02讲 填空题专题一：表格填空 + 笔记填空</a></li>
+<li><a href="qa-03.html">第03讲 判断题专题：TFNG vs YNNG</a></li>
+<li><a href="qa-04.html">第04讲 填空题专题二：句子填空 + 简答题</a></li>
+<li><a href="qa-05.html">第05讲 填空题专题三：流程图填空 + 图形填空</a></li>
+<li><a href="qa-06.html">第06讲 填空题专题四：总结填空</a></li>
+<li><a href="qa-07.html">第07讲 配对题专题一：人物观点配对</a></li>
+<li><a href="qa-08.html">第08讲 配对题专题二：句子结尾配对</a></li>
+<li><a href="qa-09.html">第09讲 配对题专题三：信息匹配</a></li>
+<li><a href="qa-10.html">第10讲 判断题考点速查</a></li>
+<li><a href="qa-11.html">第11讲 选择题专题一：多选题</a></li>
+<li><a href="qa-12.html">第12讲 选择题专题二：单选题</a></li>
+<li><a href="qa-13.html">第13讲 平行阅读法</a></li>
+<li><a href="qa-14.html" class="active">第14讲 进阶阅读：To Catch a King</a></li>
+    </ul>
+    <h3>本页问题</h3><ul><li><a class="sub" href="#英国构成与恩怨">英国构成与恩怨</a></li><li><a class="sub" href="#原文与题空">原文与题空</a></li><li><a class="sub" href="#答案推导与排雷">答案推导与排雷</a></li><li><a class="sub" href="#原文推理链">原文推理链</a></li></ul>
+  </aside>
+  <main class="col-main">
+    <h1>雅思阅读全解13讲 · 第14讲 进阶阅读：To Catch a King（问答精要）</h1>
+<blockquote>
+<p>本讲定位：系列课程的<strong>收官之课</strong>。进阶阅读 = 承认"光有方法不够"——方法 + 英语能力 + 背景知识 + 反复训练 + 错题点拨，才是高分的完整拼图。本讲用一篇<strong>带选项的总结填空</strong>（书评：To Catch a King，讲查理二世逃亡）做示范：文章看似不难，但历史背景陌生、选项全是词组，正是"方法救不了你"的典型场景。</p>
+</blockquote>
+<hr>
+<h2><a id="q1-进阶阅读是什么意思为什么单开一课"></a>Q1. "进阶阅读"是什么意思？为什么单开一课？</h2>
+<ul>
+<li>学完前面 13 课，方法已经很好用了；但<strong>有些篇章不是靠方法（或简单方法）就能解决的</strong>。</li>
+<li>这类文章要求：<strong>背景知识储备 + 真正读懂文章</strong>。</li>
+<li>老师的态度：阅读不是"有了方法就一定高分"；高分 = <strong>方法 + 能力 + 训练 + 错题有人点拨</strong>。</li>
+</ul>
+<hr>
+<h2><a id="q2-这讲的例题是什么难在哪"></a>Q2. 这讲的例题是什么？难在哪？</h2>
+<ul>
+<li>题型：<strong>带选项的总结填空</strong>（A-J 全是词组，没有单个单词），出自剑桥真题 Test 1 第三篇。</li>
+<li>文章：一篇<strong>书评</strong>——Anna 评价 Charles Spencer（CS）写的《To Catch a King》（抓住一个国王），讲述英国内战期间追捕查理二世的故事。</li>
+<li>难点拆解：
+  1. <strong>历史背景陌生</strong>：英国内战、查理二世逃亡，不了解就读不顺；
+  2. <strong>书评文体</strong>：作者写书、另一个人评价书，理解"评价的画风"本身就是阅读任务——<strong>即便是中文书评，读懂作者的思路和观点也难</strong>；
+  3. <strong>选项词汇障碍</strong>：A-J 全是词组，不认识单词 = "折了一条腿"，只能靠原文 + 题目猜。</li>
+</ul>
+<hr>
+<h2><a id="q3-需要知道的背景知识查理二世是谁"></a>Q3. 需要知道的背景知识：查理二世是谁？</h2>
+<h3><a id="英国构成与恩怨"></a>英国构成与恩怨</h3>
+<ul>
+<li><strong>英国构成</strong>：UK = United Kingdom 联合王国，由英格兰、苏格兰、威尔士、北爱尔兰构成；<strong>英格兰和苏格兰历史上经常不合</strong>。</li>
+<li><strong>查理二世</strong>：年轻时长得很高大（约 1 米 9）、皮肤黝黑，在英国王位继承斗争中<strong>入侵英格兰战败</strong>，灰溜溜逃往欧洲。</li>
+<li>流亡生涯很苦：想投靠法国没被要、想去西班牙也没被要，在欧洲大陆流窜<strong>十来年</strong>；因为长相显眼（欧洲都是白人），特别容易被认出抓走，甚至用树汁染皮肤掩饰。</li>
+<li>结局：最后被 2 万名战士迎接回英国复位（文章没细说，是老师查的背景资料）。</li>
+<li><strong>关键因果</strong>：查理二世的父亲（查理一世）被<strong>处决（executed）</strong>——他拒绝接受某宗教作为国家宗教，惹恼了苏格兰 → 被杀；查理二世为了当上国王，<strong>放弃了这个原则</strong>（接受该宗教），换取苏格兰支持，达成协议。</li>
+</ul>
+<hr>
+<h2><a id="q4-逐题拆解1649-年与苏格兰达成deal-选什么"></a>Q4. 逐题拆解：1649 年与苏格兰达成"deal" → 选什么？</h2>
+<h3><a id="原文与题空"></a>原文与题空</h3>
+<ul>
+<li>原文：1649 年父亲被处决后，年轻的查理二世<strong>牺牲了一个根本原则</strong>，与苏格兰（Scottland）<strong>形成一个 deal</strong>。</li>
+<li>题空："formed a ____ with the Scots"。</li>
+</ul>
+<h3><a id="答案推导与排雷"></a>答案推导与排雷</h3>
+<ul>
+<li>陷阱演示：deal 不能直接抄回（选项里没有单词，全是词组）——"形成协议"在国家之间升级为 <strong>strategic alliance（战略同盟）→ H 选项</strong>。</li>
+<li>排雷：military innovation 不对；"新政府"太夸张（只达成协议，没说成立新政府）；political debate 是辩论，不是结盟。</li>
+</ul>
+<hr>
+<h2><a id="q5-逐题拆解放弃的重要原则-选什么"></a>Q5. 逐题拆解：放弃的"重要原则" → 选什么？</h2>
+<h3><a id="原文推理链"></a>原文推理链</h3>
+<ul>
+<li>题空："abandoned an important ____ held by his father, which contributed to his father's death"（放弃了一个他父亲坚持、并导致父亲死亡的重要东西）。</li>
+<li>原文推理链：
+  1. 他牺牲了"根本原则"；
+  2. 这原则 = 父亲拒绝接受某宗教作为<strong>国家宗教（national religion）</strong>而被处死；
+  3. 查理二世<strong>接受了这个宗教</strong>作为回报，才成为苏格兰国王。</li>
+<li>答案：与国家宗教对应 → <strong>religious conviction（宗教信仰）→ J 选项</strong>。</li>
+<li>这题的难度在于：原文没有直接给"原则"两个字，需要读完整段才能把"原则 = 宗教立场"这条逻辑串起来。</li>
+</ul>
+<hr>
+<h2><a id="q6-逐题拆解伍斯特战役的胜负-选什么"></a>Q6. 逐题拆解：伍斯特战役的胜负 → 选什么？</h2>
+<ul>
+<li>题空："a ____ for the Parliament"（对议会军来说是……）。</li>
+<li>原文：1651 年，双方在<strong>伍斯特城外的草地</strong>相遇，查理二世（苏格兰一方）被 <strong>comprehensively defeated（彻底战败）</strong>——英格兰/议会军获胜。</li>
+<li>答案：<strong>victory（胜利）→ F 选项</strong>。</li>
+<li>老师提醒：这里其实是"瞎猫撞上死耗子"——你认识的是名词 victory 才做对；如果只认识前面的形容词，就危险了。<strong>词汇量是硬门槛</strong>。</li>
+</ul>
+<hr>
+<h2><a id="q7-逐题拆解抓住查理二世的悬赏-选什么"></a>Q7. 逐题拆解：抓住查理二世的悬赏 → 选什么？</h2>
+<ul>
+<li>题空："a ____ offered for his capture"（悬赏捉拿他）。</li>
+<li>原文：21 岁的查理二世发现自己成为整个国家的目标，<strong>a large sum offered for his capture</strong>——抓到他可以获得一大笔钱。</li>
+<li>答案：large sum ≈ <strong>large reward（巨额赏金）→ B 选项</strong>。</li>
+</ul>
+<hr>
+<h2><a id="q8-逐题拆解逃往欧洲大陆-选什么"></a>Q8. 逐题拆解：逃往欧洲大陆 → 选什么？</h2>
+<ul>
+<li>题空："he eventually managed to reach the ____ of Europe" / 或对应"相对安全"的选项。</li>
+<li>原文：六周里躲过严密追查，最终在法国找到避难所（refuge in France），此后 9 年在欧洲流亡，只有一小撮王室支持者——<strong>活了下来</strong>。</li>
+<li>推理：欧洲大陆对他来说是相对安全的地方 → <strong>relatively safe（相对安全）→ D 选项</strong>。</li>
+<li>注意：题目必须<strong>一个字一个字抠着读</strong>，不能跳读（"你就不能说我跳着看，就得一个字一个字抠着看"）。</li>
+</ul>
+<hr>
+<h2><a id="q9-这讲最想传递的备考观是什么"></a>Q9. 这讲最想传递的备考观是什么？</h2>
+<ul>
+<li><strong>做题不是目的，提升英语能力才是大目标</strong>——进阶阅读就是为此而设。</li>
+<li>错误不可避免，关键是<strong>错题整理与复盘</strong>：思考错误原因、找到对应考点，才能真正提升。</li>
+<li>必要的时候，把错题<strong>拿去找人帮你解读</strong>——"有人点拨"是高分的组成部分。</li>
+<li>文章难的原因：历史背景不清楚 + 书评文体的双重视角（作者写书、评论者评书）+ 词汇量。</li>
+</ul>
+<hr>
+<h2><a id="q10-一句话总结本讲也是全课程的收官"></a>Q10. 一句话总结本讲（也是全课程的收官）</h2>
+<ul>
+<li>带选项总结填空：选项全是词组时，<strong>先清词汇障碍</strong>，再靠原文 + 逻辑推导。</li>
+<li>五个答案链：deal → strategic alliance；原则 → religious conviction；伍斯特 → victory；悬赏 → large reward；欧洲 → relatively safe。</li>
+<li>方法之外，还要能力 + 背景知识 + 训练 + 错题复盘 + 点拨。</li>
+<li>祝大家备考顺利，我们下一个系列视频见！</li>
+</ul>
+  </main>
+  <aside class="col-right">
+    <h4>本页章节</h4><ul><li><a href="#q1-进阶阅读是什么意思为什么单开一课">Q1. &quot;进阶阅读&quot;是什么意思？为什么单开一课？</a></li><li><a href="#q2-这讲的例题是什么难在哪">Q2. 这讲的例题是什么？难在哪？</a></li><li><a href="#q3-需要知道的背景知识查理二世是谁">Q3. 需要知道的背景知识：查理二世是谁？</a></li><li><a href="#q4-逐题拆解1649-年与苏格兰达成deal-选什么">Q4. 逐题拆解：1649 年与苏格兰达成&quot;deal&quot; → 选什么？</a></li><li><a href="#q5-逐题拆解放弃的重要原则-选什么">Q5. 逐题拆解：放弃的&quot;重要原则&quot; → 选什么？</a></li><li><a href="#q6-逐题拆解伍斯特战役的胜负-选什么">Q6. 逐题拆解：伍斯特战役的胜负 → 选什么？</a></li><li><a href="#q7-逐题拆解抓住查理二世的悬赏-选什么">Q7. 逐题拆解：抓住查理二世的悬赏 → 选什么？</a></li><li><a href="#q8-逐题拆解逃往欧洲大陆-选什么">Q8. 逐题拆解：逃往欧洲大陆 → 选什么？</a></li><li><a href="#q9-这讲最想传递的备考观是什么">Q9. 这讲最想传递的备考观是什么？</a></li><li><a href="#q10-一句话总结本讲也是全课程的收官">Q10. 一句话总结本讲（也是全课程的收官）</a></li></ul>
+  </aside>
+</div>
+<script>
+(function(){
+  var input = document.getElementById('search-input');
+  var panel = document.getElementById('search-panel');
+  if (!input || !panel) return;
+  var main = document.querySelector('.col-main');
+  var leftLinks = Array.prototype.slice.call(document.querySelectorAll('.col-left ul li a'));
+  var rightLinks = Array.prototype.slice.call(document.querySelectorAll('.col-right ul li a'));
+
+  function escHtml(s){
+    return s.replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+  function escapeRegex(s){
+    return s.replace(/[.*+?^${}()|[\]\\]/g, function(m){ return '\\' + m; });
+  }
+  function clearHighlights(){
+    if (!main) return;
+    var marks = main.querySelectorAll('mark.search-hl');
+    for (var i = 0; i < marks.length; i++) {
+      var m = marks[i];
+      var text = document.createTextNode(m.textContent);
+      m.parentNode.replaceChild(text, m);
+    }
+    main.normalize();
+  }
+  function highlightInMain(kw){
+    if (!main) return;
+    clearHighlights();
+    if (!kw) return;
+    var re = new RegExp(escapeRegex(kw), 'gi');
+    var walker = document.createTreeWalker(main, NodeFilter.SHOW_TEXT, {
+      acceptNode: function(n){
+        if (!n.nodeValue || !n.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        var p = n.parentElement;
+        if (!p) return NodeFilter.FILTER_REJECT;
+        var tag = p.tagName;
+        if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'CODE' || tag === 'PRE') return NodeFilter.FILTER_REJECT;
+        if (p.closest && p.closest('mark.search-hl')) return NodeFilter.FILTER_REJECT;
+        return n.nodeValue.toLowerCase().indexOf(kw.toLowerCase()) >= 0 ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+      }
+    });
+    var nodes = [];
+    var n;
+    while ((n = walker.nextNode())) nodes.push(n);
+    for (var i = 0; i < nodes.length; i++) {
+      var node = nodes[i];
+      var src = node.nodeValue;
+      var html = '';
+      var last = 0;
+      var match;
+      re.lastIndex = 0;
+      while ((match = re.exec(src)) !== null) {
+        html += escHtml(src.slice(last, match.index));
+        html += '<mark class="search-hl">' + escHtml(match[0]) + '</mark>';
+        last = match.index + match[0].length;
+        if (match[0].length === 0) re.lastIndex++;
+      }
+      html += escHtml(src.slice(last));
+      var tmp = document.createElement('span');
+      tmp.innerHTML = html;
+      var parent = node.parentNode;
+      while (tmp.firstChild) parent.insertBefore(tmp.firstChild, node);
+      parent.removeChild(node);
+    }
+  }
+  function search(q){
+    q = (q || '').trim();
+    panel.innerHTML = '';
+    if (!q) {
+      panel.hidden = true;
+      leftLinks.forEach(function(a){ a.parentElement.style.display = ''; });
+      rightLinks.forEach(function(a){ a.parentElement.style.display = ''; });
+      clearHighlights();
+      return;
+    }
+    var qLower = q.toLowerCase();
+    var courseHits = leftLinks.filter(function(a){
+      return a.textContent.toLowerCase().indexOf(qLower) >= 0;
+    });
+    leftLinks.forEach(function(a){
+      a.parentElement.style.display = courseHits.indexOf(a) >= 0 ? '' : 'none';
+    });
+    var sectionHits = rightLinks.filter(function(a){
+      return a.textContent.toLowerCase().indexOf(qLower) >= 0;
+    });
+    rightLinks.forEach(function(a){
+      a.parentElement.style.display = sectionHits.indexOf(a) >= 0 ? '' : 'none';
+    });
+    var parts = [];
+    if (courseHits.length) {
+      parts.push('<div class="sp-group">课程（' + courseHits.length + '）</div>');
+      parts.push('<ul>' + courseHits.map(function(a){
+        return '<li><a href="' + a.getAttribute('href') + '">' + escHtml(a.textContent) + '</a></li>';
+      }).join('') + '</ul>');
+    }
+    if (sectionHits.length) {
+      parts.push('<div class="sp-group">本页小节（' + sectionHits.length + '）</div>');
+      parts.push('<ul>' + sectionHits.map(function(a){
+        return '<li><a href="' + a.getAttribute('href') + '">' + escHtml(a.textContent) + '</a></li>';
+      }).join('') + '</ul>');
+    }
+    if (!parts.length) parts.push('<div class="sp-empty">无匹配结果</div>');
+    panel.innerHTML = parts.join('');
+    panel.hidden = false;
+    highlightInMain(q);
+  }
+  var timer = null;
+  input.addEventListener('input', function(e){
+    clearTimeout(timer);
+    timer = setTimeout(function(){ search(input.value); }, 80);
+  });
+  input.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') { input.value = ''; search(''); input.blur(); panel.hidden = true; }
+  });
+  document.addEventListener('click', function(e){
+    if (panel.contains(e.target) || e.target === input) return;
+    panel.hidden = true;
+  });
+  document.addEventListener('keydown', function(e){
+    if ((e.ctrlKey || e.metaKey) && (e.key === 'k' || e.key === 'K')) {
+      e.preventDefault();
+      input.focus();
+      input.select();
+    }
+  });
+  panel.addEventListener('click', function(e){
+    var a = e.target.closest('a');
+    if (a) panel.hidden = true;
+  });
+})();
+</script>
+</body>
+</html>

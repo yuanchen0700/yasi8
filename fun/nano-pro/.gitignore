@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+*.log
+*.pid
+*.db
+*.sqlite
+server.log
+server.pid
+output/
+media/
+sessions/

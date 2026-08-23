@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>商品管理 - DW Shop</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="{{ url_for('index') }}">DW<span class="dot">.</span>Shop</a>
+    <nav class="admin-nav">
+      <a href="{{ url_for('admin_dashboard') }}">订单</a>
+      <a href="{{ url_for('admin_products') }}" class="active">商品</a>
+      <a href="{{ url_for('admin_logout') }}">退出</a>
+    </nav>
+  </div>
+</div>
+<main>
+  <div class="action-row">
+    <h1 style="font-size: 24px;">商品管理</h1>
+    <a class="btn btn-small" href="{{ url_for('admin_product_new') }}">+ 新增商品</a>
+  </div>
+
+  {% if products %}
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>标题</th>
+            <th>分类</th>
+            <th>价格</th>
+            <th>状态</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for p in products %}
+            <tr>
+              <td>{{ p['id'] }}</td>
+              <td>{{ p['title'] }}
+                {% if p['subtitle'] %}<div class="small muted">{{ p['subtitle'] }}</div>{% endif %}
+              </td>
+              <td><span class="badge {{ 'service' if p['category'] == '服务' else '' }}">{{ p['category'] }}</span></td>
+              <td>¥{{ '%.2f' | format(p['price']) }}</td>
+              <td>
+                {% if p['active'] %}
+                  <span class="status done">上架中</span>
+                {% else %}
+                  <span class="status closed">已下架</span>
+                {% endif %}
+              </td>
+              <td>
+                <a class="btn btn-small btn-ghost" href="{{ url_for('admin_product_edit', pid=p['id']) }}">编辑</a>
+                <form class="inline-form" method="POST" action="{{ url_for('admin_product_toggle', pid=p['id']) }}">
+                  <button class="btn btn-small {{ 'btn-ghost' if p['active'] else 'btn' }}" type="submit">
+                    {{ '下架' if p['active'] else '上架' }}
+                  </button>
+                </form>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <div class="empty">还没有商品，点右上角新增一个吧。</div>
+  {% endif %}
+</main>
+</body>
+</html>

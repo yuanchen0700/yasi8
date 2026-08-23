@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第01讲 · 导学课 · 雅思听力8讲</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; height: 100%; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; color: #1f2328; background: #fff; }
+  a { color: #2c5cdc; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* 顶部 */
+  .topbar { position: fixed; top: 0; left: 0; right: 0; height: 56px; display: flex; align-items: center; padding: 0 24px; border-bottom: 1px solid #e5e7eb; background: #fff; z-index: 10; }
+  .logo { font-weight: 800; font-size: 20px; letter-spacing: -0.5px; color: #111; }
+  .logo span { color: #6b7280; font-weight: 500; }
+  .topbar-right { margin-left: auto; display: flex; gap: 16px; align-items: center; position: relative; }
+  .topbar-right input { border: 1px solid #d1d5db; border-radius: 6px; padding: 6px 10px; font-size: 13px; width: 240px; background: #f9fafb; }
+  .topbar-right input:focus { outline: none; border-color: #2c5cdc; background: #fff; box-shadow: 0 0 0 3px rgba(44,92,220,0.12); }
+  #search-panel { position: absolute; top: 44px; right: 0; width: 360px; max-height: 70vh; overflow-y: auto; background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); padding: 8px 0; z-index: 100; font-size: 13px; }
+  #search-panel .sp-group { padding: 8px 14px 4px; font-size: 11px; color: #6b7280; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px; }
+  #search-panel ul { list-style: none; padding: 0; margin: 0; }
+  #search-panel li a { display: block; padding: 6px 14px; color: #374151; line-height: 1.4; font-size: 12.5px; }
+  #search-panel li a:hover { background: #f3f4f6; color: #1d4ed8; text-decoration: none; }
+  #search-panel .sp-empty { padding: 24px; text-align: center; color: #9ca3af; font-size: 12px; }
+  mark.search-hl { background: #fff3a3; color: inherit; padding: 0 2px; border-radius: 2px; }
+
+  /* 三栏布局 */
+  .layout { display: flex; padding-top: 56px; min-height: 100vh; }
+  .col-left { width: 240px; flex-shrink: 0; border-right: 1px solid #e5e7eb; padding: 20px 14px 40px; overflow-y: auto; height: calc(100vh - 56px); position: sticky; top: 56px; }
+  .col-left ul { list-style: none; padding: 0; margin: 0 0 16px; }
+  .col-left li { margin: 2px 0; }
+  .col-left a { display: block; padding: 6px 10px; border-radius: 6px; font-size: 13.5px; color: #374151; line-height: 1.4; }
+  .col-left a:hover { background: #f3f4f6; text-decoration: none; }
+  .col-left a.active { background: #eff6ff; color: #1d4ed8; font-weight: 600; }
+  .col-left h3 { font-size: 11px; text-transform: uppercase; color: #6b7280; margin: 18px 8px 8px; letter-spacing: 0.5px; font-weight: 600; }
+  .col-left .sub { padding-left: 24px !important; font-size: 12.5px; color: #4b5563; }
+
+  .col-main { flex: 1; min-width: 0; padding: 40px 56px 80px; max-width: 820px; margin: 0 auto; }
+  .col-main h1 { font-size: 32px; margin-top: 0; border-bottom: 1px solid #e5e7eb; padding-bottom: 12px; line-height: 1.3; }
+  .col-main h2 { font-size: 24px; margin-top: 40px; padding-top: 16px; border-top: 1px solid #f3f4f6; }
+  .col-main h3 { font-size: 18px; margin-top: 28px; color: #1f2937; }
+  .col-main p { line-height: 1.75; color: #374151; }
+
+  .col-right { width: 220px; flex-shrink: 0; border-left: 1px solid #e5e7eb; padding: 24px 18px; font-size: 13px; height: calc(100vh - 56px); position: sticky; top: 56px; overflow-y: auto; }
+  .col-right h4 { font-size: 11px; text-transform: uppercase; color: #6b7280; margin: 0 0 12px; letter-spacing: 0.5px; font-weight: 600; }
+  .col-right ul { list-style: none; padding: 0; margin: 0; }
+  .col-right li { margin: 6px 0; }
+  .col-right a { color: #4b5563; line-height: 1.45; font-size: 12.5px; }
+  .col-right a:hover { color: #1d4ed8; }
+  .col-right .section { color: #1f2937; font-weight: 600; margin-top: 14px; }
+  .col-right .empty { color: #9ca3af; font-size: 12px; padding: 6px 0; }
+
+  @media (max-width: 1100px) { .col-right { display: none; } }
+  @media (max-width: 800px) { .col-left { display: none; } .col-main { padding: 24px; } }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="logo">雅思听力<span> · 8讲</span></div>
+  <div class="topbar-right">
+    <a href="index.html" style="font-size:13px;color:#2c5cdc;font-weight:600;white-space:nowrap;">🏠 总目录</a>
+    <a href="qa-tl-index.html" style="font-size:13px;color:#2c5cdc;font-weight:600;white-space:nowrap;">💡 问答精要</a>
+    <span style="font-size:18px;">🐙</span>
+    <span style="font-size:18px;">💬</span>
+    <input id="search-input" placeholder="搜索 Ctrl K" autocomplete="off">
+    <div id="search-panel" hidden></div>
+  </div>
+</header>
+<div class="layout">
+  <aside class="col-left">
+    <h3>课程目录</h3>
+    <ul>
+      <li><a href="tl-00.html">雅思听力概述</a></li>
+<li><a href="tl-01.html" class="active">第01讲 · 导学课</a></li>
+<li><a href="tl-02.html">第02讲 · Form Completion 个人信息表</a></li>
+<li><a href="tl-03.html">第03讲 · 地图题</a></li>
+<li><a href="tl-04.html">第04讲 · 表格题table completion核心方法论与实战训练</a></li>
+<li><a href="tl-05.html">第05讲 · 听力单选题核心做题方法与实战技巧</a></li>
+<li><a href="tl-06.html">第06讲 · 多选题题型：避坑技巧、真题规则、实战带练全攻略</a></li>
+<li><a href="tl-07.html">第07讲 · 填空题全流程方法论+真题实操</a></li>
+<li><a href="tl-08.html">第08讲 · 题型方法论精讲：考点拆解、实操步骤、真题带练与提分方案</a></li>
+    </ul>
+    <h3>本页问题</h3><ul><li><a class="sub" href="#-">-</a></li><li><a class="sub" href="#适配人群与不适用人群">📌 适配人群与不适用人群</a></li><li><a class="sub" href="#全课程6大单元题型拆解">📚 全课程6大单元题型拆解</a></li><li><a class="sub" href="#关键应试提醒">💡 关键应试提醒</a></li></ul>
+    <h3>速查</h3>
+    <ul>
+      <li><a href="qa-tl-index.html">问答精要版</a></li>
+    </ul>
+  </aside>
+  <main class="col-main">
+    <h1>雅思听力全解8讲</h1>
+<h2><a id="01-导学课"></a>01 导学课</h2>
+<p>hello，各位同学，我是焦矮斯的sun老师，那这个系列的课程呢，</p>
+<p>主要是给大家解决一下听力当中的一些核心方法和技巧问题。所以我的这个视频呢，</p>
+<p>并不是非常水的经验介绍类的视频啊，可能相对来说会比较干。</p>
+<p>因为我们听力当中呢，一共分为九大类的题型，每一种题型在解决上都有自己的固定方法和技巧。</p>
+<p>我也知道我们的中国的小朋友在考雅思的时候，可能最擅长的是阅读这个科目，</p>
+<p>因为你会发现，阅读我们之前在英语类的考试啊，无论是你小升初出升高啊，</p>
+<p>还以及高考当中，甚至大学之后的四六级，其实阅读部分都是有考察的。</p>
+<p>但是听力在我们最小最幼小的这个阶段，我们是很难去训练到听力的能力的，</p>
+<p>毕竟我们不是生活在一个纯英语的这样的环境当中，</p>
+<p>那特别是在我们这个初中和高中的这个阶段，很少会有省份可能会考到雅思</p>
+<p>呃，会考到这个英语听力的这个部分啊。所以我们听力能力上呢，</p>
+<p>确实是有短板，那因此从我们大陆考生的这个平均成绩来看，听力的部分就要比阅读的部分要低很多啊。</p>
+<p>那我也希望通过这样一个系列的课程呢，可以帮助大家去解决雅思听力的问题那</p>
+<p>呃，再说一下我的这个课程可能适合什么样的学生来观看。</p>
+<p>如果你此时此刻是一个雅思小白，你对雅思有了一定的了解，</p>
+<p>而且给大给自己计划了一个考试的话，那但是你并没有去学过方法，</p>
+<p>或者也也并不知道。每一种题型他固定的解决思路或者技巧，</p>
+<p>那非常适合听我这个课程。如果说你是一个已经备考过一段时间，但是分数一直在低水位线上徘徊的同学，</p>
+<p>也非常适合这个这个课程啊。</p>
+<p>但如果说你已经是一个成熟的考鸭了，听力的部分呢，你自己做练习已经在七分以上了，</p>
+<p>那可能这个课程对你来说会有点简单啊，那你可以去follow一下我别的课程啊。</p>
+<p>呃，那我们讲义领取的方式也非常的简单，就我们整个这个系列课程，</p>
+<p>是给大家配套了一个讲义的，那讲义直接在评论区领取啊，当然大家也不要白嫖我，</p>
+<p>给我一键三连哦。好，那我们闲话不多说，直接进入到我们课程的部分。</p>
+<p>那首先呢，我们来看一下课程的一个整体结构，就是我在这几堂课当中给大家分别讲到什么。</p>
+<p>那第一个单元呢，我会给大家讲form completion，也就是表写个个人信息的这样一个填空。</p>
+<p>在这个部分，我会给大家讲到五大能力。这五大能力啊，</p>
+<p>其实是在我们雅思考试听力部分，每一次都会考到的，每一次考到的题目数量呢，</p>
+<p>大概在三到五个题不等啊。所以这五大能力是最最最基础送分的部分，</p>
+<p>千万不要出错，具体的我们到课上再讲。第二个单元呢，我会给大家讲解地图题。</p>
+<p>地图题虽然最近出题的频率并不高，但是呢，它也是持续存在并且非常好拿分的一种题目。</p>
+<p>但是啊，这个地图题呢，总有一些女生啊，就跟我讲说自己方向感不好，</p>
+<p>所以听地图题的时候，呢，觉得非常跟不上啊，一下子就走丢了。</p>
+<p>但事实上，嗯，如果你在听地图的时候容易走丢，主要的原因就是对于他描述方位的一些词汇并不是特别的熟悉，</p>
+<p>还有一些表达的方式可能不是特别的熟悉，</p>
+<p>但凡你熟悉了这些表达，可能就不会走丢了啊，所以地图题方法性很强。</p>
+<p>好，第三个单元我给大家讲解table completion，table completion这个题型非常的灵活，</p>
+<p>它可能会出现在呃这个passage啊，这叫part啊，part one， two， three，four就四个部分可能都会出现这个table completion，</p>
+<p>所以它是一种小题型，</p>
+<p>但是它是一种高频的小题型啊，就是它是用来和别的题型一块配合的，</p>
+<p>就咱俩一块配合出现在这个啊part当中，把这十道题给你塞满啊</p>
+<p>这样一种情况。第四个单元呢，给大家讲解这个multiple choice and pick from list</p>
+<p>这两个题型其实大家非常熟悉，分别是这个单选和多选啊，</p>
+<p>但单选和多选是我们在雅思听力当中失分最多的一种题目，而且很多高分的选手，</p>
+<p>比如说听力部分考到七分或者八分以上的选手，那最恐惧的就是单选题。</p>
+<p>单选题他我这个学生经常这么跟我讲啊，他说啊，单选题非常的看状态，</p>
+<p>如果状态比较好的话呢，哎，可能就答的比较好，但如果状态不好，</p>
+<p>可能这个单选题就一错错一面。确实是这样的，就听力当中的单选题啊，</p>
+<p>他和我们四六级的那个套路是完全不同，我曾经有一个学生四六级分数很高，</p>
+<p>但是在听力的部。分呢，哎，他这个雅思听力就始终不得要领，不得要领的主要原因就是单选题始终做的非常不好，</p>
+<p>他依旧沿用四六级的那个技巧，就是我听到了哪个选项里边的核心词，</p>
+<p>我就把这个选项勾出来，哎，然后基本上这个选项就是正确答案。但是我们听力单选题往往不是这样的，</p>
+<p>往往出现原文原词的还是错误答案呢，</p>
+<p>哎，所以这个方法性啊，也是非常强的，希望大家能够持续follow课程啊！然后第五个单元给大家讲解note completion和sentence completion，</p>
+<p>这个其实主要就是part four的内容啦，</p>
+<p>part four的内容最后一个部分呢，是给大家讲解matching题，就是配对题这样的一个专题。</p>
+<p>所以以上这些课程大概分成这样的几节，每一节的课程呢，都还是比较干的，</p>
+<p>也给大家拿到了一些例题去来具体验证我们的方法是否好用，</p>
+<p>所以希望大家能够持续follow课程啊！那今天呢，由于我们是一节导学课，所以我先给大家展示一下每一种题型，</p>
+<p>然后大家跟这些题型say个嗨就可以了。</p>
+<p>那第一种题型我们一块来看一下啊，这个就是我要给大家讲解的这个form completion，</p>
+<p>form completion个人信息表的题目，我们可以在左边这个剑桥真题当中去看到，</p>
+<p>这类题型相对来说比较简单，是出现在part one当中，</p>
+<p>主要涉及到的考点呢，包括人名啦，地址啦，嗯，</p>
+<p>还有他的年龄啊，嗯，日期啦这种东西啊，</p>
+<p>相对来说都是比较简单的，所以这个具体我们到时候会讲这五大能力，那下一节课就讲啊，</p>
+<p>大家不要着急，那接下来我们来看下一种题型。下一种题型呢，就是地图题了，</p>
+<p>这个地图题啊，其实我给大家选取的这个地图呢，啊，它相对来说还是比较复杂的，</p>
+<p>你可能会在图上去看到各种字母，你需要干的事情就是把对应的这个题，</p>
+<p>它的这个位置在文章这个字在在图图片的这个字母当中啊，</p>
+<p>去找到具体的位置，比如说你觉得这个scarecrow这个东西在以上a b c d e， f这个哪里，</p>
+<p>然后你给它填回来，这是配对型的地图题。</p>
+<p>那但地图题呢，其实它是分为配对型的地图题和填空型的地图题啊，</p>
+<p>那现在来看，配对型的会比较多，填空型的会比较少一点啊。</p>
+<p>好，接下来下一种题型我们一块来看一下，这个就叫做表格完成题啊，</p>
+<p>table completion。我给大家选的这个表格完成题的例题呢，是来自于passage one当中啊，</p>
+<p>part one当中，但是我刚才也说了，part one， two，three， four都会出现表格完成题，</p>
+<p>而且表格完成题是有固定考点的，那这些考点我在课上都会给大家讲解啊，</p>
+<p>现在先卖个小关子，那接下来下一种题目就是你们熟悉的单选题，</p>
+<p>那我只截了单选题的图，没有截这个多选题啊，因为屏幕放不下，那单选题和多选题差不多，</p>
+<p>单选题在听力当中是三选一，多选题呢是五选二。</p>
+<p>有同学可能会问老师，你觉得是单选题比较简单还是多选题比较简单？我个人认为呢，就</p>
+<p>这两种题目他考察的方式不太一样，单选题有送分的，但是有非常难的，</p>
+<p>非常难的是需要你对听力的段子有一个deeply understanding，至少那三到五句话你要听懂，</p>
+<p>那三到五句话听懂其实对于pass three和passport的题目来说，</p>
+<p>已经相对来说比较难了，但多选题呢，往往它都是那一个细节，</p>
+<p>五个选项都给你出，你要通过排除法去排除错误的选项。但是多选题难点在哪？</p>
+<p>在定位，如果这道题你刚好错过了定位，那你一下子是错过了两道题啊！</p>
+<p>那如果说考场上直接错过两道题，我相信大多数同学可能心态就要爆炸了，</p>
+<p>心态就会失衡了啊，就会觉得完了，这次考试白报了，那我是不是还得再花两千多块钱重新报一下呀？</p>
+<p>听力考试呢，一方面考的是你们的英语能力，另一方面也很重要的，</p>
+<p>其实是考大家的心态，就是心态一定要稳定啊，如果说因为前面的内容没有打好，</p>
+<p>导致你后面的内容答的不好，那这个就不就不太划算，</p>
+<p>哎，就是可能会确实就不太划算了，大家能明白我的意思啊，</p>
+<p>那所以我们心态要好，最哪怕就是我真的没打好，那只不过雅思也是一个每周都能报的考试，</p>
+<p>那只不过我就再多花两千块钱嘛，无所谓他跟这种一锤定音的，</p>
+<p>像高考这种，那肯定是差距就很大了，所以大家要保证一个放松的心态去走上考场。</p>
+<p>听力是我们在考试的时候第一个科目，</p>
+<p>无论你是基考还是直必考啊，听力都是第一个科目，所以千万不要由。</p>
+<p>于你听力部分发挥的好或者不好，影响你后面部分啊，影响你的阅读，影响你的写作，</p>
+<p>被影响的同学大有人在。所以我在这个视频当中也给大家提个醒啊。</p>
+<p>好，下面一种题目，我们来看一下。这个啊，就是note completion或者sentence completion啊，</p>
+<p>这是两种题型。但我为什么给它放在了一个课上去给大家讲呢？</p>
+<p>主要的原因就是啊，这两种题型其实他们解决方法差不多。那这是一个出现在pa for当中的一个note completion啊，</p>
+<p>就是笔记填空题，讲的是海豚的搁浅。</p>
+<p>那pa for的题目，其实它的这个主题，或者说它的这个topic啊，</p>
+<p>还是比较general的，就是比较宽泛啊。</p>
+<p>你在学校里边可能会遇到什么样的专业，你在part four就会听到什么样的段子。</p>
+<p>比如说我们的剑桥真题当中，有海洋生物的，嗯，有医学的，</p>
+<p>有这个人文社科领域的，有business的，甚至还有哲学的，像剑桥十六test one pass</p>
+<p>pass four啊，part four这个题就是讲story system，就是一种哲学理念，</p>
+<p>这种哲学理念可能很多<strong><em>*</em></strong>***都是在用的。所以你在学校会开设什么样的专业，</p>
+<p>part four你就会听到什么样的段子。但是它和你的专业背景一定非常相关吗？</p>
+<p>不是的。不是说你这个专业你学了或者怎么样，你就能答对题，也不是说你不是这个专业的，</p>
+<p>你答不对题，和专业不相关，只和语言相关。所以呢，我们到时候也会讲特定涉及到的一些考点啊。</p>
+<p>好，下一种题目。呢就是这个matching题，</p>
+<p>matching题它一大特点就是非常的快，很多同学跟不上啊，特别是技考机考的时候，</p>
+<p>很多同学觉得确实是跟不上，就是嗖嗖嗖就过掉了。</p>
+<p>但matching题啊，它出现在part two和part three当中，一般会比较多一点，</p>
+<p>那如果是part two的matching题呢，它只考你两个项目，一个叫做同替，</p>
+<p>一个叫做干扰啊，基本上就是要么考你同体，要么考你干扰，而且这两个考点相对来说比较排他，</p>
+<p>就是考你同体的不考干扰，考干扰的不考同体啊。</p>
+<p>那part three呢，一般来说哎，它会给你再叠加一个叫做both agree，</p>
+<p>这一点叫做两者都同意啊，会给你叠加这样的一个考点。</p>
+<p>ok，以上这些呢，就是我们整个课程的一个安排，每一个part课程都会给大家对具体去解决一个对应的类别的题目，</p>
+<p>所以也希望大家呢能够持续follow我的课程，</p>
+<p>然后咱们一起来涂鸦啊。</p>
+<p>然后我整个课程涉及到的这个讲义领取的方式也非常的简单，那大家直接在评论区给我留言，</p>
+<p>然后就可以领取我的讲义啊，然后大家领取奖励之后呢，</p>
+<p>我非常呃希望大家把它存在ipad里边，然后这样你在ipad里面直接写字，</p>
+<p>就跟我课程一块听课就可以，就不用把它打出来，因为这个奖义这个页数也是比较多，</p>
+<p>然后可能课上也有一些我们用不到的东西，作为课后大家的一个小练习，</p>
+<p>所以希望大家呢，就是啊，把它存在ipad里边，存电子版。</p>
+<p>就好啊，那如果是给它打出来的话，可能会比较浪费纸张。好，那么接下来呢，</p>
+<p>我就期待后续的课程持续跟大家见面喽！也希望大家给我留一些弹幕啊，</p>
+<p>就是对雅思学习有什么样的这个困惑或者问题，给我留弹幕，然后我看到大家问的比较多的问题呢，</p>
+<p>我就会给大家进行讲解和回答。ok， see you next time bye！</p>
+<h3><a id="-"></a>-</h3>
+<p>这是由焦矮斯的Sun老师推出的雅思听力专项系列课程，主打干货型应试技巧教学，区别于普通经验分享类内容，针对雅思听力9大题型逐一拆解专属解题方法，帮助大陆考生弥补听力能力短板。</p>
+<ul>
+<li><strong>大陆考生现状</strong>：国内英语学习环境中听力训练占比低，多数省份中高考英语听力考察占比有限，导致考生平均听力成绩显著低于阅读成绩。</li>
+<li><strong>课程定位</strong>：纯技巧导向的应试提分课程，配套专属讲义辅助练习。</li>
+</ul>
+<h3><a id="适配人群与不适用人群"></a>📌 适配人群与不适用人群</h3>
+<table>
+<thead>
+<tr>
+<th>适配人群</th>
+<th>不适用人群</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>雅思小白：已了解考试基础信息、计划参考但未系统学习过听力题型方法的考生</td>
+<td>听力7分以上的成熟考鸭：课程内容偏基础技巧，对高分段考生提升空间有限</td>
+</tr>
+<tr>
+<td>备考瓶颈考生：备考一段时间但听力分数长期在低水位徘徊的考生</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="全课程6大单元题型拆解"></a>📚 全课程6大单元题型拆解</h3>
+<p>课程共分为6个核心单元，覆盖雅思听力全部高频题型，每个单元针对性解决一类题型的痛点：</p>
+<ol>
+<li><strong>第一单元：Form Completion（个人信息填空题）</strong>
+   - 核心内容：讲解听力考试必备的五大基础能力，这类题型每次考试考察3-5题，属于送分题，考点涵盖人名、地址、年龄、日期等基础信息，要求考生尽量零失误。</li>
+<li><strong>第二单元：地图题</strong>
+   - 题型特点：近年出题频率不高但得分率高，很多考生因方位词汇不熟悉、方向感弱容易“听丢位置”，方法性极强，掌握方位表达即可轻松拿分。
+   - 题型分类：配对型地图题（当前主流）、填空型地图题（占比偏低）。</li>
+<li><strong>第三单元：Table Completion（表格填空题）</strong>
+   - 题型特点：灵活性极强，在听力Part1-Part4四个部分均可能出现，属于高频小题型，常和其他题型搭配组合填满单部分的10道题，有固定专属考点。</li>
+<li><strong>第四单元：单选+多选题</strong>
+   - 痛点表现：是雅思听力失分最多的题型，甚至7-8分的高分考生也容易因状态波动大面积错题；考生沿用四六级“听到原词就选”的技巧完全失效，雅思听力中出现原文原词的选项往往是错误答案。
+   - 题型差异：<ul>
+<li>单选题：3选1，难度分层明显，难题需要深度理解连续3-5句听力内容，对Part3/4的考生挑战较大。</li>
+<li>多选题：5选2，难点在定位，一旦错过定位会直接丢失2道题，极易引发考生考场心态失衡。</li>
+</ul>
+</li>
+<li><strong>第五单元：Note Completion+Sentence Completion（笔记填空+句子填空题）</strong>
+   - 题型特点：两类题型解题逻辑高度相似，主要出现在听力Part4部分，话题覆盖大学全专业领域（海洋生物、医学、人文社科、商科、哲学等），但题目考察核心是语言能力，和考生自身专业背景无关。</li>
+<li><strong>第六单元：Matching（配对题）</strong>
+   - 题型特点：语速快，机考环境下考生普遍反馈跟不上音频节奏，高频出现在Part2和Part3：<ul>
+<li>Part2配对题：仅考察同义替换、干扰项两个排他性考点，二选一出现。</li>
+<li>Part3配对题：额外叠加“两者共同同意”考点，难度升级。</li>
+</ul>
+</li>
+</ol>
+<h3><a id="关键应试提醒"></a>💡 关键应试提醒</h3>
+<ol>
+<li><strong>考场心态管理</strong>：听力是雅思考试（无论机考/纸笔考）的第一个科目，即使听力发挥失常也不要影响后续阅读、写作科目，雅思每周都可报考，不存在高考式一锤定音的压力。</li>
+<li><strong>讲义使用建议</strong>：课程配套讲义可在视频评论区领取，建议保存为电子版在iPad上直接书写使用，无需打印，讲义剩余内容可作为课后补充练习。</li>
+</ol>
+  </main>
+  <aside class="col-right">
+    <h4>本页章节</h4><ul><li><a href="#01-导学课">01 导学课</a></li></ul>
+  </aside>
+</div>
+<script>
+(function(){
+  var input = document.getElementById('search-input');
+  var panel = document.getElementById('search-panel');
+  if (!input || !panel) return;
+  var main = document.querySelector('.col-main');
+  var leftLinks = Array.prototype.slice.call(document.querySelectorAll('.col-left ul li a'));
+  var rightLinks = Array.prototype.slice.call(document.querySelectorAll('.col-right ul li a'));
+
+  function escHtml(s){
+    return s.replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+  function escapeRegex(s){
+    return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+  function clearHighlights(){
+    if (!main) return;
+    var marks = main.querySelectorAll('mark.search-hl');
+    for (var i = 0; i < marks.length; i++) {
+      var m = marks[i];
+      var text = document.createTextNode(m.textContent);
+      m.parentNode.replaceChild(text, m);
+    }
+    main.normalize();
+  }
+  function highlightInMain(kw){
+    if (!main) return;
+    clearHighlights();
+    if (!kw) return;
+    var re = new RegExp(escapeRegex(kw), 'gi');
+    var walker = document.createTreeWalker(main, NodeFilter.SHOW_TEXT, {
+      acceptNode: function(n){
+        if (!n.nodeValue || !n.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        var p = n.parentElement;
+        if (!p) return NodeFilter.FILTER_REJECT;
+        var tag = p.tagName;
+        if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'CODE' || tag === 'PRE') return NodeFilter.FILTER_REJECT;
+        if (p.closest && p.closest('mark.search-hl')) return NodeFilter.FILTER_REJECT;
+        return n.nodeValue.toLowerCase().indexOf(kw.toLowerCase()) >= 0 ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+      }
+    });
+    var nodes = [];
+    var n;
+    while ((n = walker.nextNode())) nodes.push(n);
+    for (var i = 0; i < nodes.length; i++) {
+      var node = nodes[i];
+      var src = node.nodeValue;
+      var html = '';
+      var last = 0;
+      var match;
+      re.lastIndex = 0;
+      while ((match = re.exec(src)) !== null) {
+        html += escHtml(src.slice(last, match.index));
+        html += '<mark class="search-hl">' + escHtml(match[0]) + '</mark>';
+        last = match.index + match[0].length;
+        if (match[0].length === 0) re.lastIndex++;
+      }
+      html += escHtml(src.slice(last));
+      var tmp = document.createElement('span');
+      tmp.innerHTML = html;
+      var parent = node.parentNode;
+      while (tmp.firstChild) parent.insertBefore(tmp.firstChild, node);
+      parent.removeChild(node);
+    }
+  }
+  function search(q){
+    q = (q || '').trim();
+    panel.innerHTML = '';
+    if (!q) {
+      panel.hidden = true;
+      leftLinks.forEach(function(a){ a.parentElement.style.display = ''; });
+      rightLinks.forEach(function(a){ a.parentElement.style.display = ''; });
+      clearHighlights();
+      return;
+    }
+    var qLower = q.toLowerCase();
+    var courseHits = leftLinks.filter(function(a){
+      return a.textContent.toLowerCase().indexOf(qLower) >= 0;
+    });
+    leftLinks.forEach(function(a){
+      a.parentElement.style.display = courseHits.indexOf(a) >= 0 ? '' : 'none';
+    });
+    var sectionHits = rightLinks.filter(function(a){
+      return a.textContent.toLowerCase().indexOf(qLower) >= 0;
+    });
+    rightLinks.forEach(function(a){
+      a.parentElement.style.display = sectionHits.indexOf(a) >= 0 ? '' : 'none';
+    });
+    var parts = [];
+    if (courseHits.length) {
+      parts.push('<div class="sp-group">课程（' + courseHits.length + '）</div>');
+      parts.push('<ul>' + courseHits.map(function(a){
+        return '<li><a href="' + a.getAttribute('href') + '">' + escHtml(a.textContent) + '</a></li>';
+      }).join('') + '</ul>');
+    }
+    if (sectionHits.length) {
+      parts.push('<div class="sp-group">本页小节（' + sectionHits.length + '）</div>');
+      parts.push('<ul>' + sectionHits.map(function(a){
+        return '<li><a href="' + a.getAttribute('href') + '">' + escHtml(a.textContent) + '</a></li>';
+      }).join('') + '</ul>');
+    }
+    if (!parts.length) parts.push('<div class="sp-empty">无匹配结果</div>');
+    panel.innerHTML = parts.join('');
+    panel.hidden = false;
+    highlightInMain(q);
+  }
+  var timer = null;
+  input.addEventListener('input', function(e){
+    clearTimeout(timer);
+    timer = setTimeout(function(){ search(e.target.value); }, 80);
+  });
+  input.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') { input.value = ''; search(''); input.blur(); panel.hidden = true; }
+  });
+  document.addEventListener('click', function(e){
+    if (panel.contains(e.target) || e.target === input) return;
+    panel.hidden = true;
+  });
+  document.addEventListener('keydown', function(e){
+    if ((e.ctrlKey || e.metaKey) && (e.key === 'k' || e.key === 'K')) {
+      e.preventDefault();
+      input.focus();
+      input.select();
+    }
+  });
+  panel.addEventListener('click', function(e){
+    var a = e.target.closest('a');
+    if (a) panel.hidden = true;
+  });
+})();
+</script>
+</body>
+</html>

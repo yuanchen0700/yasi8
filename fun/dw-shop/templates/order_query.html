@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>订单查询 - DW Shop</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="{{ url_for('index') }}">DW<span class="dot">.</span>Shop</a>
+    <nav class="topbar-links">
+      <a href="{{ url_for('index') }}">返回商店</a>
+    </nav>
+  </div>
+</div>
+<main>
+  <div class="panel" style="max-width: 640px;">
+    <h1 style="font-size: 22px;">订单查询</h1>
+    <p class="muted">输入下单时填写的邮箱，可查看最近 62 天的订单。</p>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% for category, message in messages %}
+        <div class="flash {{ category }}">{{ message }}</div>
+      {% endfor %}
+    {% endwith %}
+
+    <form method="POST" style="display: flex; gap: 8px; margin-top: 12px;">
+      <input type="email" name="email" required value="{{ email }}" placeholder="你的邮箱" style="flex: 1;">
+      <button class="btn" type="submit">查询</button>
+    </form>
+
+    {% if results %}
+      <div style="margin-top: 22px;">
+        <h2 style="font-size: 16px; margin-bottom: 10px;">找到 {{ results | length }} 笔订单</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>商品</th>
+                <th>数量</th>
+                <th>留言</th>
+                <th>下单时间</th>
+                <th>状态</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for o in results %}
+                <tr>
+                  <td>{{ o['id'] }}</td>
+                  <td>{{ o['product_title'] }}</td>
+                  <td>{{ o['qty'] }}</td>
+                  <td>{{ o['message'] or '-' }}</td>
+                  <td class="small muted">{{ o['created_at'] }}</td>
+                  <td>
+                    {% set cls = 'pending' if o['status'] == '待处理' else ('done' if o['status'] in ('已付款', '已成交') else 'closed') %}
+                    <span class="status {{ cls }}">{{ o['status'] }}</span>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</main>
+<div class="footer-note">DW Shop · 拍下留言，线下成交</div>
+</body>
+</html>

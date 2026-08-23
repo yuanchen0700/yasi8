@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>雅思听力概述 · 雅思听力8讲</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; height: 100%; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; color: #1f2328; background: #fff; }
+  a { color: #2c5cdc; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* 顶部 */
+  .topbar { position: fixed; top: 0; left: 0; right: 0; height: 56px; display: flex; align-items: center; padding: 0 24px; border-bottom: 1px solid #e5e7eb; background: #fff; z-index: 10; }
+  .logo { font-weight: 800; font-size: 20px; letter-spacing: -0.5px; color: #111; }
+  .logo span { color: #6b7280; font-weight: 500; }
+  .topbar-right { margin-left: auto; display: flex; gap: 16px; align-items: center; position: relative; }
+  .topbar-right input { border: 1px solid #d1d5db; border-radius: 6px; padding: 6px 10px; font-size: 13px; width: 240px; background: #f9fafb; }
+  .topbar-right input:focus { outline: none; border-color: #2c5cdc; background: #fff; box-shadow: 0 0 0 3px rgba(44,92,220,0.12); }
+  #search-panel { position: absolute; top: 44px; right: 0; width: 360px; max-height: 70vh; overflow-y: auto; background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); padding: 8px 0; z-index: 100; font-size: 13px; }
+  #search-panel .sp-group { padding: 8px 14px 4px; font-size: 11px; color: #6b7280; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px; }
+  #search-panel ul { list-style: none; padding: 0; margin: 0; }
+  #search-panel li a { display: block; padding: 6px 14px; color: #374151; line-height: 1.4; font-size: 12.5px; }
+  #search-panel li a:hover { background: #f3f4f6; color: #1d4ed8; text-decoration: none; }
+  #search-panel .sp-empty { padding: 24px; text-align: center; color: #9ca3af; font-size: 12px; }
+  mark.search-hl { background: #fff3a3; color: inherit; padding: 0 2px; border-radius: 2px; }
+
+  /* 三栏布局 */
+  .layout { display: flex; padding-top: 56px; min-height: 100vh; }
+  .col-left { width: 240px; flex-shrink: 0; border-right: 1px solid #e5e7eb; padding: 20px 14px 40px; overflow-y: auto; height: calc(100vh - 56px); position: sticky; top: 56px; }
+  .col-left ul { list-style: none; padding: 0; margin: 0 0 16px; }
+  .col-left li { margin: 2px 0; }
+  .col-left a { display: block; padding: 6px 10px; border-radius: 6px; font-size: 13.5px; color: #374151; line-height: 1.4; }
+  .col-left a:hover { background: #f3f4f6; text-decoration: none; }
+  .col-left a.active { background: #eff6ff; color: #1d4ed8; font-weight: 600; }
+  .col-left h3 { font-size: 11px; text-transform: uppercase; color: #6b7280; margin: 18px 8px 8px; letter-spacing: 0.5px; font-weight: 600; }
+  .col-left .sub { padding-left: 24px !important; font-size: 12.5px; color: #4b5563; }
+
+  .col-main { flex: 1; min-width: 0; padding: 40px 56px 80px; max-width: 820px; margin: 0 auto; }
+  .col-main h1 { font-size: 32px; margin-top: 0; border-bottom: 1px solid #e5e7eb; padding-bottom: 12px; line-height: 1.3; }
+  .col-main h2 { font-size: 24px; margin-top: 40px; padding-top: 16px; border-top: 1px solid #f3f4f6; }
+  .col-main h3 { font-size: 18px; margin-top: 28px; color: #1f2937; }
+  .col-main p { line-height: 1.75; color: #374151; }
+
+  .col-right { width: 220px; flex-shrink: 0; border-left: 1px solid #e5e7eb; padding: 24px 18px; font-size: 13px; height: calc(100vh - 56px); position: sticky; top: 56px; overflow-y: auto; }
+  .col-right h4 { font-size: 11px; text-transform: uppercase; color: #6b7280; margin: 0 0 12px; letter-spacing: 0.5px; font-weight: 600; }
+  .col-right ul { list-style: none; padding: 0; margin: 0; }
+  .col-right li { margin: 6px 0; }
+  .col-right a { color: #4b5563; line-height: 1.45; font-size: 12.5px; }
+  .col-right a:hover { color: #1d4ed8; }
+  .col-right .section { color: #1f2937; font-weight: 600; margin-top: 14px; }
+  .col-right .empty { color: #9ca3af; font-size: 12px; padding: 6px 0; }
+
+  @media (max-width: 1100px) { .col-right { display: none; } }
+  @media (max-width: 800px) { .col-left { display: none; } .col-main { padding: 24px; } }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="logo">雅思听力<span> · 8讲</span></div>
+  <div class="topbar-right">
+    <a href="index.html" style="font-size:13px;color:#2c5cdc;font-weight:600;white-space:nowrap;">🏠 总目录</a>
+    <a href="qa-tl-index.html" style="font-size:13px;color:#2c5cdc;font-weight:600;white-space:nowrap;">💡 问答精要</a>
+    <span style="font-size:18px;">🐙</span>
+    <span style="font-size:18px;">💬</span>
+    <input id="search-input" placeholder="搜索 Ctrl K" autocomplete="off">
+    <div id="search-panel" hidden></div>
+  </div>
+</header>
+<div class="layout">
+  <aside class="col-left">
+    <h3>课程目录</h3>
+    <ul>
+      <li><a href="tl-00.html" class="active">雅思听力概述</a></li>
+<li><a href="tl-01.html">第01讲 · 导学课</a></li>
+<li><a href="tl-02.html">第02讲 · Form Completion 个人信息表</a></li>
+<li><a href="tl-03.html">第03讲 · 地图题</a></li>
+<li><a href="tl-04.html">第04讲 · 表格题table completion核心方法论与实战训练</a></li>
+<li><a href="tl-05.html">第05讲 · 听力单选题核心做题方法与实战技巧</a></li>
+<li><a href="tl-06.html">第06讲 · 多选题题型：避坑技巧、真题规则、实战带练全攻略</a></li>
+<li><a href="tl-07.html">第07讲 · 填空题全流程方法论+真题实操</a></li>
+<li><a href="tl-08.html">第08讲 · 题型方法论精讲：考点拆解、实操步骤、真题带练与提分方案</a></li>
+    </ul>
+    <h3>本页问题</h3><ul><li><a class="sub" href="#关键技巧">关键技巧</a></li></ul>
+    <h3>速查</h3>
+    <ul>
+      <li><a href="qa-tl-index.html">问答精要版</a></li>
+    </ul>
+  </aside>
+  <main class="col-main">
+    <h1>雅思听力概述</h1>
+<p>了解雅思听力，以及考试中的一些基本原则、技巧。</p>
+<p>来源：<a href="https://yasi.team/listening">https://yasi.team/listening</a></p>
+<h2><a id="评分表"></a>评分表</h2>
+<table>
+<thead>
+<tr>
+<th>答对数</th>
+<th>39-40</th>
+<th>37-38</th>
+<th>35-36</th>
+<th>33-34</th>
+<th>30-32</th>
+<th>27-29</th>
+<th>23-26</th>
+<th>20-22</th>
+<th>16-19</th>
+<th>13-15</th>
+<th>10-12</th>
+<th>6-9</th>
+<th>4-5</th>
+<th>3</th>
+<th>2</th>
+<th>1</th>
+<th>absent</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>得分</td>
+<td>9.0</td>
+<td>8.5</td>
+<td>8.0</td>
+<td>7.5</td>
+<td>7.0</td>
+<td>6.5</td>
+<td>6.0</td>
+<td>5.5</td>
+<td>5.0</td>
+<td>4.5</td>
+<td>4.0</td>
+<td>3.5</td>
+<td>3.0</td>
+<td>2.5</td>
+<td>2.0</td>
+<td>1.0</td>
+<td>0.0</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="考试基本信息"></a>考试基本信息</h2>
+<ul>
+<li><strong>时限</strong>：30 分钟</li>
+<li><strong>结尾</strong>：10 分钟额外时间（笔试；机考可能不一样）</li>
+<li><strong>题量</strong>：40 个题（错 10 个以内都可以得 7+）</li>
+<li><strong>结构</strong>：4 个小节，每个 10 题，难度递增</li>
+<li><strong>顺序</strong>：答案是顺序的</li>
+<li><strong>题型</strong>（3 种）：</li>
+<li>gap-fill 填空</li>
+<li>multiple choice 选择题（单选：多个选项选一个）</li>
+<li>matching 匹配</li>
+<li><strong>口音</strong>：多种口音</li>
+<li><strong>播放</strong>：只能听一次！</li>
+</ul>
+<h2><a id="section-1"></a>Section 1</h2>
+<ul>
+<li>2 人对话</li>
+<li>日常简单交流，e.g. making a booking（预订）</li>
+<li>一个说话的人给出基本信息</li>
+<li>简单的填空题：补全丢失的信息</li>
+<li>信息一般为：</li>
+<li>names</li>
+<li>addresses</li>
+<li>dates</li>
+<li>times</li>
+<li>numbers</li>
+<li>第一节很简单，必须拿高分：9-10 个正确，这样可以让你在后面难的部分有更多犯错空间</li>
+</ul>
+<h3><a id="关键技巧"></a>关键技巧</h3>
+<p>Use the breaks to read ahead —— 利用中间中断的时间提前读后面的题：</p>
+<ul>
+<li><strong>Before each section starts</strong>：每个小节开始前的停顿</li>
+<li><strong>In the middle of each section（Except in section 4）</strong>：每个小节中间的停顿（第四节中间没有停顿）</li>
+<li><strong>At the end of each section</strong>：每个小节结束的时候</li>
+</ul>
+<p>Don't check back, read ahead —— 不要向后看！不要向后看！不要向后看！错过了就错过了</p>
+<h2><a id="section-2"></a>Section 2</h2>
+<ul>
+<li><strong>Use all of the break time at the end of section 1</strong>：第一节结束后立马读第二节的题目</li>
+<li>只有一个说话的人</li>
+<li>一个简单的非学术类话题的陈述：</li>
+<li>Tourism</li>
+<li>A park</li>
+<li>Local facilities</li>
+<li>题型：填空、选择、匹配</li>
+<li>中间会停顿（一般让你先看前 5 个问题，中间停顿让你再看后 5 个问题）</li>
+<li>Still quite easy, aim for a high score —— 难度低，依然需要争取拿高分</li>
+</ul>
+<h2><a id="section-3"></a>Section 3</h2>
+<ul>
+<li><strong>Use breaks to read and underline</strong>：利用空隙读题和划关键词</li>
+<li>2-3 个人的对话</li>
+<li>对话和教育、培训有关，例如：老师和 2 个学生</li>
+<li>题型：Gap-fill, multiple choice（难度高）</li>
+<li><strong>Underline keywords in questions and choices</strong>：在题目和选项中划关键词</li>
+<li><strong>Listen for keywords or synonyms</strong>：听关键词或者对应的同义词</li>
+<li>高难度小节，目标应该是 6-7 个答对</li>
+</ul>
+<h2><a id="section-4"></a>Section 4</h2>
+<ul>
+<li><strong>使用第三节的空隙读题</strong></li>
+<li><strong>划关键词</strong></li>
+<li><strong>本节中间没有停顿</strong>，题目、关键词要尽量读、划</li>
+<li>只有一个人在那说</li>
+<li>内容学术相关</li>
+<li>题型：填空、选择</li>
+<li>听关键词或者对应的同义词</li>
+<li><strong>Difficult</strong>: faster speech, more content, extra information —— 很难：说的很快、内容多、很多额外信息。比如：30s 的语音中可能没有给任何答案</li>
+</ul>
+<h2><a id="总结"></a>总结</h2>
+<ul>
+<li><strong>Do some real practice tests</strong>：模拟考试练习</li>
+<li><strong>Read ahead (only check back at the end)</strong>：向前读题，只在整个听力结束的时候才回头检查</li>
+<li><strong>Underline keywords</strong>：划关键词，读题的时候要划关键词</li>
+<li><strong>Listen for keywords or synonyms</strong>：注意听关键词或者其对应的同义词</li>
+<li><strong>Be careful with spelling</strong>：注意拼写，听出来写不对也是没分的</li>
+<li><strong>Don't get stuck on a difficult question - move forward</strong>：不要被难的题卡住，直接过</li>
+<li><strong>Concentrate!</strong>：集中注意力，整个 30 分钟要全神贯注</li>
+</ul>
+  </main>
+  <aside class="col-right">
+    <h4>本页章节</h4><ul><li><a href="#评分表">评分表</a></li><li><a href="#考试基本信息">考试基本信息</a></li><li><a href="#section-1">Section 1</a></li><li><a href="#section-2">Section 2</a></li><li><a href="#section-3">Section 3</a></li><li><a href="#section-4">Section 4</a></li><li><a href="#总结">总结</a></li></ul>
+  </aside>
+</div>
+<script>
+(function(){
+  var input = document.getElementById('search-input');
+  var panel = document.getElementById('search-panel');
+  if (!input || !panel) return;
+  var main = document.querySelector('.col-main');
+  var leftLinks = Array.prototype.slice.call(document.querySelectorAll('.col-left ul li a'));
+  var rightLinks = Array.prototype.slice.call(document.querySelectorAll('.col-right ul li a'));
+
+  function escHtml(s){
+    return s.replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+  function escapeRegex(s){
+    return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+  function clearHighlights(){
+    if (!main) return;
+    var marks = main.querySelectorAll('mark.search-hl');
+    for (var i = 0; i < marks.length; i++) {
+      var m = marks[i];
+      var text = document.createTextNode(m.textContent);
+      m.parentNode.replaceChild(text, m);
+    }
+    main.normalize();
+  }
+  function highlightInMain(kw){
+    if (!main) return;
+    clearHighlights();
+    if (!kw) return;
+    var re = new RegExp(escapeRegex(kw), 'gi');
+    var walker = document.createTreeWalker(main, NodeFilter.SHOW_TEXT, {
+      acceptNode: function(n){
+        if (!n.nodeValue || !n.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        var p = n.parentElement;
+        if (!p) return NodeFilter.FILTER_REJECT;
+        var tag = p.tagName;
+        if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'CODE' || tag === 'PRE') return NodeFilter.FILTER_REJECT;
+        if (p.closest && p.closest('mark.search-hl')) return NodeFilter.FILTER_REJECT;
+        return n.nodeValue.toLowerCase().indexOf(kw.toLowerCase()) >= 0 ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+      }
+    });
+    var nodes = [];
+    var n;
+    while ((n = walker.nextNode())) nodes.push(n);
+    for (var i = 0; i < nodes.length; i++) {
+      var node = nodes[i];
+      var src = node.nodeValue;
+      var html = '';
+      var last = 0;
+      var match;
+      re.lastIndex = 0;
+      while ((match = re.exec(src)) !== null) {
+        html += escHtml(src.slice(last, match.index));
+        html += '<mark class="search-hl">' + escHtml(match[0]) + '</mark>';
+        last = match.index + match[0].length;
+        if (match[0].length === 0) re.lastIndex++;
+      }
+      html += escHtml(src.slice(last));
+      var tmp = document.createElement('span');
+      tmp.innerHTML = html;
+      var parent = node.parentNode;
+      while (tmp.firstChild) parent.insertBefore(tmp.firstChild, node);
+      parent.removeChild(node);
+    }
+  }
+  function search(q){
+    q = (q || '').trim();
+    panel.innerHTML = '';
+    if (!q) {
+      panel.hidden = true;
+      leftLinks.forEach(function(a){ a.parentElement.style.display = ''; });
+      rightLinks.forEach(function(a){ a.parentElement.style.display = ''; });
+      clearHighlights();
+      return;
+    }
+    var qLower = q.toLowerCase();
+    var courseHits = leftLinks.filter(function(a){
+      return a.textContent.toLowerCase().indexOf(qLower) >= 0;
+    });
+    leftLinks.forEach(function(a){
+      a.parentElement.style.display = courseHits.indexOf(a) >= 0 ? '' : 'none';
+    });
+    var sectionHits = rightLinks.filter(function(a){
+      return a.textContent.toLowerCase().indexOf(qLower) >= 0;
+    });
+    rightLinks.forEach(function(a){
+      a.parentElement.style.display = sectionHits.indexOf(a) >= 0 ? '' : 'none';
+    });
+    var parts = [];
+    if (courseHits.length) {
+      parts.push('<div class="sp-group">课程（' + courseHits.length + '）</div>');
+      parts.push('<ul>' + courseHits.map(function(a){
+        return '<li><a href="' + a.getAttribute('href') + '">' + escHtml(a.textContent) + '</a></li>';
+      }).join('') + '</ul>');
+    }
+    if (sectionHits.length) {
+      parts.push('<div class="sp-group">本页小节（' + sectionHits.length + '）</div>');
+      parts.push('<ul>' + sectionHits.map(function(a){
+        return '<li><a href="' + a.getAttribute('href') + '">' + escHtml(a.textContent) + '</a></li>';
+      }).join('') + '</ul>');
+    }
+    if (!parts.length) parts.push('<div class="sp-empty">无匹配结果</div>');
+    panel.innerHTML = parts.join('');
+    panel.hidden = false;
+    highlightInMain(q);
+  }
+  var timer = null;
+  input.addEventListener('input', function(e){
+    clearTimeout(timer);
+    timer = setTimeout(function(){ search(e.target.value); }, 80);
+  });
+  input.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') { input.value = ''; search(''); input.blur(); panel.hidden = true; }
+  });
+  document.addEventListener('click', function(e){
+    if (panel.contains(e.target) || e.target === input) return;
+    panel.hidden = true;
+  });
+  document.addEventListener('keydown', function(e){
+    if ((e.ctrlKey || e.metaKey) && (e.key === 'k' || e.key === 'K')) {
+      e.preventDefault();
+      input.focus();
+      input.select();
+    }
+  });
+  panel.addEventListener('click', function(e){
+    var a = e.target.closest('a');
+    if (a) panel.hidden = true;
+  });
+})();
+</script>
+</body>
+</html>

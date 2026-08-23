@@ -1,0 +1,18 @@
+{
+  "job_id": "384a4d63",
+  "job_name": "auto_start_download_server",
+  "session_key": "websocket:7279904c-bc50-4995-87aa-06462795fecb",
+  "prompt_ref": {
+    "id": "cron.agent_turn.reminder",
+    "version": 1,
+    "sha256": "b01014bd4f8ed90385afab0124b7ac4489c3dba8e42bf53c378917abb03e8158"
+  },
+  "prompt_vars": {
+    "message": "run /root/.nanobot/workspace/scripts/check_and_start_server.sh (port 8001)"
+  },
+  "rendered_prompt": "The scheduled time has arrived. Execute this scheduled cron job now and report the result to the user in the same session.\n\nRules:\n- Speak directly to the user in their language.\n- Do not narrate internal progress.\n- Do not include user IDs.\n- Do not add status reports like \"Done\" or \"Reminded\" unless they are the natural response.\n\nCron job: run /root/.nanobot/workspace/scripts/check_and_start_server.sh (port 8001)",
+  "status": "ok",
+  "response": "下载服务器已经在运行中，无需重复启动。",
+  "run_id": "384a4d63:1785717241022:5002716f",
+  "updated_at_ms": 1785717256193
+}

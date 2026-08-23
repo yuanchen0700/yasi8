@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ product['title'] }} - DW Shop</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="{{ url_for('index') }}">DW<span class="dot">.</span>Shop</a>
+    <nav class="topbar-links">
+      <a href="{{ url_for('order_query') }}">订单查询</a>
+    </nav>
+  </div>
+</div>
+<main>
+  <div class="breadcrumb"><a href="{{ url_for('index') }}">← 返回商店</a></div>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}
+      <div class="flash {{ category }}">{{ message }}</div>
+    {% endfor %}
+  {% endwith %}
+
+  <div class="detail">
+    <div class="detail-body">
+      {% if images %}
+        <div id="gallery" style="margin-bottom: 16px;">
+          <img id="gallery-main" src="{{ images[0]['url'] }}" alt="{{ product['title'] }}" style="width: 100%; max-height: 380px; object-fit: cover; border-radius: var(--radius); border: 1px solid #eceef1; display: block;">
+          {% if images | length > 1 %}
+            <div style="display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap;">
+              {% for img in images %}
+                <img src="{{ img['url'] }}" alt="商品图" class="gallery-thumb {{ 'active' if loop.first else '' }}" data-src="{{ img['url'] }}" style="width: 64px; height: 64px; object-fit: cover; border-radius: 8px; cursor: pointer; border: 2px solid {{ 'var(--brand)' if loop.first else '#e5e7eb' }};">
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
+      <span class="badge {{ 'service' if product['category'] == '服务' else '' }}">{{ product['category'] }}</span>
+      <h1 style="margin-top: 8px;">{{ product['title'] }}</h1>
+      {% if product['subtitle'] %}
+        <div class="subtitle">{{ product['subtitle'] }}</div>
+      {% endif %}
+      <div class="detail-desc">{{ product['description'] or '暂无详情描述，欢迎留言咨询。' }}</div>
+    </div>
+
+    <aside class="order-card">
+      <div class="price">¥{{ '%.2f' | format(product['price']) if product['price'] >= 0 else '免费' }}</div>
+      <div class="order-summary muted">拍下后请留下联系方式，我会在 24 小时内和你确认成交。</div>
+      <form method="POST" action="{{ url_for('place_order', pid=product['id']) }}">
+        <div class="field">
+          <label for="name">称呼</label>
+          <input id="name" name="name" required placeholder="怎么称呼你">
+        </div>
+        <div class="field">
+          <label for="contact">邮箱（必填）</label>
+          <input id="contact" name="contact" type="email" required placeholder="用于接收订单和卡券信息">
+        </div>
+        <div class="field">
+          <label for="wechat">微信号（选填）</label>
+          <input id="wechat" name="wechat" placeholder="方便店主更快联系你">
+        </div>
+        <div class="field">
+          <label for="message">留言（选填）</label>
+          <textarea id="message" name="message" rows="3" placeholder="想说点什么？"></textarea>
+        </div>
+        <button class="btn btn-block" type="submit">拍下这件商品</button>
+      </form>
+    </aside>
+  </div>
+</main>
+<script>
+document.querySelectorAll('.gallery-thumb').forEach(function(t) {
+  t.addEventListener('click', function() {
+    document.querySelectorAll('.gallery-thumb').forEach(function(x) {
+      x.style.borderColor = '#e5e7eb';
+    });
+    t.style.borderColor = 'var(--brand)';
+    document.getElementById('gallery-main').src = t.dataset.src;
+  });
+});
+</script>
+<div class="footer-note">DW Shop · 拍下留言，线下成交</div>
+</body>
+</html>

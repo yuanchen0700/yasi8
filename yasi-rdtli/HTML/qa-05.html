@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第05讲 填空题专题三：流程图填空 + 图形填空 · 雅思阅读13讲</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; height: 100%; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; color: #1f2328; background: #fff; }
+  a { color: #2c5cdc; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .topbar { position: fixed; top: 0; left: 0; right: 0; height: 56px; display: flex; align-items: center; padding: 0 24px; border-bottom: 1px solid #e5e7eb; background: #fff; z-index: 10; }
+  .logo { font-weight: 800; font-size: 20px; letter-spacing: -0.5px; color: #111; }
+  .logo span { color: #6b7280; font-weight: 500; }
+  .topbar-right { margin-left: auto; display: flex; gap: 16px; align-items: center; position: relative; }
+  .topbar-right input { border: 1px solid #d1d5db; border-radius: 6px; padding: 6px 10px; font-size: 13px; width: 240px; background: #f9fafb; }
+  .topbar-right input:focus { outline: none; border-color: #2c5cdc; background: #fff; box-shadow: 0 0 0 3px rgba(44,92,220,0.12); }
+  #search-panel { position: absolute; top: 44px; right: 0; width: 360px; max-height: 70vh; overflow-y: auto; background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); padding: 8px 0; z-index: 100; font-size: 13px; }
+  #search-panel .sp-group { padding: 8px 14px 4px; font-size: 11px; color: #6b7280; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px; }
+  #search-panel ul { list-style: none; padding: 0; margin: 0; }
+  #search-panel li a { display: block; padding: 6px 14px; color: #374151; line-height: 1.4; font-size: 12.5px; }
+  #search-panel li a:hover { background: #f3f4f6; color: #1d4ed8; text-decoration: none; }
+  #search-panel .sp-empty { padding: 24px; text-align: center; color: #9ca3af; font-size: 12px; }
+  mark.search-hl { background: #fff3a3; color: inherit; padding: 0 2px; border-radius: 2px; }
+
+  .layout { display: flex; padding-top: 56px; min-height: 100vh; }
+  .col-left { width: 240px; flex-shrink: 0; border-right: 1px solid #e5e7eb; padding: 20px 14px 40px; overflow-y: auto; height: calc(100vh - 56px); position: sticky; top: 56px; }
+  .col-left ul { list-style: none; padding: 0; margin: 0 0 16px; }
+  .col-left li { margin: 2px 0; }
+  .col-left a { display: block; padding: 6px 10px; border-radius: 6px; font-size: 13.5px; color: #374151; line-height: 1.4; }
+  .col-left a:hover { background: #f3f4f6; text-decoration: none; }
+  .col-left a.active { background: #eff6ff; color: #1d4ed8; font-weight: 600; }
+  .col-left h3 { font-size: 11px; text-transform: uppercase; color: #6b7280; margin: 18px 8px 8px; letter-spacing: 0.5px; font-weight: 600; }
+  .col-left .sub { padding-left: 24px !important; font-size: 12.5px; color: #4b5563; }
+
+  .col-main { flex: 1; min-width: 0; padding: 40px 56px 80px; max-width: 820px; margin: 0 auto; }
+  .col-main h1 { font-size: 32px; margin-top: 0; border-bottom: 1px solid #e5e7eb; padding-bottom: 12px; line-height: 1.3; }
+  .col-main h2 { font-size: 23px; margin-top: 40px; padding-top: 16px; border-top: 1px solid #f3f4f6; }
+  .col-main h3 { font-size: 18px; margin-top: 28px; color: #1f2937; }
+  .col-main p { line-height: 1.75; color: #374151; }
+  .col-main blockquote { border-left: 3px solid #dbeafe; background: #f8fafc; margin: 16px 0; padding: 10px 16px; color: #4b5563; border-radius: 0 6px 6px 0; }
+  .col-main blockquote p { margin: 0; }
+  .col-main table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 14px; }
+  .col-main th, .col-main td { border: 1px solid #e5e7eb; padding: 8px 12px; text-align: left; }
+  .col-main th { background: #f9fafb; font-weight: 600; }
+  .col-main tr:nth-child(even) td { background: #fcfcfd; }
+
+  .col-right { width: 220px; flex-shrink: 0; border-left: 1px solid #e5e7eb; padding: 24px 18px; font-size: 13px; height: calc(100vh - 56px); position: sticky; top: 56px; overflow-y: auto; }
+  .col-right h4 { font-size: 11px; text-transform: uppercase; color: #6b7280; margin: 0 0 12px; letter-spacing: 0.5px; font-weight: 600; }
+  .col-right ul { list-style: none; padding: 0; margin: 0; }
+  .col-right li { margin: 6px 0; }
+  .col-right a { color: #4b5563; line-height: 1.45; font-size: 12.5px; }
+  .col-right a:hover { color: #1d4ed8; }
+  .col-right .empty { color: #9ca3af; font-size: 12px; padding: 6px 0; }
+
+  @media (max-width: 1100px) { .col-right { display: none; } }
+  @media (max-width: 800px) { .col-left { display: none; } .col-main { padding: 24px; } }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="logo">雅思阅读<span> · 问答精要</span></div>
+  <div class="topbar-right">
+    <a href="index.html" style="font-size:13px;color:#2c5cdc;font-weight:600;white-space:nowrap;">🏠 总目录</a>
+    <a href="qa-index.html" style="font-size:13px;color:#6b7280;">目录</a>
+    <input id="search-input" placeholder="搜索 Ctrl K" autocomplete="off">
+    <div id="search-panel" hidden></div>
+  </div>
+</header>
+<div class="layout">
+  <aside class="col-left">
+    <h3>问答文档</h3>
+    <ul>
+      <li><a href="qa-01.html">第01讲 导学课</a></li>
+<li><a href="qa-02.html">第02讲 填空题专题一：表格填空 + 笔记填空</a></li>
+<li><a href="qa-03.html">第03讲 判断题专题：TFNG vs YNNG</a></li>
+<li><a href="qa-04.html">第04讲 填空题专题二：句子填空 + 简答题</a></li>
+<li><a href="qa-05.html" class="active">第05讲 填空题专题三：流程图填空 + 图形填空</a></li>
+<li><a href="qa-06.html">第06讲 填空题专题四：总结填空</a></li>
+<li><a href="qa-07.html">第07讲 配对题专题一：人物观点配对</a></li>
+<li><a href="qa-08.html">第08讲 配对题专题二：句子结尾配对</a></li>
+<li><a href="qa-09.html">第09讲 配对题专题三：信息匹配</a></li>
+<li><a href="qa-10.html">第10讲 判断题考点速查</a></li>
+<li><a href="qa-11.html">第11讲 选择题专题一：多选题</a></li>
+<li><a href="qa-12.html">第12讲 选择题专题二：单选题</a></li>
+<li><a href="qa-13.html">第13讲 平行阅读法</a></li>
+<li><a href="qa-14.html">第14讲 进阶阅读：To Catch a King</a></li>
+    </ul>
+    <h3>本页问题</h3><ul><li><a class="sub" href="#题型外观">题型外观</a></li><li><a class="sub" href="#原理">原理</a></li><li><a class="sub" href="#操作">操作</a></li><li><a class="sub" href="#进阶两头堵">进阶：两头堵</a></li><li><a class="sub" href="#其他词性辅助线索">其他词性辅助线索</a></li><li><a class="sub" href="#区间定位">区间定位</a></li><li><a class="sub" href="#34题a-total-of-____-were-taken-from-the-front-limbs-of-71-turtle-species">34题：`a total of ____ were taken from the front limbs of 71 turtle species`</a></li><li><a class="sub" href="#35题data-was-recorded-on-____">35题：`data was recorded on ____`</a></li><li><a class="sub" href="#36题陆龟样本密集分布在某一区域">36题：陆龟样本密集分布在某一区域</a></li><li><a class="sub" href="#37题需要从现存某类物种采集相同数据">37题：需要从现存某类物种采集相同数据</a></li><li><a class="sub" href="#38题某类样本点位在陆龟和海龟分布区间中间">38题：某类样本点位在陆龟和海龟分布区间中间</a></li><li><a class="sub" href="#39题古代乌龟化石样本点位分布特征">39题：古代乌龟化石样本点位分布特征</a></li><li><a class="sub" href="#注意事项">注意事项</a></li><li><a class="sub" href="#复盘要点">复盘要点</a></li></ul>
+  </aside>
+  <main class="col-main">
+    <h1>雅思阅读全解13讲 · 第05讲 填空题专题三：流程图填空 + 图形填空（问答精要）</h1>
+<blockquote>
+<p>本讲定位：出题频率低但性价比极高的"小众送分题"。6 道流程图填空只对应原文 1-2 段，读极少量文本就能拿大量分数。核心技巧："不拘一格定位法" + "动词同义替换"。</p>
+</blockquote>
+<hr>
+<h2><a id="q1-这两种题型出题频率如何为什么性价比高"></a>Q1. 这两种题型出题频率如何？为什么性价比高？</h2>
+<ul>
+<li><strong>出题比例很低</strong>：每年仅出现数次，很多考生因题型外观特殊误以为很难。</li>
+<li><strong>性价比极高</strong>：6 道流程图填空题通常只密集对应文章 <strong>1-2 段</strong>内容，读少量文本就能拿大量分数。</li>
+<li>正因为"送分太多"，考官刻意压低这类题型的出题频率。</li>
+</ul>
+<h3><a id="题型外观"></a>题型外观</h3>
+<ul>
+<li>流程图填空：步骤串联形式（如"把大象放进冰箱分 3 步"）。</li>
+<li>图形填空：复杂示意图，但<strong>图上本身不承载核心信息，所有答案都来自文章正文</strong>。</li>
+</ul>
+<hr>
+<h2><a id="q2-流程图填空出现在什么位置对应文章什么部分"></a>Q2. 流程图填空出现在什么位置？对应文章什么部分？</h2>
+<ul>
+<li>大多出现在阅读<strong>第二篇或第三篇议论文</strong>中。</li>
+<li>对应文章里<strong>验证作者假设的局部实验环节</strong>（hypothesis → experiment → 流程），不会覆盖整篇文章。</li>
+<li>例：文章共两页，流程实验可能只是其中非常微小的一部分。</li>
+</ul>
+<hr>
+<h2><a id="q3-核心技巧一不拘一格定位法是什么"></a>Q3. 核心技巧一："不拘一格定位法"是什么？</h2>
+<h3><a id="原理"></a>原理</h3>
+<ul>
+<li>填空题<strong>严格顺序出题</strong> → 无论找到哪一道题，往上看是前面的题、往下看是后面的题。</li>
+<li>所以优先选<strong>最醒目的定位线索</strong>（数字、特殊学术名词）切入。</li>
+</ul>
+<h3><a id="操作"></a>操作</h3>
+<ul>
+<li>例：11-15 五道题中，发现第 13 题有数字 <code>1996</code> → 回文章找到 1996 → 12 题在上面、14/15 题在下面 → <strong>先粗定位整组题的区间</strong>。</li>
+<li>效果：把两页文章直接缩小到 1-2 段出题区间，大幅降低找答案的时间成本。</li>
+</ul>
+<h3><a id="进阶两头堵"></a>进阶：两头堵</h3>
+<ul>
+<li>用题干开头的醒目词 + 末尾的特殊学术名词，两个线索一夹，直接锁定整组题都来自<strong>同一个段落</strong>。</li>
+</ul>
+<hr>
+<h2><a id="q4-核心技巧二为什么动词是流程图填空的核心线索"></a>Q4. 核心技巧二：为什么"动词"是流程图填空的核心线索？</h2>
+<ul>
+<li>流程图填空的题干大多<strong>省略实验主语</strong>，句子核心逻辑靠<strong>动词</strong>搭建。</li>
+<li>所以必须重点关注<strong>题干动词在原文的同义替换</strong>——这是锁定答案的核心抓手。</li>
+</ul>
+<h3><a id="其他词性辅助线索"></a>其他词性辅助线索</h3>
+<table>
+<thead>
+<tr>
+<th>词性/成分</th>
+<th>规律</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>冠词</td>
+<td>几乎不会发生同义替换</td>
+</tr>
+<tr>
+<td>固定搭配中的介词</td>
+<td>基本保持不变（如 depend on）</td>
+</tr>
+<tr>
+<td>复数名词提示词</td>
+<td>不丢"大量"核心含义，只做同义改写（如 a variety of）</td>
+</tr>
+<tr>
+<td>形容词</td>
+<td>区分"限定功能"（保留）与"修饰功能"（舍弃）</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2><a id="q5-需要懂实验原理学科背景吗"></a>Q5. 需要懂实验原理/学科背景吗？</h2>
+<ul>
+<li><strong>完全不需要</strong>。雅思考的是英语阅读能力，不是学科专业知识。</li>
+<li>即使完全不了解实验操作原理，也不影响选对答案。</li>
+<li>只需要：精准理解题干 + 对应原文单句的句意，别给自己加学科学习压力。</li>
+</ul>
+<hr>
+<h2><a id="q6-真题全解剑-9-乌龟实验34-39-题"></a>Q6. 真题全解：剑 9 乌龟实验（34-39 题）</h2>
+<p>主题：通过实验追溯乌龟祖先的起源地；答题要求：不超过 2 个单词或 1 个数字。</p>
+<h3><a id="区间定位"></a>区间定位</h3>
+<ul>
+<li>用"两头堵"：题干里的 <code>71 species</code> + 末尾特殊学术名词 → <strong>6 道题全部来自原文同一个段落</strong>。</li>
+</ul>
+<h3><a id="34题a-total-of-____-were-taken-from-the-front-limbs-of-71-turtle-species"></a>34题：<code>a total of ____ were taken from the front limbs of 71 turtle species</code></h3>
+<ul>
+<li><code>a total of</code> 是复数名词提示线索。</li>
+<li>原文：<code>three measurements</code>。</li>
+<li>答案：<strong>three measurements</strong>（数字写阿拉伯或英文都行）。</li>
+</ul>
+<h3><a id="35题data-was-recorded-on-____"></a>35题：<code>data was recorded on ____</code></h3>
+<ul>
+<li>核心定位线索：动词 <code>record</code>。</li>
+<li>原文：<code>triangular graph paper</code> → 受"最多 2 词"限制，保留<strong>限定形容词</strong> triangular + 核心名词 graph。</li>
+<li>答案：<strong>triangular graph</strong>（舍弃范围过大的 paper）。</li>
+<li>规则：形容词起<strong>限定功能</strong>时保留，起<strong>修饰功能</strong>时舍弃。</li>
+</ul>
+<h3><a id="36题陆龟样本密集分布在某一区域"></a>36题：陆龟样本密集分布在某一区域</h3>
+<ul>
+<li>原文对应"密集"的 <code>tight</code> → 锁定答案。</li>
+<li>答案：<strong>cluster</strong>。</li>
+</ul>
+<h3><a id="37题需要从现存某类物种采集相同数据"></a>37题：需要从现存某类物种采集相同数据</h3>
+<ul>
+<li>题干定语从句描述"同时在水里和陆地生活" → 对应两栖动物。</li>
+<li>答案：<strong>amphibious</strong>（两栖的）。</li>
+</ul>
+<h3><a id="38题某类样本点位在陆龟和海龟分布区间中间"></a>38题：某类样本点位在陆龟和海龟分布区间中间</h3>
+<ul>
+<li>原文：<code>approximately halfway</code>。</li>
+<li>答案：<strong>halfway</strong>。</li>
+</ul>
+<h3><a id="39题古代乌龟化石样本点位分布特征"></a>39题：古代乌龟化石样本点位分布特征</h3>
+<ul>
+<li>原文对应表述。</li>
+<li>答案：<strong>dry land tortoises</strong>（陆栖龟）。</li>
+</ul>
+<hr>
+<h2><a id="q7-图形填空和流程图填空有什么区别"></a>Q7. 图形填空和流程图填空有什么区别？</h2>
+<ul>
+<li>做题逻辑几乎完全一致，唯一区别：<strong>题干没有用步骤箭头串联成流程形态</strong>。</li>
+<li>但所有题目依然整体遵循<strong>顺序出题</strong>规则。</li>
+<li>图形填空例题：7 道题密集分布在原文 <strong>2 个连续段落</strong>，答题要求仅 1 个单词。</li>
+<li><strong>动词同义替换的重要性比流程图还要更高</strong>——题干大多围绕机械零件的功能设置。</li>
+</ul>
+<h3><a id="注意事项"></a>注意事项</h3>
+<ul>
+<li>图形填空可能出 <strong>2 道题的小范围乱序</strong>，不能完全僵化依赖顺序原则，要灵活用定位线索。</li>
+</ul>
+<hr>
+<h2><a id="q8-考试真遇到这两种题型说明什么"></a>Q8. 考试真遇到这两种题型说明什么？</h2>
+<ul>
+<li>说明<strong>整场考试难度偏低</strong>——这是官方赠送的高分送分题，<strong>一定要全力拿下全部分数</strong>。</li>
+</ul>
+<h3><a id="复盘要点"></a>复盘要点</h3>
+<ul>
+<li>题干排布极度密集，题与题之间间隔极短。</li>
+<li>全程抓住两大抓手：<strong>动词同义替换</strong> + <strong>限定类形容词线索</strong>。</li>
+<li>即使完全没读懂整个实验的完整操作逻辑，只要精准把握单句句意和题干逻辑关联，也能 100% 做对。</li>
+</ul>
+<hr>
+<h2><a id="q9-课后作业是什么"></a>Q9. 课后作业是什么？</h2>
+<ul>
+<li>完成图形填空例题，把最终答案发在课程评论区。</li>
+<li>同时整理做题过程中遇到的<strong>同义替换词汇</strong>（积累替换库）。</li>
+</ul>
+  </main>
+  <aside class="col-right">
+    <h4>本页章节</h4><ul><li><a href="#q1-这两种题型出题频率如何为什么性价比高">Q1. 这两种题型出题频率如何？为什么性价比高？</a></li><li><a href="#q2-流程图填空出现在什么位置对应文章什么部分">Q2. 流程图填空出现在什么位置？对应文章什么部分？</a></li><li><a href="#q3-核心技巧一不拘一格定位法是什么">Q3. 核心技巧一：&quot;不拘一格定位法&quot;是什么？</a></li><li><a href="#q4-核心技巧二为什么动词是流程图填空的核心线索">Q4. 核心技巧二：为什么&quot;动词&quot;是流程图填空的核心线索？</a></li><li><a href="#q5-需要懂实验原理学科背景吗">Q5. 需要懂实验原理/学科背景吗？</a></li><li><a href="#q6-真题全解剑-9-乌龟实验34-39-题">Q6. 真题全解：剑 9 乌龟实验（34-39 题）</a></li><li><a href="#q7-图形填空和流程图填空有什么区别">Q7. 图形填空和流程图填空有什么区别？</a></li><li><a href="#q8-考试真遇到这两种题型说明什么">Q8. 考试真遇到这两种题型说明什么？</a></li><li><a href="#q9-课后作业是什么">Q9. 课后作业是什么？</a></li></ul>
+  </aside>
+</div>
+<script>
+(function(){
+  var input = document.getElementById('search-input');
+  var panel = document.getElementById('search-panel');
+  if (!input || !panel) return;
+  var main = document.querySelector('.col-main');
+  var leftLinks = Array.prototype.slice.call(document.querySelectorAll('.col-left ul li a'));
+  var rightLinks = Array.prototype.slice.call(document.querySelectorAll('.col-right ul li a'));
+
+  function escHtml(s){
+    return s.replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+  function escapeRegex(s){
+    return s.replace(/[.*+?^${}()|[\]\\]/g, function(m){ return '\\' + m; });
+  }
+  function clearHighlights(){
+    if (!main) return;
+    var marks = main.querySelectorAll('mark.search-hl');
+    for (var i = 0; i < marks.length; i++) {
+      var m = marks[i];
+      var text = document.createTextNode(m.textContent);
+      m.parentNode.replaceChild(text, m);
+    }
+    main.normalize();
+  }
+  function highlightInMain(kw){
+    if (!main) return;
+    clearHighlights();
+    if (!kw) return;
+    var re = new RegExp(escapeRegex(kw), 'gi');
+    var walker = document.createTreeWalker(main, NodeFilter.SHOW_TEXT, {
+      acceptNode: function(n){
+        if (!n.nodeValue || !n.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        var p = n.parentElement;
+        if (!p) return NodeFilter.FILTER_REJECT;
+        var tag = p.tagName;
+        if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'CODE' || tag === 'PRE') return NodeFilter.FILTER_REJECT;
+        if (p.closest && p.closest('mark.search-hl')) return NodeFilter.FILTER_REJECT;
+        return n.nodeValue.toLowerCase().indexOf(kw.toLowerCase()) >= 0 ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+      }
+    });
+    var nodes = [];
+    var n;
+    while ((n = walker.nextNode())) nodes.push(n);
+    for (var i = 0; i < nodes.length; i++) {
+      var node = nodes[i];
+      var src = node.nodeValue;
+      var html = '';
+      var last = 0;
+      var match;
+      re.lastIndex = 0;
+      while ((match = re.exec(src)) !== null) {
+        html += escHtml(src.slice(last, match.index));
+        html += '<mark class="search-hl">' + escHtml(match[0]) + '</mark>';
+        last = match.index + match[0].length;
+        if (match[0].length === 0) re.lastIndex++;
+      }
+      html += escHtml(src.slice(last));
+      var tmp = document.createElement('span');
+      tmp.innerHTML = html;
+      var parent = node.parentNode;
+      while (tmp.firstChild) parent.insertBefore(tmp.firstChild, node);
+      parent.removeChild(node);
+    }
+  }
+  function search(q){
+    q = (q || '').trim();
+    panel.innerHTML = '';
+    if (!q) {
+      panel.hidden = true;
+      leftLinks.forEach(function(a){ a.parentElement.style.display = ''; });
+      rightLinks.forEach(function(a){ a.parentElement.style.display = ''; });
+      clearHighlights();
+      return;
+    }
+    var qLower = q.toLowerCase();
+    var courseHits = leftLinks.filter(function(a){
+      return a.textContent.toLowerCase().indexOf(qLower) >= 0;
+    });
+    leftLinks.forEach(function(a){
+      a.parentElement.style.display = courseHits.indexOf(a) >= 0 ? '' : 'none';
+    });
+    var sectionHits = rightLinks.filter(function(a){
+      return a.textContent.toLowerCase().indexOf(qLower) >= 0;
+    });
+    rightLinks.forEach(function(a){
+      a.parentElement.style.display = sectionHits.indexOf(a) >= 0 ? '' : 'none';
+    });
+    var parts = [];
+    if (courseHits.length) {
+      parts.push('<div class="sp-group">课程（' + courseHits.length + '）</div>');
+      parts.push('<ul>' + courseHits.map(function(a){
+        return '<li><a href="' + a.getAttribute('href') + '">' + escHtml(a.textContent) + '</a></li>';
+      }).join('') + '</ul>');
+    }
+    if (sectionHits.length) {
+      parts.push('<div class="sp-group">本页小节（' + sectionHits.length + '）</div>');
+      parts.push('<ul>' + sectionHits.map(function(a){
+        return '<li><a href="' + a.getAttribute('href') + '">' + escHtml(a.textContent) + '</a></li>';
+      }).join('') + '</ul>');
+    }
+    if (!parts.length) parts.push('<div class="sp-empty">无匹配结果</div>');
+    panel.innerHTML = parts.join('');
+    panel.hidden = false;
+    highlightInMain(q);
+  }
+  var timer = null;
+  input.addEventListener('input', function(e){
+    clearTimeout(timer);
+    timer = setTimeout(function(){ search(input.value); }, 80);
+  });
+  input.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') { input.value = ''; search(''); input.blur(); panel.hidden = true; }
+  });
+  document.addEventListener('click', function(e){
+    if (panel.contains(e.target) || e.target === input) return;
+    panel.hidden = true;
+  });
+  document.addEventListener('keydown', function(e){
+    if ((e.ctrlKey || e.metaKey) && (e.key === 'k' || e.key === 'K')) {
+      e.preventDefault();
+      input.focus();
+      input.select();
+    }
+  });
+  panel.addEventListener('click', function(e){
+    var a = e.target.closest('a');
+    if (a) panel.hidden = true;
+  });
+})();
+</script>
+</body>
+</html>

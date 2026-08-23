@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第10讲 判断题考点速查 · 雅思阅读13讲</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; height: 100%; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; color: #1f2328; background: #fff; }
+  a { color: #2c5cdc; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .topbar { position: fixed; top: 0; left: 0; right: 0; height: 56px; display: flex; align-items: center; padding: 0 24px; border-bottom: 1px solid #e5e7eb; background: #fff; z-index: 10; }
+  .logo { font-weight: 800; font-size: 20px; letter-spacing: -0.5px; color: #111; }
+  .logo span { color: #6b7280; font-weight: 500; }
+  .topbar-right { margin-left: auto; display: flex; gap: 16px; align-items: center; position: relative; }
+  .topbar-right input { border: 1px solid #d1d5db; border-radius: 6px; padding: 6px 10px; font-size: 13px; width: 240px; background: #f9fafb; }
+  .topbar-right input:focus { outline: none; border-color: #2c5cdc; background: #fff; box-shadow: 0 0 0 3px rgba(44,92,220,0.12); }
+  #search-panel { position: absolute; top: 44px; right: 0; width: 360px; max-height: 70vh; overflow-y: auto; background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); padding: 8px 0; z-index: 100; font-size: 13px; }
+  #search-panel .sp-group { padding: 8px 14px 4px; font-size: 11px; color: #6b7280; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px; }
+  #search-panel ul { list-style: none; padding: 0; margin: 0; }
+  #search-panel li a { display: block; padding: 6px 14px; color: #374151; line-height: 1.4; font-size: 12.5px; }
+  #search-panel li a:hover { background: #f3f4f6; color: #1d4ed8; text-decoration: none; }
+  #search-panel .sp-empty { padding: 24px; text-align: center; color: #9ca3af; font-size: 12px; }
+  mark.search-hl { background: #fff3a3; color: inherit; padding: 0 2px; border-radius: 2px; }
+
+  .layout { display: flex; padding-top: 56px; min-height: 100vh; }
+  .col-left { width: 240px; flex-shrink: 0; border-right: 1px solid #e5e7eb; padding: 20px 14px 40px; overflow-y: auto; height: calc(100vh - 56px); position: sticky; top: 56px; }
+  .col-left ul { list-style: none; padding: 0; margin: 0 0 16px; }
+  .col-left li { margin: 2px 0; }
+  .col-left a { display: block; padding: 6px 10px; border-radius: 6px; font-size: 13.5px; color: #374151; line-height: 1.4; }
+  .col-left a:hover { background: #f3f4f6; text-decoration: none; }
+  .col-left a.active { background: #eff6ff; color: #1d4ed8; font-weight: 600; }
+  .col-left h3 { font-size: 11px; text-transform: uppercase; color: #6b7280; margin: 18px 8px 8px; letter-spacing: 0.5px; font-weight: 600; }
+  .col-left .sub { padding-left: 24px !important; font-size: 12.5px; color: #4b5563; }
+
+  .col-main { flex: 1; min-width: 0; padding: 40px 56px 80px; max-width: 820px; margin: 0 auto; }
+  .col-main h1 { font-size: 32px; margin-top: 0; border-bottom: 1px solid #e5e7eb; padding-bottom: 12px; line-height: 1.3; }
+  .col-main h2 { font-size: 23px; margin-top: 40px; padding-top: 16px; border-top: 1px solid #f3f4f6; }
+  .col-main h3 { font-size: 18px; margin-top: 28px; color: #1f2937; }
+  .col-main p { line-height: 1.75; color: #374151; }
+  .col-main blockquote { border-left: 3px solid #dbeafe; background: #f8fafc; margin: 16px 0; padding: 10px 16px; color: #4b5563; border-radius: 0 6px 6px 0; }
+  .col-main blockquote p { margin: 0; }
+  .col-main table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 14px; }
+  .col-main th, .col-main td { border: 1px solid #e5e7eb; padding: 8px 12px; text-align: left; }
+  .col-main th { background: #f9fafb; font-weight: 600; }
+  .col-main tr:nth-child(even) td { background: #fcfcfd; }
+
+  .col-right { width: 220px; flex-shrink: 0; border-left: 1px solid #e5e7eb; padding: 24px 18px; font-size: 13px; height: calc(100vh - 56px); position: sticky; top: 56px; overflow-y: auto; }
+  .col-right h4 { font-size: 11px; text-transform: uppercase; color: #6b7280; margin: 0 0 12px; letter-spacing: 0.5px; font-weight: 600; }
+  .col-right ul { list-style: none; padding: 0; margin: 0; }
+  .col-right li { margin: 6px 0; }
+  .col-right a { color: #4b5563; line-height: 1.45; font-size: 12.5px; }
+  .col-right a:hover { color: #1d4ed8; }
+  .col-right .empty { color: #9ca3af; font-size: 12px; padding: 6px 0; }
+
+  @media (max-width: 1100px) { .col-right { display: none; } }
+  @media (max-width: 800px) { .col-left { display: none; } .col-main { padding: 24px; } }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="logo">雅思阅读<span> · 问答精要</span></div>
+  <div class="topbar-right">
+    <a href="index.html" style="font-size:13px;color:#2c5cdc;font-weight:600;white-space:nowrap;">🏠 总目录</a>
+    <a href="qa-index.html" style="font-size:13px;color:#6b7280;">目录</a>
+    <input id="search-input" placeholder="搜索 Ctrl K" autocomplete="off">
+    <div id="search-panel" hidden></div>
+  </div>
+</header>
+<div class="layout">
+  <aside class="col-left">
+    <h3>问答文档</h3>
+    <ul>
+      <li><a href="qa-01.html">第01讲 导学课</a></li>
+<li><a href="qa-02.html">第02讲 填空题专题一：表格填空 + 笔记填空</a></li>
+<li><a href="qa-03.html">第03讲 判断题专题：TFNG vs YNNG</a></li>
+<li><a href="qa-04.html">第04讲 填空题专题二：句子填空 + 简答题</a></li>
+<li><a href="qa-05.html">第05讲 填空题专题三：流程图填空 + 图形填空</a></li>
+<li><a href="qa-06.html">第06讲 填空题专题四：总结填空</a></li>
+<li><a href="qa-07.html">第07讲 配对题专题一：人物观点配对</a></li>
+<li><a href="qa-08.html">第08讲 配对题专题二：句子结尾配对</a></li>
+<li><a href="qa-09.html">第09讲 配对题专题三：信息匹配</a></li>
+<li><a href="qa-10.html" class="active">第10讲 判断题考点速查</a></li>
+<li><a href="qa-11.html">第11讲 选择题专题一：多选题</a></li>
+<li><a href="qa-12.html">第12讲 选择题专题二：单选题</a></li>
+<li><a href="qa-13.html">第13讲 平行阅读法</a></li>
+<li><a href="qa-14.html">第14讲 进阶阅读：To Catch a King</a></li>
+    </ul>
+    <h3>本页问题</h3><ul><li><a class="sub" href="#第一步单题读题拆分信息">第一步：单题读题，拆分信息</a></li><li><a class="sub" href="#第二步回文扫描精准定位">第二步：回文扫描，精准定位</a></li><li><a class="sub" href="#第三步对照原文三选一判定">第三步：对照原文，三选一判定</a></li></ul>
+  </aside>
+  <main class="col-main">
+    <h1>雅思阅读全解13讲 · 第10讲 判断题考点速查（问答精要）</h1>
+<blockquote>
+<p>本讲定位：与第 03 讲是同一节课（判断题专题）的<strong>考点速查版</strong>。第 03 讲讲"是什么、怎么做"，本讲把判断题拆成<strong>固定的 6 大考点 + 标准化三步操作</strong>，用伦敦地铁真题（7-13 题）逐个演示考点识别，适合二刷时快速检索。核心心法：<strong>每道题只有一个唯一考点，其余全是默认成立的事实信息。</strong></p>
+</blockquote>
+<hr>
+<h2><a id="q1-判断题在考试中占比多少一般出现在哪"></a>Q1. 判断题在考试中占比多少？一般出现在哪？</h2>
+<ul>
+<li><strong>占比约 30%</strong>：40 道题里约 12 道，通常分 2-3 组出题（三组时每组题量较少）。</li>
+<li><strong>分布规律</strong>：第一篇<strong>必然出现</strong>判断题；第二、三篇看题材灵活设置，可能只有其中一个篇章有，也可能两篇都有少量。</li>
+<li>判断题是雅思阅读的<strong>核心高分题型</strong>，必须吃透。</li>
+</ul>
+<hr>
+<h2><a id="q2-tfng-和-ynng-到底什么区别"></a>Q2. TFNG 和 YNNG 到底什么区别？</h2>
+<p><strong>做题方法完全一样，区别只在文章题材</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>题型</th>
+<th>适用文章</th>
+<th>判断逻辑</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>True/False/Not Given</td>
+<td>科普事实类文章</td>
+<td>针对客观事实判断"正确/错误/未提及"</td>
+</tr>
+<tr>
+<td>Yes/No/Not Given</td>
+<td>议论文观点类文章</td>
+<td>针对作者主观观点判断"同意/反对/未提及"</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>观点没有"对错"之分，所以只能 Yes/No；事实可以判对错，所以 True/False。</li>
+<li>示例：科普文说"乌龟是不是绿色的"可以判断真假；议论文里作者的观点只能问"你同不同意"。</li>
+</ul>
+<hr>
+<h2><a id="q3-判断题题干由哪三部分构成唯一考点是什么意思"></a>Q3. 判断题题干由哪三部分构成？"唯一考点"是什么意思？</h2>
+<p>每一道判断题的题干由三部分组成：</p>
+<ol>
+<li><strong>定位词</strong>：用于快速回原文锁定出题位置，属于<strong>默认正确的事实信息</strong>，不需要判断。陌生专业名词、大写专有名词、数字是最好的定位词。</li>
+<li><strong>事实信息</strong>：题干中除考点外的客观背景内容，<strong>全部默认是文章已明确给出的既定事实</strong>，无需纠结验证。</li>
+<li><strong>唯一考点</strong>：每道题<strong>有且仅有 1 个</strong>需要判断的核心信息——这是雅思判断题的核心命题规则。</li>
+</ol>
+<blockquote>
+<p>很多同学错在"总在事实信息上纠结"。判断考点的方法：把题干翻译成中文，问自己"这句话<strong>最核心想确认的细节</strong>是什么"，去掉它句子意思就不完整的那个点，就是考点。</p>
+</blockquote>
+<hr>
+<h2><a id="q4-考点都能归成哪-6-大类核心速查表"></a>Q4. 考点都能归成哪 6 大类？（核心速查表）</h2>
+<p>所有判断题的考点都是固定的 6 大类：</p>
+<table>
+<thead>
+<tr>
+<th>考点类型</th>
+<th>典型特征</th>
+<th>真题示例（伦敦地铁）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>时间考点</strong></td>
+<td>时间先后、时间节点</td>
+<td>第 7 题 <code>before</code> 代表的开通时间先后</td>
+</tr>
+<tr>
+<td><strong>比较关系考点</strong></td>
+<td>more/than 等对比逻辑</td>
+<td>第 8 题"首日实际客流 &gt; 预测客流"</td>
+</tr>
+<tr>
+<td><strong>动词考点</strong></td>
+<td>核心动作的成败、执行状态</td>
+<td>第 9 题"防污染措施是否失败"、第 13 题"列车是否准点运行"</td>
+</tr>
+<tr>
+<td><strong>形容词考点</strong></td>
+<td>事物的属性、性质描述</td>
+<td>第 10 题"是否需要不同的施工方法"、第 12 题"项目是否财务成功"</td>
+</tr>
+<tr>
+<td><strong>地点考点</strong></td>
+<td>事物的位置、方位描述</td>
+<td>第 11 题"列车窗户是否处于视线平齐高度"</td>
+</tr>
+<tr>
+<td><strong>逻辑关系考点</strong></td>
+<td>因果、并列等特殊逻辑</td>
+<td>本次课程未涉及（如题干强加因果关系）</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>认考点时：<strong>抓大放小</strong>——时间地点这类基本信息、动词形容词这类实义词、以及比较/因果等逻辑关系，就这些大类，翻来覆去就考这些。</li>
+</ul>
+<hr>
+<h2><a id="q5-标准化做题三步是什么"></a>Q5. 标准化做题三步是什么？</h2>
+<h3><a id="第一步单题读题拆分信息"></a>第一步：单题读题，拆分信息</h3>
+<p>判断题是<strong>严格的顺序出题</strong>题型，不用一次性读完所有题。每次只读 1 道，快速区分定位词和唯一考点，把考点转成一个能回答"是/否/未提及"的<strong>封闭式问题</strong>。</p>
+<h3><a id="第二步回文扫描精准定位"></a>第二步：回文扫描，精准定位</h3>
+<p>用特殊定位词（陌生专有名词、大写、数字）快速扫原文，遵循<strong>"不跨段"原则</strong>：定位词所在段落就是答案所在段落。</p>
+<h3><a id="第三步对照原文三选一判定"></a>第三步：对照原文，三选一判定</h3>
+<table>
+<thead>
+<tr>
+<th>答案</th>
+<th>判定标准</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>True / Yes</td>
+<td>原文信息和题干考点<strong>完全一致</strong>（通常通过同义替换实现）</td>
+</tr>
+<tr>
+<td>False / No</td>
+<td>原文信息和题干考点<strong>直接矛盾、互斥</strong>，不可能同时成立</td>
+</tr>
+<tr>
+<td>Not Given</td>
+<td>原文<strong>完全没有提及</strong>考点对应信息，无法验证真伪</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>判例：A"我今晚吃了一个苹果" vs B"我今晚没吃苹果" = 相反（False）；A"我吃了苹果" vs C"我吃了香蕉" = 原文没提香蕉，只是没提及（Not Given）——<strong>不是相反，是没提</strong>。</p>
+</blockquote>
+<hr>
+<h2><a id="q6-真题演示伦敦地铁-7-13-题的考点分别是什么"></a>Q6. 真题演示：伦敦地铁 7-13 题的考点分别是什么？</h2>
+<table>
+<thead>
+<tr>
+<th>题号</th>
+<th>题干要点</th>
+<th>考点</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7</td>
+<td>other countries had underground railway <strong>before</strong> Metropolis line opened</td>
+<td>时间先后（before）</td>
+<td>时间考点</td>
+</tr>
+<tr>
+<td>8</td>
+<td><strong>more people than predicted</strong> traveled on the first day</td>
+<td>实际客流 vs 预测客流</td>
+<td>比较关系</td>
+</tr>
+<tr>
+<td>9</td>
+<td>the use of VS <strong>failed to</strong> prevent pollution</td>
+<td>防污染措施有没有失败</td>
+<td>动词</td>
+</tr>
+<tr>
+<td>10</td>
+<td>a <strong>different</strong> approach was required in London central area</td>
+<td>方法是否不同</td>
+<td>形容词</td>
+</tr>
+<tr>
+<td>11</td>
+<td>the windows were <strong>at eye level</strong></td>
+<td>窗户位置是否平齐视线</td>
+<td>地点</td>
+</tr>
+<tr>
+<td>12</td>
+<td>City &amp; South London Railway was a <strong>financial success</strong></td>
+<td>是否财务成功</td>
+<td>形容词</td>
+</tr>
+<tr>
+<td>13</td>
+<td>trains <strong>nearly always ran on time</strong></td>
+<td>是否总是准点</td>
+<td>动词</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>第 7 题：Metropolis line 开通前其他国家已有地铁？判断 <code>before</code> 这个先后关系。</li>
+<li>第 11 题：at eye level = 坐在座位上能看到窗外（像高铁）；反之监狱铁窗不是 at eye level。</li>
+<li>可以看到：考点就那么几类，识别出考点后，<strong>其余题干信息全部默认成立</strong>，不要再花时间验证。</li>
+</ul>
+<hr>
+<h2><a id="q7-一句话总结本讲"></a>Q7. 一句话总结本讲</h2>
+<ul>
+<li>判断题 = 30% 出题量，第一篇必考，顺序出题，不跨段定位。</li>
+<li>题干 = 定位词 + 事实信息（都默认成立）+ <strong>唯一考点</strong>。</li>
+<li>考点只有 6 类：时间 / 比较 / 动词 / 形容词 / 地点 / 逻辑关系。</li>
+<li>三步：读 1 题 → 拆定位词和考点 → 回原文同义替换比对 → 一致 True、矛盾 False、没提 Not Given。</li>
+</ul>
+  </main>
+  <aside class="col-right">
+    <h4>本页章节</h4><ul><li><a href="#q1-判断题在考试中占比多少一般出现在哪">Q1. 判断题在考试中占比多少？一般出现在哪？</a></li><li><a href="#q2-tfng-和-ynng-到底什么区别">Q2. TFNG 和 YNNG 到底什么区别？</a></li><li><a href="#q3-判断题题干由哪三部分构成唯一考点是什么意思">Q3. 判断题题干由哪三部分构成？&quot;唯一考点&quot;是什么意思？</a></li><li><a href="#q4-考点都能归成哪-6-大类核心速查表">Q4. 考点都能归成哪 6 大类？（核心速查表）</a></li><li><a href="#q5-标准化做题三步是什么">Q5. 标准化做题三步是什么？</a></li><li><a href="#q6-真题演示伦敦地铁-7-13-题的考点分别是什么">Q6. 真题演示：伦敦地铁 7-13 题的考点分别是什么？</a></li><li><a href="#q7-一句话总结本讲">Q7. 一句话总结本讲</a></li></ul>
+  </aside>
+</div>
+<script>
+(function(){
+  var input = document.getElementById('search-input');
+  var panel = document.getElementById('search-panel');
+  if (!input || !panel) return;
+  var main = document.querySelector('.col-main');
+  var leftLinks = Array.prototype.slice.call(document.querySelectorAll('.col-left ul li a'));
+  var rightLinks = Array.prototype.slice.call(document.querySelectorAll('.col-right ul li a'));
+
+  function escHtml(s){
+    return s.replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+  function escapeRegex(s){
+    return s.replace(/[.*+?^${}()|[\]\\]/g, function(m){ return '\\' + m; });
+  }
+  function clearHighlights(){
+    if (!main) return;
+    var marks = main.querySelectorAll('mark.search-hl');
+    for (var i = 0; i < marks.length; i++) {
+      var m = marks[i];
+      var text = document.createTextNode(m.textContent);
+      m.parentNode.replaceChild(text, m);
+    }
+    main.normalize();
+  }
+  function highlightInMain(kw){
+    if (!main) return;
+    clearHighlights();
+    if (!kw) return;
+    var re = new RegExp(escapeRegex(kw), 'gi');
+    var walker = document.createTreeWalker(main, NodeFilter.SHOW_TEXT, {
+      acceptNode: function(n){
+        if (!n.nodeValue || !n.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        var p = n.parentElement;
+        if (!p) return NodeFilter.FILTER_REJECT;
+        var tag = p.tagName;
+        if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'CODE' || tag === 'PRE') return NodeFilter.FILTER_REJECT;
+        if (p.closest && p.closest('mark.search-hl')) return NodeFilter.FILTER_REJECT;
+        return n.nodeValue.toLowerCase().indexOf(kw.toLowerCase()) >= 0 ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+      }
+    });
+    var nodes = [];
+    var n;
+    while ((n = walker.nextNode())) nodes.push(n);
+    for (var i = 0; i < nodes.length; i++) {
+      var node = nodes[i];
+      var src = node.nodeValue;
+      var html = '';
+      var last = 0;
+      var match;
+      re.lastIndex = 0;
+      while ((match = re.exec(src)) !== null) {
+        html += escHtml(src.slice(last, match.index));
+        html += '<mark class="search-hl">' + escHtml(match[0]) + '</mark>';
+        last = match.index + match[0].length;
+        if (match[0].length === 0) re.lastIndex++;
+      }
+      html += escHtml(src.slice(last));
+      var tmp = document.createElement('span');
+      tmp.innerHTML = html;
+      var parent = node.parentNode;
+      while (tmp.firstChild) parent.insertBefore(tmp.firstChild, node);
+      parent.removeChild(node);
+    }
+  }
+  function search(q){
+    q = (q || '').trim();
+    panel.innerHTML = '';
+    if (!q) {
+      panel.hidden = true;
+      leftLinks.forEach(function(a){ a.parentElement.style.display = ''; });
+      rightLinks.forEach(function(a){ a.parentElement.style.display = ''; });
+      clearHighlights();
+      return;
+    }
+    var qLower = q.toLowerCase();
+    var courseHits = leftLinks.filter(function(a){
+      return a.textContent.toLowerCase().indexOf(qLower) >= 0;
+    });
+    leftLinks.forEach(function(a){
+      a.parentElement.style.display = courseHits.indexOf(a) >= 0 ? '' : 'none';
+    });
+    var sectionHits = rightLinks.filter(function(a){
+      return a.textContent.toLowerCase().indexOf(qLower) >= 0;
+    });
+    rightLinks.forEach(function(a){
+      a.parentElement.style.display = sectionHits.indexOf(a) >= 0 ? '' : 'none';
+    });
+    var parts = [];
+    if (courseHits.length) {
+      parts.push('<div class="sp-group">课程（' + courseHits.length + '）</div>');
+      parts.push('<ul>' + courseHits.map(function(a){
+        return '<li><a href="' + a.getAttribute('href') + '">' + escHtml(a.textContent) + '</a></li>';
+      }).join('') + '</ul>');
+    }
+    if (sectionHits.length) {
+      parts.push('<div class="sp-group">本页小节（' + sectionHits.length + '）</div>');
+      parts.push('<ul>' + sectionHits.map(function(a){
+        return '<li><a href="' + a.getAttribute('href') + '">' + escHtml(a.textContent) + '</a></li>';
+      }).join('') + '</ul>');
+    }
+    if (!parts.length) parts.push('<div class="sp-empty">无匹配结果</div>');
+    panel.innerHTML = parts.join('');
+    panel.hidden = false;
+    highlightInMain(q);
+  }
+  var timer = null;
+  input.addEventListener('input', function(e){
+    clearTimeout(timer);
+    timer = setTimeout(function(){ search(input.value); }, 80);
+  });
+  input.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') { input.value = ''; search(''); input.blur(); panel.hidden = true; }
+  });
+  document.addEventListener('click', function(e){
+    if (panel.contains(e.target) || e.target === input) return;
+    panel.hidden = true;
+  });
+  document.addEventListener('keydown', function(e){
+    if ((e.ctrlKey || e.metaKey) && (e.key === 'k' || e.key === 'K')) {
+      e.preventDefault();
+      input.focus();
+      input.select();
+    }
+  });
+  panel.addEventListener('click', function(e){
+    var a = e.target.closest('a');
+    if (a) panel.hidden = true;
+  });
+})();
+</script>
+</body>
+</html>

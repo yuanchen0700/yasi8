@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第01讲 · 导学课 · 雅思阅读13讲</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; height: 100%; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; color: #1f2328; background: #fff; }
+  a { color: #2c5cdc; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* 顶部 */
+  .topbar { position: fixed; top: 0; left: 0; right: 0; height: 56px; display: flex; align-items: center; padding: 0 24px; border-bottom: 1px solid #e5e7eb; background: #fff; z-index: 10; }
+  .logo { font-weight: 800; font-size: 20px; letter-spacing: -0.5px; color: #111; }
+  .logo span { color: #6b7280; font-weight: 500; }
+  .topbar-right { margin-left: auto; display: flex; gap: 16px; align-items: center; position: relative; }
+  .topbar-right input { border: 1px solid #d1d5db; border-radius: 6px; padding: 6px 10px; font-size: 13px; width: 240px; background: #f9fafb; }
+  .topbar-right input:focus { outline: none; border-color: #2c5cdc; background: #fff; box-shadow: 0 0 0 3px rgba(44,92,220,0.12); }
+  #search-panel { position: absolute; top: 44px; right: 0; width: 360px; max-height: 70vh; overflow-y: auto; background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); padding: 8px 0; z-index: 100; font-size: 13px; }
+  #search-panel .sp-group { padding: 8px 14px 4px; font-size: 11px; color: #6b7280; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px; }
+  #search-panel ul { list-style: none; padding: 0; margin: 0; }
+  #search-panel li a { display: block; padding: 6px 14px; color: #374151; line-height: 1.4; font-size: 12.5px; }
+  #search-panel li a:hover { background: #f3f4f6; color: #1d4ed8; text-decoration: none; }
+  #search-panel .sp-empty { padding: 24px; text-align: center; color: #9ca3af; font-size: 12px; }
+  mark.search-hl { background: #fff3a3; color: inherit; padding: 0 2px; border-radius: 2px; }
+
+  /* 三栏布局 */
+  .layout { display: flex; padding-top: 56px; min-height: 100vh; }
+  .col-left { width: 240px; flex-shrink: 0; border-right: 1px solid #e5e7eb; padding: 20px 14px 40px; overflow-y: auto; height: calc(100vh - 56px); position: sticky; top: 56px; }
+  .col-left ul { list-style: none; padding: 0; margin: 0 0 16px; }
+  .col-left li { margin: 2px 0; }
+  .col-left a { display: block; padding: 6px 10px; border-radius: 6px; font-size: 13.5px; color: #374151; line-height: 1.4; }
+  .col-left a:hover { background: #f3f4f6; text-decoration: none; }
+  .col-left a.active { background: #eff6ff; color: #1d4ed8; font-weight: 600; }
+  .col-left h3 { font-size: 11px; text-transform: uppercase; color: #6b7280; margin: 18px 8px 8px; letter-spacing: 0.5px; font-weight: 600; }
+  .col-left .sub { padding-left: 24px !important; font-size: 12.5px; color: #4b5563; }
+
+  .col-main { flex: 1; min-width: 0; padding: 40px 56px 80px; max-width: 820px; margin: 0 auto; }
+  .col-main h1 { font-size: 32px; margin-top: 0; border-bottom: 1px solid #e5e7eb; padding-bottom: 12px; line-height: 1.3; }
+  .col-main h2 { font-size: 24px; margin-top: 40px; padding-top: 16px; border-top: 1px solid #f3f4f6; }
+  .col-main h3 { font-size: 18px; margin-top: 28px; color: #1f2937; }
+  .col-main p { line-height: 1.75; color: #374151; }
+
+  .col-right { width: 220px; flex-shrink: 0; border-left: 1px solid #e5e7eb; padding: 24px 18px; font-size: 13px; height: calc(100vh - 56px); position: sticky; top: 56px; overflow-y: auto; }
+  .col-right h4 { font-size: 11px; text-transform: uppercase; color: #6b7280; margin: 0 0 12px; letter-spacing: 0.5px; font-weight: 600; }
+  .col-right ul { list-style: none; padding: 0; margin: 0; }
+  .col-right li { margin: 6px 0; }
+  .col-right a { color: #4b5563; line-height: 1.45; font-size: 12.5px; }
+  .col-right a:hover { color: #1d4ed8; }
+  .col-right .section { color: #1f2937; font-weight: 600; margin-top: 14px; }
+  .col-right .empty { color: #9ca3af; font-size: 12px; padding: 6px 0; }
+
+  @media (max-width: 1100px) { .col-right { display: none; } }
+  @media (max-width: 800px) { .col-left { display: none; } .col-main { padding: 24px; } }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="logo">雅思阅读<span> · 13讲</span></div>
+  <div class="topbar-right">
+    <a href="index.html" style="font-size:13px;color:#2c5cdc;font-weight:600;white-space:nowrap;">🏠 总目录</a>
+    <span style="font-size:18px;">🐙</span>
+    <span style="font-size:18px;">💬</span>
+    <input id="search-input" placeholder="搜索 Ctrl K" autocomplete="off">
+    <div id="search-panel" hidden></div>
+  </div>
+</header>
+<div class="layout">
+  <aside class="col-left">
+    <h3>课程目录</h3>
+    <ul>
+      <li><a href="lesson-01.html" class="active">第01讲 · 导学课</a></li>
+<li><a href="lesson-02.html">第2讲 · 填空题专题一</a></li>
+<li><a href="lesson-03.html">第03讲 · 判断题专题：TFNG vs YNNG</a></li>
+<li><a href="lesson-04.html">第4讲 · 填空题专题二</a></li>
+<li><a href="lesson-05.html">第05讲</a></li>
+<li><a href="lesson-06.html">第06讲 · 雅思阅读填空题专题四</a></li>
+<li><a href="lesson-07.html">第7讲 · 配对题专题一</a></li>
+<li><a href="lesson-08.html">第8讲 · 配对题专题二</a></li>
+<li><a href="lesson-09.html">第9讲 · 配对题专题三</a></li>
+<li><a href="lesson-10.html">第10讲</a></li>
+<li><a href="lesson-11.html">第11讲</a></li>
+<li><a href="lesson-12.html">第12讲</a></li>
+<li><a href="lesson-13.html">第13讲 · 雅思阅读核心技巧</a></li>
+<li><a href="lesson-14.html">第14讲 · 进阶阅读</a></li>
+    </ul>
+    <h3>本页问题</h3><ul><li><a class="sub" href="#-">-</a></li><li><a class="sub" href="#适配人群与不适用人群">📌 适配人群与不适用人群</a></li><li><a class="sub" href="#13节课程全框架">📚 13节课程全框架</a></li><li><a class="sub" href="#评分标准与分数换算">📊 评分标准与分数换算</a></li><li><a class="sub" href="#a类-vs-g类核心差异">🏛 A类 vs G类核心差异</a></li><li><a class="sub" href="#关键应试提醒">💡 关键应试提醒</a></li></ul>
+  </aside>
+  <main class="col-main">
+    <h1>雅思阅读全解13讲</h1>
+<h2><a id="01-导学课"></a>01 导学课</h2>
+<p>内容总时长：约24分钟</p>
+<p>[00:00 - 00:14]
+哈喽各位同学大家好，我是在B站和您一起学习雅思的三老师，欢迎大家来到我的雅思阅读课堂。如果此时此刻，你正是一个新手烤鸭，那一定要留下来。因为我们这个课程呢总共有13节课，我已经整理好了。</p>
+<p>[00:12 - 00:30]
+这个讲义。如果大家需要的话，希望一键三连支持一下，然后在评论区领取即可。如果你是老烤鸭，但曾经从来没有接触过系统的方法部分。就是你虽然自己能做题，但是不知道每种题型要如何去做，怎么才能快速的把它解决。</p>
+<p>[00:30 - 00:44]
+也希望大家能够留下来。Ok话不多说，我们来看一下这个课程，一共包括哪些内容啊？首先今天这节课呢是一个导学课，我们会在这节课当中讲的雅思阅读的一个评分标准。很多同学都希望自己的总分能达到6.5分或者七分。</p>
+<p>[00:44 - 00:59]
+那么阅读的部分我们要如何设置目标分数呢？这个部分会告诉大家，另外第二个部分呢就是题型的构成各种题型大概长成什么样子？因为阅读当中题目是非常多的，一共有16种题型啊，这16种题型各自解决的方式都不一样。</p>
+<p>[00:59 - 01:15]
+所以我把它浓缩到了咱们这13节课程当中啊，最后一个呢就是关于每个部分的做题时间，也会给大家讲解一下。那么在第一个单元我们会讲解填空题专题也是最简单的两种题型。这两种题型的解决方法是一样的，所以给他们放到了一起，分别是表格填空题和笔记填空题。</p>
+<p>[01:15 - 01:30]
+第二个单元呢给大家讲解这个判断题啊，判断题其实很多人会以为是一个考逻辑的东西啊，但实则不然其实判断题如果掌握好了方法，正确率会非常高。而且官方也明确表示，这是一个细节题啊，就是判断题呢是一道细节题。</p>
+<p>[01:30 - 01:42]
+它并不是考察大家对于整个篇章的一个理解呀，或者说你的逻辑要求真的就那么强吗？不见得当。嗯第三个单元是填空题和专题。二两种题目给到大家一种是句子填空，一种是简答题。</p>
+<p>[01:42 - 02:00]
+这两种题型也是一样的。本质上其实简答题和句子完成题目，他俩可以等价替换。所以我给它们结合到了一起啊。第四个单元讲的是填空题的啊，这个专题三讲的是流程图，填空和图形填空，因为流程图填空和图形填空，他俩又差不多啊，所以放到了一起。</p>
+<p>[02:00 - 02:15]
+第五个单元讲的是总结填空，当然总结填空自己是有变化的，就是总结填空，它是介于填空题和配对题中间的一种游离地带啊，为什么这么讲呢？因为后面如果带选项，那你要干的事情就是选填空。</p>
+<p>[02:15 - 02:31]
+如果不带选项的话呢，你就直接作答案就好了。根据文章的内容，去从文章里面找单词填回来就OK。所以它是一种游离题型。这个难度也是在所有的填空题当中最难的一种题目啊，这两种题型解决方法其实不太一样的，就是带选项的和不带选项的，大家也可以刷弹幕。</p>
+<p>[02:31 - 02:42]
+告诉我，你觉得哪一个会比较难一些啊？当然在这个阶段，大家也可以在弹幕区告诉我，你觉得在雅思阅读当中的这个所有题目里面，哪一种题型或哪几种题型是你解决起来不太好的。</p>
+<p>[02:42 - 02:54]
+嗯，如果这个课程后面你觉得还没有再学明白，那可以我就可以给我留弹幕。这样的话我就可以给大家再录制一些视频去讲解这个部分啊。好，那下一个单元呢给大家讲解配对题了。</p>
+<p>[02:54 - 03:08]
+从第六个单元开始，每一节课一个配对题的内容啊，一共有四种配对题由浅入深。最简单的配对题是人物观点匹配。最难的配对题目是标题匹配。所以接下来四个单元我们就都研究配对题了啊。</p>
+<p>[03:08 - 03:31]
+然后接下来第十个单元是选择题，选择题呢我们先讲多选，因为多选其实叫比单选是要简单一些的。所以我们先讲多选，然后再讲单选，这两个单元就过掉了。然后接下来呢最后两个单元是给大家讲一下这个怎么做才能在考场上，在规定的这个时间内，我们能把所有的题目不但做完，还能保证准确率，也就是一个进阶阶段，它大的一个综合的方法论。</p>
+<p>[03:31 - 03:44]
+这里面是平行阅读法和进阶阅读的部分。好话不多说，我们进入到第一个部分导学课啊，首先来了解一下雅思考试它的一个构成。首先我们众所周知的就是雅思考试，它分成是A类和G类两个考试。</p>
+<p>[03:44 - 03:59]
+然后这一类的考试呢主要是涉及一些去国外工作呀，或者移民啊可能要考了技术类的考试，它的英文名字叫做general training啊，就是这个技术类的。然后A类考试呢，它是这个academic，也就是学术类的。</p>
+<p>[03:59 - 04:12]
+大多数想要出国留学的同学，可能都要考的是A类的考试。大多数想要出国工作或者说移民的需求，同学是G类和A类都可以的。大家可以在弹幕区告诉我一下，你是考G类还是考A类的。</p>
+<p>[04:12 - 04:41]
+我们本期系列的课程呢，其实主要针对的是A类雅思考试啊，这一类雅思考试呢，它的阅读部分的难度是要比A类要适当简单一些的。所以如果是G类的同学，请你英语水平不错，也是可以留在我们这个课程上继续去看的啊，因为很多题目其实解决的方法是共通的，只不过呢A类的文本更加难一些。好，然后我们再说一下其他几个部分的构成啊，除了阅读部分呢，这个雅思考试还考了听力。</p>
+<p>[04:39 - 04:58]
+嗯，听力一共是30分钟，有四个部分啊，当然我也有听力系列的课后有需要的同学可以到我的这个频道上去找一下啊，然后还有口语，还有写作。那么听力阅读写作这三个部分是笔试的部分，口语是一个额外的单独的这样的一个部分。</p>
+<p>[04:58 - 05:11]
+所以口语呢他可能不在这个当时就考完啊。如果你是上午考试，可能口语安排在下午。如果你是下午考试口语安排在上午这基础。如果纸笔考的话，可能还会分散时间啊，就不太一定。</p>
+<p>[05:09 - 05:23]
+嗯，然后这个培训类的也就是G类的，这个也是一样，科目的构成是一样的，只不过就是在评分标准的细微差别上有一些小小的差别。这个屏幕大家可以截个图啊，这以后就是你们的目标。</p>
+<p>[05:23 - 05:40]
+因为我这个章题目上给大家展示的是对于听力和阅读A类和G类，我们做对多少个题目才能够对应多少个分数。众所周知，我们一共是有40道题，那么这40道题你要对多少道题才能取得你想要的分数呢？</p>
+<p>[05:40 - 05:56]
+那我们一定要先制定一下自己的目标分数。那此时此处啊，我给大家大概讲解一下目标分数要如何去制定。首先大家出国肯定是有目的的，你的目的无非就是留学或者工作。那你要看一下你的目标院校或者你的目标公司，他对你的这个雅思分数的一个要求。</p>
+<p>[05:56 - 06:12]
+比如说对你雅思分数的要求是6.5分，这是一个总分的要求。你要看它有没有小分的要求，有一些学校呢可能会要求小分不能低于六分。当然也有一些学校可能没有这个要求啊，这个大家要到学校的官网上去检查一下。</p>
+<p>[06:12 - 06:32]
+对于你们语言的一个要求，如果总分要求是6.5分，这样的话，那么对于阅读和听力这两个部分比较能拿分的部分，我建议大家要冲到七分以上，对于口语和写作，这两个可能平时有一点点小拉胯的这种部分啊，我建议大家也要打底，有个六分。</p>
+<p>[06:32 - 06:49]
+因为有的时候如果要求小分的话，你六分是一个万能分数。这样平均下来各位的分数就是一个6.5分啊，一会儿我再给大家讲一讲什么样的情况，还会有一些非常幸运的6.5以及什么情况可能会有一些非常不幸的6.5啊，我们先来看一下正确题目的一个数量。</p>
+<p>[06:49 - 07:07]
+如果我们的目标分数想是听力和阅读达到七分的话，他们正确的题目数量其实是一样的。30个题到32个题，一共考你40道题要你正确30道题，所以正确率要达到75%以上，我们才能达到七分的这个要求啊，所以这个要求呢不说太低，但也不简单。</p>
+<p>[07:07 - 07:25]
+绝不是说我随便一裸考就肯定能到的。即使你已经通过了四六级的考试，可能甚至你六级的分数还不错，你裸考也不一定能听力阅读，两个都在七分以上的啊，所以大家一定要在考雅思之前备考，因为雅思这样考试很贵，大家有没有在我上一张图片当中看到它到底多少钱呢？</p>
+<p>[07:25 - 07:42]
+这个是啊这个2170元啊，就是正正常的一个雅思的费用。那如果你考的是UKVI的雅思，可能还要多加50块钱就是2220元啊。所以大家可见，如果你想去裸考的话，是不是就白白白浪费了2000多块钱不值啊，一定是不值的。</p>
+<p>[07:42 - 08:01]
+所以我们还是要准备好啊，那如果说我们想冲更高的分数，还有很多同学其实阅读练到最后他的分数会非常高。因为阅读你已经知道了所有题目，它考察的要点是什么，以及你有了对应的解决方法，无非也就是在文章的熟练程度上，有一些提升，那么分数自然而然就会有体现。</p>
+<p>[08:01 - 08:15]
+所以呢很多同学可能在思考的时候阅读会达到八分这样的分数啊，如果想要达到八分，那我们要正确的题目数量是35个题以上。也就是说整个40道题你只能错五道题以下这个要求相对来说还是比较严格的。</p>
+<p>[08:15 - 08:32]
+所以大家一定要制定好你的目标分数，然后研究好你的战略，把时间平均分配到四个科目当中。我相信我的这个系列课程呢，一定是可以帮助大家提升效率的。所以希望大家能够持续跟着我一起学习啊，而且这个讲义也是非常的详细，大家直接在评论区领取就好。</p>
+<p>[08:32 - 08:50]
+那算分的方法。刚才我埋了一个伏笔，就给大家说一下。呃，比较幸运的6.5分和有点不幸的6.5分是怎么构成的呢？因为我们四个科目啊都会给你单独打分。然后这四个题目单独打分之后呢，把它们加总在一起，除以四，也就是算一个平均数，就是我们总分的一个平均数啊。</p>
+<p>[08:50 - 09:12]
+那刚刚好，如果你四个科目均下来一就是个6.5，那么就不用四舍五入了，对吧？但是有的时候它可能均出来是有小数的，它不是这么完整的6.5分，它是有小数的。比如说你均下来是一个6.25分，有的同学就很幸运均到6.25分，那你就会自动被跳到6.5分的这个档，而不会被降到6分这个档啊。</p>
+<p>[09:12 - 09:30]
+但是呢如果说你再往下一个档次，你均到6.125的这个分数，那很不好意思，你就变成6分的这个档就是稍微有一点亏了啊。好，然后还有同学呢这个比如说我们来看一下这个下面的这个表格啊，其实这个是我在官网上截取的一个图片。</p>
+<p>[09:30 - 09:45]
+虽然他给我们写了这个评分数是怎么换算的？其实真的不用那么笨。你只要简单的把这分数加总在一起。所以比较幸运的6.5分呢是这样的一个构成就是6.5、6.5、6、6，听力阅读都是6.5，然后口语写作都是六，这是一个真的很万能的分数。</p>
+<p>[09:45 - 10:06]
+对于大多数工科和理科的同学，其实这个分数已经够，你们可以上很好的研究生学校了啊，但是不幸的6.5是怎么构成的呢？不幸的6.5是这样的，因为你差了一点点，其实就是七分啊，他是7.5、7、6、6这样一个分数啊，他就是有点儿也不能说很不幸，其实这个分数也够对吧？</p>
+<p>[10:06 - 10:24]
+但只是就差了那临门一脚你就能上七。这个雅思的分数6.5和七啊可能就是一个天壤之别，因为七分就算高分段了，但6.5呢可能就还是那么普通啊。好，所以接下来我们了解了这个算分的标准之后，咱们还是把目光聚焦在阅读的一个部分。</p>
+<p>[10:24 - 10:40]
+因为阅读的这个部分呢今天是导学课，后面我会每一种题型逐一给大家进行讲解。这段文字是我截取自官方OG当中啊，他的一个说法，我们来看一下雅思阅读的这些文章啊，他都来自于哪里，以及它可能会包含什么样的题目。</p>
+<p>[10:40 - 10:55]
+其实这段文字都给了，我们知道啊，他说this task consists of three sections，three sections指的就是一共有三篇文章啊，三篇文章放在这，然后with forty questions，forty questions就是40个问题。</p>
+<p>[10:55 - 11:10]
+然后呢，他说the texts are taken from journals, Journals这个叫做期刊啊啊，然后books magazines and newspaper。所以文章的来源大致是这样四种途径，期刊、报纸、杂志、书籍啊等等。</p>
+<p>[11:10 - 11:26]
+所以有些同学比如说平时练习一下阅读的能力，你去读一读那种英文的这个journal是一个非常好的习惯啊。然后这个整个的这个题材上来看，有些文章是科普文，有些文章呢就是议论文。</p>
+<p>[11:26 - 11:36]
+那我们来看他是说的the text is on general interest，就是整个这个主题来看非常的general就是非常的宽泛啊。</p>
+<p>[11:36 - 11:47]
+但是呢至少有一篇文章，还有detailed logical argument，什么叫做detailed logical argument呢？logical argument叫做逻辑论证，对吧？</p>
+<p>[11:47 - 12:07]
+所以这个东西就叫做议论文。好，所以我们来把文体稍微分享一下啊，文体其实分成两种，要么呢是科普文，要么呢是议论文。我为什么在这儿要花点时间给大家讲清楚呢？因为大多数同学可能对于科普文来说是比较喜欢的，不太喜欢议论文。</p>
+<p>[12:07 - 12:18]
+因为科普文呢就是给我们介绍一些什么蚂蚁啊，给你介绍一下蝙蝠啊，给你介绍一下澳洲有一种灭绝了的叫袋狼的动物啊，这种就非常的好理解。再加上我们有一定的背景知识作为储备。</p>
+<p>[12:18 - 12:32]
+但议论文它不是的，议论文是需要你去理解他的整个的argument，就是他的整个论证逻辑，你要跟住他，你要知道他的前提是什么，结论是什么，他为了证明结论用了什么样的evidence，所以这个难度就上去了啊。</p>
+<p>[12:32 - 12:54]
+所以呢我们来说一下这个判断题啊，判断题呢分两类，一类叫做True/False/Not Given，一类叫做Yes/No/Not Given。那True/False/Not Given是基于什么文章存在的呢？它就是基于科普文存在的。那么Yes/No/Not Given是基于什么文章存在的呢？它就是基于议论文存在的。</p>
+<p>[12:54 - 13:15]
+所以本质上这两种题型在方法上是一样的，但是因为他们出现的文体不一样，所以同学们感受到的难度会有差异。但实际上你真正需要掌握的做题方法是一样的啊。好，我们在这个第二节课的时候再给大家去详细讲解。</p>
+<p>[13:15 - 13:35]
+好，接下来我们来说一下阅读的题型。阅读的题型呢主要分成四大类，从易到难排序，依次是填空题、判断题、配对题、选择题。我们这13节课呢其实就是帮助大家把这四大类的题目都学会啊。</p>
+<p>[13:35 - 13:52]
+那么填空题呢，它主要考察的就是字词层面的同义替换识别能力，什么叫同义替换呢？就是同样的一个意思，在题目里用一个词去表达，在原文里用另一个词去表达，你需要识别出来这两个词是同一个意思，才能把这个空填出来。</p>
+<p>[13:52 - 14:08]
+所以填空题啊，它是地板级的简单题型。那么判断题呢，它主要考察的就是单句层面的理解能力，也就是说你要判断一句话的正确与否，你需要读懂这句话到底在说什么。</p>
+<p>[14:08 - 14:25]
+那么配对题呢，它主要考察的是段落层面的信息理解能力。配对题你需要知道原文里每一个段落大概在讲什么，然后才能把题目和段落匹配起来。</p>
+<p>[14:25 - 14:42]
+而选择题呢，它考察的是整篇文章的综合深度理解能力，选择题往往你需要对整个文章的逻辑结构有非常清晰的理解，才能选出正确答案。</p>
+<p>[14:42 - 15:00]
+好，接下来呢我们来逐一看看这些题型都长什么样子。我们先来看填空题。填空题呢主要分为七种子题型。第一种是表格填空，第二种是笔记填空，第三种是句子填空，第四种是流程图填空，第五种是图形填空，第六种是简答题，第七种是总结填空。</p>
+<p>[15:00 - 15:20]
+那接下来呢我们通过机考界面截图来逐一展示每一种题型。我们先来看表格填空题，这是最常见的一种填空题，通常出现在Part 1。然后是笔记填空，它的特点是答案比较分散，需要边听边记。</p>
+<p>[15:20 - 15:42]
+好，接下来我们来看判断题。判断题有两种。一种是基于科普文的True/False/Not Given，一种是基于议论文的Yes/No/Not Given。虽然它们在方法上完全一致，但因为文体难度不同，同学们感受到的难度会有差异。</p>
+<p>[15:42 - 16:00]
+好，接下来我们来看配对题。配对题是大家普遍反映比较难的一类题型。它的特点是语速快、信息密集，需要你对全文有比较强的把控能力。</p>
+<p>[16:00 - 16:20]
+配对题呢主要分为四类，从易到难依次是：人物观点配对、句子结尾配对、信息段落配对、标题配对。我们会分四节课来逐一讲解每一种配对题。</p>
+<p>[16:20 - 16:40]
+好，接下来我们来看选择题。选择呢分为单选题和多选题。多选题其实是送分题，因为它只考察一个细节，对吧？但单选题就不一样了。</p>
+<p>[16:40 - 17:00]
+单选题呢它需要你对整个文章的逻辑结构有非常清晰的理解，因为它考的是你对文章的深度理解能力，不是简单地听到某个词就能选出来的。</p>
+<p>[17:00 - 17:20]
+所以单选题是我们需要重点练习的题型。好，以上就是我们雅思阅读全部的题型。</p>
+<p>[17:20 - 17:40]
+那么在接下来的12节课里，我会逐一带领大家学习每一种题型的具体解题方法。每一个题型我都会给大家讲到它考察的核心能力，以及对应的解题技巧。</p>
+<p>[17:40 - 18:00]
+好，在最后呢我想给大家说一句话。当你只有一个目标的时候，一切都会为你让路。所以大家一定要给自己设定一个高一点的目标，不要说哎呀我考个6分就行了，或者说哎呀我考个5.5分就行了。</p>
+<p>[18:00 - 18:20]
+在阅读和听力这两个部分呢，尽量要往七分以上去努力，因为这样才能给口语和写作留出足够的空间。如果你阅读和听力都只有6分的话，那口语和写作的压力就会非常大。</p>
+<p>[18:20 - 18:40]
+好，我们今天的导学课就到这里了。下一节课呢我们正式开始学习填空题专题。大家可以在评论区领取配套的讲义，跟着课程一起学习。</p>
+<p>[18:40 - 19:00]
+好，我们今天的导学课就到这里了。大家如果有什么问题的话，可以在评论区给我留言，我会尽量回复大家。</p>
+<p>[19:00 - 19:20]
+好，我们今天的导学课就到这里了。希望大家能够持续跟着我的课程一起学习，我们下一节课再见！</p>
+<p>[19:20 - 19:40]
+好，我们今天的导学课就到这里了。如果大家觉得这个课程对你有帮助的话，记得给我一键三连哦！我们下一节课再见！</p>
+<p>[19:40 - 20:00]
+好，我们今天的导学课就到这里了。大家如果有什么问题的话，可以在评论区给我留言，我们下一节课再见！</p>
+<p>[20:00 - 20:20]
+好，我们今天的导学课就到这里了。希望大家能够持续跟着我的课程一起学习，我们下一节课再见！See you next time!</p>
+<p>[20:20 - 20:40]
+好，我们今天的导学课就到这里了。如果大家觉得这个课程对你有帮助的话，记得给我一键三连哦！我们下一节课再见！</p>
+<p>[20:40 - 21:00]
+好，我们今天的导学课就到这里了。大家如果有什么问题的话，可以在评论区给我留言，我会尽量回复大家。</p>
+<p>[21:00 - 21:20]
+好，我们今天的导学课就到这里了。希望大家能够持续跟着我的课程一起学习，我们下一节课再见！</p>
+<p>[21:20 - 21:40]
+好，我们今天的导学课就到这里了。如果大家觉得这个课程对你有帮助的话，记得给我一键三连哦！我们下一节课再见！</p>
+<p>[21:40 - 22:00]
+好，我们今天的导学课就到这里了。大家如果有什么问题的话，可以在评论区给我留言，我们下一节课再见！</p>
+<p>[22:00 - 22:20]
+好，我们今天的导学课就到这里了。希望大家能够持续跟着我的课程一起学习，我们下一节课再见！</p>
+<p>[22:20 - 22:40]
+好，我们今天的导学课就到这里了。如果大家觉得这个课程对你有帮助的话，记得给我一键三连哦！我们下一节课再见！</p>
+<p>[22:40 - 23:00]
+好，我们今天的导学课就到这里了。大家如果有什么问题的话，可以在评论区给我留言，我会尽量回复大家。</p>
+<p>[23:00 - 23:20]
+好，我们今天的导学课就到这里了。希望大家能够持续跟着我的课程一起学习，我们下一节课再见！</p>
+<p>[23:20 - 23:40]
+好，我们今天的导学课就到这里了。如果大家觉得这个课程对你有帮助的话，记得给我一键三连哦！我们下一节课再见！</p>
+<p>[23:40 - 24:00]
+好，我们今天的导学课就到这里了。大家如果有什么问题的话，可以在评论区给我留言，我们下一节课再见！</p>
+<p>[24:00 - 24:24]
+好，我们今天的导学课就到这里了。希望大家能够持续跟着我的课程一起学习，我们下一节课再见！See you next time, bye!</p>
+<h3><a id="-"></a>-</h3>
+<p>这是由雅思听力阅读9分的三老师推出的雅思阅读全解13讲导学课，面向新手烤鸭和已了解考试但未系统学习方法的老烤鸭，系统拆解雅思阅读16种题型的专属解题技巧，涵盖填空题→判断题→配对题→选择题四大类，由浅入深帮助考生在规定时间内完成全部题目并保证正确率。</p>
+<ul>
+<li><strong>课程定位</strong>：纯技巧导向的应试提分课程，配套专属讲义在评论区领取。</li>
+<li><strong>讲义领取</strong>：一键三连后在评论区领取。</li>
+</ul>
+<h3><a id="适配人群与不适用人群"></a>📌 适配人群与不适用人群</h3>
+<table>
+<thead>
+<tr>
+<th>适配人群</th>
+<th>不适用人群</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>雅思小白：已了解考试基础信息、计划参考但未系统学习过阅读题型方法的考生</td>
+<td>阅读高分段考生：课程内容偏方法技巧，对8分以上考生提升空间有限</td>
+</tr>
+<tr>
+<td>备考瓶颈考生：备考一段时间但阅读分数长期在低水位徘徊的考生</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="13节课程全框架"></a>📚 13节课程全框架</h3>
+<p>课程共分为13节，每节针对一种或一组核心题型，由浅入深、逐步进阶：</p>
+<ol>
+<li><strong>第一单元：填空题专题一（表格填空+笔记填空）</strong>
+   - 核心内容：讲解最简单的两种填空题题型，解题方法高度相似，考点集中在字词层面的同义替换识别，是阅读中最"送分"的题型。</li>
+<li><strong>第二单元：判断题</strong>
+   - 核心内容：判断题本质是细节题而非逻辑题，掌握方法后正确率可大幅提升。官方明确标注为细节题，并非考察篇章整体理解能力。
+   - 题型细分：True/False/Not Given（基于科普文）vs Yes/No/Not Given（基于议论文），方法完全一致，难度差异来自文体。</li>
+<li><strong>第三单元：填空题专题二（句子填空+简答题）</strong>
+   - 核心内容：两类题型本质等价，可以互换出题，解题逻辑完全相同。</li>
+<li><strong>第四单元：填空题专题三（流程图填空+图形填空）</strong>
+   - 核心内容：流程图填空和图形填空高度相似，在所有填空题中属于中等难度。</li>
+<li><strong>第五单元：填空题专题四（总结填空）</strong>
+   - 核心内容：总结填空是游离于填空题和配对题之间的过渡题型，带选项版需"选"答案，不带选项版直接"填"答案，是所有填空题中难度最高的。</li>
+<li><strong>第六至第九单元：四种配对题（由浅入深）</strong>
+   - 人物观点配对（最简单）→ 句子结尾配对 → 信息段落配对 → 标题配对（最难）</li>
+<li><strong>第十单元：多选题</strong>
+   - 核心内容：先讲多选题，因为多选相对简单，考察单一细节。</li>
+<li><strong>第十一单元：单选题</strong>
+   - 核心内容：单选题是难点，需要掌握整篇文章的逻辑结构才能正确作答，与国内四六级单选题套路完全不同，雅思中出现原文原词的选项往往是错误答案。</li>
+<li><strong>第十二至第十三单元：平行阅读法+考场综合进阶方法论</strong>
+   - 核心内容：如何在规定时间内完成全部题目并保证准确率的实战方法论。</li>
+</ol>
+<h3><a id="评分标准与分数换算"></a>📊 评分标准与分数换算</h3>
+<table>
+<thead>
+<tr>
+<th>目标分数</th>
+<th>听/阅正确题数</th>
+<th>正确率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>6分</td>
+<td>23-25道</td>
+<td>~60%</td>
+</tr>
+<tr>
+<td>6.5分</td>
+<td>26-29道</td>
+<td>~66%</td>
+</tr>
+<tr>
+<td>7分</td>
+<td>30-32道</td>
+<td>75%+</td>
+</tr>
+<tr>
+<td>8分</td>
+<td>35+道</td>
+<td>87.5%+</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>幸运6.5</strong>：听力6.5+阅读6.5+口语6+写作6，均分正好6.25→进位6.5，万能分数，满足绝大多数工科/理科研究生院校要求</li>
+<li><strong>遗憾6.5</strong>：听力7.5+阅读7+口语6+写作6，均分仅6.125→不进位，与7分擦肩而过</li>
+<li><strong>总分取整规则</strong>：四项均分≥6.25自动进位，≤6.125保留下一档</li>
+</ul>
+<h3><a id="a类-vs-g类核心差异"></a>🏛 A类 vs G类核心差异</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>A类（学术类）</th>
+<th>G类（培训类）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>适用人群</td>
+<td>出国留学考生</td>
+<td>出国工作/移民考生</td>
+</tr>
+<tr>
+<td>阅读文本难度</td>
+<td>更难，学术性强</td>
+<td>相对简单</td>
+</tr>
+<tr>
+<td>科目构成</td>
+<td>听力+阅读+写作笔试+口语</td>
+<td>完全一致</td>
+</tr>
+<tr>
+<td>课程适配</td>
+<td>主讲对象</td>
+<td>基础好可通用</td>
+</tr>
+</tbody>
+</table>
+<h3><a id="关键应试提醒"></a>💡 关键应试提醒</h3>
+<ol>
+<li><strong>不要裸考</strong>：普通雅思2170元，UKVI雅思2220元，裸考白白浪费2000+报名费；即使四六级高分也不代表能裸考达到阅读7分。</li>
+<li><strong>目标分数设定</strong>：总分6.5的要求下，阅读和听力建议冲到7分以上，为口语和写作留出容错空间；口语和写作打底6分，是万能小分。</li>
+<li><strong>题型备考顺序</strong>：填空题（最简单）→ 判断题 → 配对题 → 选择题（最难），按此顺序逐个突破效率最高。</li>
+<li><strong>阅读文章来源</strong>：全部来自期刊、书籍、杂志、报纸四类公开出版物；至少一篇含详细逻辑论证，议论文必须完全理解作者论证逻辑，不能凭主观认知答题。</li>
+<li><strong>单选题陷阱</strong>：雅思单选题考点与国内四六级完全不同，核心考察文章深度理解，原文原词往往是干扰项，沿用四六级"听到原词就选"的技巧会大面积失分。</li>
+</ol>
+  </main>
+  <aside class="col-right">
+    <h4>本页章节</h4><ul><li><a href="#01-导学课">01 导学课</a></li></ul>
+  </aside>
+</div>
+<script>
+(function(){
+  var input = document.getElementById('search-input');
+  var panel = document.getElementById('search-panel');
+  if (!input || !panel) return;
+  var main = document.querySelector('.col-main');
+  var leftLinks = Array.prototype.slice.call(document.querySelectorAll('.col-left ul li a'));
+  var rightLinks = Array.prototype.slice.call(document.querySelectorAll('.col-right ul li a'));
+
+  function escHtml(s){
+    return s.replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+  function escapeRegex(s){
+    return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+  function clearHighlights(){
+    if (!main) return;
+    var marks = main.querySelectorAll('mark.search-hl');
+    for (var i = 0; i < marks.length; i++) {
+      var m = marks[i];
+      var text = document.createTextNode(m.textContent);
+      m.parentNode.replaceChild(text, m);
+    }
+    main.normalize();
+  }
+  function highlightInMain(kw){
+    if (!main) return;
+    clearHighlights();
+    if (!kw) return;
+    var re = new RegExp(escapeRegex(kw), 'gi');
+    var walker = document.createTreeWalker(main, NodeFilter.SHOW_TEXT, {
+      acceptNode: function(n){
+        if (!n.nodeValue || !n.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        var p = n.parentElement;
+        if (!p) return NodeFilter.FILTER_REJECT;
+        var tag = p.tagName;
+        if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'CODE' || tag === 'PRE') return NodeFilter.FILTER_REJECT;
+        if (p.closest && p.closest('mark.search-hl')) return NodeFilter.FILTER_REJECT;
+        return n.nodeValue.toLowerCase().indexOf(kw.toLowerCase()) >= 0 ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+      }
+    });
+    var nodes = [];
+    var n;
+    while ((n = walker.nextNode())) nodes.push(n);
+    for (var i = 0; i < nodes.length; i++) {
+      var node = nodes[i];
+      var src = node.nodeValue;
+      var html = '';
+      var last = 0;
+      var match;
+      re.lastIndex = 0;
+      while ((match = re.exec(src)) !== null) {
+        html += escHtml(src.slice(last, match.index));
+        html += '<mark class="search-hl">' + escHtml(match[0]) + '</mark>';
+        last = match.index + match[0].length;
+        if (match[0].length === 0) re.lastIndex++;
+      }
+      html += escHtml(src.slice(last));
+      var tmp = document.createElement('span');
+      tmp.innerHTML = html;
+      var parent = node.parentNode;
+      while (tmp.firstChild) parent.insertBefore(tmp.firstChild, node);
+      parent.removeChild(node);
+    }
+  }
+  function search(q){
+    q = (q || '').trim();
+    panel.innerHTML = '';
+    if (!q) {
+      panel.hidden = true;
+      leftLinks.forEach(function(a){ a.parentElement.style.display = ''; });
+      rightLinks.forEach(function(a){ a.parentElement.style.display = ''; });
+      clearHighlights();
+      return;
+    }
+    var qLower = q.toLowerCase();
+    var courseHits = leftLinks.filter(function(a){
+      return a.textContent.toLowerCase().indexOf(qLower) >= 0;
+    });
+    leftLinks.forEach(function(a){
+      a.parentElement.style.display = courseHits.indexOf(a) >= 0 ? '' : 'none';
+    });
+    var sectionHits = rightLinks.filter(function(a){
+      return a.textContent.toLowerCase().indexOf(qLower) >= 0;
+    });
+    rightLinks.forEach(function(a){
+      a.parentElement.style.display = sectionHits.indexOf(a) >= 0 ? '' : 'none';
+    });
+    var parts = [];
+    if (courseHits.length) {
+      parts.push('<div class="sp-group">课程（' + courseHits.length + '）</div>');
+      parts.push('<ul>' + courseHits.map(function(a){
+        return '<li><a href="' + a.getAttribute('href') + '">' + escHtml(a.textContent) + '</a></li>';
+      }).join('') + '</ul>');
+    }
+    if (sectionHits.length) {
+      parts.push('<div class="sp-group">本页小节（' + sectionHits.length + '）</div>');
+      parts.push('<ul>' + sectionHits.map(function(a){
+        return '<li><a href="' + a.getAttribute('href') + '">' + escHtml(a.textContent) + '</a></li>';
+      }).join('') + '</ul>');
+    }
+    if (!parts.length) parts.push('<div class="sp-empty">无匹配结果</div>');
+    panel.innerHTML = parts.join('');
+    panel.hidden = false;
+    highlightInMain(q);
+  }
+  var timer = null;
+  input.addEventListener('input', function(e){
+    clearTimeout(timer);
+    timer = setTimeout(function(){ search(e.target.value); }, 80);
+  });
+  input.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') { input.value = ''; search(''); input.blur(); panel.hidden = true; }
+  });
+  document.addEventListener('click', function(e){
+    if (panel.contains(e.target) || e.target === input) return;
+    panel.hidden = true;
+  });
+  document.addEventListener('keydown', function(e){
+    if ((e.ctrlKey || e.metaKey) && (e.key === 'k' || e.key === 'K')) {
+      e.preventDefault();
+      input.focus();
+      input.select();
+    }
+  });
+  panel.addEventListener('click', function(e){
+    var a = e.target.closest('a');
+    if (a) panel.hidden = true;
+  });
+})();
+</script>
+</body>
+</html>

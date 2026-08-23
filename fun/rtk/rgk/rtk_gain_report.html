@@ -1,0 +1,172 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RTK Token Savings Report</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Roboto, sans-serif; background: #f0f2f5; margin: 20px; }
+        .container { max-width: 1000px; margin: 0 auto; }
+        .card { background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); padding: 24px; margin-bottom: 24px; }
+        h1, h2 { margin-top: 0; }
+        .stat-grid { display: flex; gap: 24px; flex-wrap: wrap; }
+        .stat-item { flex: 1; min-width: 140px; }
+        .stat-item .label { color: #888; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .stat-item .value { font-size: 36px; font-weight: 700; color: #1e293b; }
+        .stat-item .value .pct { font-size: 20px; color: #10b981; margin-left: 8px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+        th, td { text-align: left; padding: 12px 8px; border-bottom: 1px solid #e9e9e9; }
+        th { background: #f8fafc; font-weight: 600; color: #475569; }
+        td.num, th.num { text-align: right; }
+        .raw-output { background: #f1f5f9; padding: 16px; border-radius: 8px; font-family: 'JetBrains Mono', monospace; font-size: 13px; white-space: pre-wrap; overflow-x: auto; }
+        .chart-container { height: 280px; margin: 16px 0 8px 0; }
+        .footer { text-align: center; color: #94a3b8; font-size: 13px; margin-top: 20px; }
+        .error { color: #dc2626; background: #fee2e2; padding: 12px; border-radius: 8px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>RTK Token Savings Overview</h1>
+    <div class="card">
+    <div class="stat-grid">
+        <div class="stat-item">
+            <div class="label">Total Tokens Saved</div>
+            <div class="value">106 <span class="pct">(49.1%)</span></div>
+        </div>
+        <div class="stat-item">
+            <div class="label">Commands</div>
+            <div class="value">4</div>
+        </div>
+        <div class="stat-item">
+            <div class="label">Input Tokens</div>
+            <div class="value">216</div>
+        </div>
+        <div class="stat-item">
+            <div class="label">Output Tokens</div>
+            <div class="value">110</div>
+        </div>
+        <div class="stat-item">
+            <div class="label">Exec Time</div>
+            <div class="value">64ms</div>
+        </div>
+    </div>
+</div>
+    <div class="card">
+    <h2>Daily Savings <span style="font-size:14px;color:#888">(1 days)</span></h2>
+    <div class="chart-container" style="height:280px">
+        <canvas id="dailyChart"></canvas>
+    </div>
+    <table>
+        <thead><tr><th>Date</th><th class="num">Cmds</th><th class="num">Input</th><th class="num">Output</th><th class="num">Saved</th><th class="num">Save%</th><th class="num">Time</th></tr></thead>
+        <tbody>
+<tr><td><code>2026-08-03</code></td><td class="num">4</td><td class="num">216</td><td class="num">110</td><td class="num">106</td><td class="num">49.1%</td><td class="num">16ms</td></tr>
+
+        </tbody>
+    </table>
+</div>
+    <div class="card">
+    <h2>Command Breakdown</h2>
+    <div class="chart-container">
+        <canvas id="savingsChart"></canvas>
+    </div>
+    <table>
+        <thead><tr><th>Command</th><th class="num">Count</th><th class="num">Saved Tokens</th><th class="num">Avg%</th><th class="num">Time</th></tr></thead>
+        <tbody>
+<tr><td><code>rtk ls -la .</code></td><td class="num">1</td><td class="num">52</td><td class="num">69.3%</td><td class="num">27ms</td></tr>
+<tr><td><code>rtk ls -la /d/a.creat...</code></td><td class="num">1</td><td class="num">45</td><td class="num">73.8%</td><td class="num">12ms</td></tr>
+<tr><td><code>rtk ls -la rtk_gain_r...</code></td><td class="num">1</td><td class="num">9</td><td class="num">52.9%</td><td class="num">10ms</td></tr>
+<tr><td><code>rtk proxy ls -la /d/a...</code></td><td class="num">1</td><td class="num">0</td><td class="num">0.0%</td><td class="num">15ms</td></tr>
+
+        </tbody>
+    </table>
+</div>
+    <div class="card">
+        <h2>Raw Command Output</h2>
+        <div class="raw-output">RTK Token Savings (Global Scope)
+════════════════════════════════════════════════════════════
+
+Total commands:    4
+Input tokens:      216
+Output tokens:     110
+Tokens saved:      106 (49.1%)
+Total exec time:   64ms (avg 16ms)
+Efficiency meter: ████████████░░░░░░░░░░░░ 49.1%
+
+By Command
+───────────────────────────────────────────────────────────────────────
+  #  Command                   Count  Saved    Avg%    Time  Impact    
+───────────────────────────────────────────────────────────────────────
+ 1.  rtk ls -la .                  1     52   69.3%    27ms  ██████████
+ 2.  rtk ls -la /d/a.creat...      1     45   73.8%    12ms  █████████░
+ 3.  rtk ls -la rtk_gain_r...      1      9   52.9%    10ms  ██░░░░░░░░
+ 4.  rtk proxy ls -la /d/a...      1      0    0.0%    15ms  ░░░░░░░░░░
+───────────────────────────────────────────────────────────────────────
+
+Recent Commands
+──────────────────────────────────────────────────────────
+08-03 13:37 ■ rtk ls -la rtk_gain_re... -53% (9)
+08-03 13:34 ■ rtk ls -la .              -69% (52)
+08-03 13:23 ▲ rtk ls -la /d/a.create... -74% (45)
+08-03 13:22 • rtk proxy ls -la /d/a.... -0% (0)</div>
+    </div>
+    <div class="footer">Report generated by rtk_gain_report.ps1</div>
+</div>
+<script>
+    const ctx = document.getElementById('savingsChart').getContext('2d');
+const labels = ["rtk ls -la .","rtk ls -la /d/a.creat...","rtk ls -la rtk_gain_r...","rtk proxy ls -la /d/a..."];
+const values = [52,45,9,0];
+new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: labels,
+        datasets: [{
+            label: 'Tokens Saved',
+            data: values,
+            backgroundColor: 'rgba(16, 185, 129, 0.6)',
+            borderColor: 'rgba(16, 185, 129, 1)',
+            borderWidth: 1,
+            borderRadius: 4
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+            y: { beginAtZero: true, grid: { color: '#e9e9e9' } },
+            x: { grid: { display: false } }
+        }
+    }
+});
+const dctx = document.getElementById('dailyChart').getContext('2d');
+const dailyLabels = "2026-08-03";
+const dailyValues = 106;
+const yAxisMax = 200;
+new Chart(dctx, {
+    type: 'bar',
+    data: {
+        labels: dailyLabels,
+        datasets: [{
+            label: 'Tokens Saved per Day',
+            data: dailyValues,
+            backgroundColor: 'rgba(59, 130, 246, 0.6)',
+            borderColor: 'rgba(59, 130, 246, 1)',
+            borderWidth: 1,
+            borderRadius: 4
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+            y: { beginAtZero: true, max: yAxisMax, grid: { color: '#e9e9e9' } },
+            x: { grid: { display: false }, ticks: { autoSkip: true, maxTicksLimit: 15, maxRotation: 45, minRotation: 0 } }
+        }
+    }
+});
+</script>
+</body>
+</html>

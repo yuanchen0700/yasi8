@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第12讲 · 雅思阅读13讲</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; height: 100%; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; color: #1f2328; background: #fff; }
+  a { color: #2c5cdc; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* 顶部 */
+  .topbar { position: fixed; top: 0; left: 0; right: 0; height: 56px; display: flex; align-items: center; padding: 0 24px; border-bottom: 1px solid #e5e7eb; background: #fff; z-index: 10; }
+  .logo { font-weight: 800; font-size: 20px; letter-spacing: -0.5px; color: #111; }
+  .logo span { color: #6b7280; font-weight: 500; }
+  .topbar-right { margin-left: auto; display: flex; gap: 16px; align-items: center; position: relative; }
+  .topbar-right input { border: 1px solid #d1d5db; border-radius: 6px; padding: 6px 10px; font-size: 13px; width: 240px; background: #f9fafb; }
+  .topbar-right input:focus { outline: none; border-color: #2c5cdc; background: #fff; box-shadow: 0 0 0 3px rgba(44,92,220,0.12); }
+  #search-panel { position: absolute; top: 44px; right: 0; width: 360px; max-height: 70vh; overflow-y: auto; background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); padding: 8px 0; z-index: 100; font-size: 13px; }
+  #search-panel .sp-group { padding: 8px 14px 4px; font-size: 11px; color: #6b7280; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px; }
+  #search-panel ul { list-style: none; padding: 0; margin: 0; }
+  #search-panel li a { display: block; padding: 6px 14px; color: #374151; line-height: 1.4; font-size: 12.5px; }
+  #search-panel li a:hover { background: #f3f4f6; color: #1d4ed8; text-decoration: none; }
+  #search-panel .sp-empty { padding: 24px; text-align: center; color: #9ca3af; font-size: 12px; }
+  mark.search-hl { background: #fff3a3; color: inherit; padding: 0 2px; border-radius: 2px; }
+
+  /* 三栏布局 */
+  .layout { display: flex; padding-top: 56px; min-height: 100vh; }
+  .col-left { width: 240px; flex-shrink: 0; border-right: 1px solid #e5e7eb; padding: 20px 14px 40px; overflow-y: auto; height: calc(100vh - 56px); position: sticky; top: 56px; }
+  .col-left ul { list-style: none; padding: 0; margin: 0 0 16px; }
+  .col-left li { margin: 2px 0; }
+  .col-left a { display: block; padding: 6px 10px; border-radius: 6px; font-size: 13.5px; color: #374151; line-height: 1.4; }
+  .col-left a:hover { background: #f3f4f6; text-decoration: none; }
+  .col-left a.active { background: #eff6ff; color: #1d4ed8; font-weight: 600; }
+  .col-left h3 { font-size: 11px; text-transform: uppercase; color: #6b7280; margin: 18px 8px 8px; letter-spacing: 0.5px; font-weight: 600; }
+  .col-left .sub { padding-left: 24px !important; font-size: 12.5px; color: #4b5563; }
+
+  .col-main { flex: 1; min-width: 0; padding: 40px 56px 80px; max-width: 820px; margin: 0 auto; }
+  .col-main h1 { font-size: 32px; margin-top: 0; border-bottom: 1px solid #e5e7eb; padding-bottom: 12px; line-height: 1.3; }
+  .col-main h2 { font-size: 24px; margin-top: 40px; padding-top: 16px; border-top: 1px solid #f3f4f6; }
+  .col-main h3 { font-size: 18px; margin-top: 28px; color: #1f2937; }
+  .col-main p { line-height: 1.75; color: #374151; }
+
+  .col-right { width: 220px; flex-shrink: 0; border-left: 1px solid #e5e7eb; padding: 24px 18px; font-size: 13px; height: calc(100vh - 56px); position: sticky; top: 56px; overflow-y: auto; }
+  .col-right h4 { font-size: 11px; text-transform: uppercase; color: #6b7280; margin: 0 0 12px; letter-spacing: 0.5px; font-weight: 600; }
+  .col-right ul { list-style: none; padding: 0; margin: 0; }
+  .col-right li { margin: 6px 0; }
+  .col-right a { color: #4b5563; line-height: 1.45; font-size: 12.5px; }
+  .col-right a:hover { color: #1d4ed8; }
+  .col-right .section { color: #1f2937; font-weight: 600; margin-top: 14px; }
+  .col-right .empty { color: #9ca3af; font-size: 12px; padding: 6px 0; }
+
+  @media (max-width: 1100px) { .col-right { display: none; } }
+  @media (max-width: 800px) { .col-left { display: none; } .col-main { padding: 24px; } }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="logo">雅思阅读<span> · 13讲</span></div>
+  <div class="topbar-right">
+    <a href="index.html" style="font-size:13px;color:#2c5cdc;font-weight:600;white-space:nowrap;">🏠 总目录</a>
+    <span style="font-size:18px;">🐙</span>
+    <span style="font-size:18px;">💬</span>
+    <input id="search-input" placeholder="搜索 Ctrl K" autocomplete="off">
+    <div id="search-panel" hidden></div>
+  </div>
+</header>
+<div class="layout">
+  <aside class="col-left">
+    <h3>课程目录</h3>
+    <ul>
+      <li><a href="lesson-01.html">第01讲 · 导学课</a></li>
+<li><a href="lesson-02.html">第2讲 · 填空题专题一</a></li>
+<li><a href="lesson-03.html">第03讲 · 判断题专题：TFNG vs YNNG</a></li>
+<li><a href="lesson-04.html">第4讲 · 填空题专题二</a></li>
+<li><a href="lesson-05.html">第05讲</a></li>
+<li><a href="lesson-06.html">第06讲 · 雅思阅读填空题专题四</a></li>
+<li><a href="lesson-07.html">第7讲 · 配对题专题一</a></li>
+<li><a href="lesson-08.html">第8讲 · 配对题专题二</a></li>
+<li><a href="lesson-09.html">第9讲 · 配对题专题三</a></li>
+<li><a href="lesson-10.html">第10讲</a></li>
+<li><a href="lesson-11.html">第11讲</a></li>
+<li><a href="lesson-12.html" class="active">第12讲</a></li>
+<li><a href="lesson-13.html">第13讲 · 雅思阅读核心技巧</a></li>
+<li><a href="lesson-14.html">第14讲 · 进阶阅读</a></li>
+    </ul>
+    <h3>本页问题</h3><ul><li><a class="sub" href="#智能总结">智能总结</a></li><li><a class="sub" href="#文稿">文稿</a></li></ul>
+  </aside>
+  <main class="col-main">
+    <h1>雅思阅读全解13讲 - 12</h1>
+<h2><a id="12"></a>12</h2>
+<h3><a id="智能总结"></a>智能总结</h3>
+<p>🏆 核心题型定位与备考策略</p>
+<p>题型基础属性</p>
+<p>出现位置</p>
+<p>：多数集中在阅读第三篇，属于高分选手（目标7分以上）的必争题型；少数情况下会出现在第二篇，难度相对更低。</p>
+<p>：多数集中在阅读第三篇，属于高分选手（目标7分以上）的必争题型；少数情况下会出现</p>
+<p>在第二篇，难度相对更低。</p>
+<p>考察层级</p>
+<p>：是雅思所有阅读题型中对文本理解深度要求最高的题型，远高于其他常规题型。</p>
+<p>备考适配人群</p>
+<p>：阅读目标分数6-7分的考生无需过度纠结该题型，目标冲高分的考生需重点突破。</p>
+<p>不同阅读题型的考察深度对比</p>
+<p>核心考察能力</p>
+<p>理解深度层级</p>
+<p>填空题</p>
+<p>字词层面的精准理解</p>
+<p>判断题</p>
+<p>单个句子的语义理解</p>
+<p>人物观点配对题</p>
+<p>观点信息的匹配理解</p>
+<p>句子结尾配对题</p>
+<p>精准定位能力</p>
+<p>信息匹配题</p>
+<p>句子与段落的对应理解</p>
+<p>标题匹配题</p>
+<p>段落/篇章的结构逻辑理解</p>
+<p>单选题</p>
+<p>多层级的深度文本理解</p>
+<p>📊 单选题三大分类与趋势分析</p>
+<p>题型分类与占比</p>
+<p>细节题</p>
+<p>：占比约30%，答案直接对应原文1-2句话，找到定位句并精准理解即可选出正确答案。</p>
+<p>细节推理题</p>
+<p>：占比约30%，多为因果类设问，原文不会直接给出最终结论，需要基于原文信息做适度推导。</p>
+<p>：占比约30%，多为因果类设问，原文不会直接给出最终结论，需要基于原文信息做适</p>
+<p>度推导。</p>
+<p>功能型题目</p>
+<p>：占比约30%，典型设问如“某一段落的全文功能是什么”，考察对段落作用的整体认知。</p>
+<p>近年命题趋势</p>
+<p>功能型题目占比持续提升，细节题占比逐步下降，推理题占比保持稳定。</p>
+<p>剑桥雅思真题难度递增：《剑桥11》属于基础难度，《剑桥16》《剑桥17》的单选题难度显著提升。</p>
+<p>剑桥雅思真题难度递增：《剑桥11》属于基础难度，《剑桥16》《剑桥17》的单选题难度显著提</p>
+<p>关键解题提醒</p>
+<p>：推理题的逻辑链条必须极短，禁止使用中式长逻辑链推导（如“好好学习→考名校→找好工作→人生幸福”这类多层关联在雅思阅读中完全不成立，仅认可直接的单一逻辑关联）。</p>
+<p>：推理题的逻辑链条必须极短，禁止使用中式长逻辑链推导（如“好好学习→考名校→找</p>
+<p>好工作→人生幸福”这类多层关联在雅思阅读中完全不成立，仅认可直接的单一逻辑关联）。</p>
+<p>功能型题目最优解题顺序：先完成该篇章其他所有题目，对全文内容形成整体认知后，最后处理功能类单选题，正确率会大幅提升。</p>
+<p>功能型题目最优解题顺序：先完成该篇章其他所有题目，对全文内容形成整体认知后，最后处理功</p>
+<p>能类单选题，正确率会大幅提升。</p>
+<p>📝 真题实操案例精讲（选自《剑桥11》“Psychology of Innovation”篇章）</p>
+<p>一、案例1：百万美元四重奏例子题（细节推理题）</p>
+<p>题干设问</p>
+<p>：The example of a million dollar quarter underline the writer's point about</p>
+<p>原文逻辑</p>
+<p>：前文学者提出核心观点——企业与员工价值观高度契合，直接决定员工的贡献度以及两年后的留存率。后续的四人照片案例中，4名员工完全认同老板融合黑白音乐、乡村与布鲁斯音乐的创新目标，而天赋更高的RO不认可该目标，短暂合作后便离开公司。</p>
+<p>：前文学者提出核心观点——企业与员工价值观高度契合，直接决定员工的贡献度以及两</p>
+<p>年后的留存率。后续的四人照片案例中，4名员工完全认同老板融合黑白音乐、乡村与布鲁斯音乐的</p>
+<p>创新目标，而天赋更高的RO不认可该目标，短暂合作后便离开公司。</p>
+<p>选项辨析</p>
+<p>A. recognize talent：与“识别天才”无关，案例核心并非突出RO的音乐天赋</p>
+<p>B. working as a team：未涉及团队协作的相关论述</p>
+<p>C. having a shared objective：正确，完全对应“价值观契合、目标一致”的核心观点</p>
+<p>D. being effective leader：与“高效领导力”无关，属于干扰项</p>
+<p>二、案例2：DNA结构发现因果题（细节题）</p>
+<p>：某团队能赢得DNA结构发现比赛的原因</p>
+<p>：原文直接给出因果关联，该团队明确表示自己并非所有追真理的科学家中最聪明的群体，同时提出核心观点“三个臭皮匠顶个诸葛亮”，多人协作解决问题的效率远高于单人。</p>
+<p>：原文直接给出因果关联，该团队明确表示自己并非所有追真理的科学家中最聪明的群</p>
+<p>体，同时提出核心观点“三个臭皮匠顶个诸葛亮”，多人协作解决问题的效率远高于单人。</p>
+<p>A. were conscious of their own limitation：正确，直接对应原文“知晓自身并非最聪明”的表述</p>
+<p>B. broad complementary skill to their partnership：原文未提及“技能互补”，属于主观脑补内容</p>
+<p>C. were determined to outperform their brighter rival：“决心超越更聪明的对手”是结果而非成功原因</p>
+<p>C. were determined to outperform their brighter rival：“决心超越更聪明的对手”是结果而非成功</p>
+<p>D. encourage each other to achieve common goal：“互相鼓励”属于其他篇章的混淆信息，本段未涉及</p>
+<p>D. encourage each other to achieve common goal：“互相鼓励”属于其他篇章的混淆信息，本段</p>
+<p>未涉及</p>
+<p>三、案例3：早餐麦片比赛例子题（细节推理题）</p>
+<p>：作者提到早餐麦片包装上的比赛案例是为了说明什么</p>
+<p>：段落核心观点为“写作、可视化、制作原型这类简单行为，能够加深个体对项目的参与度，完成写作动作后会进一步提升对该事物的认同感”，早餐麦片的10字以内补全广告语比赛，正是印证该观点的案例。</p>
+<p>：段落核心观点为“写作、可视化、制作原型这类简单行为，能够加深个体对项目的参与</p>
+<p>度，完成写作动作后会进一步提升对该事物的认同感”，早餐麦片的10字以内补全广告语比赛，正是</p>
+<p>印证该观点的案例。</p>
+<h3><a id="文稿"></a>文稿</h3>
+<p>哈喽，各位同学大家好，咱们今天一起来勇攀高峰啊，来到了我们阅读当中最难的一种题型，</p>
+<p>就是这个单选题。其实我今天选取的这个例题呢，还并不是特别难，因为有一些文章素材还有文章本身并不是特别好懂，</p>
+<p>就是这个单选题。其实我今天选取的这个例题呢，还并不是特别难，因为有一些文章素材还有文章本身</p>
+<p>所以可能它更难。这个单选题啊，一般来说它出现在第三个篇章会比较多一点，</p>
+<p>但偶尔我们也会发现它出现在第二个篇章当中啊，</p>
+<p>如果出现在第三个篇章，它肯定是那种极难的题目，</p>
+<p>也就是说八分以上的选手的必争之地啊。如果你对阅读的部分这个分数目标要求不高，</p>
+<p>可能个六分啊或者七分你都能接受，单选题其实不用太过纠结啊，</p>
+<p>但如果说你希望自己的阅读部分能够力争上游，因为毕竟阅读是我们最擅长的学科嘛，</p>
+<p>相比于听力、口语和写作来说，所以还是希望大家能够把这个单选题也给巩固起来啊，</p>
+<p>那阅读我们还是要尽量去取得比较高的分数。</p>
+<p>如果第二篇文章这里出现单选题的话，其实这个单选题它并不是特别难，</p>
+<p>多数是考察我们对于细节的理解能力啊，</p>
+<p>那如果出现在第三篇，其实是对于整个段落或者对于这个篇章的一个deeply understanding，</p>
+<p>ok，所以现在我们就知道了，这个单选题和我们之前学过的一些题型其实不太一样，</p>
+<p>像填空题呢，它只是考察我们，我给大家稍微做一个总结啊，</p>
+<p>填空题其实主要考察我们对于字词的一个理解，</p>
+<p>那么判断题呢，主要考察我们对于一个句子的理解，哎配！对题呢，分类型，</p>
+<p>比较简单的配对题，比如说人物观点，其实考察的我们是对于观点的一个理解，</p>
+<p>那对于句子结尾呢，其实考察的我们是定位这个事情啊，</p>
+<p>那对于这个信息匹配的这种题目是对于句子和段落的一个理解，</p>
+<p>对于标题匹配是对于段落或者说篇章的结构进行一个理解。</p>
+<p>所以每一种题型，其实它的嗯理解的深度却不太一样。</p>
+<p>那么单选题就是我们理解深度需要最深的一种题目了。那单选题一共分为三个类别啊，</p>
+<p>我在下面给大家记个笔记。第一种类别的单选题呢，叫做细节题，</p>
+<p>这种细节题是相对来说比较简单的，大概占比是在百分之三十左右啊，</p>
+<p>其实也就是三分之一左右啊。然后第二种题呢，是推理题，</p>
+<p>细节推理题他的占比也是三分之一左右。第三种题是功能型题目，</p>
+<p>功能型题目的占比也是三分之一左右。但是呢，目前来说有一个趋势，</p>
+<p>这个趋势啊，就是功能型题目的占比会在提升，细节题的这个占比会在下降，</p>
+<p>然后推理题其实就是保持持平的这个趋势啊。那什么样的题叫做功能型题目呢？</p>
+<p>相信大家但凡做过题目，可能会遇到第一段在全文什么样的功能，</p>
+<p>而what's the function of paragraph one？你以为这个题很简单，</p>
+<p>因为它毕竟都告诉你来自的段落，你就把第一段给读了，那我还能看不懂吗？但还就真的是看不懂，</p>
+<p>而且还就真的是不理解第一段它的一个功能。所以但凡这种功能型的题目，</p>
+<p>我比较建议大家。在读过文章之后，在整体其他题目都已经淡了之后啊，</p>
+<p>就是我们已经把其他题目都给搞定了，</p>
+<p>你再去处理这个功能性的题目，这样才可以啊。那细节题和细节推理题其实相对来说是可做的，</p>
+<p>细节题基本上就是在这个段落当中，</p>
+<p>有那么某一句话或者某两句话对应是我们答案的位置，只要找到深刻理解，</p>
+<p>这个题基本就能做对。那细节推理题呢，主要类似于一些因果啦，</p>
+<p>考你原因呢？这个事情为什么？可能在原文当中并没有直接告诉你这个事情的一个根本原因，</p>
+<p>需要我们基于原文的信息再做进一步的推理。但我要提醒大家的是，</p>
+<p>推理的链条一定不能过长，这个是我们中国人爱犯的一个问题啊。</p>
+<p>就比如说给大家举个例子，父母经常会劝我们好好学习，</p>
+<p>因为他劝我们的逻辑链是基于好好学习我们可以取得好成绩，</p>
+<p>取得好成绩可以考上好大学，考上好大学可以找到好工作，</p>
+<p>找到好工作可以登上人生巅峰，迎娶白富美，迎娶了白富美之后，我们的人生就会很幸福。</p>
+<p>所以呢，这父母认为好好学习和人生幸福之间是挂钩的。</p>
+<p>但是呢，在外国人的思路当中是不可以这样的，他们只是单一逻辑链条，</p>
+<p>好好学习只能决定的是你目前眼前成绩进步，</p>
+<p>或者他最多能决定于你是否能考上一个好大学，但是他并不能决定你未来的人生怎么样啊。</p>
+<p>当然我并不是说学习无用论，学习还是很重要的，</p>
+<p>只不过就是在阅读理解当中我们。不可以有这样长的逻辑链，这些长的逻辑链，</p>
+<p>那你的假设前提就是前一件事情是发生了的对吧？</p>
+<p>但是当c这个事情它是否能发生，它和b有关，b能不能发生</p>
+<p>它和a有关，那么我们就无法说明a和c之间是有一个直接的因果关系的，</p>
+<p>明白了吧？所以这个逻辑链一定要给它缩的稍微短一些，那即使它是需要我们去进行推理的这种题目，</p>
+<p>逻辑链也是要尽量适当的去进行缩短。</p>
+<p>ok，好，那接下来我们来看一下手里的这个例题啊，</p>
+<p>这个例题呢，其实相对还是比较简单的，因为这个例题我是从见十一当中去选取的一个题目啊，</p>
+<p>众所周知，后面的剑桥题是越出越难，比如说十六十七这两本书还是比较难的，</p>
+<p>但十一呢，相对来说还是比较基本的，我们就从这样基本的选择题这咱先入手，</p>
+<p>你看看这个选择题它是一个什么样的难度，如果你的理解非常的表层的话，</p>
+<p>那这个题能做吗？比如我们来看一下第一个例题，第一个例题它说的是the example of a million dollar quarter underline the writer's point about</p>
+<p>那这个题能做吗？比如我们来看一下第一个例题，第一个例题它说的是the example of a million dollar</p>
+<p>quarter underline the writer's point about</p>
+<p>那writer's point这个叫做作者的一个观点，所以他问我们的就是这个例子说明了作者的什么观点。</p>
+<p>其实这道题他是一个推理题啊，</p>
+<p>我们在原文当中一定能找到这个million dollar quartet那</p>
+<p>但是作者的观点还真不一定，所以我们要去找到这个million dollar cottage，</p>
+<p>然后去看明白这个例子它在讲什么。那这个例子它在讲什么？</p>
+<p>然后它在对应作者的观点到底是哪一块啊？好，我们开始回到原文。</p>
+<p>原文整体的一个标题呢，叫做psychology of innovation，innovation，这个叫做创新啊。</p>
+<p>这篇文章其实前半部分我们之前用过，讲句子结尾的匹配题的时候，</p>
+<p>我们是用过这篇文章的。嗯，所以整体文章我就不再给大家进行赘述了，</p>
+<p>咱们就直接奔到这个million dollar cottage这个地方啊。文章第一啊部分，</p>
+<p>这个million dollar costed在对应第三自然段，</p>
+<p>大概是这一段啊，那对应的这个词在这里。这整个一个段落都是一个例子段，</p>
+<p>因为从他开始就在给我们讲有这样一个照片，</p>
+<p>这个照片给我们强调了这个人的观点。</p>
+<p>那么这个人的观点是什么？读到这，其实乍一看你不疑惑吗？如果你是从全篇通篇读下来的，</p>
+<p>可能你知道这个什么collecting，他的一个观点。</p>
+<p>那我们是不是还得上去再找一下他的观点的问题呢？这个人他在这啊，</p>
+<p>在上一段。那么至于上一段当中说到了他的什么观点，咱们先进行脑补一下啊，</p>
+<p>他的工作单位咱不说了，然后咱们继续往后看，他说呢，这个创新这件事情啊，</p>
+<p>始于招聘啊，从招聘这个recrument，这个表示的是招聘的意思说</p>
+<p>从招聘开始呢，我们就能决定了这个人到底是有创新能力的，</p>
+<p>还是没有创新能力的。这个地方之前是有句子结尾的匹配题的，所以当时咱们是看过的，</p>
+<p>如果持续follow我视频的同学可能对这块是比较了解，那我们就嗯给一些。没有follow视频的同学去单独讲解一下啊。</p>
+<p>如果持续follow我视频的同学可能对这块是比较了解，那我们就嗯给一些。没有follow视频的同学去单独</p>
+<p>那他说了，研究表明呢？呃，如果企业他的这个员工的价值观和企业的价值观非常的契合，</p>
+<p>能决定两件事情，一个事情就是你到底做了多大的贡献，另一件事情就是两年之后你是否还留在公司里面。</p>
+<p>能决定两件事情，一个事情就是你到底做了多大的贡献，另一件事情就是两年之后你是否还留在公司里</p>
+<p>这是他对应的一个观点啊。</p>
+<p>好了，我们现在找到了这个人的观点，那么接下来的这个例子其实就是为了说明这个观点的对吧？</p>
+<p>这个观点是两年之后你是否还会留在公司，以及你做多大贡献。</p>
+<p>我们来看啊，他这个照片说明了一个什么事情呢？首先，这个照片拍摄的年代是非常的古老的啊，</p>
+<p>他这个年代大概是一五九六年拍摄的这样一个照片。</p>
+<p>照片上一共有四个人，分别是一个人，两个人，三个人以及四个人。</p>
+<p>这四个人呢，他们站在一架钢琴的旁边，在这个工作室。这工作室在哪呢？</p>
+<p>在孟菲斯啊，其实我有幸去过孟菲斯，所以我还曾经真的看过这张照片啊。</p>
+<p>然后呢，告诉了我们一个不为人知的故事，这一块是在干嘛呢？</p>
+<p>进行一个铺垫。至于这个故事到底是怎么回事，还没说呢，先给你来个铺垫。</p>
+<p>那我们来看，这就是这个东西啊。然后它可能之前是一个这个东西，</p>
+<p>我估计这俩单词啊，大家可能都不太认识，即使你是非常专业的，</p>
+<p>估计专业的这个音乐领域的同学可能会认识啊，那一个叫做四重奏，</p>
+<p>一个叫做五重奏。那这张照片呢，我从网上download下来了一下啊，</p>
+<p>虽然这里面有水印，但大家凑。合看，大家看啊，这就是这图片上这四个人，这个大概就是那个piano吧，</p>
+<p>虽然这里面有水印，但大家凑。合看，大家看啊，这就是这图片上这四个人，这个大概就是那个piano</p>
+<p>就是那个钢琴啊，所以这就是照片上存在的这四个人。</p>
+<p>那么我们继续来看他的这个语言描述啊，missing from the picture is ro这个人，</p>
+<p>也就是说，这个照片上本来应该再有一个人，我给他画上去啊，</p>
+<p>本来应该再有一个人，这个人的名字叫做r o。ok，但他为什么没有出现在照片上呢？</p>
+<p>你奇不奇怪？既然奇怪，我们就抱着好奇的心态继续去往后读文章，</p>
+<p>看这个故事的走向。怎么回事呢？r o是一个什么样的人呢？开始给我们修饰了，</p>
+<p>r o是一个非常伟大的自然乐手啊，甚至呢，他比照片上存在的这四个人要更加的伟大一些。</p>
+<p>呃，然后但是这个拥有散公司的这个老板啊，</p>
+<p>这个公司和我的名字一样，我非常开心，</p>
+<p>所以每次拿它当例文，就拥有散公司的这个老板，他想去实现一个革命，</p>
+<p>revolution呢，也就是革命啊，然后使得这个流行音乐领域呢，可以和一些其他的音乐去进行融合，</p>
+<p>什么音乐呢？black music and white music，也就是说黑人音乐，</p>
+<p>白人音乐，乡村音乐，还有布鲁斯。所以这个公司老板，他的一个雄心壮志还是蛮大的，</p>
+<p>就是希望呢，能够进行一些融合，流行音乐可以融合进来，然后一个，</p>
+<p>两个，三个，四个，就瞬间的理解了老板的雄心壮志，</p>
+<p>而且呢，相信了老板的雄心壮志，这句话在说明什么呀？在说明的是w fit</p>
+<p>对吧，就是价值观。非常的一致，</p>
+<p>四个员工立即理解了老板的雄心壮志。但是ro呢，并不觉得这个事情啊能够激发他啊。</p>
+<p>所以呢，他就跟这个公司完成了一次合作，然后就再退出了这个公司。</p>
+<p>所以我们用这个例子来证明了作者的一个什么观点嘞？</p>
+<p>不是作者的观点啊，是前文当中一个学者的观点。这个学者的意思就是说，</p>
+<p>如果企业的价值观和员工的价值观非常的fit，非常的match，</p>
+<p>那么就可以决定这个员工到底留留在我们这个公司有多长时间。举了个例子，</p>
+<p>你看l，虽然他很好，但是你并不留不下他，因为他不相信这件事，对吧？好，</p>
+<p>我们来看对应的这些选项啊。a选项呢，就是recognize talent，当我们理解到这个深度之后，</p>
+<p>虽然ro非常的有talent，非常的有才华，但并和这个发现天才没有什么关系。</p>
+<p>那今儿working as a team作为团队，一个团队精神</p>
+<p>这个例子是在跟我们讲团队精神吗？不是吧，这个例子是给我们在讲价值观能不能一致啊。</p>
+<p>所以这个也不是正确答案。c选项having a shared objective有一样的目标，</p>
+<p>ok，答案出现了，对吧？正是因为我们上文也理解了，</p>
+<p>下文也理解了，所以我们才能顺利的做出这个选项。</p>
+<p>如果说我们在读这个例子的时候，你没有回归到上文当中，</p>
+<p>没有真的去看到这个人的观点，那这个选项是不是你也选不出来？所以这种题目就要求我们不但要能够读明白这一段，</p>
+<p>没有真的去看到这个人的观点，那这个选项是不是你也选不出来？所以这种题目就要求我们不但要能够</p>
+<p>同时呢，你还要在读明。白这一段</p>
+<p>上面的这个观点，这一段啊，要求我们能力还是非常强的。然后最后一个being effective leader，</p>
+<p>这显然也是糊弄你的一个选项，所以a、 b、 d都不对，那c选项就是正确。</p>
+<p>那这道题其实它是一道推理题，但它简单吗？不简单，更何况功能型题目呢，</p>
+<p>对吧？好，下一道题我们再来看一下啊，下一道题</p>
+<p>虽然题干很长，你可能觉得，哎呀，这个题肯定比上一道要难吧，但事实上不是的。</p>
+  </main>
+  <aside class="col-right">
+    <h4>本页章节</h4><ul><li><a href="#12">12</a></li></ul>
+  </aside>
+</div>
+<script>
+(function(){
+  var input = document.getElementById('search-input');
+  var panel = document.getElementById('search-panel');
+  if (!input || !panel) return;
+  var main = document.querySelector('.col-main');
+  var leftLinks = Array.prototype.slice.call(document.querySelectorAll('.col-left ul li a'));
+  var rightLinks = Array.prototype.slice.call(document.querySelectorAll('.col-right ul li a'));
+
+  function escHtml(s){
+    return s.replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+  function escapeRegex(s){
+    return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+  function clearHighlights(){
+    if (!main) return;
+    var marks = main.querySelectorAll('mark.search-hl');
+    for (var i = 0; i < marks.length; i++) {
+      var m = marks[i];
+      var text = document.createTextNode(m.textContent);
+      m.parentNode.replaceChild(text, m);
+    }
+    main.normalize();
+  }
+  function highlightInMain(kw){
+    if (!main) return;
+    clearHighlights();
+    if (!kw) return;
+    var re = new RegExp(escapeRegex(kw), 'gi');
+    var walker = document.createTreeWalker(main, NodeFilter.SHOW_TEXT, {
+      acceptNode: function(n){
+        if (!n.nodeValue || !n.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        var p = n.parentElement;
+        if (!p) return NodeFilter.FILTER_REJECT;
+        var tag = p.tagName;
+        if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'CODE' || tag === 'PRE') return NodeFilter.FILTER_REJECT;
+        if (p.closest && p.closest('mark.search-hl')) return NodeFilter.FILTER_REJECT;
+        return n.nodeValue.toLowerCase().indexOf(kw.toLowerCase()) >= 0 ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+      }
+    });
+    var nodes = [];
+    var n;
+    while ((n = walker.nextNode())) nodes.push(n);
+    for (var i = 0; i < nodes.length; i++) {
+      var node = nodes[i];
+      var src = node.nodeValue;
+      var html = '';
+      var last = 0;
+      var match;
+      re.lastIndex = 0;
+      while ((match = re.exec(src)) !== null) {
+        html += escHtml(src.slice(last, match.index));
+        html += '<mark class="search-hl">' + escHtml(match[0]) + '</mark>';
+        last = match.index + match[0].length;
+        if (match[0].length === 0) re.lastIndex++;
+      }
+      html += escHtml(src.slice(last));
+      var tmp = document.createElement('span');
+      tmp.innerHTML = html;
+      var parent = node.parentNode;
+      while (tmp.firstChild) parent.insertBefore(tmp.firstChild, node);
+      parent.removeChild(node);
+    }
+  }
+  function search(q){
+    q = (q || '').trim();
+    panel.innerHTML = '';
+    if (!q) {
+      panel.hidden = true;
+      leftLinks.forEach(function(a){ a.parentElement.style.display = ''; });
+      rightLinks.forEach(function(a){ a.parentElement.style.display = ''; });
+      clearHighlights();
+      return;
+    }
+    var qLower = q.toLowerCase();
+    var courseHits = leftLinks.filter(function(a){
+      return a.textContent.toLowerCase().indexOf(qLower) >= 0;
+    });
+    leftLinks.forEach(function(a){
+      a.parentElement.style.display = courseHits.indexOf(a) >= 0 ? '' : 'none';
+    });
+    var sectionHits = rightLinks.filter(function(a){
+      return a.textContent.toLowerCase().indexOf(qLower) >= 0;
+    });
+    rightLinks.forEach(function(a){
+      a.parentElement.style.display = sectionHits.indexOf(a) >= 0 ? '' : 'none';
+    });
+    var parts = [];
+    if (courseHits.length) {
+      parts.push('<div class="sp-group">课程（' + courseHits.length + '）</div>');
+      parts.push('<ul>' + courseHits.map(function(a){
+        return '<li><a href="' + a.getAttribute('href') + '">' + escHtml(a.textContent) + '</a></li>';
+      }).join('') + '</ul>');
+    }
+    if (sectionHits.length) {
+      parts.push('<div class="sp-group">本页小节（' + sectionHits.length + '）</div>');
+      parts.push('<ul>' + sectionHits.map(function(a){
+        return '<li><a href="' + a.getAttribute('href') + '">' + escHtml(a.textContent) + '</a></li>';
+      }).join('') + '</ul>');
+    }
+    if (!parts.length) parts.push('<div class="sp-empty">无匹配结果</div>');
+    panel.innerHTML = parts.join('');
+    panel.hidden = false;
+    highlightInMain(q);
+  }
+  var timer = null;
+  input.addEventListener('input', function(e){
+    clearTimeout(timer);
+    timer = setTimeout(function(){ search(e.target.value); }, 80);
+  });
+  input.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') { input.value = ''; search(''); input.blur(); panel.hidden = true; }
+  });
+  document.addEventListener('click', function(e){
+    if (panel.contains(e.target) || e.target === input) return;
+    panel.hidden = true;
+  });
+  document.addEventListener('keydown', function(e){
+    if ((e.ctrlKey || e.metaKey) && (e.key === 'k' || e.key === 'K')) {
+      e.preventDefault();
+      input.focus();
+      input.select();
+    }
+  });
+  panel.addEventListener('click', function(e){
+    var a = e.target.closest('a');
+    if (a) panel.hidden = true;
+  });
+})();
+</script>
+</body>
+</html>

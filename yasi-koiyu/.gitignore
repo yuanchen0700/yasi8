@@ -1,0 +1,56 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual env
+.venv/
+venv/
+env/
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Temp browser / headless artifacts
+chrome_profile/
+_check*.js
+_check*.html
+fetched_*.mp3
+chrome.err
+chrome.dom
+_screenshot*.png
+
+# Local-only logs
+*.log
+
+# PDF-to-HTML conversions (not ours, dropped into the folder by accident)
+20*.html
+*年*.html
+
+# User-curated question bank (their work, not ours)
+questions.md
+questions.json
+next*.json
+next*.md
+# Retrospective stash (temporary working dir, do not track)
+_stash_milestones/
+
+# Auto-created working dirs / conversions (not ours)
+data/
+
+# SQLite user database (intentionally tracked as backup; skip transient files)
+brand9.db-journal
+brand9.db-wal
+brand9.db-shm
+
+# Runtime logs (server access log / frp tunnel log)
+server.log
+frp.log
+
+# Local mkcert TLS certs (machine-specific; never commit private key)
+*+1-key.pem
+*+1.pem
+*+1.pem.d

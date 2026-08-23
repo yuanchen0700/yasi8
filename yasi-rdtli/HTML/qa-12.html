@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第12讲 选择题专题二：单选题 · 雅思阅读13讲</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; height: 100%; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; color: #1f2328; background: #fff; }
+  a { color: #2c5cdc; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .topbar { position: fixed; top: 0; left: 0; right: 0; height: 56px; display: flex; align-items: center; padding: 0 24px; border-bottom: 1px solid #e5e7eb; background: #fff; z-index: 10; }
+  .logo { font-weight: 800; font-size: 20px; letter-spacing: -0.5px; color: #111; }
+  .logo span { color: #6b7280; font-weight: 500; }
+  .topbar-right { margin-left: auto; display: flex; gap: 16px; align-items: center; position: relative; }
+  .topbar-right input { border: 1px solid #d1d5db; border-radius: 6px; padding: 6px 10px; font-size: 13px; width: 240px; background: #f9fafb; }
+  .topbar-right input:focus { outline: none; border-color: #2c5cdc; background: #fff; box-shadow: 0 0 0 3px rgba(44,92,220,0.12); }
+  #search-panel { position: absolute; top: 44px; right: 0; width: 360px; max-height: 70vh; overflow-y: auto; background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); padding: 8px 0; z-index: 100; font-size: 13px; }
+  #search-panel .sp-group { padding: 8px 14px 4px; font-size: 11px; color: #6b7280; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px; }
+  #search-panel ul { list-style: none; padding: 0; margin: 0; }
+  #search-panel li a { display: block; padding: 6px 14px; color: #374151; line-height: 1.4; font-size: 12.5px; }
+  #search-panel li a:hover { background: #f3f4f6; color: #1d4ed8; text-decoration: none; }
+  #search-panel .sp-empty { padding: 24px; text-align: center; color: #9ca3af; font-size: 12px; }
+  mark.search-hl { background: #fff3a3; color: inherit; padding: 0 2px; border-radius: 2px; }
+
+  .layout { display: flex; padding-top: 56px; min-height: 100vh; }
+  .col-left { width: 240px; flex-shrink: 0; border-right: 1px solid #e5e7eb; padding: 20px 14px 40px; overflow-y: auto; height: calc(100vh - 56px); position: sticky; top: 56px; }
+  .col-left ul { list-style: none; padding: 0; margin: 0 0 16px; }
+  .col-left li { margin: 2px 0; }
+  .col-left a { display: block; padding: 6px 10px; border-radius: 6px; font-size: 13.5px; color: #374151; line-height: 1.4; }
+  .col-left a:hover { background: #f3f4f6; text-decoration: none; }
+  .col-left a.active { background: #eff6ff; color: #1d4ed8; font-weight: 600; }
+  .col-left h3 { font-size: 11px; text-transform: uppercase; color: #6b7280; margin: 18px 8px 8px; letter-spacing: 0.5px; font-weight: 600; }
+  .col-left .sub { padding-left: 24px !important; font-size: 12.5px; color: #4b5563; }
+
+  .col-main { flex: 1; min-width: 0; padding: 40px 56px 80px; max-width: 820px; margin: 0 auto; }
+  .col-main h1 { font-size: 32px; margin-top: 0; border-bottom: 1px solid #e5e7eb; padding-bottom: 12px; line-height: 1.3; }
+  .col-main h2 { font-size: 23px; margin-top: 40px; padding-top: 16px; border-top: 1px solid #f3f4f6; }
+  .col-main h3 { font-size: 18px; margin-top: 28px; color: #1f2937; }
+  .col-main p { line-height: 1.75; color: #374151; }
+  .col-main blockquote { border-left: 3px solid #dbeafe; background: #f8fafc; margin: 16px 0; padding: 10px 16px; color: #4b5563; border-radius: 0 6px 6px 0; }
+  .col-main blockquote p { margin: 0; }
+  .col-main table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 14px; }
+  .col-main th, .col-main td { border: 1px solid #e5e7eb; padding: 8px 12px; text-align: left; }
+  .col-main th { background: #f9fafb; font-weight: 600; }
+  .col-main tr:nth-child(even) td { background: #fcfcfd; }
+
+  .col-right { width: 220px; flex-shrink: 0; border-left: 1px solid #e5e7eb; padding: 24px 18px; font-size: 13px; height: calc(100vh - 56px); position: sticky; top: 56px; overflow-y: auto; }
+  .col-right h4 { font-size: 11px; text-transform: uppercase; color: #6b7280; margin: 0 0 12px; letter-spacing: 0.5px; font-weight: 600; }
+  .col-right ul { list-style: none; padding: 0; margin: 0; }
+  .col-right li { margin: 6px 0; }
+  .col-right a { color: #4b5563; line-height: 1.45; font-size: 12.5px; }
+  .col-right a:hover { color: #1d4ed8; }
+  .col-right .empty { color: #9ca3af; font-size: 12px; padding: 6px 0; }
+
+  @media (max-width: 1100px) { .col-right { display: none; } }
+  @media (max-width: 800px) { .col-left { display: none; } .col-main { padding: 24px; } }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="logo">雅思阅读<span> · 问答精要</span></div>
+  <div class="topbar-right">
+    <a href="index.html" style="font-size:13px;color:#2c5cdc;font-weight:600;white-space:nowrap;">🏠 总目录</a>
+    <a href="qa-index.html" style="font-size:13px;color:#6b7280;">目录</a>
+    <input id="search-input" placeholder="搜索 Ctrl K" autocomplete="off">
+    <div id="search-panel" hidden></div>
+  </div>
+</header>
+<div class="layout">
+  <aside class="col-left">
+    <h3>问答文档</h3>
+    <ul>
+      <li><a href="qa-01.html">第01讲 导学课</a></li>
+<li><a href="qa-02.html">第02讲 填空题专题一：表格填空 + 笔记填空</a></li>
+<li><a href="qa-03.html">第03讲 判断题专题：TFNG vs YNNG</a></li>
+<li><a href="qa-04.html">第04讲 填空题专题二：句子填空 + 简答题</a></li>
+<li><a href="qa-05.html">第05讲 填空题专题三：流程图填空 + 图形填空</a></li>
+<li><a href="qa-06.html">第06讲 填空题专题四：总结填空</a></li>
+<li><a href="qa-07.html">第07讲 配对题专题一：人物观点配对</a></li>
+<li><a href="qa-08.html">第08讲 配对题专题二：句子结尾配对</a></li>
+<li><a href="qa-09.html">第09讲 配对题专题三：信息匹配</a></li>
+<li><a href="qa-10.html">第10讲 判断题考点速查</a></li>
+<li><a href="qa-11.html">第11讲 选择题专题一：多选题</a></li>
+<li><a href="qa-12.html" class="active">第12讲 选择题专题二：单选题</a></li>
+<li><a href="qa-13.html">第13讲 平行阅读法</a></li>
+<li><a href="qa-14.html">第14讲 进阶阅读：To Catch a King</a></li>
+    </ul>
+    <h3>本页问题</h3><ul><li><a class="sub" href="#近年命题趋势">近年命题趋势</a></li><li><a class="sub" href="#原文逻辑链">原文逻辑链</a></li><li><a class="sub" href="#选项辨析">选项辨析</a></li><li><a class="sub" href="#原文逻辑">原文逻辑</a></li><li><a class="sub" href="#选项辨析-2">选项辨析</a></li></ul>
+  </aside>
+  <main class="col-main">
+    <h1>雅思阅读全解13讲 · 第12讲 选择题专题二：单选题（问答精要）</h1>
+<blockquote>
+<p>本讲定位：<strong>全课程最难的题型</strong>。单选题要求"多层级深度文本理解"，是冲 8 分选手的必争之地。本讲把单选拆成<strong>三类</strong>（细节题 / 推理题 / 功能型题），并用《剑桥11》"Psychology of Innovation"真题三个案例演示：如何从"例子"回溯"作者观点"，如何克制中式长逻辑链，以及功能型题为什么必须最后做。</p>
+</blockquote>
+<hr>
+<h2><a id="q1-单选题一般出现在哪难度怎么定位"></a>Q1. 单选题一般出现在哪？难度怎么定位？</h2>
+<ul>
+<li><strong>多数出现在第三篇</strong>——属于<strong>高分选手（目标 7 分以上）的必争题型</strong>；少数出现在第二篇，难度相对更低。</li>
+<li>出现在第三篇的单选题是<strong>极难</strong>的：考察对整个段落甚至整个篇章的 deeply understanding。</li>
+<li><strong>备考适配</strong>：目标 6-7 分的考生<strong>无需过度纠结</strong>该题型；目标冲高分（阅读是中国人最擅长的科目）的考生必须重点突破。</li>
+</ul>
+<hr>
+<h2><a id="q2-单选题和之前学过的题型理解深度差在哪"></a>Q2. 单选题和之前学过的题型，理解深度差在哪？</h2>
+<p>各种题型的"理解深度层级"递进：</p>
+<table>
+<thead>
+<tr>
+<th>题型</th>
+<th>核心考察能力</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>填空题</td>
+<td>字词层面的精准理解</td>
+</tr>
+<tr>
+<td>判断题</td>
+<td>单个句子的语义理解</td>
+</tr>
+<tr>
+<td>人物观点配对题</td>
+<td>观点信息的匹配理解</td>
+</tr>
+<tr>
+<td>句子结尾配对题</td>
+<td>精准定位能力</td>
+</tr>
+<tr>
+<td>信息匹配题</td>
+<td>句子与段落的对应理解</td>
+</tr>
+<tr>
+<td>标题匹配题</td>
+<td>段落/篇章的结构逻辑理解</td>
+</tr>
+<tr>
+<td><strong>单选题</strong></td>
+<td><strong>多层级的深度文本理解（最顶层）</strong></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>单选题不是"听到某个词就能选"，必须真正读懂逻辑。</li>
+</ul>
+<hr>
+<h2><a id="q3-单选题分哪三类占比各多少"></a>Q3. 单选题分哪三类？占比各多少？</h2>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>占比</th>
+<th>特征</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>细节题</strong></td>
+<td>约 30%</td>
+<td>答案直接对应原文 1-2 句话，找到定位句并精准理解即可选出</td>
+</tr>
+<tr>
+<td><strong>细节推理题</strong></td>
+<td>约 30%</td>
+<td>多为因果类设问；原文不会直接给出最终结论，需要基于原文信息<strong>适度推导</strong></td>
+</tr>
+<tr>
+<td><strong>功能型题目</strong></td>
+<td>约 30%</td>
+<td>典型设问："某段落在全文的功能是什么"（what's the function of paragraph one），考察对段落作用的整体认知</td>
+</tr>
+</tbody>
+</table>
+<h3><a id="近年命题趋势"></a>近年命题趋势</h3>
+<ul>
+<li><strong>功能型题目占比持续提升，细节题占比逐步下降，推理题保持稳定</strong>。</li>
+<li>剑桥真题难度递增：《剑桥11》属基础难度，《剑桥16》《剑桥17》单选难度显著提升。</li>
+</ul>
+<hr>
+<h2><a id="q4-推理题的逻辑链有什么禁忌中式长逻辑链警告"></a>Q4. 推理题的"逻辑链"有什么禁忌？（中式长逻辑链警告）</h2>
+<ul>
+<li><strong>推理链条必须极短</strong>，只认可<strong>直接的单一逻辑关联</strong>。</li>
+<li>中式思维的反例：好好学习 → 考好成绩 → 考好大学 → 找好工作 → 迎娶白富美 → 人生幸福——这种多层链条在雅思阅读中<strong>完全不成立</strong>（A 无法和 C 直接建立因果）。</li>
+<li>外国人的思路：好好学习<strong>只能</strong>决定眼前成绩进步，最多决定能否考上好大学，<strong>不能</strong>决定人生怎么样。</li>
+<li>即使需要推理的题目，逻辑链也要尽量缩短。这不是"学习无用论"，而是阅读理解的规则。</li>
+</ul>
+<hr>
+<h2><a id="q5-功能型题目为什么必须放到最后做"></a>Q5. 功能型题目为什么必须放到最后做？</h2>
+<ul>
+<li>它问的是"某段的功能/作用"，<strong>读完该段也未必能答对</strong>——需要站在全文结构的高度。</li>
+<li><strong>最优顺序</strong>：先完成该篇章其他所有题目，对全文形成整体认知后，<strong>最后</strong>处理功能类单选题，正确率会大幅提升。</li>
+<li>细节题和推理题相对"可做"：细节题就是定位句 + 深刻理解；推理题是原文信息 + 一步推导。</li>
+</ul>
+<hr>
+<h2><a id="q6-案例-1百万美元四重奏细节推理题例子说明作者的什么观点"></a>Q6. 案例 1：百万美元四重奏（细节推理题）——例子说明作者的什么观点？</h2>
+<p>题目：The example of a million dollar quartet underlines the writer's point about…（例子是为了佐证作者哪个观点？）</p>
+<h3><a id="原文逻辑链"></a>原文逻辑链</h3>
+<ol>
+<li>前文学者提出核心观点：<strong>企业与员工价值观高度契合</strong> → 决定员工贡献度 + 两年后的留存率。</li>
+<li>例子的故事：1956 年孟菲斯一张四人合影（太阳唱片公司），照片上 4 名员工<strong>立即理解并相信</strong>老板"融合黑白音乐、乡村与布鲁斯"的革命性目标；而天赋更高的 <strong>RO 不认可</strong>这个目标，短暂合作后离开——所以照片里没有他。</li>
+<li>例子 = 观点的注脚：价值观不 fit，再好的人才也留不住。</li>
+</ol>
+<h3><a id="选项辨析"></a>选项辨析</h3>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>判定</th>
+<th>理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A. recognize talent</td>
+<td>❌</td>
+<td>与"识别天才"无关（RO 确实有天赋，但例子重点不是这个）</td>
+</tr>
+<tr>
+<td>B. working as a team</td>
+<td>❌</td>
+<td>例子不是在讲团队精神</td>
+</tr>
+<tr>
+<td>C. <strong>having a shared objective</strong></td>
+<td>✅</td>
+<td>完全对应"价值观契合、目标一致"</td>
+</tr>
+<tr>
+<td>D. being an effective leader</td>
+<td>❌</td>
+<td>干扰项，与高效领导力无关</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>启示：只看例子本身读不出答案——<strong>必须回上文找到它要佐证的观点</strong>。这种"例子 + 观点"的联动阅读，就是单选深度理解的日常形态。</p>
+</blockquote>
+<hr>
+<h2><a id="q7-案例-2dna-结构发现细节题团队能赢的原因"></a>Q7. 案例 2：DNA 结构发现（细节题）——团队能赢的原因？</h2>
+<p>题目：某团队能赢得"DNA 结构发现"比赛的原因是什么？</p>
+<h3><a id="原文逻辑"></a>原文逻辑</h3>
+<ul>
+<li>原文直接给出因果：该团队明确表示<strong>自己并非追真理的科学家中最聪明的群体</strong>，并提出"三个臭皮匠顶个诸葛亮"——多人协作解决问题的效率远高于单人。</li>
+</ul>
+<h3><a id="选项辨析-2"></a>选项辨析</h3>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>判定</th>
+<th>理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A. <strong>were conscious of their own limitation</strong></td>
+<td>✅</td>
+<td>直接对应原文"知晓自身并非最聪明"</td>
+</tr>
+<tr>
+<td>B. had broad complementary skills</td>
+<td>❌</td>
+<td>原文未提及"技能互补"，主观脑补</td>
+</tr>
+<tr>
+<td>C. were determined to outperform brighter rivals</td>
+<td>❌</td>
+<td>"决心超越聪明对手"是<strong>结果</strong>而非成功原因</td>
+</tr>
+<tr>
+<td>D. encouraged each other to achieve a common goal</td>
+<td>❌</td>
+<td>"互相鼓励"是其他篇章的混淆信息，本段未涉及</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2><a id="q8-案例-3早餐麦片比赛细节推理题作者提它说明什么"></a>Q8. 案例 3：早餐麦片比赛（细节推理题）——作者提它说明什么？</h2>
+<ul>
+<li>段落核心观点：<strong>写作、可视化、制作原型这类简单行为，能加深个体对项目的参与度</strong>；完成写作动作后会进一步提升对该事物的认同感。</li>
+<li>早餐麦片包装上的"10 字以内补全广告语"比赛，正是印证该观点的案例。</li>
+<li>这类题的关键：识别"例子 → 观点"的对应关系，而不是停在例子本身的表面细节。</li>
+</ul>
+<hr>
+<h2><a id="q9-一句话总结本讲"></a>Q9. 一句话总结本讲</h2>
+<ul>
+<li>单选 = 理解深度最高的题型，多在第三篇，冲 8 分必争。</li>
+<li>三类：细节题（定位句直选）≈ 推理题（<strong>短逻辑链</strong>一步推导）≈ 功能型题（<strong>放最后做</strong>）。</li>
+<li>趋势：功能型占比上升、细节型下降；剑 11 → 剑 16/17 难度递增。</li>
+<li>案例启示：例子题要回上文找观点；原因题只认原文的直接因果；脑补、长链条、"结果当原因"全是坑。</li>
+</ul>
+  </main>
+  <aside class="col-right">
+    <h4>本页章节</h4><ul><li><a href="#q1-单选题一般出现在哪难度怎么定位">Q1. 单选题一般出现在哪？难度怎么定位？</a></li><li><a href="#q2-单选题和之前学过的题型理解深度差在哪">Q2. 单选题和之前学过的题型，理解深度差在哪？</a></li><li><a href="#q3-单选题分哪三类占比各多少">Q3. 单选题分哪三类？占比各多少？</a></li><li><a href="#q4-推理题的逻辑链有什么禁忌中式长逻辑链警告">Q4. 推理题的&quot;逻辑链&quot;有什么禁忌？（中式长逻辑链警告）</a></li><li><a href="#q5-功能型题目为什么必须放到最后做">Q5. 功能型题目为什么必须放到最后做？</a></li><li><a href="#q6-案例-1百万美元四重奏细节推理题例子说明作者的什么观点">Q6. 案例 1：百万美元四重奏（细节推理题）——例子说明作者的什么观点？</a></li><li><a href="#q7-案例-2dna-结构发现细节题团队能赢的原因">Q7. 案例 2：DNA 结构发现（细节题）——团队能赢的原因？</a></li><li><a href="#q8-案例-3早餐麦片比赛细节推理题作者提它说明什么">Q8. 案例 3：早餐麦片比赛（细节推理题）——作者提它说明什么？</a></li><li><a href="#q9-一句话总结本讲">Q9. 一句话总结本讲</a></li></ul>
+  </aside>
+</div>
+<script>
+(function(){
+  var input = document.getElementById('search-input');
+  var panel = document.getElementById('search-panel');
+  if (!input || !panel) return;
+  var main = document.querySelector('.col-main');
+  var leftLinks = Array.prototype.slice.call(document.querySelectorAll('.col-left ul li a'));
+  var rightLinks = Array.prototype.slice.call(document.querySelectorAll('.col-right ul li a'));
+
+  function escHtml(s){
+    return s.replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+  function escapeRegex(s){
+    return s.replace(/[.*+?^${}()|[\]\\]/g, function(m){ return '\\' + m; });
+  }
+  function clearHighlights(){
+    if (!main) return;
+    var marks = main.querySelectorAll('mark.search-hl');
+    for (var i = 0; i < marks.length; i++) {
+      var m = marks[i];
+      var text = document.createTextNode(m.textContent);
+      m.parentNode.replaceChild(text, m);
+    }
+    main.normalize();
+  }
+  function highlightInMain(kw){
+    if (!main) return;
+    clearHighlights();
+    if (!kw) return;
+    var re = new RegExp(escapeRegex(kw), 'gi');
+    var walker = document.createTreeWalker(main, NodeFilter.SHOW_TEXT, {
+      acceptNode: function(n){
+        if (!n.nodeValue || !n.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        var p = n.parentElement;
+        if (!p) return NodeFilter.FILTER_REJECT;
+        var tag = p.tagName;
+        if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'CODE' || tag === 'PRE') return NodeFilter.FILTER_REJECT;
+        if (p.closest && p.closest('mark.search-hl')) return NodeFilter.FILTER_REJECT;
+        return n.nodeValue.toLowerCase().indexOf(kw.toLowerCase()) >= 0 ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+      }
+    });
+    var nodes = [];
+    var n;
+    while ((n = walker.nextNode())) nodes.push(n);
+    for (var i = 0; i < nodes.length; i++) {
+      var node = nodes[i];
+      var src = node.nodeValue;
+      var html = '';
+      var last = 0;
+      var match;
+      re.lastIndex = 0;
+      while ((match = re.exec(src)) !== null) {
+        html += escHtml(src.slice(last, match.index));
+        html += '<mark class="search-hl">' + escHtml(match[0]) + '</mark>';
+        last = match.index + match[0].length;
+        if (match[0].length === 0) re.lastIndex++;
+      }
+      html += escHtml(src.slice(last));
+      var tmp = document.createElement('span');
+      tmp.innerHTML = html;
+      var parent = node.parentNode;
+      while (tmp.firstChild) parent.insertBefore(tmp.firstChild, node);
+      parent.removeChild(node);
+    }
+  }
+  function search(q){
+    q = (q || '').trim();
+    panel.innerHTML = '';
+    if (!q) {
+      panel.hidden = true;
+      leftLinks.forEach(function(a){ a.parentElement.style.display = ''; });
+      rightLinks.forEach(function(a){ a.parentElement.style.display = ''; });
+      clearHighlights();
+      return;
+    }
+    var qLower = q.toLowerCase();
+    var courseHits = leftLinks.filter(function(a){
+      return a.textContent.toLowerCase().indexOf(qLower) >= 0;
+    });
+    leftLinks.forEach(function(a){
+      a.parentElement.style.display = courseHits.indexOf(a) >= 0 ? '' : 'none';
+    });
+    var sectionHits = rightLinks.filter(function(a){
+      return a.textContent.toLowerCase().indexOf(qLower) >= 0;
+    });
+    rightLinks.forEach(function(a){
+      a.parentElement.style.display = sectionHits.indexOf(a) >= 0 ? '' : 'none';
+    });
+    var parts = [];
+    if (courseHits.length) {
+      parts.push('<div class="sp-group">课程（' + courseHits.length + '）</div>');
+      parts.push('<ul>' + courseHits.map(function(a){
+        return '<li><a href="' + a.getAttribute('href') + '">' + escHtml(a.textContent) + '</a></li>';
+      }).join('') + '</ul>');
+    }
+    if (sectionHits.length) {
+      parts.push('<div class="sp-group">本页小节（' + sectionHits.length + '）</div>');
+      parts.push('<ul>' + sectionHits.map(function(a){
+        return '<li><a href="' + a.getAttribute('href') + '">' + escHtml(a.textContent) + '</a></li>';
+      }).join('') + '</ul>');
+    }
+    if (!parts.length) parts.push('<div class="sp-empty">无匹配结果</div>');
+    panel.innerHTML = parts.join('');
+    panel.hidden = false;
+    highlightInMain(q);
+  }
+  var timer = null;
+  input.addEventListener('input', function(e){
+    clearTimeout(timer);
+    timer = setTimeout(function(){ search(input.value); }, 80);
+  });
+  input.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') { input.value = ''; search(''); input.blur(); panel.hidden = true; }
+  });
+  document.addEventListener('click', function(e){
+    if (panel.contains(e.target) || e.target === input) return;
+    panel.hidden = true;
+  });
+  document.addEventListener('keydown', function(e){
+    if ((e.ctrlKey || e.metaKey) && (e.key === 'k' || e.key === 'K')) {
+      e.preventDefault();
+      input.focus();
+      input.select();
+    }
+  });
+  panel.addEventListener('click', function(e){
+    var a = e.target.closest('a');
+    if (a) panel.hidden = true;
+  });
+})();
+</script>
+</body>
+</html>

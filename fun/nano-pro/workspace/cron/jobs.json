@@ -1,0 +1,175 @@
+{
+  "version": 1,
+  "jobs": [
+    {
+      "id": "384a4d63",
+      "name": "auto_start_download_server",
+      "enabled": true,
+      "schedule": {
+        "kind": "cron",
+        "atMs": null,
+        "everyMs": null,
+        "expr": "0 */6 * * *",
+        "tz": "UTC"
+      },
+      "payload": {
+        "kind": "agent_turn",
+        "message": "run /root/.nanobot/workspace/scripts/check_and_start_server.sh (port 8001)",
+        "deliver": false,
+        "channel": null,
+        "to": null,
+        "channelMeta": {},
+        "sessionKey": "websocket:7279904c-bc50-4995-87aa-06462795fecb",
+        "originChannel": "websocket",
+        "originChatId": "7279904c-bc50-4995-87aa-06462795fecb",
+        "originMetadata": {
+          "remote": [
+            "127.0.0.1",
+            36960
+          ],
+          "webui": true,
+          "webui_turn_id": "90df96fd-3737-4360-a0f3-3a402d4ab086",
+          "workspace_scope": {
+            "project_path": "/root/.nanobot/workspace",
+            "access_mode": "full"
+          },
+          "_wants_stream": true
+        }
+      },
+      "state": {
+        "nextRunAtMs": 1785909600000,
+        "lastRunAtMs": 1785898109353,
+        "lastStatus": "ok",
+        "lastError": null,
+        "runHistory": [
+          {
+            "runAtMs": 1785693600007,
+            "status": "ok",
+            "durationMs": 55900,
+            "error": null
+          },
+          {
+            "runAtMs": 1785717241013,
+            "status": "ok",
+            "durationMs": 15182,
+            "error": null
+          },
+          {
+            "runAtMs": 1785736800002,
+            "status": "ok",
+            "durationMs": 30973,
+            "error": null
+          },
+          {
+            "runAtMs": 1785758400003,
+            "status": "ok",
+            "durationMs": 51445495,
+            "error": null
+          },
+          {
+            "runAtMs": 1785823200001,
+            "status": "ok",
+            "durationMs": 10803,
+            "error": null
+          },
+          {
+            "runAtMs": 1785844800001,
+            "status": "ok",
+            "durationMs": 21168,
+            "error": null
+          },
+          {
+            "runAtMs": 1785866400002,
+            "status": "ok",
+            "durationMs": 8018,
+            "error": null
+          },
+          {
+            "runAtMs": 1785898109353,
+            "status": "ok",
+            "durationMs": 12929,
+            "error": null
+          }
+        ]
+      },
+      "createdAtMs": 1785680633176,
+      "updatedAtMs": 1785898122282,
+      "deleteAfterRun": false
+    },
+    {
+      "id": "dream",
+      "name": "dream",
+      "enabled": true,
+      "schedule": {
+        "kind": "every",
+        "atMs": null,
+        "everyMs": 7200000,
+        "expr": null,
+        "tz": null
+      },
+      "payload": {
+        "kind": "system_event",
+        "message": "",
+        "deliver": false,
+        "channel": null,
+        "to": null,
+        "channelMeta": {},
+        "sessionKey": null,
+        "originChannel": null,
+        "originChatId": null,
+        "originMetadata": {}
+      },
+      "state": {
+        "nextRunAtMs": 1785905706438,
+        "lastRunAtMs": null,
+        "lastStatus": null,
+        "lastError": null,
+        "runHistory": []
+      },
+      "createdAtMs": 1785898506330,
+      "updatedAtMs": 1785898506330,
+      "deleteAfterRun": false
+    },
+    {
+      "id": "heartbeat",
+      "name": "heartbeat",
+      "enabled": true,
+      "schedule": {
+        "kind": "every",
+        "atMs": null,
+        "everyMs": 1800000,
+        "expr": null,
+        "tz": "UTC"
+      },
+      "payload": {
+        "kind": "system_event",
+        "message": "",
+        "deliver": false,
+        "channel": null,
+        "to": null,
+        "channelMeta": {},
+        "sessionKey": null,
+        "originChannel": null,
+        "originChatId": null,
+        "originMetadata": {}
+      },
+      "state": {
+        "nextRunAtMs": 1785902106462,
+        "lastRunAtMs": 1785900306439,
+        "lastStatus": "ok",
+        "lastError": null,
+        "runHistory": [
+          {
+            "runAtMs": 1785900306439,
+            "status": "ok",
+            "durationMs": 23,
+            "error": null
+          }
+        ]
+      },
+      "createdAtMs": 1785898506436,
+      "updatedAtMs": 1785900306462,
+      "deleteAfterRun": false
+    }
+  ]
+}

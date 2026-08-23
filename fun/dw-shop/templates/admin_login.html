@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>后台登录 - DW Shop</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="{{ url_for('index') }}">DW<span class="dot">.</span>Shop</a>
+  </div>
+</div>
+<main>
+  <div class="panel" style="max-width: 380px;">
+    <h1 style="font-size: 22px;">后台登录</h1>
+    <p class="muted small" style="margin-bottom: 16px;">店主专用，请输入管理密码。</p>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% for category, message in messages %}
+        <div class="flash {{ category }}">{{ message }}</div>
+      {% endfor %}
+    {% endwith %}
+
+    <form method="POST">
+      <div class="field">
+        <label for="password">管理密码</label>
+        <input id="password" name="password" type="password" required autofocus>
+      </div>
+      <button class="btn btn-block" type="submit">登录</button>
+    </form>
+  </div>
+</main>
+</body>
+</html>

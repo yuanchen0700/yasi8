@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第06讲 填空题专题四：总结填空 · 雅思阅读13讲</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; height: 100%; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; color: #1f2328; background: #fff; }
+  a { color: #2c5cdc; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .topbar { position: fixed; top: 0; left: 0; right: 0; height: 56px; display: flex; align-items: center; padding: 0 24px; border-bottom: 1px solid #e5e7eb; background: #fff; z-index: 10; }
+  .logo { font-weight: 800; font-size: 20px; letter-spacing: -0.5px; color: #111; }
+  .logo span { color: #6b7280; font-weight: 500; }
+  .topbar-right { margin-left: auto; display: flex; gap: 16px; align-items: center; position: relative; }
+  .topbar-right input { border: 1px solid #d1d5db; border-radius: 6px; padding: 6px 10px; font-size: 13px; width: 240px; background: #f9fafb; }
+  .topbar-right input:focus { outline: none; border-color: #2c5cdc; background: #fff; box-shadow: 0 0 0 3px rgba(44,92,220,0.12); }
+  #search-panel { position: absolute; top: 44px; right: 0; width: 360px; max-height: 70vh; overflow-y: auto; background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); padding: 8px 0; z-index: 100; font-size: 13px; }
+  #search-panel .sp-group { padding: 8px 14px 4px; font-size: 11px; color: #6b7280; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px; }
+  #search-panel ul { list-style: none; padding: 0; margin: 0; }
+  #search-panel li a { display: block; padding: 6px 14px; color: #374151; line-height: 1.4; font-size: 12.5px; }
+  #search-panel li a:hover { background: #f3f4f6; color: #1d4ed8; text-decoration: none; }
+  #search-panel .sp-empty { padding: 24px; text-align: center; color: #9ca3af; font-size: 12px; }
+  mark.search-hl { background: #fff3a3; color: inherit; padding: 0 2px; border-radius: 2px; }
+
+  .layout { display: flex; padding-top: 56px; min-height: 100vh; }
+  .col-left { width: 240px; flex-shrink: 0; border-right: 1px solid #e5e7eb; padding: 20px 14px 40px; overflow-y: auto; height: calc(100vh - 56px); position: sticky; top: 56px; }
+  .col-left ul { list-style: none; padding: 0; margin: 0 0 16px; }
+  .col-left li { margin: 2px 0; }
+  .col-left a { display: block; padding: 6px 10px; border-radius: 6px; font-size: 13.5px; color: #374151; line-height: 1.4; }
+  .col-left a:hover { background: #f3f4f6; text-decoration: none; }
+  .col-left a.active { background: #eff6ff; color: #1d4ed8; font-weight: 600; }
+  .col-left h3 { font-size: 11px; text-transform: uppercase; color: #6b7280; margin: 18px 8px 8px; letter-spacing: 0.5px; font-weight: 600; }
+  .col-left .sub { padding-left: 24px !important; font-size: 12.5px; color: #4b5563; }
+
+  .col-main { flex: 1; min-width: 0; padding: 40px 56px 80px; max-width: 820px; margin: 0 auto; }
+  .col-main h1 { font-size: 32px; margin-top: 0; border-bottom: 1px solid #e5e7eb; padding-bottom: 12px; line-height: 1.3; }
+  .col-main h2 { font-size: 23px; margin-top: 40px; padding-top: 16px; border-top: 1px solid #f3f4f6; }
+  .col-main h3 { font-size: 18px; margin-top: 28px; color: #1f2937; }
+  .col-main p { line-height: 1.75; color: #374151; }
+  .col-main blockquote { border-left: 3px solid #dbeafe; background: #f8fafc; margin: 16px 0; padding: 10px 16px; color: #4b5563; border-radius: 0 6px 6px 0; }
+  .col-main blockquote p { margin: 0; }
+  .col-main table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 14px; }
+  .col-main th, .col-main td { border: 1px solid #e5e7eb; padding: 8px 12px; text-align: left; }
+  .col-main th { background: #f9fafb; font-weight: 600; }
+  .col-main tr:nth-child(even) td { background: #fcfcfd; }
+
+  .col-right { width: 220px; flex-shrink: 0; border-left: 1px solid #e5e7eb; padding: 24px 18px; font-size: 13px; height: calc(100vh - 56px); position: sticky; top: 56px; overflow-y: auto; }
+  .col-right h4 { font-size: 11px; text-transform: uppercase; color: #6b7280; margin: 0 0 12px; letter-spacing: 0.5px; font-weight: 600; }
+  .col-right ul { list-style: none; padding: 0; margin: 0; }
+  .col-right li { margin: 6px 0; }
+  .col-right a { color: #4b5563; line-height: 1.45; font-size: 12.5px; }
+  .col-right a:hover { color: #1d4ed8; }
+  .col-right .empty { color: #9ca3af; font-size: 12px; padding: 6px 0; }
+
+  @media (max-width: 1100px) { .col-right { display: none; } }
+  @media (max-width: 800px) { .col-left { display: none; } .col-main { padding: 24px; } }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="logo">雅思阅读<span> · 问答精要</span></div>
+  <div class="topbar-right">
+    <a href="index.html" style="font-size:13px;color:#2c5cdc;font-weight:600;white-space:nowrap;">🏠 总目录</a>
+    <a href="qa-index.html" style="font-size:13px;color:#6b7280;">目录</a>
+    <input id="search-input" placeholder="搜索 Ctrl K" autocomplete="off">
+    <div id="search-panel" hidden></div>
+  </div>
+</header>
+<div class="layout">
+  <aside class="col-left">
+    <h3>问答文档</h3>
+    <ul>
+      <li><a href="qa-01.html">第01讲 导学课</a></li>
+<li><a href="qa-02.html">第02讲 填空题专题一：表格填空 + 笔记填空</a></li>
+<li><a href="qa-03.html">第03讲 判断题专题：TFNG vs YNNG</a></li>
+<li><a href="qa-04.html">第04讲 填空题专题二：句子填空 + 简答题</a></li>
+<li><a href="qa-05.html">第05讲 填空题专题三：流程图填空 + 图形填空</a></li>
+<li><a href="qa-06.html" class="active">第06讲 填空题专题四：总结填空</a></li>
+<li><a href="qa-07.html">第07讲 配对题专题一：人物观点配对</a></li>
+<li><a href="qa-08.html">第08讲 配对题专题二：句子结尾配对</a></li>
+<li><a href="qa-09.html">第09讲 配对题专题三：信息匹配</a></li>
+<li><a href="qa-10.html">第10讲 判断题考点速查</a></li>
+<li><a href="qa-11.html">第11讲 选择题专题一：多选题</a></li>
+<li><a href="qa-12.html">第12讲 选择题专题二：单选题</a></li>
+<li><a href="qa-13.html">第13讲 平行阅读法</a></li>
+<li><a href="qa-14.html">第14讲 进阶阅读：To Catch a King</a></li>
+    </ul>
+    <h3>本页问题</h3><ul><li><a class="sub" href="#不带选项-vs-带选项">不带选项 vs 带选项</a></li><li><a class="sub" href="#两种典型场景">两种典型场景</a></li><li><a class="sub" href="#考点信息点省略或乱序factors-例子">考点：信息点省略或乱序（FACTORS 例子）</a></li><li><a class="sub" href="#先不拘一格粗定位">先&quot;不拘一格&quot;粗定位</a></li><li><a class="sub" href="#逐题精解">逐题精解</a></li><li><a class="sub" href="#收尾总结">收尾总结</a></li><li><a class="sub" href="#第一步不拘一格定位-识别跨段">第一步：不拘一格定位 + 识别跨段</a></li><li><a class="sub" href="#逐题精解同义替换">逐题精解（同义替换）</a></li><li><a class="sub" href="#带选项总结填空的两大难点">带选项总结填空的两大难点</a></li><li><a class="sub" href="#不带选项">不带选项</a></li><li><a class="sub" href="#带选项多一步">带选项（多一步）</a></li></ul>
+  </aside>
+  <main class="col-main">
+    <h1>雅思阅读全解13讲 · 第06讲 填空题专题四：总结填空（问答精要）</h1>
+<blockquote>
+<p>本讲定位：总结填空是"介于填空题和配对题之间的游离地带"，是所有填空题中最难的一种。分不带选项和带选项两种，后者多一步"找同义词"。两大难点：小乱序（信息点省略/打乱）+ 跨段。</p>
+</blockquote>
+<hr>
+<h2><a id="q1-总结填空和带选项的总结填空是什么关系"></a>Q1. 总结填空和"带选项的总结填空"是什么关系？</h2>
+<ul>
+<li>外形前半截一样：一大段文字中挖空。</li>
+<li>区别：带选项版下面有一个框（机考是蓝色选项，拖拽到对应位置）。</li>
+<li>做题方法有差别，所以拆成两种讲；不带选项的先学（较简单）。</li>
+</ul>
+<h3><a id="不带选项-vs-带选项"></a>不带选项 vs 带选项</h3>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>做法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>不带选项</td>
+<td>从文章原文<strong>抄词</strong>填回（原文原词原则）</td>
+</tr>
+<tr>
+<td>带选项</td>
+<td>找到文章对应词后，再到选项框里选<strong>同义词</strong></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2><a id="q2-总结填空也遵循顺序出题吗小乱序有多频繁"></a>Q2. 总结填空也遵循"顺序出题"吗？小乱序有多频繁？</h2>
+<ul>
+<li>是填空题，所以是顺序题，但<strong>小乱序非常频繁</strong>。</li>
+<li>小乱序：两道题的顺序颠倒（如先找到第 13 题再找到第 12 题），甚至两题来自同一句话但因语言结构变化而乱序。</li>
+<li>应对心态：小乱序是考官考验你读文章是否灵活，<strong>千万别慌</strong>；发现顺序对不上就回读。</li>
+</ul>
+<hr>
+<h2><a id="q3-什么时候会出总结填空了解原理才能防乱序"></a>Q3. 什么时候会出总结填空？（了解原理才能防乱序）</h2>
+<h3><a id="两种典型场景"></a>两种典型场景</h3>
+<ol>
+<li><strong>实验/研究结论处</strong>：结论可能有多条（1、2、3、4…），原文与题目的对应关系容易乱序。</li>
+<li><strong>并列细节密集处</strong>：多个细节并列导致一件事发生，怕你读乱就总结一下。</li>
+</ol>
+<h3><a id="考点信息点省略或乱序factors-例子"></a>考点：信息点省略或乱序（FACTORS 例子）</h3>
+<ul>
+<li>原文：4 个因素影响一件事：A、B、C and D。</li>
+<li>题目：A′、B′、C′、D′ <strong>不按顺序</strong>出现（先 B′ 后 C′ 再 D′ 最后 A′）→ 你必须真正理解每个因素的含义才能对上，机械按位置对应会失败。</li>
+<li>题目还可能<strong>省略个别因素</strong>（如原文 6 个因素，题目只总结 4 个）——总结可以删减信息，这是允许的。</li>
+<li>练习推荐：剑 16 Test 1 第二篇、Test 2 第二篇/第三篇。</li>
+</ul>
+<hr>
+<h2><a id="q4-总结填空考察的核心能力是什么"></a>Q4. 总结填空考察的核心能力是什么？</h2>
+<ul>
+<li><strong>句子理解能力</strong>——必须真正读懂句子才能做对。</li>
+<li>不要迷信"纯技巧解题"：没有词汇量、语法和阅读能力积累，看定位句也看不懂。听课同时要背词、刷题。</li>
+</ul>
+<hr>
+<h2><a id="q5-真题全解-a罗马造船技术不带选项总结填空填空型"></a>Q5. 真题全解 A：罗马造船技术（不带选项总结填空，填空型）</h2>
+<p>文章：罗马的造船技术和导航技术。题目三段：warship（战船）/ merchant ship（商船）/ agricultural goods（农业货物）。</p>
+<h3><a id="先不拘一格粗定位"></a>先"不拘一格"粗定位</h3>
+<ul>
+<li>用每段开头的关键词（warship、merchant ship、agricultural products）对应原文段落。</li>
+<li><strong>注意</strong>：原文两段讲战船、题目总结成一段——<strong>不要死板地"一段对一段"</strong>，现在文章对应规律越来越灵活。</li>
+</ul>
+<h3><a id="逐题精解"></a>逐题精解</h3>
+<ol>
+<li><strong>warship was designed so that they were ____ and move quickly</strong>
+   - 并列结构考点：<code>move quickly</code> ↔ <code>speedy</code>，答案词出现在并列词后。
+   - 答案：<strong>lightweight</strong>（轻的）。</li>
+<li><strong>battering ram was made of ____</strong>
+   - a of b 结构考点：a of b = b a，答案在定位词<strong>前面</strong>。
+   - 答案：<strong>bronze</strong>（青铜，材料）。
+   - 技巧：识别考点后直接反验证，不用往后瞎读。</li>
+<li><strong>rower on three different ____</strong>
+   - 定位：带引号的词 + 数字 <code>three</code> + 复数名词提示。
+   - 原文：三个不同 levels（顶部/中间/底部）→ 确认是三个。
+   - 答案：<strong>levels</strong>。</li>
+<li><strong>merchant ship had a wider ____（定语从句：lay far below the surface）</strong>
+   - 找"更宽广"的形容词替换：<code>wider</code> ↔ <code>broad</code>。
+   - 找不到答案时<strong>先找下一道题的定位词</strong>，顺序反推。
+   - 答案：<strong>hull</strong>（船体，原文 <code>a wider hull</code>）。</li>
+<li><strong>____ was used to ensure rowers move their oars in and out of water at the same time</strong>
+   - 介词结构逻辑：帮助划船者保持节奏的是 music（乐器演奏出音乐，工具不是答案）。
+   - 答案：<strong>music</strong>。</li>
+<li><strong>agricultural products, for example ____, transported by merchant ship to two main ports</strong>
+   - 举例考点：<code>for example</code> ↔ <code>such as</code> 等，例子后就是答案。
+   - 答案：<strong>grain</strong>（谷物）。</li>
+<li><strong>the ship was pulled to shore by ____</strong>
+   - 原文：大商船接近目的地时 <code>pulled by tow boat</code>。
+   - 答案：<strong>tow boat</strong>（拖船）。</li>
+</ol>
+<h3><a id="收尾总结"></a>收尾总结</h3>
+<ul>
+<li>不带选项总结填空：答案非常符合考点、指向性强，做起来快；空上单词不用认识，原文抄回即可。</li>
+</ul>
+<hr>
+<h2><a id="q6-真题全解-bai-与未来工作带选项总结填空第三篇难文"></a>Q6. 真题全解 B：AI 与未来工作（带选项总结填空，第三篇难文）</h2>
+<p>文章：AI 会不会影响未来工作。整篇略带科技感，选项 A-G 全是单词。</p>
+<h3><a id="第一步不拘一格定位-识别跨段"></a>第一步：不拘一格定位 + 识别跨段</h3>
+<ul>
+<li>用标题里的<strong>带引号单词</strong> + <strong>人名</strong>定位到区域。</li>
+<li>这题的特殊之处：<strong>中间跨了好几个段落</strong>——用大长词 <code>telecommunications company</code> 逐段查，发现它所在段落是讲"电信公司工作如何开展"，与总结填空无关，中间至少跨 2-3 段。</li>
+<li>教训：不要顺着做、不要死板"一段对一段"；<strong>先找重要定位信息，再认真阅读做题</strong>。</li>
+</ul>
+<h3><a id="逐题精解同义替换"></a>逐题精解（同义替换）</h3>
+<table>
+<thead>
+<tr>
+<th>题</th>
+<th>原文线索</th>
+<th>同义替换</th>
+<th>答案</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>31</td>
+<td><code>rely not on production but on data</code></td>
+<td>not…but ↔ rather than；<strong>data ↔ information</strong></td>
+<td>G. information</td>
+</tr>
+<tr>
+<td>32</td>
+<td><code>growing ↔ become</code>、<code>instruction ↔ recommendation</code>、<code>become dependent</code></td>
+<td><strong>dependent ↔ reliance</strong></td>
+<td>依赖类选项</td>
+</tr>
+<tr>
+<td>33</td>
+<td><code>experimenting using their own instinct</code></td>
+<td><strong>instinct ↔ intuition</strong>（考词汇量）</td>
+<td>直觉类选项</td>
+</tr>
+<tr>
+<td>34</td>
+<td><code>easy to understand and trustworthy</code>（并列）</td>
+<td>easy to understand ↔ transparent；<strong>trustworthy ↔ confidence</strong></td>
+<td>信赖类选项</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>干扰项辨析：<code>satisfaction</code>（满意）≠ trustworthy（信赖）——满意不等于信赖。</li>
+</ul>
+<h3><a id="带选项总结填空的两大难点"></a>带选项总结填空的两大难点</h3>
+<ol>
+<li><strong>重新定位</strong>：每段都要用"大长词 + 关键意思"（如 telecommunications company、avoid）重新定位，识别哪几段是干扰段。</li>
+<li><strong>充分理解后找同义词</strong>：有简单替换（data/information、dependent/reliance），也有难的（trustworthy/confidence），需要思考。</li>
+</ol>
+<hr>
+<h2><a id="q7-做题步骤总结两种总结填空对比"></a>Q7. 做题步骤总结（两种总结填空对比）</h2>
+<h3><a id="不带选项"></a>不带选项</h3>
+<ol>
+<li>看题目要求（填几个单词）→ 2. 不拘一格定位找段落 → 3. 逐一题目理解做题 → 4. 能识别考点更好（并列、a of b、介词结构、形容词替换）。</li>
+</ol>
+<h3><a id="带选项多一步"></a>带选项（多一步）</h3>
+<p>同样步骤 + <strong>找到原文词后查词典式找同义替换选项</strong>（找同义词这一步）。</p>
+<hr>
+<h2><a id="q8-一句话总结本讲"></a>Q8. 一句话总结本讲</h2>
+<ul>
+<li>总结填空常出现在第二、三篇文章。</li>
+<li>防两坑：<strong>信息点省略/乱序</strong>（靠理解而非机械对应）+ <strong>跨段</strong>（靠大长词和关键意思重新定位）。</li>
+<li>带选项版的核心是<strong>同义替换</strong>，平时多积累替换库。</li>
+</ul>
+  </main>
+  <aside class="col-right">
+    <h4>本页章节</h4><ul><li><a href="#q1-总结填空和带选项的总结填空是什么关系">Q1. 总结填空和&quot;带选项的总结填空&quot;是什么关系？</a></li><li><a href="#q2-总结填空也遵循顺序出题吗小乱序有多频繁">Q2. 总结填空也遵循&quot;顺序出题&quot;吗？小乱序有多频繁？</a></li><li><a href="#q3-什么时候会出总结填空了解原理才能防乱序">Q3. 什么时候会出总结填空？（了解原理才能防乱序）</a></li><li><a href="#q4-总结填空考察的核心能力是什么">Q4. 总结填空考察的核心能力是什么？</a></li><li><a href="#q5-真题全解-a罗马造船技术不带选项总结填空填空型">Q5. 真题全解 A：罗马造船技术（不带选项总结填空，填空型）</a></li><li><a href="#q6-真题全解-bai-与未来工作带选项总结填空第三篇难文">Q6. 真题全解 B：AI 与未来工作（带选项总结填空，第三篇难文）</a></li><li><a href="#q7-做题步骤总结两种总结填空对比">Q7. 做题步骤总结（两种总结填空对比）</a></li><li><a href="#q8-一句话总结本讲">Q8. 一句话总结本讲</a></li></ul>
+  </aside>
+</div>
+<script>
+(function(){
+  var input = document.getElementById('search-input');
+  var panel = document.getElementById('search-panel');
+  if (!input || !panel) return;
+  var main = document.querySelector('.col-main');
+  var leftLinks = Array.prototype.slice.call(document.querySelectorAll('.col-left ul li a'));
+  var rightLinks = Array.prototype.slice.call(document.querySelectorAll('.col-right ul li a'));
+
+  function escHtml(s){
+    return s.replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+  function escapeRegex(s){
+    return s.replace(/[.*+?^${}()|[\]\\]/g, function(m){ return '\\' + m; });
+  }
+  function clearHighlights(){
+    if (!main) return;
+    var marks = main.querySelectorAll('mark.search-hl');
+    for (var i = 0; i < marks.length; i++) {
+      var m = marks[i];
+      var text = document.createTextNode(m.textContent);
+      m.parentNode.replaceChild(text, m);
+    }
+    main.normalize();
+  }
+  function highlightInMain(kw){
+    if (!main) return;
+    clearHighlights();
+    if (!kw) return;
+    var re = new RegExp(escapeRegex(kw), 'gi');
+    var walker = document.createTreeWalker(main, NodeFilter.SHOW_TEXT, {
+      acceptNode: function(n){
+        if (!n.nodeValue || !n.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        var p = n.parentElement;
+        if (!p) return NodeFilter.FILTER_REJECT;
+        var tag = p.tagName;
+        if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'CODE' || tag === 'PRE') return NodeFilter.FILTER_REJECT;
+        if (p.closest && p.closest('mark.search-hl')) return NodeFilter.FILTER_REJECT;
+        return n.nodeValue.toLowerCase().indexOf(kw.toLowerCase()) >= 0 ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+      }
+    });
+    var nodes = [];
+    var n;
+    while ((n = walker.nextNode())) nodes.push(n);
+    for (var i = 0; i < nodes.length; i++) {
+      var node = nodes[i];
+      var src = node.nodeValue;
+      var html = '';
+      var last = 0;
+      var match;
+      re.lastIndex = 0;
+      while ((match = re.exec(src)) !== null) {
+        html += escHtml(src.slice(last, match.index));
+        html += '<mark class="search-hl">' + escHtml(match[0]) + '</mark>';
+        last = match.index + match[0].length;
+        if (match[0].length === 0) re.lastIndex++;
+      }
+      html += escHtml(src.slice(last));
+      var tmp = document.createElement('span');
+      tmp.innerHTML = html;
+      var parent = node.parentNode;
+      while (tmp.firstChild) parent.insertBefore(tmp.firstChild, node);
+      parent.removeChild(node);
+    }
+  }
+  function search(q){
+    q = (q || '').trim();
+    panel.innerHTML = '';
+    if (!q) {
+      panel.hidden = true;
+      leftLinks.forEach(function(a){ a.parentElement.style.display = ''; });
+      rightLinks.forEach(function(a){ a.parentElement.style.display = ''; });
+      clearHighlights();
+      return;
+    }
+    var qLower = q.toLowerCase();
+    var courseHits = leftLinks.filter(function(a){
+      return a.textContent.toLowerCase().indexOf(qLower) >= 0;
+    });
+    leftLinks.forEach(function(a){
+      a.parentElement.style.display = courseHits.indexOf(a) >= 0 ? '' : 'none';
+    });
+    var sectionHits = rightLinks.filter(function(a){
+      return a.textContent.toLowerCase().indexOf(qLower) >= 0;
+    });
+    rightLinks.forEach(function(a){
+      a.parentElement.style.display = sectionHits.indexOf(a) >= 0 ? '' : 'none';
+    });
+    var parts = [];
+    if (courseHits.length) {
+      parts.push('<div class="sp-group">课程（' + courseHits.length + '）</div>');
+      parts.push('<ul>' + courseHits.map(function(a){
+        return '<li><a href="' + a.getAttribute('href') + '">' + escHtml(a.textContent) + '</a></li>';
+      }).join('') + '</ul>');
+    }
+    if (sectionHits.length) {
+      parts.push('<div class="sp-group">本页小节（' + sectionHits.length + '）</div>');
+      parts.push('<ul>' + sectionHits.map(function(a){
+        return '<li><a href="' + a.getAttribute('href') + '">' + escHtml(a.textContent) + '</a></li>';
+      }).join('') + '</ul>');
+    }
+    if (!parts.length) parts.push('<div class="sp-empty">无匹配结果</div>');
+    panel.innerHTML = parts.join('');
+    panel.hidden = false;
+    highlightInMain(q);
+  }
+  var timer = null;
+  input.addEventListener('input', function(e){
+    clearTimeout(timer);
+    timer = setTimeout(function(){ search(input.value); }, 80);
+  });
+  input.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') { input.value = ''; search(''); input.blur(); panel.hidden = true; }
+  });
+  document.addEventListener('click', function(e){
+    if (panel.contains(e.target) || e.target === input) return;
+    panel.hidden = true;
+  });
+  document.addEventListener('keydown', function(e){
+    if ((e.ctrlKey || e.metaKey) && (e.key === 'k' || e.key === 'K')) {
+      e.preventDefault();
+      input.focus();
+      input.select();
+    }
+  });
+  panel.addEventListener('click', function(e){
+    var a = e.target.closest('a');
+    if (a) panel.hidden = true;
+  });
+})();
+</script>
+</body>
+</html>

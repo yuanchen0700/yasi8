@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第11讲 · 雅思阅读13讲</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; height: 100%; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; color: #1f2328; background: #fff; }
+  a { color: #2c5cdc; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* 顶部 */
+  .topbar { position: fixed; top: 0; left: 0; right: 0; height: 56px; display: flex; align-items: center; padding: 0 24px; border-bottom: 1px solid #e5e7eb; background: #fff; z-index: 10; }
+  .logo { font-weight: 800; font-size: 20px; letter-spacing: -0.5px; color: #111; }
+  .logo span { color: #6b7280; font-weight: 500; }
+  .topbar-right { margin-left: auto; display: flex; gap: 16px; align-items: center; position: relative; }
+  .topbar-right input { border: 1px solid #d1d5db; border-radius: 6px; padding: 6px 10px; font-size: 13px; width: 240px; background: #f9fafb; }
+  .topbar-right input:focus { outline: none; border-color: #2c5cdc; background: #fff; box-shadow: 0 0 0 3px rgba(44,92,220,0.12); }
+  #search-panel { position: absolute; top: 44px; right: 0; width: 360px; max-height: 70vh; overflow-y: auto; background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); padding: 8px 0; z-index: 100; font-size: 13px; }
+  #search-panel .sp-group { padding: 8px 14px 4px; font-size: 11px; color: #6b7280; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px; }
+  #search-panel ul { list-style: none; padding: 0; margin: 0; }
+  #search-panel li a { display: block; padding: 6px 14px; color: #374151; line-height: 1.4; font-size: 12.5px; }
+  #search-panel li a:hover { background: #f3f4f6; color: #1d4ed8; text-decoration: none; }
+  #search-panel .sp-empty { padding: 24px; text-align: center; color: #9ca3af; font-size: 12px; }
+  mark.search-hl { background: #fff3a3; color: inherit; padding: 0 2px; border-radius: 2px; }
+
+  /* 三栏布局 */
+  .layout { display: flex; padding-top: 56px; min-height: 100vh; }
+  .col-left { width: 240px; flex-shrink: 0; border-right: 1px solid #e5e7eb; padding: 20px 14px 40px; overflow-y: auto; height: calc(100vh - 56px); position: sticky; top: 56px; }
+  .col-left ul { list-style: none; padding: 0; margin: 0 0 16px; }
+  .col-left li { margin: 2px 0; }
+  .col-left a { display: block; padding: 6px 10px; border-radius: 6px; font-size: 13.5px; color: #374151; line-height: 1.4; }
+  .col-left a:hover { background: #f3f4f6; text-decoration: none; }
+  .col-left a.active { background: #eff6ff; color: #1d4ed8; font-weight: 600; }
+  .col-left h3 { font-size: 11px; text-transform: uppercase; color: #6b7280; margin: 18px 8px 8px; letter-spacing: 0.5px; font-weight: 600; }
+  .col-left .sub { padding-left: 24px !important; font-size: 12.5px; color: #4b5563; }
+
+  .col-main { flex: 1; min-width: 0; padding: 40px 56px 80px; max-width: 820px; margin: 0 auto; }
+  .col-main h1 { font-size: 32px; margin-top: 0; border-bottom: 1px solid #e5e7eb; padding-bottom: 12px; line-height: 1.3; }
+  .col-main h2 { font-size: 24px; margin-top: 40px; padding-top: 16px; border-top: 1px solid #f3f4f6; }
+  .col-main h3 { font-size: 18px; margin-top: 28px; color: #1f2937; }
+  .col-main p { line-height: 1.75; color: #374151; }
+
+  .col-right { width: 220px; flex-shrink: 0; border-left: 1px solid #e5e7eb; padding: 24px 18px; font-size: 13px; height: calc(100vh - 56px); position: sticky; top: 56px; overflow-y: auto; }
+  .col-right h4 { font-size: 11px; text-transform: uppercase; color: #6b7280; margin: 0 0 12px; letter-spacing: 0.5px; font-weight: 600; }
+  .col-right ul { list-style: none; padding: 0; margin: 0; }
+  .col-right li { margin: 6px 0; }
+  .col-right a { color: #4b5563; line-height: 1.45; font-size: 12.5px; }
+  .col-right a:hover { color: #1d4ed8; }
+  .col-right .section { color: #1f2937; font-weight: 600; margin-top: 14px; }
+  .col-right .empty { color: #9ca3af; font-size: 12px; padding: 6px 0; }
+
+  @media (max-width: 1100px) { .col-right { display: none; } }
+  @media (max-width: 800px) { .col-left { display: none; } .col-main { padding: 24px; } }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="logo">雅思阅读<span> · 13讲</span></div>
+  <div class="topbar-right">
+    <a href="index.html" style="font-size:13px;color:#2c5cdc;font-weight:600;white-space:nowrap;">🏠 总目录</a>
+    <span style="font-size:18px;">🐙</span>
+    <span style="font-size:18px;">💬</span>
+    <input id="search-input" placeholder="搜索 Ctrl K" autocomplete="off">
+    <div id="search-panel" hidden></div>
+  </div>
+</header>
+<div class="layout">
+  <aside class="col-left">
+    <h3>课程目录</h3>
+    <ul>
+      <li><a href="lesson-01.html">第01讲 · 导学课</a></li>
+<li><a href="lesson-02.html">第2讲 · 填空题专题一</a></li>
+<li><a href="lesson-03.html">第03讲 · 判断题专题：TFNG vs YNNG</a></li>
+<li><a href="lesson-04.html">第4讲 · 填空题专题二</a></li>
+<li><a href="lesson-05.html">第05讲</a></li>
+<li><a href="lesson-06.html">第06讲 · 雅思阅读填空题专题四</a></li>
+<li><a href="lesson-07.html">第7讲 · 配对题专题一</a></li>
+<li><a href="lesson-08.html">第8讲 · 配对题专题二</a></li>
+<li><a href="lesson-09.html">第9讲 · 配对题专题三</a></li>
+<li><a href="lesson-10.html">第10讲</a></li>
+<li><a href="lesson-11.html" class="active">第11讲</a></li>
+<li><a href="lesson-12.html">第12讲</a></li>
+<li><a href="lesson-13.html">第13讲 · 雅思阅读核心技巧</a></li>
+<li><a href="lesson-14.html">第14讲 · 进阶阅读</a></li>
+    </ul>
+    <h3>本页问题</h3><ul><li><a class="sub" href="#智能总结">智能总结</a></li><li><a class="sub" href="#文稿">文稿</a></li></ul>
+  </aside>
+  <main class="col-main">
+    <h1>雅思阅读全解13讲 - 11</h1>
+<h2><a id="11"></a>11</h2>
+<h3><a id="智能总结"></a>智能总结</h3>
+<p>哈喽，各位同学，欢迎大家回来，今天我们要来进入到选择题啦，那选择题这个专题呢，</p>
+<p>是有两种选择题的，一种选择题叫做单选题，</p>
+<p>一种选择题叫做多选题。那大家猜一下，你觉得哪种选择会比较简单呢？</p>
+<p>我估计可能会有一些同学说单选题比较简单吧，但是但凡你曾经做过一套完整的题目，</p>
+<p>你可能就不会这么回答我了，因为单选题其实相对来说是比较难的题目啊，</p>
+<p>而且我认为它是最难的一种题目，考察的是对于文章的段落，</p>
+<p>甚至文章本身的deeply understanding。</p>
+<p>ok，所以其实这种题目是非常难，但是呢，哎呀，写错位置了啊，</p>
+<p>写在应该写在单选题上。但是多选题呢，相对来说就比较简单，因为多选题往往是考呃，</p>
+<p>这个考察我们对于并列信息的一个理解啊，</p>
+<p>并列信息的理解。那多选题又分成两类，一种多选题呢，叫做比较分散的类型，</p>
+<p>一种多选题是比较密集的题型，它会告诉你我来自于文章具体哪一个部分啊，</p>
+<p>所以相对来说是密集的。好，那对于这两种题目，</p>
+<p>我们在解决的时候呢，是使用不同的方法，对于比较分散的这种题目，</p>
+<p>什么样的一道多选题？就是整个文章结束之后只有一道多选题的，</p>
+<p>一般来说它可能会比较分散，而且它如果没有告诉你它来自于哪一个部分，就来来自于哪一个段落，</p>
+<p>那可能它相对来说是比较分散的。那如果说你这个文章你在读的过程，</p>
+<p>你发现哎有俩多选题，那么如果有两道多选题，</p>
+<p>相对来说它。就会比较密集，它就不是分散在全文这样的一种情况了。</p>
+<p>ok，那我们说一下分散型多选题，我们要怎么怎么做呢？在其他题目都已经做完了，</p>
+<p>其他题目都已经淡了，文章我已经读完了。</p>
+<p>好了，现在我在做这道题，凭借你的记忆去来选择这个题目，</p>
+<p>如果你的记忆可以选择，嗯，没问题啊，那ok，这两个选项就相当于都被你选出来了。</p>
+<p>如果你发现我好像只选出来其中一个，其他的好像莫棱两可，</p>
+<p>那么你就回原文再浏览一遍，这一遍的浏览是比你之前低一遍，</p>
+<p>因为这第一遍是你认认真真通读了一遍对吧？那你再浏览，就快快的浏览，</p>
+<p>能找到就找，找不到就算了。这是对于比较分散的题目，我们处理的方式就是把他的杀伤力降到最低。</p>
+<p>因为你想啊，一个很分散的题，他且分散在原文两页当中，</p>
+<p>其实说实话，如果他不是那种非常重要的细节，你记住了，</p>
+<p>可能你找到它的概率非常低，如果你在茫茫人海当中，</p>
+<p>为了这道题又花了五分钟的时间，是不是不值当？所以我们就快快的把它过掉就好了啊。</p>
+<p>但如果说这个题目相对来说比较密集，它集中于一段，</p>
+<p>那我们还是要好好认真去读它。所以如果说是这种密集型的题目，我们的方式就是在平行阅读的过程当中遇到这一段，</p>
+<p>那我们还是要好好认真去读它。所以如果说是这种密集型的题目，我们的方式就是在平行阅读的过程当</p>
+<p>中遇到这一段，</p>
+<p>我现在已经读到这一段了，比如说它来自于地段啊，已经读到这个地段了，</p>
+<p>我先来做多选题。先做多选题啊！好，那我今天就给大家哎拿了两道例题。</p>
+<p>这两道例。题呢，分别一个就是非常密集型的，</p>
+<p>一个就是非常分散型的。我们先来看这个分散型的，这个分散型的文章啊，</p>
+<p>恰好就是我们昨天读的这篇文章。咱们昨天是不是学了一篇金字塔的文章，</p>
+<p>当时呢，我们做的第一种题型就是它的标题配对题，文章咱们可是通读过的哈，</p>
+<p>文章我们是完全通读过的，痕迹还在这呢，</p>
+<p>如果大家忘了的话，一定要去回看我们昨天讲解的这个内容。所以在处理这道题目的时候，</p>
+<p>我不再对文章进行详细的赘述，我只是告诉你它来自于哪里。</p>
+<p>就这两道题，来自于哪里，所以我就换一种颜色，告诉大家来自于哪里就行。</p>
+<p>我们来看一下这个题，二十五二十六这两道题，人家说问这个题问的是啊，</p>
+<p>就是what point does the writer make about king josser？这篇文章我帮助大家回忆一下，</p>
+<p>讲的是金字塔，但是这个金字塔离不开的就是他的修建者，</p>
+<p>他的修建者呢，是一个皇帝，这个皇帝是来自于埃及什么第三王朝啊，</p>
+<p>然后他当时主持修建的这个，为了改变一个墓穴的结构嘛，</p>
+<p>大概是这个意思。然后所以呢，对于这个皇帝，我们作者进行了哪些方面的评述，</p>
+<p>这个东西啊，其实相对在文章里就非常非常的分散了。</p>
+<p>这道题我们来看一下a啊这个题，这个选项a说的是initially he had to be persuaded to build in stone rather than clay</p>
+<p>这道题我们来看一下a啊这个题，这个选项a说的是initially he had to be persuaded to build in stone</p>
+<p>rather than clay</p>
+<p>这个信息在哪来着，还记不记得了，</p>
+<p>在第二段吧，第二段他说到什么呢？说到呢，在古。</p>
+<p>代都是由黏土和砖块制成的。但是在这个部分，他并没有说到他是被说服的。</p>
+<p>就这个皇帝，人家自己就想修一个不一样的墓，然后这个大臣就给他修了，</p>
+<p>但是没有说到被说服这一点。这个选项当中呢，</p>
+<p>这个persuaded这个地方就错了啊。好，二b这个选项说，there is disagreement concern the lens of his ring，</p>
+<p>这个persuaded这个地方就错了啊。好，二b这个选项说，there is disagreement concern the lens of</p>
+<p>his ring，</p>
+<p>ring叫在位时间。关于它的在位时间是有一个争议的。</p>
+<p>好，关于在位时间这一点在哪里呢？</p>
+<p>我们看啊，这是在位时间十九年。在位时间十九年，</p>
+<p>但是有历史学家和这个学者认为应该更长，这不就叫做争议吗？</p>
+<p>是大家没有达成一致吧。所以这个选项是不是就对了？二b这个选项哎，</p>
+<p>暂且我们找到了一个选项，二b正确。接下来下一个。he failed to appreciate i part in the design of uh step pyramid他并没有欣赏哀。</p>
+<p>暂且我们找到了一个选项，二b正确。接下来下一个。he failed to appreciate i part in the design of uh</p>
+<p>step pyramid他并没有欣赏哀。</p>
+<p>哀是谁来着？哀就是他修建的。这个大臣就是主持修建的。</p>
+<p>这个大臣啊，说他并没有欣赏这个哀的工作。在设计这个金字塔的时候</p>
+<p>怎么没有欣赏啊？这个这个人家这大臣亲自就大臣建议这个国王修建这个金字塔的。</p>
+<p>所以他这个呃</p>
+<p>说这个fail to appreciate这个点错了啊。所以c不对，</p>
+<p>a不对。接着次地，a few of his possessionpossession叫做拥有的财富。</p>
+<p>他拥有的财富依旧在他的墓学当中。当这个考古学家发现的时候，</p>
+<p>这是什么意思？他的拥有的财富其中只有a few，</p>
+<p>a few叫做很少的。一部分依旧在他的墓穴当中。嗯，当考古学家发现他的时候，</p>
+<h3><a id="文稿"></a>文稿</h3>
+<h1>雅思阅读全解13讲 - 11</h1>
+<p>https://www.bilibili.com icon 11.选择题专题一：多选题</p>
+<p>https://www.bilibili.com</p>
+<p>11.选择题专题一：多选题</p>
+<p>雅思阅读选择题专题：多选题题型全解析与实战技巧</p>
+<p>哈喽，各位同学，欢迎大家回来，今天我们要来进入到选择题啦，那选择题这个专题呢，</p>
+<p>是有两种选择题的，一种选择题叫做单选题，</p>
+<p>一种选择题叫做多选题。那大家猜一下，你觉得哪种选择会比较简单呢？</p>
+<p>我估计可能会有一些同学说单选题比较简单吧，但是但凡你曾经做过一套完整的题目，</p>
+<p>你可能就不会这么回答我了，因为单选题其实相对来说是比较难的题目啊，</p>
+<p>而且我认为它是最难的一种题目，考察的是对于文章的段落，</p>
+<p>甚至文章本身的deeply understanding。</p>
+<p>ok，所以其实这种题目是非常难，但是呢，哎呀，写错位置了啊，</p>
+<p>写在应该写在单选题上。但是多选题呢，相对来说就比较简单，因为多选题往往是考呃，</p>
+<p>这个考察我们对于并列信息的一个理解啊，</p>
+<p>并列信息的理解。那多选题又分成两类，一种多选题呢，叫做比较分散的类型，</p>
+<p>一种多选题是比较密集的题型，它会告诉你我来自于文章具体哪一个部分啊，</p>
+<p>所以相对来说是密集的。好，那对于这两种题目，</p>
+<p>我们在解决的时候呢，是使用不同的方法，对于比较分散的这种题目，</p>
+<p>什么样的一道多选题？就是整个文章结束之后只有一道多选题的，</p>
+<p>一般来说它可能会比较分散，而且它如果没有告诉你它来自于哪一个部分，就来来自于哪一个段落，</p>
+<p>那可能它相对来说是比较分散的。那如果说你这个文章你在读的过程，</p>
+<p>你发现哎有俩多选题，那么如果有两道多选题，</p>
+<p>相对来说它。就会比较密集，它就不是分散在全文这样的一种情况了。</p>
+<p>ok，那我们说一下分散型多选题，我们要怎么怎么做呢？在其他题目都已经做完了，</p>
+<p>其他题目都已经淡了，文章我已经读完了。</p>
+<p>好了，现在我在做这道题，凭借你的记忆去来选择这个题目，</p>
+<p>如果你的记忆可以选择，嗯，没问题啊，那ok，这两个选项就相当于都被你选出来了。</p>
+<p>如果你发现我好像只选出来其中一个，其他的好像莫棱两可，</p>
+<p>那么你就回原文再浏览一遍，这一遍的浏览是比你之前低一遍，</p>
+<p>因为这第一遍是你认认真真通读了一遍对吧？那你再浏览，就快快的浏览，</p>
+<p>能找到就找，找不到就算了。这是对于比较分散的题目，我们处理的方式就是把他的杀伤力降到最低。</p>
+<p>因为你想啊，一个很分散的题，他且分散在原文两页当中，</p>
+<p>其实说实话，如果他不是那种非常重要的细节，你记住了，</p>
+<p>可能你找到它的概率非常低，如果你在茫茫人海当中，</p>
+<p>为了这道题又花了五分钟的时间，是不是不值当？所以我们就快快的把它过掉就好了啊。</p>
+<p>但如果说这个题目相对来说比较密集，它集中于一段，</p>
+<p>那我们还是要好好认真去读它。所以如果说是这种密集型的题目，我们的方式就是在平行阅读的过程当中遇到这一段，</p>
+<p>那我们还是要好好认真去读它。所以如果说是这种密集型的题目，我们的方式就是在平行阅读的过程当</p>
+<p>我现在已经读到这一段了，比如说它来自于地段啊，已经读到这个地段了，</p>
+<p>我先来做多选题。先做多选题啊！好，那我今天就给大家哎拿了两道例题。</p>
+<p>这两道例。题呢，分别一个就是非常密集型的，</p>
+<p>一个就是非常分散型的。我们先来看这个分散型的，这个分散型的文章啊，</p>
+<p>恰好就是我们昨天读的这篇文章。咱们昨天是不是学了一篇金字塔的文章，</p>
+<p>当时呢，我们做的第一种题型就是它的标题配对题，文章咱们可是通读过的哈，</p>
+<p>文章我们是完全通读过的，痕迹还在这呢，</p>
+<p>如果大家忘了的话，一定要去回看我们昨天讲解的这个内容。所以在处理这道题目的时候，</p>
+<p>我不再对文章进行详细的赘述，我只是告诉你它来自于哪里。</p>
+<p>就这两道题，来自于哪里，所以我就换一种颜色，告诉大家来自于哪里就行。</p>
+<p>我们来看一下这个题，二十五二十六这两道题，人家说问这个题问的是啊，</p>
+<p>就是what point does the writer make about king josser？这篇文章我帮助大家回忆一下，</p>
+<p>讲的是金字塔，但是这个金字塔离不开的就是他的修建者，</p>
+<p>他的修建者呢，是一个皇帝，这个皇帝是来自于埃及什么第三王朝啊，</p>
+<p>然后他当时主持修建的这个，为了改变一个墓穴的结构嘛，</p>
+<p>大概是这个意思。然后所以呢，对于这个皇帝，我们作者进行了哪些方面的评述，</p>
+<p>这个东西啊，其实相对在文章里就非常非常的分散了。</p>
+<p>这道题我们来看一下a啊这个题，这个选项a说的是initially he had to be persuaded to build in stone rather than clay</p>
+<p>这道题我们来看一下a啊这个题，这个选项a说的是initially he had to be persuaded to build in stone</p>
+<p>rather than clay</p>
+<p>这个信息在哪来着，还记不记得了，</p>
+<p>在第二段吧，第二段他说到什么呢？说到呢，在古。</p>
+<p>代都是由黏土和砖块制成的。但是在这个部分，他并没有说到他是被说服的。</p>
+<p>就这个皇帝，人家自己就想修一个不一样的墓，然后这个大臣就给他修了，</p>
+<p>但是没有说到被说服这一点。这个选项当中呢，</p>
+<p>这个persuaded这个地方就错了啊。好，二b这个选项说，there is disagreement concern the lens of his ring，</p>
+<p>这个persuaded这个地方就错了啊。好，二b这个选项说，there is disagreement concern the lens of</p>
+<p>ring叫在位时间。关于它的在位时间是有一个争议的。</p>
+<p>好，关于在位时间这一点在哪里呢？</p>
+<p>我们看啊，这是在位时间十九年。在位时间十九年，</p>
+<p>但是有历史学家和这个学者认为应该更长，这不就叫做争议吗？</p>
+<p>是大家没有达成一致吧。所以这个选项是不是就对了？二b这个选项哎，</p>
+<p>暂且我们找到了一个选项，二b正确。接下来下一个。he failed to appreciate i part in the design of uh step pyramid他并没有欣赏哀。</p>
+<p>暂且我们找到了一个选项，二b正确。接下来下一个。he failed to appreciate i part in the design of uh</p>
+<p>step pyramid他并没有欣赏哀。</p>
+<p>哀是谁来着？哀就是他修建的。这个大臣就是主持修建的。</p>
+<p>这个大臣啊，说他并没有欣赏这个哀的工作。在设计这个金字塔的时候</p>
+<p>怎么没有欣赏啊？这个这个人家这大臣亲自就大臣建议这个国王修建这个金字塔的。</p>
+<p>说这个fail to appreciate这个点错了啊。所以c不对，</p>
+<p>a不对。接着次地，a few of his possessionpossession叫做拥有的财富。</p>
+<p>他拥有的财富依旧在他的墓学当中。当这个考古学家发现的时候，</p>
+<p>这是什么意思？他的拥有的财富其中只有a few，</p>
+<p>a few叫做很少的。一部分依旧在他的墓穴当中。嗯，当考古学家发现他的时候，</p>
+<p>记不记得有这个？后面说盗墓这一块，说这一块考古学家发现他的时候只有small number</p>
+<p>his value overlooked by thefts。</p>
+<p>那所以确实是有一些啊。那么既然这样的话，d选项是不是成功入选？</p>
+<p>至于e选项怎么错了呢？he criticized the design and con and constructure of other pyramid</p>
+<p>说他批评了其他埃及金字塔的修建。呵呵，这个人活没活到那个时候，</p>
+<p>暂且咱不做评述，但是他肯定没有机会去批评人家了，</p>
+<p>对吧？所以根本没有criticize的。因此这道题答案b和d。我们来看一下两个答案分散的位置，</p>
+<p>一个是在f段，一个呢，是在b段，</p>
+<p>所以这这题就是全文分散型。那我们在第一次做题的时候啊，</p>
+<p>就是你通读文章的时候，先不要管它，不要让他去混淆你的视听啊，</p>
+<p>你就先不要管他，整个这个文章你都做完了，对吧？你都其他题都已经做完，</p>
+<p>都搞定了。好，就剩这么两个题了，你去回忆回忆，如果凭借你的记忆能做出来，</p>
+<p>或者凭借你的记忆，你知道它是在哪块说到的，你就回去找一找。如果你的记忆已经记不清它是从哪一块出现的了，</p>
+<p>或者凭借你的记忆，你知道它是在哪块说到的，你就回去找一找。如果你的记忆已经记不清它是从哪一</p>
+<p>那就算了，这个题啊，你就随便一猜就过掉它，</p>
+<p>有时间再回来，再回来检查。如果没有时间，我们就先这么放着，</p>
+<p>因为不要为了这种题目浪费太多的时间。ok，这个阅读的考场上，</p>
+<p>时间是非常宝贵的。好，这个是对于分散型的，那么对。于这种非常密集型的呢，</p>
+<p>我怎么知道它是密集型啊？来跟我来看一下这个题干。</p>
+<p>题干当中是不是告诉了我们，这是来自于section d？他说when comparing twentieth century stadium，</p>
+<p>二十世纪的这个，呃，就是这个体育馆啊。</p>
+<p>他说二十世纪的体育馆和这个古代的这个东西相比，有两个negative feature the writer mansion，</p>
+<p>所以它来自于文章d这个部分。文章d这个部分刚好被我截出来了，</p>
+<p>所以也就意味着这个多选题就读这么点内容就ok了。</p>
+<p>那对于这样的多选题，是在通读的过程当中，我们就要去做的ok，</p>
+<p>通读的过程当中，我们就要去做的好。那我们来看一下这个地段说到什么了。</p>
+<p>哎，有非常多的相似性，现代的体育馆和古代的体育馆。</p>
+<p>但是呢，前面说的是相似性，那后面就要说不一样了，</p>
+<p>对吧？some of the flexibility was lost一些它的这个随机性啊，</p>
+<p>或者说灵活性已经损失了。从二十世纪开始，</p>
+<p>这些体育馆呢，他们用钢筋混凝土来制成，然后会用到一些人工光啊，</p>
+<p>就是为了夜晚的这个比赛。所以在这一个小节当中，</p>
+<p>我们知道了其中的一个缺点，就是flexibility was lost。</p>
+<p>好，下一小节我来看啊，说many such system are situated in sub area，说它在啊，</p>
+<p>这个郊区的一个位置，它的设计呢，是为了有很多很多停车场可以环绕在周围。</p>
+<p>所以这就使得我们公众呢，是很难到达这里的，</p>
+<p>对于大数大多数的人来说，而且我们还需要有很多能量来。运营这个东西，</p>
+<p>这个段落又包括了一个缺点，缺点就在于它的地理位置是真的不怎么样啊，</p>
+<p>非常的不方便，对吧？好了，</p>
+<p>带着我们整理出来的这些信息，我们来去筛选选项。a选项they are less imaginative design，</p>
+<p>设计的不好。没有说b选项，</p>
+<p>它less spacious更小了，没有说c选项less convenient location</p>
+<p>对了吧？说它在郊区啊，人们到达不方便呀。肯定c选项是正确的。</p>
+<p>然后接着d选项，less这单词不认识。如果你认识这单词当然更好啊。</p>
+<p>如果你不认识的话，你先放着，你看看意义，你会不会啊？意义说的是they are made of last durable material，</p>
+<p>如果你不认识的话，你先放着，你看看意义，你会不会啊？意义说的是they are made of last durable</p>
+<p>说更这个durable叫做耐用的啊，所以不耐用的材料谁说的了？</p>
+<p>刚才这个段落里边人说这个现代的，这个体育馆可是用的钢筋混凝土的，</p>
+<p>怎么能不耐用呢？所以这个点错了。那既然这个点也错了，</p>
+<p>这也错了，这也错了，那么是不是只有这个d选项正确，</p>
+<p>所以本题正确？c d这个单词叫做多功能的啊，</p>
+<p>多功能的？哎，这个多功能的对应文章里边儿哪个单词嘞？flexibility啊，</p>
+<p>这个就是这个灵活性啊，可能它现在这个功能性下降了嘛，</p>
+<p>所以就灵活性下降。灵活性下降其实就是它的功能性下降，</p>
+<p>所以它俩是一致的。ok，好，那所以这道题就集中于地段，集中于地段，</p>
+<p>当你在做平行阅读的时候，当你读到了地段，那你就把这个题给做了。</p>
+<p>等什么呀，不要等啊。好，接下来下一道题我们。来看看下一道题，说的是two advantages of modern stadium design director mansion。</p>
+<p>等什么呀，不要等啊。好，接下来下一道题我们。来看看下一道题，说的是two advantages of modern</p>
+<p>stadium design director mansion。</p>
+<p>说是现代体育馆的一个优点。刚才我们做的是现代体育馆的缺点，</p>
+<p>对吧？现在我们要做的是现代体育馆的优点。嘿嘿，那岂不是这个题和上一个题应该如出一辙，</p>
+<p>基本上就是集中在那一段那？但是这个题跟上一个题不一样的点在于，</p>
+<p>没有告知出现在哪个部分，对吧，哪个段落。</p>
+<p>那么这个时候就要凭借你敏锐的嗅觉去找到它呀，</p>
+<p>到底哪里才说到的是advantages啊？就是这个优点，关于现代体育馆设计的一个优点。</p>
+<p>ok，好，我们来看啊，刚才第一段说的是缺点，</p>
+<p>那么我们来看下一段开头是什么呀？but，哦，这不就在说优点吗？</p>
+<p>好，来看啊，那现在今天most innovative art architect</p>
+  </main>
+  <aside class="col-right">
+    <h4>本页章节</h4><ul><li><a href="#11">11</a></li></ul>
+  </aside>
+</div>
+<script>
+(function(){
+  var input = document.getElementById('search-input');
+  var panel = document.getElementById('search-panel');
+  if (!input || !panel) return;
+  var main = document.querySelector('.col-main');
+  var leftLinks = Array.prototype.slice.call(document.querySelectorAll('.col-left ul li a'));
+  var rightLinks = Array.prototype.slice.call(document.querySelectorAll('.col-right ul li a'));
+
+  function escHtml(s){
+    return s.replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+  function escapeRegex(s){
+    return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+  function clearHighlights(){
+    if (!main) return;
+    var marks = main.querySelectorAll('mark.search-hl');
+    for (var i = 0; i < marks.length; i++) {
+      var m = marks[i];
+      var text = document.createTextNode(m.textContent);
+      m.parentNode.replaceChild(text, m);
+    }
+    main.normalize();
+  }
+  function highlightInMain(kw){
+    if (!main) return;
+    clearHighlights();
+    if (!kw) return;
+    var re = new RegExp(escapeRegex(kw), 'gi');
+    var walker = document.createTreeWalker(main, NodeFilter.SHOW_TEXT, {
+      acceptNode: function(n){
+        if (!n.nodeValue || !n.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        var p = n.parentElement;
+        if (!p) return NodeFilter.FILTER_REJECT;
+        var tag = p.tagName;
+        if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'CODE' || tag === 'PRE') return NodeFilter.FILTER_REJECT;
+        if (p.closest && p.closest('mark.search-hl')) return NodeFilter.FILTER_REJECT;
+        return n.nodeValue.toLowerCase().indexOf(kw.toLowerCase()) >= 0 ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+      }
+    });
+    var nodes = [];
+    var n;
+    while ((n = walker.nextNode())) nodes.push(n);
+    for (var i = 0; i < nodes.length; i++) {
+      var node = nodes[i];
+      var src = node.nodeValue;
+      var html = '';
+      var last = 0;
+      var match;
+      re.lastIndex = 0;
+      while ((match = re.exec(src)) !== null) {
+        html += escHtml(src.slice(last, match.index));
+        html += '<mark class="search-hl">' + escHtml(match[0]) + '</mark>';
+        last = match.index + match[0].length;
+        if (match[0].length === 0) re.lastIndex++;
+      }
+      html += escHtml(src.slice(last));
+      var tmp = document.createElement('span');
+      tmp.innerHTML = html;
+      var parent = node.parentNode;
+      while (tmp.firstChild) parent.insertBefore(tmp.firstChild, node);
+      parent.removeChild(node);
+    }
+  }
+  function search(q){
+    q = (q || '').trim();
+    panel.innerHTML = '';
+    if (!q) {
+      panel.hidden = true;
+      leftLinks.forEach(function(a){ a.parentElement.style.display = ''; });
+      rightLinks.forEach(function(a){ a.parentElement.style.display = ''; });
+      clearHighlights();
+      return;
+    }
+    var qLower = q.toLowerCase();
+    var courseHits = leftLinks.filter(function(a){
+      return a.textContent.toLowerCase().indexOf(qLower) >= 0;
+    });
+    leftLinks.forEach(function(a){
+      a.parentElement.style.display = courseHits.indexOf(a) >= 0 ? '' : 'none';
+    });
+    var sectionHits = rightLinks.filter(function(a){
+      return a.textContent.toLowerCase().indexOf(qLower) >= 0;
+    });
+    rightLinks.forEach(function(a){
+      a.parentElement.style.display = sectionHits.indexOf(a) >= 0 ? '' : 'none';
+    });
+    var parts = [];
+    if (courseHits.length) {
+      parts.push('<div class="sp-group">课程（' + courseHits.length + '）</div>');
+      parts.push('<ul>' + courseHits.map(function(a){
+        return '<li><a href="' + a.getAttribute('href') + '">' + escHtml(a.textContent) + '</a></li>';
+      }).join('') + '</ul>');
+    }
+    if (sectionHits.length) {
+      parts.push('<div class="sp-group">本页小节（' + sectionHits.length + '）</div>');
+      parts.push('<ul>' + sectionHits.map(function(a){
+        return '<li><a href="' + a.getAttribute('href') + '">' + escHtml(a.textContent) + '</a></li>';
+      }).join('') + '</ul>');
+    }
+    if (!parts.length) parts.push('<div class="sp-empty">无匹配结果</div>');
+    panel.innerHTML = parts.join('');
+    panel.hidden = false;
+    highlightInMain(q);
+  }
+  var timer = null;
+  input.addEventListener('input', function(e){
+    clearTimeout(timer);
+    timer = setTimeout(function(){ search(e.target.value); }, 80);
+  });
+  input.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') { input.value = ''; search(''); input.blur(); panel.hidden = true; }
+  });
+  document.addEventListener('click', function(e){
+    if (panel.contains(e.target) || e.target === input) return;
+    panel.hidden = true;
+  });
+  document.addEventListener('keydown', function(e){
+    if ((e.ctrlKey || e.metaKey) && (e.key === 'k' || e.key === 'K')) {
+      e.preventDefault();
+      input.focus();
+      input.select();
+    }
+  });
+  panel.addEventListener('click', function(e){
+    var a = e.target.closest('a');
+    if (a) panel.hidden = true;
+  });
+})();
+</script>
+</body>
+</html>

@@ -1065,7 +1065,8 @@ function markSaved(){ try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(doc)
 const audio = () => $("#sharedAudio");
 async function playCurrent(){
   const q = doc[currentIdx], a = audio();
-  const targetSrc = q.audio;
+  // audio 字段可能是旧路径("Q1.mp3")或已带前缀("voice/q/...")，统一归一到 voice/q/
+  const targetSrc = q.audio.startsWith("voice/") ? q.audio : "voice/q/" + q.audio;
   if(!a.currentSrc.endsWith(targetSrc) && !a.src.endsWith(targetSrc)){
     a.src = targetSrc; a.dataset.q = q.label; try{ a.load(); }catch(_){}
   }
@@ -1337,7 +1338,7 @@ $("#playAnsBtn").onclick = ()=>{
   $("#myAudio").pause(); $("#ansAudio").pause();
   const q = document.querySelector(".tab-btn.active")?.dataset.tab === "p23" ? p23Data[p23Idx] : doc[currentIdx];
   if(!q) return;
-  const src = "ans/" + q.label + ".mp3";
+  const src = "voice/ans/" + q.label + ".mp3";
   if($("#ansAudio").src && $("#ansAudio").src.endsWith(src) && !$("#ansAudio").paused){ $("#ansAudio").pause(); return; }
   $("#ansAudio").src = src;
   $("#ansAudio").play();
@@ -1412,7 +1413,7 @@ function playMyRec(){
 }
 function playAnsAudio(){
   const q = doc[currentIdx], a = $("#ansAudio"), btn = $("#ansAudioBtn");
-  const src = "ans/" + q.label.replace(/\//g, "-") + ".mp3";
+  const src = "voice/ans/" + q.label.replace(/\//g, "-") + ".mp3";
   if(a.src && a.src.endsWith(src) && !a.paused){ a.pause(); return; }
   a.src = src;
   a.play();
@@ -1452,7 +1453,7 @@ $("#p23AnsAudioBtn").onclick = ()=>{ $("#myAudio").pause(); setBtnPlaying($("#p2
 function playP23AnsAudio(){
   const q = p23Data[p23Idx], a = $("#ansAudio"), btn = $("#p23AnsAudioBtn");
   if(!q) return;
-  const src = "ans/" + q.label.replace(/\//g, "-") + ".mp3";
+  const src = "voice/ans/" + q.label.replace(/\//g, "-") + ".mp3";
   if(a.src && a.src.endsWith(src) && !a.paused){ a.pause(); return; }
   a.src = src;
   a.play();

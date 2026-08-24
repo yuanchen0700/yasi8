@@ -66,7 +66,7 @@ async def main():
 
     async def task(idx_1based, q):
         voice = voice_for(idx_1based)
-        out = HERE / safe_filename(q["label"])
+        out = HERE / "voice" / "q" / safe_filename(q["label"])
         async with sem:
             await synthesize_one(out, q["audio_text"], voice)
         return {"label": q["label"], "voice": voice, "section": q["section"],

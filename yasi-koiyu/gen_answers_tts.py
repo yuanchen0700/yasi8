@@ -2,7 +2,7 @@
 """Generate reference-answer audio for every Part 1 question using edge-tts,
 then compress each mp3 with ffmpeg (48k mono) to keep the site snappy.
 
-Output goes to `ans/` (e.g. ans/Q1.mp3), matching q.label in _init_data.js.
+Output goes to `voice/ans/` (e.g. voice/ans/Q1.mp3), matching q.label in _init_data.js.
 Re-run is safe: already-existing files are skipped.
 """
 import asyncio
@@ -17,7 +17,7 @@ import edge_tts
 ROOT = os.path.dirname(os.path.abspath(__file__))
 DATA_JS = os.path.join(ROOT, "_init_data.js")
 P23_JSON = os.path.join(ROOT, "all_questions_part23.json")
-OUT_DIR = os.path.join(ROOT, "ans")
+OUT_DIR = os.path.join(ROOT, "voice", "ans")
 RATE = "-8%"      # slightly slower reads more like a sample answer
 PITCH = "+0Hz"
 

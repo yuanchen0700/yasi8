@@ -66,7 +66,7 @@ async def main():
 
     async def task(idx_1based, q):
         voice, accent = voice_for(idx_1based)
-        out = HERE / f"Q{idx_1based}.mp3"
+        out = HERE / "voice" / "q" / f"Q{idx_1based}.mp3"
         async with sem:
             await synthesize_one(out, q["text"], voice)
         return {"q": idx_1based, "voice": voice, "accent": accent, "label": q.get("label"),

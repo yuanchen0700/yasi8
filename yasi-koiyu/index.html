@@ -606,6 +606,32 @@
   .auth-hint:empty{display:none}
   .auth-err{min-height:18px;font-size:12px;color:var(--rec);margin:0 0 8px}
   #btnAuth.active{background:rgba(168,230,180,.15);border-color:var(--good);color:var(--good)}
+  /* === 全局搜索 === */
+  .search-mask{position:fixed; inset:0; z-index:120; background:rgba(10,18,32,.72); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); display:flex; align-items:flex-start; justify-content:center; padding:9vh 16px 16px;}
+  .search-mask[hidden]{display:none}
+  .search-box{width:100%; max-width:660px; background:var(--bg-1); border:1px solid var(--line-strong); border-radius:16px; box-shadow:0 24px 64px rgba(0,0,0,.55); overflow:hidden}
+  .search-input-row{display:flex; align-items:center; gap:10px; padding:14px 16px; border-bottom:1px solid var(--line)}
+  .search-input-row input{flex:1; min-width:0; background:transparent; border:none; outline:none; color:var(--ink); font:500 16px/1.4 inherit}
+  .search-input-row input::placeholder{color:var(--muted)}
+  .search-close{flex-shrink:0; width:32px; height:32px; border-radius:8px; border:1px solid var(--line); background:transparent; color:var(--ink-dim); cursor:pointer; font-size:14px}
+  .search-close:hover{color:var(--ink); border-color:var(--line-strong)}
+  .search-hint{padding:8px 16px; font-size:12px; color:var(--muted); border-bottom:1px solid var(--line)}
+  .search-results{max-height:54vh; overflow:auto; padding:6px}
+  .search-item{display:block; width:100%; text-align:left; background:transparent; border:none; border-radius:10px; padding:10px 12px; cursor:pointer; color:var(--ink); font:inherit}
+  .search-item:hover,.search-item.sel{background:rgba(255,255,255,.07)}
+  .si-top{display:flex; align-items:center; gap:8px}
+  .si-part{flex-shrink:0; font-size:11px; font-weight:700; padding:2px 8px; border-radius:999px; background:rgba(94,118,153,.28); color:#c9d6ec}
+  .si-part.p2{background:rgba(255,158,138,.2); color:var(--accent)}
+  .si-label{font-size:11px; color:var(--ink-dim); font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+  .si-topic{flex:1; min-width:0; font-size:12px; color:var(--ink-dim); overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+  .si-text{margin:5px 0 4px; font-size:14px; line-height:1.45; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden}
+  .si-badges{display:flex; gap:6px; flex-wrap:wrap; margin-top:2px}
+  .si-badge{font-size:11px; padding:2px 8px; border-radius:999px; background:rgba(255,255,255,.07); color:var(--ink-dim)}
+  .si-badge.on{color:#ffcc66; background:rgba(255,204,102,.12)}
+  .si-badge.good{color:var(--good); background:rgba(168,230,180,.12)}
+  .si-badge.rec{color:var(--accent); background:rgba(255,158,138,.14)}
+  .search-empty{padding:22px; text-align:center; color:var(--muted); font-size:13px}
+  .search-item mark{background:rgba(255,158,138,.35); color:inherit; border-radius:3px; padding:0 1px}
 </style>
 </head>
 <body>
@@ -618,6 +644,7 @@
   <div class="toolbar">
       <button class="hamburger" id="hamburger" aria-label="菜单"><span></span><span></span><span></span></button>
       <span class="saved-pill" id="saveStatus"><span class="dot"></span><span id="saveLabel">未修改</span></span>
+    <button class="tool" id="btnSearch" title="搜索题目（快捷键 /）">🔍 搜索</button>
     <button class="tool tb-extra" id="btnEdit">✎ 编辑</button>
     <button class="tool tb-extra" id="btnExport">⤓ 导出</button>
     <button class="tool tb-extra" id="btnImport">⤒ 导入</button>
@@ -633,6 +660,19 @@
         <input id="fileInput" type="file" accept="application/json" hidden>
       </div>
     </header>
+
+    <!-- 全局搜索弹层 -->
+    <div class="search-mask" id="searchMask" hidden>
+      <div class="search-box">
+        <div class="search-input-row">
+          <span aria-hidden="true">🔍</span>
+          <input id="searchInput" type="text" placeholder="输入题目中的几个单词，如 tidy keep things…" autocomplete="off">
+          <button class="search-close" id="searchClose" title="关闭">✕</button>
+        </div>
+        <div class="search-hint">同时搜索 Part 1 / Part 2&amp;3 的题目、主题、短语、答案 · Enter 跳转第一条 · Esc 关闭</div>
+        <div class="search-results" id="searchResults"><div class="search-empty">输入关键词开始搜索</div></div>
+      </div>
+    </div>
 
     <div class="drawer-overlay" id="drawerOverlay"></div>
     <nav class="drawer" id="drawer">
@@ -2460,6 +2500,127 @@ restorePosition();
 
 // 注入版本号到页脚链接（APP_VERSION 已含 "v" 前缀）
 document.querySelectorAll(".appVer").forEach(el => { el.textContent = APP_VERSION; });
+
+/* ============================================================
+   GLOBAL SEARCH（题目搜索 + 进度定位）
+   输入几个单词 -> 匹配 Part1 / Part2&3 题目 -> 展示旧进度 -> 点击跳转
+   ============================================================ */
+const searchMask = $("#searchMask");
+const searchInput = $("#searchInput");
+const searchResults = $("#searchResults");
+let searchSel = 0;
+let searchItems = [];
+let searchTimer = null;
+
+function openSearch(){
+  searchMask.hidden = false;
+  searchInput.value = "";
+  searchSel = 0;
+  searchResults.innerHTML = '<div class="search-empty">输入题目中的几个单词开始搜索</div>';
+  setTimeout(()=>searchInput.focus(), 30);
+}
+function closeSearch(){ searchMask.hidden = true; }
+
+function hlText(text, words){
+  let out = escape(text);
+  words.forEach(w=>{
+    const re = new RegExp("("+w.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+")","gi");
+    out = out.replace(re,"<mark>$1</mark>");
+  });
+  return out;
+}
+
+async function runGlobalSearch(raw){
+  const f = (raw||"").trim().toLowerCase();
+  if(!f){ searchItems=[]; searchResults.innerHTML = '<div class="search-empty">输入题目中的几个单词开始搜索</div>'; return; }
+  const words = f.split(/\s+/).filter(Boolean);
+  const results = [];
+  // Part 1：题干 / 主题 / 短语 / 答案 / 题号 全文匹配（所有词都要命中）
+  (doc||[]).forEach((q, i)=>{
+    const hay = [q.label, q.topic||"", q.text||"", q.answer||"", (q.phrases||[]).join(" ")].join(" ").toLowerCase();
+    if(words.every(w=>hay.includes(w))) results.push({part:"P1", cls:"", idx:i, label:q.label, topic:q.topic||"", text:q.text||"", q});
+  });
+  // Part 2&3：含 Part 3 追问题，覆盖 bullets / 思路 / 中文解析
+  (p23Data||[]).forEach((q, i)=>{
+    const hay = [q.label, q.topic||"", q.section||"", q.text||"", q.answer||"", (q.bullets||[]).join(" "), (q.phrases||[]).join(" "), q.strategy||"", (q.analysis_zh||[]).map(a=>a.text||"").join(" ")].join(" ").toLowerCase();
+    if(words.every(w=>hay.includes(w))) results.push({part:(q.section||"P2"), cls:(q.section==="Part 3"?"p2":"p2"), idx:i, label:q.label, topic:q.topic||"", text:q.text||"", q});
+  });
+  // 进度数据：练习记录 + 录音
+  const logByLabel = {};
+  getPracticeLog().forEach(e=>{ (logByLabel[e.label] = logByLabel[e.label] || []).push(e); });
+  let recLabels = new Set();
+  try{
+    const db = await openRecDB();
+    recLabels = new Set(await new Promise((res, rej)=>{
+      const tx = db.transaction("recs","readonly");
+      const rq = tx.objectStore("recs").getAllKeys();
+      rq.onsuccess = ()=>res(rq.result||[]); rq.onerror = ()=>rej(rq.error);
+    }));
+  }catch(e){ /* 无录音库 */ }
+  searchSel = 0;
+  renderSearchResults(results, words, logByLabel, recLabels);
+}
+
+function renderSearchResults(results, words, logByLabel, recLabels){
+  searchItems = results;
+  if(!results.length){ searchResults.innerHTML = '<div class="search-empty">没有匹配的题目，换个词试试</div>'; return; }
+  const today = new Date().toISOString().substring(0,10);
+  searchResults.innerHTML = "";
+  results.forEach((r, i)=>{
+    const entries = logByLabel[r.label] || [];
+    const dates = entries.map(e=>e.date).sort();
+    const last = dates.length ? dates[dates.length-1] : "";
+    const todayDone = dates.includes(today);
+    const badges = [];
+    if(r.part==="P1" ? stars[r.label] : p23Stars[r.label]) badges.push('<span class="si-badge on">★ 已收藏</span>');
+    if(recLabels.has(r.label)) badges.push('<span class="si-badge rec">🎙 有录音</span>');
+    if(entries.length) badges.push(`<span class="si-badge ${todayDone?"good":""}">✅ 练过 ${entries.length} 次</span>`);
+    if(last) badges.push(`<span class="si-badge">📅 ${last}</span>`);
+    const item = document.createElement("button");
+    item.type = "button";
+    item.className = "search-item" + (i===searchSel?" sel":"");
+    item.innerHTML = `
+      <div class="si-top">
+        <span class="si-part ${r.cls}">${escape(r.part)}</span>
+        <span class="si-label">${escape(r.label)}</span>
+        <span class="si-topic">${escape(r.topic)}</span>
+      </div>
+      <div class="si-text">${hlText(r.text, words)}</div>
+      ${badges.length?`<div class="si-badges">${badges.join("")}</div>`:""}`;
+    item.addEventListener("click", ()=>goSearchResult(r));
+    searchResults.appendChild(item);
+  });
+}
+
+function updateSearchSel(){
+  const items = searchResults.querySelectorAll(".search-item");
+  items.forEach((el,i)=>el.classList.toggle("sel", i===searchSel));
+  if(items[searchSel]) items[searchSel].scrollIntoView({block:"nearest"});
+}
+
+function goSearchResult(r){
+  if(r.part==="P1"){ switchTab("p1"); switchTo(r.idx); }
+  else { switchTab("p23"); p23Idx = r.idx; renderP23(); renderP23Sidebar($("#filterP23").value); savePosition(); }
+  closeSearch();
+}
+
+$("#btnSearch").addEventListener("click", openSearch);
+$("#searchClose").addEventListener("click", closeSearch);
+searchMask.addEventListener("click", e=>{ if(e.target===searchMask) closeSearch(); });
+searchInput.addEventListener("input", ()=>{
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(()=>runGlobalSearch(searchInput.value), 160);
+});
+searchInput.addEventListener("keydown", e=>{
+  if(e.key==="Escape"){ closeSearch(); }
+  else if(e.key==="Enter"){ const el = searchResults.querySelectorAll(".search-item")[searchSel]; if(el) el.click(); }
+  else if(e.key==="ArrowDown"){ if(searchItems.length){ searchSel = Math.min(searchSel+1, searchItems.length-1); updateSearchSel(); } e.preventDefault(); }
+  else if(e.key==="ArrowUp"){ if(searchItems.length){ searchSel = Math.max(searchSel-1, 0); updateSearchSel(); } e.preventDefault(); }
+});
+document.addEventListener("keydown", e=>{
+  const tag = (document.activeElement&&document.activeElement.tagName)||"";
+  if(e.key==="/" && tag!=="INPUT" && tag!=="TEXTAREA" && searchMask.hidden){ e.preventDefault(); openSearch(); }
+});
 
 </script>
 </body>

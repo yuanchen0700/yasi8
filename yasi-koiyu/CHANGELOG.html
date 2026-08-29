@@ -29,6 +29,16 @@
   <div class="sub">brand9 · yasi-koiyu 雅思口语练习 · 每次改进都会在此记录。完整提交记录见 <a href="https://github.com/yuanchen0700/yasi8/commits/main" target="_blank" rel="noopener">GitHub Commits</a>。</div>
 
   <div class="card">
+    <h2><span class="ver">v2.4.0</span><span class="date">2026-08-29</span></h2>
+    <ul>
+      <li><span class="tag">主题</span>新增明暗双主题：右上角太阳/月亮按钮切换，<code>localStorage</code> 记住偏好，默认浅色；页面首屏防闪烁（FOUC）</li>
+      <li><span class="tag">录音</span>重构为四态状态机 idle / recording / recorded / playing；移除原先独立的「录制我的回答」入口按钮，改由下方固定 172×44 的录音按钮统一承担（空闲时显示「点击开始录制」）</li>
+      <li><span class="tag">录音</span>进度逐帧填充（rAF）、满 120s 自动停止、录制 &lt;1s 判定为误触并丢弃、长按 600ms 重录、页面隐藏自动保存停止、开始/停止震动反馈</li>
+      <li><span class="tag">UI</span>参考回答按钮主题化（accent-2 配色，非绿色），仅录完或播放中显示；按钮行在任意状态不位移</li>
+    </ul>
+  </div>
+
+  <div class="card">
     <h2><span class="ver">v2.3.0</span><span class="date">2026-08-23</span></h2>
     <ul>
       <li><span class="tag">架构</span>后端从 Python（server.py）整体迁移到 <b>Node.js（server.js）</b>，零第三方依赖：node:http + node:sqlite + node:crypto + 自写 SMTP</li>
@@ -59,7 +69,7 @@
     </ul>
   </div>
 
-  <div class="foot">本页随版本演进持续更新 · 当前版本 v2.3.0</div>
+  <div class="foot">本页随版本演进持续更新 · 当前版本 v2.4.0</div>
 </div>
 </body>
 </html>

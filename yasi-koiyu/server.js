@@ -41,13 +41,11 @@ const EMAIL_RE = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
 const CODE_TTL = 300;               // verification code valid for 5 minutes
 const RESEND_INTERVAL = 60;         // min seconds between two sends to the same address
 
-// ------------------------------------------------------- smtp (shared w/ dw-shop)
-function readDwshopEnv() {
-  // Read SMTP settings from dw-shop's .env so both apps share one credential.
-  const envPath = path.join(DIR, '..', 'fun', 'dw-shop', '.env');
+// ----------------------------------------------------- env (shared creds)
+function readDotEnv(filePath) {
   const out = {};
   try {
-    const txt = fs.readFileSync(envPath, 'utf8');
+    const txt = fs.readFileSync(filePath, 'utf8');
     for (const raw of txt.split('\n')) {
       const line = raw.trim();
       if (!line || line.startsWith('#') || !line.includes('=')) continue;
@@ -57,11 +55,18 @@ function readDwshopEnv() {
       v = v.replace(/^["']/, '').replace(/["']$/, '');
       out[k] = v;
     }
-  } catch (_) { /* no dw-shop env */ }
+  } catch (_) { /* no such env file */ }
   return out;
 }
 
-const DWSHOP_ENV = readDwshopEnv();
+const LOCAL_ENV = readDotEnv(path.join(DIR, '.env'));
+const DWSHOP_ENV = readDotEnv(path.join(DIR, '..', 'fun', 'dw-shop', '.env'));
+
+// Resend API (verification emails). Falls back to SMTP below when unset.
+const RESEND_API_KEY = process.env.RESEND_API_KEY || LOCAL_ENV.RESEND_API_KEY || DWSHOP_ENV.RESEND_API_KEY || '';
+const RESEND_ENDPOINT = process.env.RESEND_ENDPOINT || LOCAL_ENV.RESEND_ENDPOINT || DWSHOP_ENV.RESEND_ENDPOINT || 'https://api.resend.com/emails';
+const MAIL_FROM = process.env.BRAND9_MAIL_FROM || LOCAL_ENV.BRAND9_MAIL_FROM || DWSHOP_ENV.BRAND9_MAIL_FROM || 'onboarding@resend.dev';
+
 const SMTP_HOST = process.env.DW_SHOP_SMTP_HOST || DWSHOP_ENV.DW_SHOP_SMTP_HOST || 'smtp.qq.com';
 const SMTP_PORT = parseInt(process.env.DW_SHOP_SMTP_PORT || DWSHOP_ENV.DW_SHOP_SMTP_PORT || '465', 10);
 
@@ -159,9 +164,24 @@ function smtpSend({ host, port, user, pass, from, to, subject, html }) {
   });
 }
 
+async function resendSend({ from, to, subject, html }) {
+  const payload = JSON.stringify({ from, to: [to], subject, html });
+  const res = await fetch(RESEND_ENDPOINT, {
+    method: 'POST',
+    headers: {
+      'Authorization': 'Bearer ' + RESEND_API_KEY,
+      'Content-Type': 'application/json',
+      'User-Agent': 'Mozilla/5.0 (brand9-server)',
+    },
+    body: payload,
+  });
+  if (!res.ok) {
+    const detail = await res.text().catch(() => '');
+    throw new Error(`HTTP ${res.status} ${detail}`);
+  }
+}
+
 async function sendVerificationEmail(email, code) {
-  const creds = getSmtpCreds();
-  if (!creds.user || !creds.pass) return 'SMTP 未配置（请在管理员后台填写 QQ 邮箱与授权码）';
   const bodyHtml = `<div style="max-width:520px;margin:0 auto;font-family:-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;color:#1f2328;background:#f6f7f9;padding:20px;">
   <div style="background:#ffffff;border-radius:14px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.08);">
     <div style="background:linear-gradient(135deg,#1a1f2e,#2d3550);color:#fff;padding:22px 26px;">
@@ -180,6 +200,16 @@ async function sendVerificationEmail(email, code) {
     </div>
   </div>
 </div>`;
+  if (RESEND_API_KEY) {
+    try {
+      await resendSend({ from: MAIL_FROM, to: email, subject: '【brand9】邮箱注册验证码', html: bodyHtml });
+      return null;
+    } catch (e) {
+      return '邮件发送失败: ' + (e && e.message ? e.message : String(e));
+    }
+  }
+  const creds = getSmtpCreds();
+  if (!creds.user || !creds.pass) return '邮件发送失败: Resend 未配置且 SMTP 未配置（请填 RESEND_API_KEY 或管理员后台的 QQ 邮箱授权码）';
   try {
     await smtpSend({
       host: SMTP_HOST, port: SMTP_PORT,
@@ -232,6 +262,8 @@ function initDb() {
   if (!cols.includes('role')) db.exec("ALTER TABLE users ADD COLUMN role TEXT NOT NULL DEFAULT 'user'");
   if (!cols.includes('parent_id')) db.exec('ALTER TABLE users ADD COLUMN parent_id INTEGER');
   if (!cols.includes('note')) db.exec('ALTER TABLE users ADD COLUMN note TEXT');
+  if (!cols.includes('nickname')) db.exec('ALTER TABLE users ADD COLUMN nickname TEXT');
+  if (!cols.includes('uuid')) db.exec('ALTER TABLE users ADD COLUMN uuid TEXT');
   db.exec('CREATE UNIQUE INDEX IF NOT EXISTS idx_users_email ON users(email)');
   db.exec('CREATE TABLE IF NOT EXISTS kv (k TEXT PRIMARY KEY, v TEXT);');
   console.log(`[db] ready at ${DB_PATH}`);
@@ -246,6 +278,13 @@ function verifyPassword(password, saltHex, expectedHash) {
   const a = Buffer.from(hashPassword(password, saltHex), 'hex');
   const b = Buffer.from(expectedHash, 'hex');
   return a.length === b.length && crypto.timingSafeEqual(a, b);
+}
+
+function makeUuid(email, createdAt) {
+  // Deterministic user id derived from email + creation time (36-char uuid).
+  const digest = crypto.createHash('sha256').update(`${email}|${createdAt}`).digest('hex');
+  const h = digest.slice(0, 32);
+  return `${h.slice(0, 8)}-${h.slice(8, 12)}-${h.slice(12, 16)}-${h.slice(16, 20)}-${h.slice(20, 32)}`;
 }
 
 // ------------------------------------------------------------------- auth
@@ -320,7 +359,7 @@ function auth(req, res) {
     sendError(res, '未登录或登录已过期', 401);
     return null;
   }
-  const row = db.prepare('SELECT id, username, role FROM users WHERE id = ?').get(uid);
+  const row = db.prepare('SELECT id, username, nickname, uuid, role FROM users WHERE id = ?').get(uid);
   if (!row) {
     sendError(res, '用户不存在', 401);
     return null;
@@ -367,11 +406,10 @@ async function apiSendCode(req, res) {
 
 async function apiRegister(req, res) {
   const data = await readJson(req);
-  const username = String(data.username || '').trim();
-  const password = String(data.password || '');
   const email = String(data.email || '').trim().toLowerCase();
+  const password = String(data.password || '');
   const code = String(data.code || '').trim();
-  if (!(username.length >= 3 && username.length <= 32)) return sendError(res, '用户名需为 3-32 个字符');
+  const nickname = String(data.nickname || '').trim();
   if (!(password.length >= 6 && password.length <= 128)) return sendError(res, '密码需为 6-128 个字符');
   if (!EMAIL_RE.test(email)) return sendError(res, '邮箱格式不正确');
   const now = nowSec();
@@ -383,31 +421,38 @@ async function apiRegister(req, res) {
   if (row.code !== code) return sendError(res, '验证码错误');
   const salt = crypto.randomBytes(16).toString('hex');
   const pwHash = hashPassword(password, salt);
+  const createdAt = fmtNow();
+  const userUuid = makeUuid(email, createdAt);
+  const display = nickname || email.split('@')[0];
   let userId;
   try {
     const r = db.prepare(
-      'INSERT INTO users (username, pass_salt, pass_hash, created_at, email) VALUES (?,?,?,?,?)'
-    ).run(username, salt, pwHash, fmtNow(), email);
+      'INSERT INTO users (username, pass_salt, pass_hash, created_at, email, nickname, uuid) VALUES (?,?,?,?,?,?,?)'
+    ).run(userUuid, salt, pwHash, createdAt, email, display, userUuid);
     userId = Number(r.lastInsertRowid);
     db.prepare('DELETE FROM email_codes WHERE email = ?').run(email);
   } catch (e) {
-    if (String(e.message).includes('UNIQUE')) return sendError(res, '用户名已被注册', 409);
+    if (String(e.message).includes('UNIQUE')) return sendError(res, '该邮箱已被注册', 409);
     throw e;
   }
   const token = issueToken(userId);
-  return sendJson(res, { ok: true, token, username });
+  return sendJson(res, { ok: true, token, username: display, uuid: userUuid });
 }
 
 async function apiLogin(req, res) {
   const data = await readJson(req);
-  const username = String(data.username || '').trim();
+  const ident = String(data.username || '').trim();
+  const email = String(data.email || '').trim().toLowerCase() || ident;
   const password = String(data.password || '');
-  const row = db.prepare('SELECT id, username, pass_salt, pass_hash FROM users WHERE username = ?').get(username);
+  const row = db.prepare(
+    'SELECT id, username, nickname, uuid, pass_salt, pass_hash FROM users WHERE email = ? OR username = ?'
+  ).get(email, ident);
   if (!row || !verifyPassword(password, row.pass_salt, row.pass_hash)) {
-    return sendError(res, '用户名或密码错误', 401);
+    return sendError(res, '邮箱或密码错误', 401);
   }
   const token = issueToken(row.id);
-  return sendJson(res, { ok: true, token, username: row.username });
+  const display = row.nickname || row.username;
+  return sendJson(res, { ok: true, token, username: display, uuid: row.uuid || '' });
 }
 
 function apiLogout(req, res) {
@@ -419,7 +464,18 @@ function apiLogout(req, res) {
 function apiMe(req, res) {
   const user = auth(req, res);
   if (!user) return;
-  return sendJson(res, { ok: true, username: user.username });
+  const display = user.nickname || user.username;
+  return sendJson(res, { ok: true, username: display, uuid: user.uuid || '' });
+}
+
+async function apiSetNickname(req, res) {
+  const user = auth(req, res);
+  if (!user) return;
+  const data = await readJson(req);
+  const nickname = String(data.nickname || '').trim();
+  if (!(nickname.length >= 1 && nickname.length <= 32)) return sendError(res, '昵称需为 1-32 个字符');
+  db.prepare('UPDATE users SET nickname = ? WHERE id = ?').run(nickname, user.id);
+  return sendJson(res, { ok: true, username: nickname });
 }
 
 function apiStateGet(req, res) {
@@ -585,10 +641,14 @@ const MIME = {
   '.wasm': 'application/wasm',
 };
 
+// Block dotfiles (.env/.git/...) and sensitive extensions from being served.
+const SENSITIVE_RE = /(?:^|\/)\.|\.(?:py|db|sh|log|pem|key|crt|env|conf)(?:$|\/)/i;
+
 function serveStatic(req, res, pathname) {
   let decoded;
   try { decoded = decodeURIComponent(pathname); } catch (_) { return send404(res); }
   const rel = decoded === '/' ? 'index.html' : decoded.replace(/^\/+/, '');
+  if (SENSITIVE_RE.test(rel)) return send404(res);
   const abs = path.resolve(DIR, rel);
   const absDir = path.resolve(DIR);
   if (abs !== absDir && !abs.startsWith(absDir + path.sep)) return send404(res);
@@ -596,10 +656,16 @@ function serveStatic(req, res, pathname) {
     if (err || !st.isFile()) return send404(res);
     const ext = path.extname(abs).toLowerCase();
     const mime = MIME[ext] || 'application/octet-stream';
-    const cc = ext === '.mp3' ? 'public, max-age=31536000, immutable' : 'max-age=600';
+    const cc = ext === '.mp3' ? 'public, max-age=31536000, immutable' : 'public, max-age=600';
+    const lastMod = st.mtime.toUTCString();
+    if (req.headers['if-modified-since'] === lastMod) {
+      res.writeHead(304, { 'Cache-Control': cc, 'Last-Modified': lastMod });
+      return res.end();
+    }
     res.writeHead(200, {
       'Content-Type': mime,
       'Cache-Control': cc,
+      'Last-Modified': lastMod,
       'Content-Length': st.size,
     });
     if (req.method === 'HEAD') return res.end();
@@ -622,6 +688,7 @@ async function apiRouter(req, res, method, p) {
   if (p === '/api/login' && method === 'POST') return await A(apiLogin);
   if (p === '/api/logout' && method === 'POST') return A(apiLogout);
   if (p === '/api/me' && method === 'GET') return A(apiMe);
+  if (p === '/api/me' && method === 'POST') return await A(apiSetNickname);
   if (p === '/api/state' && method === 'GET') return A(apiStateGet);
   if (p === '/api/state/sync' && method === 'POST') return await A(apiStateSync);
   if (p === '/api/state/clear' && method === 'POST') return A(apiStateClear);

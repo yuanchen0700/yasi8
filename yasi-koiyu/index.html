@@ -2,6 +2,7 @@
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8" />
+<script>(function(){try{if(localStorage.getItem("yasi8::theme")==="dark")document.documentElement.setAttribute("data-theme","dark");}catch(e){}})();</script>
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>IELTS Speaking · brand9 · Part 1</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='6' fill='%2316273E'/%3E%3Crect x='6' y='6' width='6' height='20' rx='2' fill='%235E7699'/%3E%3Crect x='14' y='6' width='12' height='9' rx='2' fill='%23FF9E8A'/%3E%3Crect x='14' y='17' width='12' height='9' rx='2' fill='%23F0EBE0'/%3E%3C/svg%3E" />
@@ -10,18 +11,51 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
+    --bg-0:#f4f6fb; --bg-1:#eef1f7; --bg-2:#e3e9f2; --ink:#1c2434; --ink-dim:#5d6b83;
+    --muted:#7c8aa3; --accent:#e2654f; --accent-2:#556b8c; --good:#27854b;
+    --line:var(--f-10); --line-strong:var(--f-18); --rec:#d94a5b;
+    --f-04:rgba(15,23,42,.04); --f-06:rgba(15,23,42,.06); --f-07:rgba(15,23,42,.07);
+    --f-08:rgba(15,23,42,.08); --f-10:rgba(15,23,42,.10); --f-14:rgba(15,23,42,.14);
+    --f-16:rgba(15,23,42,.16); --f-18:rgba(15,23,42,.18); --f-25:rgba(15,23,42,.25);
+    --f-30:rgba(15,23,42,.30); --f-45:rgba(15,23,42,.45);
+    --body-glow-1:#d7e2f2; --body-glow-2:#f2d9e6;
+    --topbar-bg:rgba(255,255,255,.62); --tabnav-bg:rgba(255,255,255,.62);
+    --menu-bg:rgba(255,255,255,.92);
+    --panel-grad:linear-gradient(160deg,#ffffff,#f1f5fa); --drawer-grad:linear-gradient(180deg,#ffffff,#eef2f8);
+    --playerbar-bg:rgba(255,255,255,.9); --ver-badge-bg:rgba(255,255,255,.75);
+    --gate-mask:rgba(250,251,253,.86); --gate-mask-hover:rgba(245,247,251,.94);
+    --toast-bg:rgba(15,23,42,.92); --toast-ink:#f2f4f9;
+    --heat-empty:#e3e9f1; --heat-ink:#8fa0b8;
+    --rec-btn-bg:var(--f-06); --rec-gray:rgba(15,23,42,.35);
+    --ref-g1:#dbe4f0; --ref-g2:#bbcbdf; --ref-ink:#3d5377; --ref-glow:rgba(85,107,140,.35);
+    --font-serif:'Fraunces',Georgia,serif;
+  }
+  html[data-theme="dark"]{
     --bg-0:#0a1220; --bg-1:#0d1626; --bg-2:#16273e; --ink:#F2F0EA; --ink-dim:#9aa3b8;
     --muted:#5E7699; --accent:#FF9E8A; --accent-2:#5E7699; --good:#a8e6b4;
     --line:rgba(255,255,255,.10); --line-strong:rgba(255,255,255,.18); --rec:#ff5b6b;
-    --font-serif:'Fraunces',Georgia,serif;
+    --f-04:rgba(255,255,255,.03); --f-06:rgba(255,255,255,.045); --f-07:rgba(255,255,255,.05);
+    --f-08:rgba(255,255,255,.06); --f-10:rgba(255,255,255,.08); --f-14:rgba(255,255,255,.10);
+    --f-16:rgba(255,255,255,.14); --f-18:rgba(255,255,255,.16); --f-25:rgba(255,255,255,.20);
+    --f-30:rgba(255,255,255,.25); --f-45:rgba(255,255,255,.40);
+    --body-glow-1:#1c2c44; --body-glow-2:#2a1a4a;
+    --topbar-bg:rgba(10,18,32,.72); --tabnav-bg:rgba(10,18,32,.5);
+    --menu-bg:rgba(13,22,38,.97);
+    --panel-grad:linear-gradient(160deg,#16273e,#0d1626); --drawer-grad:linear-gradient(180deg,#16273e,#0d1626);
+    --playerbar-bg:rgba(13,22,38,.86); --ver-badge-bg:rgba(13,22,38,.6);
+    --gate-mask:rgba(13,22,38,.86); --gate-mask-hover:rgba(13,22,38,.92);
+    --toast-bg:rgba(10,18,32,.95); --toast-ink:#eaf1f4;
+    --heat-empty:#2a3548; --heat-ink:#9aa3b8;
+    --rec-btn-bg:rgba(255,255,255,.06); --rec-gray:rgba(255,255,255,.22);
+    --ref-g1:#3b5270; --ref-g2:#2c3f58; --ref-ink:#c6d3e6; --ref-glow:rgba(94,118,153,.45);
   }
   *{box-sizing:border-box}
   html,body{height:100%}
   body{
     margin:0; font-family:"Instrument Sans","Inter","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
     color:var(--ink);
-    background:radial-gradient(900px 700px at 18% 8%, #1c2c44 0%, transparent 60%),
-               radial-gradient(800px 700px at 92% 92%, #2a1a4a 0%, transparent 60%),
+    background:radial-gradient(900px 700px at 18% 8%, var(--body-glow-1) 0%, transparent 60%),
+               radial-gradient(800px 700px at 92% 92%, var(--body-glow-2) 0%, transparent 60%),
                linear-gradient(160deg, var(--bg-1), var(--bg-0));
     min-height:100%; -webkit-font-smoothing:antialiased;
   }
@@ -29,7 +63,7 @@
     position:sticky; top:0; z-index:50;
     display:flex; align-items:center; justify-content:space-between; gap:16px;
     padding:14px 28px;
-    background:rgba(10,18,32,.72);
+    background:var(--topbar-bg);
     backdrop-filter:saturate(140%) blur(10px);
     border-bottom:1px solid var(--line);
   }
@@ -40,7 +74,7 @@
   .logo i{display:block; border-radius:2px}
   .logo i:nth-child(1){background:var(--accent-2); grid-row:1/3}
   .logo i:nth-child(2){background:var(--accent)}
-  .logo i:nth-child(3){background:#f0ebe0}
+  .logo i:nth-child(3){background:#c9bfae}
   .title{font-family:"Fraunces",Georgia,serif; font-weight:600; font-size:18px; letter-spacing:-.01em}
   .title small{color:var(--ink-dim); font-weight:500; margin-left:8px; font-size:13px}
   .toolbar{display:flex; gap:8px; flex-wrap:wrap; align-items:center}
@@ -49,18 +83,23 @@
   @media (max-width:880px){ .more-trigger{display:inline-flex} .tb-extra{display:none} }
   .more-menu{position:absolute; right:16px; top:calc(100% + 8px); z-index:70;
     min-width:150px; padding:6px; border-radius:12px;
-    background:rgba(13,22,38,.97); border:1px solid var(--line-strong);
+    background:var(--menu-bg); border:1px solid var(--line-strong);
     box-shadow:0 16px 40px rgba(0,0,0,.5);
     display:none; flex-direction:column; gap:2px;}
   .more-menu.show{display:flex}
   .more-menu button{appearance:none; cursor:pointer; background:transparent; border:none;
     color:var(--ink); text-align:left; padding:10px 12px; border-radius:8px; font:500 13px/1 inherit;}
-  .more-menu button:hover{background:rgba(255,255,255,.08)}
+  .more-menu button:hover{background:var(--f-10)}
   button.tool{appearance:none; cursor:pointer; font:500 13px/1 inherit; color:var(--ink);
-    background:rgba(255,255,255,.06); border:1px solid var(--line);
+    background:var(--f-08); border:1px solid var(--line);
     border-radius:999px; padding:8px 14px; transition:all .15s ease;}
-  button.tool:hover{background:rgba(255,255,255,.10); border-color:var(--line-strong)}
+  button.tool:hover{background:var(--f-14); border-color:var(--line-strong)}
   button.tool.active{background:var(--accent); color:#0a1220; border-color:transparent}
+  .theme-toggle{display:inline-flex; align-items:center; gap:4px; padding:8px 12px}
+  .theme-toggle .ic{display:inline-flex}
+  .theme-toggle .ic-moon{display:none}
+  html[data-theme="dark"] .theme-toggle .ic-sun{display:none}
+  html[data-theme="dark"] .theme-toggle .ic-moon{display:block}
   .saved-pill{display:inline-flex; align-items:center; gap:6px; font-size:12px; color:var(--ink-dim)}
   .saved-pill .dot{width:8px; height:8px; border-radius:50%; background:var(--muted)}
   .saved-pill.dirty .dot{background:#ffcc66}
@@ -73,7 +112,7 @@
       .sidebar{
         position:fixed !important; top:64px; left:0; bottom:0; z-index:54;
         width:min(300px, 86vw); max-height:none !important; height:auto !important;
-        background:linear-gradient(180deg, #16273e, #0d1626) !important;
+        background:var(--drawer-grad) !important;
         border-radius:0 16px 0 0 !important; border-left:none;
         transform:translateX(-105%); transition:transform .25s ease;
         box-shadow:8px 0 30px rgba(0,0,0,.4);
@@ -82,14 +121,14 @@
       .qlist-btn{display:inline-flex !important}
     }
   /* === sidebar === */
-  .sidebar{background:rgba(255,255,255,.03); border:1px solid var(--line);
+  .sidebar{background:var(--f-04); border:1px solid var(--line);
     border-radius:16px; padding:14px; height:fit-content;
     position:sticky; top:90px; max-height:calc(100vh - 130px); overflow:auto;}
   .sidebar h3{margin:6px 4px 10px; font:600 11px/1 inherit;
     letter-spacing:.18em; text-transform:uppercase; color:var(--ink-dim);}
   .filter-input{
     width:100%; margin:0 0 10px; padding:7px 12px;
-    background:rgba(255,255,255,.05); border:1px solid var(--line);
+    background:var(--f-07); border:1px solid var(--line);
     border-radius:8px; color:var(--ink); font:inherit; font-size:13px;
   }
   .filter-input:focus{outline:none; border-color:var(--accent)}
@@ -97,7 +136,7 @@
   .qlist-btn{
     display:none; appearance:none; cursor:pointer;
     align-items:center; gap:6px;
-    background:rgba(255,255,255,.06); color:var(--ink);
+    background:var(--f-08); color:var(--ink);
     border:1px solid var(--line); border-radius:999px;
     padding:9px 16px; font:500 13px/1 inherit;
     margin:0 0 12px;
@@ -107,11 +146,11 @@
     display:flex; align-items:center; justify-content:space-between;
     padding:7px 8px; border-radius:8px; cursor:pointer;
     font:600 12px/1 inherit; color:var(--ink);
-    background:rgba(255,255,255,.04);
+    background:var(--f-06);
   }
-  .topic-head:hover{background:rgba(255,255,255,.08)}
+  .topic-head:hover{background:var(--f-10)}
   .topic-head .name{flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
-  .topic-head .cnt{font-size:11px; color:var(--ink-dim); background:rgba(255,255,255,.06); padding:2px 7px; border-radius:999px}
+  .topic-head .cnt{font-size:11px; color:var(--ink-dim); background:var(--f-08); padding:2px 7px; border-radius:999px}
   .topic-head .star-group{font-size:13px; color:var(--ink-dim); cursor:pointer; user-select:none; margin-left:8px}
   .topic-head .star-group.on{color:#ffcc66}
   .topic-qs{display:none; padding:4px 0 4px 4px}
@@ -120,7 +159,7 @@
     padding:7px 10px; border-radius:8px; background:transparent;
     border:1px solid transparent; cursor:pointer; transition:all .15s ease;
     font-size:12px; margin-bottom:2px;}
-  .qitem:hover{background:rgba(255,255,255,.06)}
+  .qitem:hover{background:var(--f-08)}
   .qitem.active{background:rgba(255,158,138,.12); border-color:rgba(255,158,138,.35)}
   .qitem .lbl{font-family:"Fraunces",serif; font-weight:600; color:var(--accent); font-size:12px; min-width:28px}
   .qitem .qt{color:var(--ink); line-height:1.35;
@@ -135,11 +174,11 @@
   .topic-sub{color:var(--ink-dim); margin:0 0 22px; font-size:14px}
   /* Hide voice/accent info - not needed for user */
   .topic-sub, .vmeta, .playerbar .now .voice { display: none !important; }
-  .card{background:rgba(255,255,255,.04); border:1px solid var(--line);
+  .card{background:var(--f-06); border:1px solid var(--line);
     border-radius:18px; padding:30px 32px;}
   .qhead{display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:18px}
   .qnum{font-family:"Fraunces",serif; font-weight:600; color:var(--accent); font-size:30px; line-height:1}
-  .vmeta{display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,.04);
+  .vmeta{display:inline-flex; align-items:center; gap:8px; background:var(--f-06);
     border:1px solid var(--line); border-radius:999px; padding:6px 12px;
     font-size:12px; color:var(--ink-dim);}
   .vmeta .flag{font-size:14px}
@@ -150,43 +189,43 @@
   .qtext:focus{background:rgba(255,158,138,.06); box-shadow:inset 0 0 0 2px rgba(255,158,138,.5)}
   .sections{display:grid; grid-template-columns:1fr 1.6fr; gap:16px}
   @media (max-width:760px){ .sections{grid-template-columns:1fr} }
-  .sect{background:rgba(255,255,255,.03); border:1px solid var(--line);
+  .sect{background:var(--f-04); border:1px solid var(--line);
     border-radius:14px; padding:14px 16px;}
   .sect h4{margin:0 0 8px; font:600 11px/1 inherit;
     text-transform:uppercase; letter-spacing:.16em; color:var(--ink-dim);}
   .phrases{display:flex; flex-wrap:wrap; gap:8px; outline:none; border-radius:8px}
   .phrase{background:rgba(94,118,153,.15); border:1px solid rgba(94,118,153,.35);
-    color:#cfd9eb; border-radius:999px; padding:5px 10px; font-size:12px;}
+    color:var(--ink-dim); border-radius:999px; padding:5px 10px; font-size:12px;}
   .answer{outline:none; border-radius:8px; font:14px/1.6 inherit;
-    color:#e8edf4; padding:4px 6px; margin:-4px -6px; white-space:pre-wrap;}
+    color:var(--ink); padding:4px 6px; margin:-4px -6px; white-space:pre-wrap;}
   .answer:focus{background:rgba(255,158,138,.06); box-shadow:inset 0 0 0 2px rgba(255,158,138,.4)}
   .answer-gate{position:relative}
   .answer-gate .gate-mask{position:absolute; inset:0;
-    background:rgba(10,18,32,.78); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+    background:var(--gate-mask); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
     border-radius:10px;
     display:flex; flex-direction:column; align-items:center; justify-content:center;
     gap:6px; color:var(--ink-dim); font-size:13px; cursor:pointer; transition:opacity .25s ease; z-index:2;}
-  .answer-gate .gate-mask:hover{background:rgba(10,18,32,.86); color:var(--ink)}
+  .answer-gate .gate-mask:hover{background:var(--gate-mask-hover); color:var(--ink)}
   .answer-gate .gate-mask .lock{font-size:24px}
   .answer-gate.revealed .gate-mask{display:none}
   .actions{display:flex; gap:8px; margin-top:18px; flex-wrap:wrap}
   .actions .btn{appearance:none; cursor:pointer; display:inline-flex; align-items:center; gap:8px;
-    background:rgba(255,255,255,.06); color:var(--ink); border:1px solid var(--line);
+    background:var(--f-08); color:var(--ink); border:1px solid var(--line);
     border-radius:999px; padding:8px 14px; font:500 13px/1 inherit;}
-  .actions .btn:hover{background:rgba(255,255,255,.10); border-color:var(--line-strong)}
+  .actions .btn:hover{background:var(--f-14); border-color:var(--line-strong)}
   .actions .btn.primary{background:linear-gradient(135deg,#ff9e8a,#ffbca8); color:#0a1220; border-color:transparent}
   .actions .btn.rec{background:linear-gradient(135deg,#ff5b6b,#ff8896); color:#0a1220; border-color:transparent}
   .actions .btn.star.active{background:rgba(255,204,102,.16); border-color:rgba(255,204,102,.4); color:#ffcc66}
   /* === floating player === */
   .playerbar{position:fixed; left:50%; transform:translateX(-50%); bottom:18px;
-    background:rgba(13,22,38,.86); backdrop-filter:saturate(160%) blur(14px);
+    background:var(--playerbar-bg); backdrop-filter:saturate(160%) blur(14px);
     border:1px solid var(--line-strong); border-radius:999px;
     padding:10px 14px 10px 10px; display:flex; align-items:center; gap:8px;
     box-shadow:0 12px 36px rgba(0,0,0,.5); z-index:60; max-width: calc(100vw - 32px);}
   .playerbar .ctrl{appearance:none; cursor:pointer; width:38px; height:38px; border-radius:50%;
-    background:rgba(255,255,255,.08); color:var(--ink); border:1px solid var(--line);
+    background:var(--f-10); color:var(--ink); border:1px solid var(--line);
     display:grid; place-items:center; font-size:14px; transition:all .15s ease;}
-  .playerbar .ctrl:hover{background:rgba(255,255,255,.14)}
+  .playerbar .ctrl:hover{background:var(--f-16)}
   .playerbar .ctrl.play{width:46px; height:46px;
     background:linear-gradient(135deg,#ff9e8a,#ffbca8); color:#0a1220; border-color:transparent;
     font-size:15px; box-shadow:0 6px 20px rgba(255,158,138,.36);}
@@ -202,14 +241,14 @@
     padding:4px 10px; border-radius:999px; white-space:nowrap;}
   .playerbar .tog.on{color:var(--accent)}
   .playerbar .tog .sw{flex:none; width:28px; height:16px; border-radius:999px;
-    background:rgba(255,255,255,.10); position:relative; transition:background .15s;}
+    background:var(--f-14); position:relative; transition:background .15s;}
   .playerbar .tog.on .sw{background:rgba(255,158,138,.5)}
   .playerbar .tog .sw::after{content:""; position:absolute; top:2px; left:2px;
     width:12px; height:12px; border-radius:50%; background:#fff; transition:left .15s;}
   .playerbar .tog.on .sw::after{left:14px}
   .playerbar .pos{font-variant-numeric:tabular-nums; font-size:12px; color:var(--ink-dim);
     min-width:96px; text-align:center;}
-  .playerbar .progress{height:3px; background:rgba(255,255,255,.08); border-radius:999px;
+  .playerbar .progress{height:3px; background:var(--f-10); border-radius:999px;
     width:120px; overflow:hidden; cursor:pointer; position:relative;}
   .playerbar .progress .bar{position:absolute; left:0; top:0; bottom:0;
     width:0%; background:linear-gradient(90deg,#ff9e8a,#ffbca8); border-radius:999px;
@@ -218,15 +257,15 @@
   .modal-bg{position:fixed; inset:0; z-index:80; background:rgba(10,18,32,.7);
     backdrop-filter:blur(8px); display:none; align-items:center; justify-content:center; padding:20px;}
   .modal-bg.show{display:flex}
-  .modal{background:linear-gradient(160deg, #16273e, #0d1626); border:1px solid var(--line-strong);
+  .modal{background:var(--panel-grad); border:1px solid var(--line-strong);
     border-radius:20px; padding:28px; width:min(560px, 100%);
     box-shadow:0 24px 60px rgba(0,0,0,.6);}
   .modal h2{margin:0 0 6px; font-family:"Fraunces",serif; font-weight:600; font-size:22px}
   .modal p.sub{color:var(--ink-dim); margin:0 0 18px; font-size:13px}
-  .rec-area{background:rgba(255,255,255,.03); border:1px solid var(--line);
+  .rec-area{background:var(--f-04); border:1px solid var(--line);
     border-radius:14px; padding:18px; text-align:center;}
   .rec-circle{width:96px; height:96px; border-radius:50%;
-    background:rgba(255,255,255,.04); border:2px solid var(--line);
+    background:var(--f-06); border:2px solid var(--line);
     display:inline-grid; place-items:center; margin:6px auto 10px;
     transition:all .2s ease; cursor:pointer;}
   .rec-circle.idle:hover{border-color:var(--rec); background:rgba(255,91,107,.08)}
@@ -241,12 +280,12 @@
   .vu i{width:3px; background:var(--rec); border-radius:2px;
     height:6px; opacity:.4; transition:height .08s ease, opacity .08s ease;}
   .rec-area .rec-btn{appearance:none; cursor:pointer;
-    background:rgba(255,255,255,.08); color:#E0E0E0;
-    border:1px solid rgba(255,255,255,.30); border-radius:999px;
+    background:var(--f-10); color:var(--ink-dim);
+    border:1px solid var(--f-30); border-radius:999px;
     padding:8px 16px; font:500 13px/1 inherit;
     display:inline-flex; align-items:center; gap:6px;
     transition:all .15s ease;}
-  .rec-area .rec-btn:hover{background:rgba(255,255,255,.14); border-color:rgba(255,255,255,.45)}
+  .rec-area .rec-btn:hover{background:var(--f-16); border-color:var(--f-45)}
   .rec-area .rec-btn.primary{background:linear-gradient(135deg,#ff5b6b,#ff8896); color:#0a1220; border-color:transparent}
   .rec-area .rec-btn .stop-square{width:10px; height:10px; border-radius:2px;
     background:var(--rec); flex:none; display:inline-block;}
@@ -255,127 +294,70 @@
   .preview audio{display:none}
   .mini-player{display:flex; align-items:center; gap:10px}
   .mini-player .mp-btn{appearance:none; cursor:pointer; width:34px; height:34px;
-    border-radius:50%; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.30);
-    color:#B0B8C8; display:grid; place-items:center; font-size:13px;
+    border-radius:50%; background:var(--f-10); border:1px solid var(--f-30);
+    color:var(--ink-dim); display:grid; place-items:center; font-size:13px;
     transition:all .15s ease; flex:none;}
-  .mini-player .mp-btn:hover{background:rgba(255,255,255,.14); color:#fff}
+  .mini-player .mp-btn:hover{background:var(--f-16); color:#fff}
   .mini-player .mp-btn.playing{background:linear-gradient(135deg,#ff5b6b,#ff8896);
     color:#0a1220; border-color:transparent}
   .mini-player .mp-progress{flex:1; height:4px; border-radius:999px;
-    background:rgba(255,255,255,.12); cursor:pointer; position:relative}
+    background:var(--f-14); cursor:pointer; position:relative}
   .mini-player .mp-progress .mp-bar{height:100%; border-radius:999px; width:0%;
     background:linear-gradient(90deg,var(--rec),#ff8896)}
   .mini-player .mp-time{font-size:11px; color:var(--ink-dim);
     font-variant-numeric:tabular-nums; flex:none;}
-  /* === simplified recording panel === */
+  /* === 四态录音按钮（idle/recording/recorded/playing）===
+     固定宽高 172×44、圆角 22px：任何状态下外框不变，整行不跳动 */
   .hidden{display:none!important}
-  .rec-panel{margin-top:20px; background:linear-gradient(160deg,#16273e,#0d1626);
-    border:1px solid var(--line-strong); border-radius:16px; padding:18px;}
-  .rec-panel[hidden]{display:none}
-  .rec-head{display:flex; align-items:center; justify-content:space-between;
-    gap:10px; flex-wrap:wrap; margin:0 0 14px;}
-  .rec-head h2{margin:0; font-family:"Fraunces",serif; font-weight:600; font-size:18px}
-  .rec-reveal-btn{appearance:none; cursor:pointer;
-    background:rgba(255,255,255,.06); color:var(--ink-dim);
-    border:1px solid var(--line); border-radius:999px;
-    padding:7px 12px; font:500 12px/1 inherit; transition:all .15s ease;}
-  .rec-reveal-btn:hover{background:rgba(255,255,255,.10); color:var(--ink)}
-  .rec-reveal-btn.on{background:rgba(255,158,138,.14); color:var(--accent);
-    border-color:rgba(255,158,138,.4)}
-  
-  /* Simplified recording button - becomes progress bar */
-  .rec-btn-wrap{position:relative; width:100%; max-width:480px; margin:0 auto;}
-  .rec-main-btn{
-    appearance:none; cursor:pointer; width:100%; height:56px; border-radius:14px;
-    background:rgba(255,255,255,.06); color:var(--ink);
-    border:2px solid var(--line); font:600 16px/1 inherit;
-    display:flex; align-items:center; justify-content:center; gap:10px;
-    transition:all .2s ease; overflow:hidden; position:relative;
+  .rec-btn{
+    position:relative; flex:none; width:172px; height:44px;
+    border-radius:22px; padding:0; border:2px solid var(--accent);
+    background:var(--rec-btn-bg); overflow:hidden; cursor:pointer;
+    user-select:none; -webkit-user-select:none; touch-action:manipulation;
+    -webkit-tap-highlight-color:transparent; font-family:inherit;
+    font-size:13px; color:var(--accent); transition:border-color .25s,transform .12s;
   }
-  .rec-main-btn:hover:not(.recording):not(.has-recording){
-    background:rgba(255,255,255,.10); border-color:var(--line-strong);
-  }
-  .rec-main-btn.recording{
-    background:rgba(255,91,107,.12); border-color:var(--rec); color:var(--rec);
-    cursor:default;
-  }
-  .rec-main-btn.has-recording{
-    background:rgba(168,230,180,.12); border-color:var(--good); color:var(--good);
-  }
-  .rec-main-btn.has-recording:hover,
-  .rec-main-btn.playing-rec{
-    background:rgba(168,230,180,.2); border-color:var(--good);
-  }
-  .rec-main-btn.playing-rec{color:var(--good)}
-  .rec-main-btn .rec-icon{font-size:20px; transition:transform .2s ease, opacity .2s ease;}
-  .rec-main-btn.recording .rec-icon{opacity:0; transform:scale(0.5);}
-  .rec-main-btn.has-recording .rec-icon{font-size:24px;}
-  
-  /* Progress bar inside button */
-  .rec-progress{position:absolute; left:0; top:0; bottom:0; width:0%;
-    background:linear-gradient(90deg,var(--rec),#ff8896); border-radius:12px;
-    transition:width .1s linear; z-index:0;}
-  .rec-main-btn .btn-content{position:relative; z-index:1; display:flex; align-items:center; gap:10px;}
-  
-  /* Timer during recording */
-  .rec-timer-inline{font-variant-numeric:tabular-nums; font-family:"Fraunces",serif; font-size:16px;}
-  
-  /* VU meter inline */
-  .rec-vu-inline{display:flex; gap:3px; height:20px; align-items:flex-end; margin-left:8px;}
-  .rec-vu-inline i{width:3px; background:var(--rec); border-radius:2px; height:6px; opacity:.4;
-    transition:height .08s ease, opacity .08s ease;}
-  
-  /* Playback buttons row (shown after recording) */
-  .rec-playback-row{display:none; gap:12px; justify-content:center; margin-top:14px; flex-wrap:wrap;}
-  .rec-playback-row.show{display:flex;}
-  .rec-playback-btn{
-    appearance:none; cursor:pointer; display:inline-flex; align-items:center; gap:8px;
-    background:rgba(255,255,255,.06); color:var(--ink);
-    border:1px solid var(--line); border-radius:999px; padding:10px 18px;
-    font:500 13px/1 inherit; transition:all .15s ease;
-  }
-  .rec-playback-btn:hover{background:rgba(255,255,255,.10); border-color:var(--line-strong)}
-  .rec-playback-btn.playing{background:var(--accent); color:#0a1220; border-color:transparent}
-  .rec-playback-btn.own.playing{background:var(--good); color:#0a1220; border-color:transparent}
-  .rec-playback-btn .play-icon{font-size:16px;}
-  
-  /* Mini player for own recording */
-  .rec-mini-player{display:none; margin-top:14px; padding:12px;
-    background:rgba(0,0,0,.25); border:1px solid var(--line); border-radius:10px;}
-  .rec-mini-player.show{display:block;}
-  .rec-mini-player-inner{display:flex; align-items:center; gap:10px;}
-  .rec-mini-btn{appearance:none; cursor:pointer; width:38px; height:38px; border-radius:50%;
-    background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.30);
-    color:#B0B8C8; display:grid; place-items:center; font-size:14px;
-    transition:all .15s ease; flex:none;}
-  .rec-mini-btn:hover{background:rgba(255,255,255,.14); color:#fff}
-  .rec-mini-btn.playing{background:linear-gradient(135deg,#ff5b6b,#ff8896); color:#0a1220; border-color:transparent}
-  .rec-mini-progress{flex:1; height:4px; border-radius:999px;
-    background:rgba(255,255,255,.12); cursor:pointer; position:relative}
-  .rec-mini-progress .mp-bar{height:100%; border-radius:999px; width:0%;
-    background:linear-gradient(90deg,var(--rec),#ff8896)}
-  .rec-mini-time{font-size:11px; color:var(--ink-dim); font-variant-numeric:tabular-nums; flex:none;}
-  
-  .actions .btn.play-own{background:rgba(168,230,180,.12); color:var(--good);
-    border-color:rgba(168,230,180,.35)}
-  .actions .btn.play-own:hover{background:rgba(168,230,180,.22)}
-  .actions .btn.play-own.playing{background:var(--good); color:#0a1220; border-color:transparent}
-  .actions .btn.play-ans{background:rgba(255,158,138,.10); color:var(--accent);
-    border-color:rgba(255,158,138,.3)}
-  .actions .btn.play-ans:hover{background:rgba(255,158,138,.2)}
-  .actions .btn.play-ans.playing{background:var(--accent); color:#0a1220; border-color:transparent}
+  .rec-btn:active{transform:scale(.97)}
+  .rec-btn[data-state="recording"],
+  .rec-btn[data-state="playing"]{border-color:var(--rec-gray)}
+  /* 填充层：录制=已录秒数/120，播放=播放进度，宽度由 rAF / timeupdate 逐帧写 */
+  .rec-btn .rec-fill{position:absolute; left:0; top:0; bottom:0; width:0%;
+    background:linear-gradient(90deg,var(--accent),var(--accent-2));}
+  /* 内容层：cross-fade + scale 0.85→1，200ms */
+  .rec-btn .rec-content{position:absolute; inset:0; display:flex; align-items:center;
+    justify-content:center; gap:8px; opacity:0; transform:scale(.85);
+    transition:opacity .2s,transform .2s; pointer-events:none;
+    font-variant-numeric:tabular-nums;}
+  .rec-btn[data-state="idle"]      .c-idle {opacity:1; transform:scale(1); color:var(--accent)}
+  .rec-btn[data-state="recording"] .c-rec  {opacity:1; transform:scale(1); color:#fff;
+    text-shadow:0 0 4px rgba(0,0,0,.45); font-size:13px}
+  .rec-btn[data-state="recorded"]  .c-play {opacity:1; transform:scale(1); color:var(--accent)}
+  .rec-btn[data-state="playing"]   .c-pause{opacity:1; transform:scale(1); color:#fff}
+  .rec-btn .rec-dot{width:8px; height:8px; border-radius:50%; background:var(--rec);
+    flex:none; animation:recPulse 1s infinite}
+  .rec-btn.warn .rec-dot{animation-duration:.4s}
+  @keyframes recPulse{0%,100%{opacity:1}50%{opacity:.25}}
+  /* 参考回答按钮：recorded/playing 才可见；始终占位（opacity:0 + pointer-events:none）
+     出现时淡入 + translateX(-8px→0) 240ms；配色跟随主题 accent-2，不做规格里的绿色 */
+  .ref-btn{height:44px; border-radius:22px; border:none; flex:none;
+    padding:0 20px; font:600 13px/1 inherit; cursor:pointer;
+    background:linear-gradient(135deg,var(--ref-g1),var(--ref-g2));
+    color:var(--ref-ink); box-shadow:0 0 18px var(--ref-glow);
+    opacity:0; transform:translateX(-8px); pointer-events:none;
+    transition:opacity .24s ease,transform .24s ease;}
+  .ref-btn.show{opacity:1; transform:translateX(0); pointer-events:auto}
   .actions .btn.hidden{display:none}
   .modal-actions{display:flex; gap:8px; margin-top:18px; flex-wrap:wrap; justify-content:flex-end}
-  .modal-actions button{appearance:none; cursor:pointer; background:rgba(255,255,255,.06);
+  .modal-actions button{appearance:none; cursor:pointer; background:var(--f-08);
     color:var(--ink); border:1px solid var(--line); border-radius:999px;
     padding:8px 14px; font:500 13px/1 inherit;}
-  .modal-actions button:hover{background:rgba(255,255,255,.10)}
+  .modal-actions button:hover{background:var(--f-14)}
   .modal-actions .primary{background:linear-gradient(135deg,#ff9e8a,#ffbca8); color:#0a1220; border-color:transparent}
   .modal-actions .rec{background:linear-gradient(135deg,#ff5b6b,#ff8896); color:#0a1220; border-color:transparent}
   .modal-actions .danger:hover{background:rgba(255,80,80,.16); border-color:rgba(255,80,80,.5)}
   /* === misc === */
   .toast{position:fixed; bottom:96px; left:50%; transform:translateX(-50%) translateY(20px);
-    background:rgba(10,18,32,.95); color:var(--ink);
+    background:var(--toast-bg); color:var(--toast-ink);
     border:1px solid var(--line-strong); border-radius:999px;
     padding:10px 18px; font-size:13px;
     opacity:0; pointer-events:none; transition:all .25s ease; z-index:90;}
@@ -384,14 +366,15 @@
     color:var(--ink-dim); font-size:12px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;}
   .ver-badge{position:fixed; right:14px; bottom:76px; z-index:65;
     font:500 10px/1 inherit; letter-spacing:.04em; color:rgba(154,163,184,.55);
-    background:rgba(13,22,38,.6); border:1px solid var(--line);
+    background:var(--ver-badge-bg); border:1px solid var(--line);
     padding:4px 9px; border-radius:999px; backdrop-filter:blur(6px);
     pointer-events:none; user-select:none;}
   @media (max-width:880px){ .ver-badge{bottom:70px} }
 
   /* === tab navigation === */
   .tab-nav{
-    display:flex; gap:0; padding:0 28px; background:rgba(10,18,32,.5);
+    display:flex; gap:0; padding:0 28px; background:var(--tabnav-bg);
+    backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
     border-bottom:1px solid var(--line);
   }
   .tab-nav button{
@@ -410,7 +393,7 @@
       width:36px; height:36px; flex-direction:column; align-items:center; justify-content:center;
       gap:5px; padding:4px; border-radius:8px; transition:background .15s;
     }
-    .hamburger:hover{background:rgba(255,255,255,.08)}
+    .hamburger:hover{background:var(--f-10)}
     .hamburger span{display:block; width:20px; height:2px; background:var(--ink); border-radius:2px; transition:all .2s ease}
     .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
     .hamburger.open span:nth-child(2){opacity:0}
@@ -423,7 +406,7 @@
     .drawer{
       position:fixed; top:0; left:0; bottom:0; z-index:56;
       width:280px; max-width:85vw;
-      background:linear-gradient(180deg, #16273e, #0d1626);
+      background:var(--drawer-grad);
       border-right:1px solid var(--line-strong);
       transform:translateX(-100%); transition:transform .25s ease;
       display:flex; flex-direction:column; padding:16px;
@@ -436,7 +419,7 @@
       font-size:14px; color:var(--ink); text-decoration:none; cursor:pointer;
       transition:background .12s;
     }
-    .drawer a:hover{background:rgba(255,255,255,.06)}
+    .drawer a:hover{background:var(--f-08)}
     .drawer a.active{background:rgba(255,158,138,.14); color:var(--accent)}
     .drawer a .ic{font-size:16px; width:20px; text-align:center}
     @media (max-width:880px){
@@ -494,7 +477,7 @@
     align-items:center; justify-content:center; gap:24px;
   }
   .countdown-overlay.show{display:flex}
-  .countdown-title{font-size:18px;color:var(--ink-dim);letter-spacing:.1em;text-transform:uppercase}
+  .countdown-title{font-size:18px;color:#aeb9cb;letter-spacing:.1em;text-transform:uppercase}
   .countdown-number{
     font-family:"Fraunces",serif; font-weight:700; font-size:120px;
     color:var(--accent); line-height:1; text-shadow:0 0 60px rgba(255,158,138,.4);
@@ -504,7 +487,7 @@
   .countdown-number.warning{color:#ffcc66;animation:pulse 1s infinite}
   .countdown-number.danger{color:#ff5b6b;animation:pulse 0.5s infinite}
   @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
-  .countdown-hint{font-size:14px;color:var(--ink-dim)}
+  .countdown-hint{font-size:14px;color:#aeb9cb}
   .countdown-done-btn{
     margin-top:16px; padding:14px 32px; font-size:18px;
     background:rgba(168,230,180,.2); border:2px solid var(--good);
@@ -512,8 +495,8 @@
     transition:all .2s ease; font-weight:600;
   }
   .countdown-done-btn:hover{background:rgba(168,230,180,.35);transform:scale(1.05)}
-  .countdown-skip{font-size:13px;color:var(--ink-dim);cursor:pointer;padding:8px 16px}
-  .countdown-skip:hover{color:var(--ink)}
+  .countdown-skip{font-size:13px;color:#aeb9cb;cursor:pointer;padding:8px 16px}
+  .countdown-skip:hover{color:#ffffff}
   /* countdown rec button - same style as done button but muted */
   .countdown-rec-btn{
     margin-top:8px; padding:14px 32px; font-size:18px;
@@ -526,56 +509,56 @@
   /* === done button states (bigger, white to green) === */
   .btn-done{
     padding:12px 20px !important; font-size:15px !important; font-weight:600 !important;
-    background:rgba(255,255,255,.08) !important; border:2px solid rgba(255,255,255,.25) !important;
+    background:var(--f-10) !important; border:2px solid var(--f-25) !important;
     color:var(--ink) !important; border-radius:999px !important;
     transition:all .25s ease; cursor:pointer;
   }
-  .btn-done:hover{background:rgba(255,255,255,.14) !important}
+  .btn-done:hover{background:var(--f-16) !important}
   .btn-done.answered{
     background:var(--good) !important; border-color:var(--good) !important;
-    color:#0a1220 !important; font-weight:700 !important;
+    color:#ffffff !important; font-weight:700 !important;
     box-shadow:0 4px 14px rgba(64,196,99,.35);
   }
   .btn-done.answered:hover{ background:var(--good) !important; }
-  .appVer{ color:var(--ink-dim); text-decoration:none; border-bottom:1px dashed rgba(255,255,255,.25); }
+  .appVer{ color:var(--ink-dim); text-decoration:none; border-bottom:1px dashed var(--f-25); }
   .appVer:hover{ color:var(--accent); border-bottom-color:currentColor; }
 
   /* === question heatmap === */
   .heatmap-tabs{display:flex;gap:8px;margin:0 0 16px}
   .heatmap-tab{
     padding:8px 16px; border-radius:999px; font-size:13px; font-weight:500;
-    background:rgba(255,255,255,.06); border:1px solid var(--line);
+    background:var(--f-08); border:1px solid var(--line);
     color:var(--ink-dim); cursor:pointer; transition:all .15s;
   }
   .heatmap-tab.active{background:var(--accent);color:#0a1220;border-color:transparent}
   .question-heatmap{
     display:grid; grid-template-columns:repeat(auto-fill,minmax(28px,1fr));
-    gap:4px; padding:16px; background:rgba(255,255,255,.03);
+    gap:4px; padding:16px; background:var(--f-04);
     border:1px solid var(--line); border-radius:12px;
   }
   .q-heat-cell{
     aspect-ratio:1; border-radius:4px; cursor:pointer;
-    background:#2a3548; transition:all .15s;
+    background:var(--heat-empty); transition:all .15s;
     display:flex; align-items:center; justify-content:center;
-    font-size:10px; color:rgba(255,255,255,.5);
+    font-size:10px; color:var(--heat-ink);
   }
   .q-heat-cell:hover{transform:scale(1.15);z-index:1}
-  .q-heat-cell.level-0{background:#2a3548}
+  .q-heat-cell.level-0{background:var(--heat-empty)}
   .q-heat-cell.level-1{background:#4a9e6b}
   .q-heat-cell.level-2{background:#2d8a4e}
   .q-heat-cell.level-3{background:#1e6b38}
   .q-heat-cell.level-4{background:#155528}
   .time-heatmap{
     display:grid; grid-template-columns:repeat(auto-fill,minmax(20px,1fr));
-    gap:3px; padding:12px; background:rgba(255,255,255,.03);
+    gap:3px; padding:12px; background:var(--f-04);
     border:1px solid var(--line); border-radius:12px;
   }
   .t-heat-cell{
     aspect-ratio:1; border-radius:3px; cursor:pointer;
-    background:#2a3548; transition:all .15s;
+    background:var(--heat-empty); transition:all .15s;
   }
   .t-heat-cell:hover{transform:scale(1.2);z-index:1}
-  .t-heat-cell.level-0{background:#2a3548}
+  .t-heat-cell.level-0{background:var(--heat-empty)}
   .t-heat-cell.level-1{background:#9be9a8}
   .t-heat-cell.level-2{background:#40c463}
   .t-heat-cell.level-3{background:#30a14e}
@@ -588,13 +571,13 @@
   /* === auth modal === */
   .auth-tabs{display:flex;gap:8px;margin:0 0 18px}
   .auth-tab{flex:1;padding:10px;border-radius:10px;border:1px solid var(--line);
-    background:rgba(255,255,255,.05);color:var(--ink-dim);cursor:pointer;font:500 13px/1 inherit;transition:all .15s}
-  .auth-tab:hover{background:rgba(255,255,255,.1)}
+    background:var(--f-07);color:var(--ink-dim);cursor:pointer;font:500 13px/1 inherit;transition:all .15s}
+  .auth-tab:hover{background:var(--f-14)}
   .auth-tab.active{background:var(--accent);color:#0a1220;border-color:transparent}
   .auth-field{margin:0 0 14px}
   .auth-field label{display:block;font-size:12px;color:var(--ink-dim);margin:0 0 6px}
   .auth-field input{width:100%;padding:12px;border-radius:10px;border:1px solid var(--line);
-    background:rgba(255,255,255,.06);color:var(--ink);font:500 14px/1 inherit;outline:none;box-sizing:border-box}
+    background:var(--f-08);color:var(--ink);font:500 14px/1 inherit;outline:none;box-sizing:border-box}
   .auth-field input:focus{border-color:var(--accent)}
   .code-row{display:flex;gap:8px;align-items:center}
   .code-row input{flex:1;min-width:0}
@@ -618,15 +601,15 @@
   .search-hint{padding:8px 16px; font-size:12px; color:var(--muted); border-bottom:1px solid var(--line)}
   .search-results{max-height:54vh; overflow:auto; padding:6px}
   .search-item{display:block; width:100%; text-align:left; background:transparent; border:none; border-radius:10px; padding:10px 12px; cursor:pointer; color:var(--ink); font:inherit}
-  .search-item:hover,.search-item.sel{background:rgba(255,255,255,.07)}
+  .search-item:hover,.search-item.sel{background:var(--f-08)}
   .si-top{display:flex; align-items:center; gap:8px}
-  .si-part{flex-shrink:0; font-size:11px; font-weight:700; padding:2px 8px; border-radius:999px; background:rgba(94,118,153,.28); color:#c9d6ec}
+  .si-part{flex-shrink:0; font-size:11px; font-weight:700; padding:2px 8px; border-radius:999px; background:rgba(94,118,153,.28); color:var(--ink-dim)}
   .si-part.p2{background:rgba(255,158,138,.2); color:var(--accent)}
   .si-label{font-size:11px; color:var(--ink-dim); font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
   .si-topic{flex:1; min-width:0; font-size:12px; color:var(--ink-dim); overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
   .si-text{margin:5px 0 4px; font-size:14px; line-height:1.45; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden}
   .si-badges{display:flex; gap:6px; flex-wrap:wrap; margin-top:2px}
-  .si-badge{font-size:11px; padding:2px 8px; border-radius:999px; background:rgba(255,255,255,.07); color:var(--ink-dim)}
+  .si-badge{font-size:11px; padding:2px 8px; border-radius:999px; background:var(--f-08); color:var(--ink-dim)}
   .si-badge.on{color:#ffcc66; background:rgba(255,204,102,.12)}
   .si-badge.good{color:var(--good); background:rgba(168,230,180,.12)}
   .si-badge.rec{color:var(--accent); background:rgba(255,158,138,.14)}
@@ -650,6 +633,10 @@
     <button class="tool tb-extra" id="btnImport">⤒ 导入</button>
     <button class="tool tb-extra" id="btnReset">↺ 重置</button>
     <button class="tool" id="btnAuth" title="登录后进度云端保存">🔑 登录</button>
+    <button class="tool theme-toggle" id="btnTheme" title="切换明暗主题" aria-label="切换明暗主题">
+      <svg class="ic-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <svg class="ic-moon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+    </button>
     <button class="tool more-trigger" id="btnMore" title="更多操作">⋯ 更多</button>
     <div class="more-menu" id="moreMenu">
       <button id="moreEdit">✎ 编辑</button>
@@ -681,7 +668,7 @@
       <a data-tab="p23" onclick="switchTab('p23')"><span class="ic">🎤</span> Part 2&3 · Cue Cards</a>
       <a data-tab="overview" onclick="switchTab('overview')"><span class="ic">📊</span> 总览 · 进度</a>
       <hr style="border-color:var(--line);margin:14px 0">
-      <a onclick="document.getElementById('recBtn').click()"><span class="ic">⏺</span> 录制回答</a>
+      <a onclick="triggerRec()"><span class="ic">⏺</span> 录制回答</a>
       <a onclick="editing=!editing; applyEditingMode(); document.getElementById('drawer').classList.remove('open'); document.getElementById('drawerOverlay').classList.remove('open'); document.getElementById('hamburger').classList.remove('open')"><span class="ic">✎</span> 编辑模式</a>
       <a onclick="document.getElementById('btnExport').click()"><span class="ic">⤓</span> 导出 JSON</a>
     </nav>
@@ -728,16 +715,24 @@
       </div>
       <div class="actions">
         <button class="btn star" id="starBtn">★ 收藏</button>
-        <button class="btn" id="recBtn">⏺ 录制我的回答</button>
-        <button class="btn play-own hidden" id="myAudioBtn" title="试听我的录音">🎙 我的录音</button>
-        <button class="btn play-ans hidden" id="ansAudioBtn" title="试听参考答案音频">🔊 参考答案</button>
+        <button class="rec-btn rec-state" id="recStateBtn" data-state="idle" aria-label="开始录音" type="button">
+          <span class="rec-fill" id="recFill"></span>
+          <span class="rec-content c-idle">
+            <svg width="15" height="15" viewBox="0 0 24 24"><path d="M12 15a4 4 0 0 0 4-4V6a4 4 0 1 0-8 0v5a4 4 0 0 0 4 4Z" fill="currentColor"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+              <span>点击开始录制</span>
+          </span>
+          <span class="rec-content c-rec"><span class="rec-dot"></span><span class="rec-timer" id="recTimer">00:00 / 02:00</span></span>
+          <span class="rec-content c-play"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+          <span class="rec-content c-pause"><svg width="18" height="18" viewBox="0 0 24 24"><path d="M7 5h4v14H7zM13 5h4v14h-4z" fill="currentColor"/></svg></span>
+        </button>
+        <button class="ref-btn" id="refBtn">参考回答</button>
         <button class="btn" id="prevBtn">◀ 上一题</button>
         <button class="btn primary" id="nextBtn">下一题 ▶</button>
       </div>
     </article>
     <footer>
       <span>brand9 · Part 1 · 共 <b id="totalQ">0</b> 题</span>
-      <a class="appVer" href="CHANGELOG.html" title="查看版本更新历史">v2.3.0</a>
+      <a class="appVer" href="CHANGELOG.html" title="查看版本更新历史">v2.4.0</a>
     </footer>
   </section>
 </div>
@@ -782,15 +777,23 @@
         <div id="p23Part3"></div>
         <div class="actions" style="margin-top:16px">
           <button class="btn star" id="p23StarBtn">☆ 收藏</button>
-          <button class="btn" id="p23RecBtn">⏺ 录制</button>
-          <button class="btn play-own hidden" id="p23MyAudioBtn" title="试听我的录音">🎙 我的录音</button>
-          <button class="btn play-ans hidden" id="p23AnsAudioBtn" title="试听参考答案音频">🔊 参考答案</button>
+          <button class="rec-btn rec-state" id="p23RecStateBtn" data-state="idle" aria-label="开始录音" type="button">
+            <span class="rec-fill" id="p23RecFill"></span>
+            <span class="rec-content c-idle">
+              <svg width="15" height="15" viewBox="0 0 24 24"><path d="M12 15a4 4 0 0 0 4-4V6a4 4 0 1 0-8 0v5a4 4 0 0 0 4 4Z" fill="currentColor"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+              <span>点击开始录制</span>
+            </span>
+            <span class="rec-content c-rec"><span class="rec-dot"></span><span class="rec-timer" id="p23RecTimer">00:00 / 02:00</span></span>
+            <span class="rec-content c-play"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+            <span class="rec-content c-pause"><svg width="18" height="18" viewBox="0 0 24 24"><path d="M7 5h4v14H7zM13 5h4v14h-4z" fill="currentColor"/></svg></span>
+          </button>
+          <button class="ref-btn" id="p23RefBtn">参考回答</button>
           <button class="btn" id="p23PrevBtn">◀ 上一题</button>
           <button class="btn primary" id="p23NextBtn">下一题 ▶</button>
           <button class="btn btn-done" id="p23DoneBtn">□ 标记已完成</button>
         </div>
       </article>
-      <footer><span>brand9 · Part 2&3 · 共 <b id="p23Total">0</b> 题</span><a class="appVer" href="CHANGELOG.html" title="查看版本更新历史">v2.3.0</a></footer>
+      <footer><span>brand9 · Part 2&3 · 共 <b id="p23Total">0</b> 题</span><a class="appVer" href="CHANGELOG.html" title="查看版本更新历史">v2.4.0</a></footer>
     </section>
   </div>
 </div>
@@ -800,19 +803,19 @@
     <h2 style="font-family:var(--font-serif);font-weight:600;font-size:clamp(28px,4vw,42px);margin:0 0 4px">📊 学习进度总览</h2>
     <p style="color:var(--ink-dim);margin:0 0 24px;font-size:14px">每题练完点击 □ 标记已完成 即自动记录。方块越深 = 当日练习越多。</p>
     <div class="stats-row" style="display:flex;gap:16px;flex-wrap:wrap;margin:0 0 28px" id="statsRow">
-      <div class="stat-card" style="flex:1;min-width:140px;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:14px;padding:16px">
+      <div class="stat-card" style="flex:1;min-width:140px;background:var(--f-06);border:1px solid var(--line);border-radius:14px;padding:16px">
         <div style="font-size:12px;color:var(--ink-dim);margin-bottom:4px">🔥 连续打卡</div>
         <div style="font-family:var(--font-serif);font-weight:600;font-size:28px;color:var(--accent)" id="statStreak">0</div><div style="font-size:12px;color:var(--ink-dim)">天</div>
       </div>
-      <div class="stat-card" style="flex:1;min-width:140px;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:14px;padding:16px">
+      <div class="stat-card" style="flex:1;min-width:140px;background:var(--f-06);border:1px solid var(--line);border-radius:14px;padding:16px">
         <div style="font-size:12px;color:var(--ink-dim);margin-bottom:4px">📝 今日已练</div>
         <div style="font-family:var(--font-serif);font-weight:600;font-size:28px;color:var(--ink)" id="statToday">0</div><div style="font-size:12px;color:var(--ink-dim)">题</div>
       </div>
-      <div class="stat-card" style="flex:1;min-width:140px;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:14px;padding:16px">
+      <div class="stat-card" style="flex:1;min-width:140px;background:var(--f-06);border:1px solid var(--line);border-radius:14px;padding:16px">
         <div style="font-size:12px;color:var(--ink-dim);margin-bottom:4px">⏱ 累计练习</div>
         <div style="font-family:var(--font-serif);font-weight:600;font-size:28px;color:var(--ink)" id="statTotal">0</div><div style="font-size:12px;color:var(--ink-dim)">分钟</div>
       </div>
-      <div class="stat-card" style="flex:1;min-width:140px;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:14px;padding:16px">
+      <div class="stat-card" style="flex:1;min-width:140px;background:var(--f-06);border:1px solid var(--line);border-radius:14px;padding:16px">
         <div style="font-size:12px;color:var(--ink-dim);margin-bottom:4px">✅ 总完成</div>
         <div style="font-family:var(--font-serif);font-weight:600;font-size:28px;color:var(--good)" id="statDone">0</div><div style="font-size:12px;color:var(--ink-dim)">题 / <span id="statDoneOf">0</span></div>
       </div>
@@ -824,7 +827,7 @@
     <div id="questionHeatmapContainer" class="question-heatmap"></div>
     <div id="timeHeatmapContainer" class="time-heatmap" style="display:none"></div>
     <div class="heatmap-legend" id="heatmapLegend">
-      <span style="background:#2a3548;padding:2px 8px;border-radius:3px">未练</span>
+<span style="background:var(--heat-empty);padding:2px 8px;border-radius:3px">未练</span>
       <span style="background:#4a9e6b;padding:2px 8px;border-radius:3px">1次</span>
       <span style="background:#2d8a4e;padding:2px 8px;border-radius:3px">2次</span>
       <span style="background:#1e6b38;padding:2px 8px;border-radius:3px">3次</span>
@@ -833,7 +836,7 @@
     <div id="heatmapContainer"></div>
     <div style="display:flex;align-items:center;gap:8px;font-size:11px;color:var(--ink-dim);justify-content:flex-end;margin:0 0 24px">
       <span>Less</span>
-      <span style="width:12px;height:12px;border-radius:3px;background:#ebedf0"></span>
+      <span style="width:12px;height:12px;border-radius:3px;background:var(--heat-empty)"></span>
       <span style="width:12px;height:12px;border-radius:3px;background:#9be9a8"></span>
       <span style="width:12px;height:12px;border-radius:3px;background:#40c463"></span>
       <span style="width:12px;height:12px;border-radius:3px;background:#30a14e"></span>
@@ -848,7 +851,7 @@
   <div class="countdown-number" id="countdownNumber">45</div>
   <div class="countdown-hint" id="countdownHint">音频播放完毕，请准备作答</div>
   <button class="countdown-done-btn" id="countdownDoneBtn">&#x25A1; 我已作答</button>
-  <button class="countdown-rec-btn" id="countdownRecBtn">&#x1F399; 录制我的回答</button>
+  <button class="countdown-rec-btn" id="countdownRecBtn">&#x1F399; 开始录制</button>
   <div class="countdown-skip" id="countdownSkip">跳过 (&#x2192;)</div>
 </div>
 
@@ -869,49 +872,6 @@
   <div class="tog" id="pbAuto" title="一题播完自动播下一题"><span class="sw"></span><span>连播</span></div>
 </div>
 
-<div class="rec-panel" id="recPanel" hidden>
-  <div class="rec-head">
-    <h2>⏺ 录制你的回答</h2>
-    <button class="rec-reveal-btn" id="recRevealBtn" title="录制时可随时查看/隐藏参考答案">👁 显示参考答案</button>
-  </div>
-  <div class="rec-btn-wrap">
-    <button class="rec-main-btn" id="recMainBtn" type="button">
-      <div class="rec-progress" id="recProgress"></div>
-      <div class="btn-content">
-        <span class="rec-icon" id="recIcon">⏺</span>
-        <span class="rec-label" id="recLabel">开始录音</span>
-        <span class="rec-timer-inline hidden" id="recTimerInline">0:00</span>
-        <span class="rec-vu-inline" id="recVuInline" aria-hidden="true">
-          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-        </span>
-      </div>
-    </button>
-  </div>
-  <p style="color:var(--ink-dim); font-size:12px; text-align:center; margin:8px 0 0">
-    点击按钮开始/停止录音。建议时长 <b>30–60 秒</b>。
-  </p>
-  <div class="rec-playback-row" id="recPlaybackRow">
-    <button class="rec-playback-btn own" id="playOwnBtn" title="试听我的录音">
-      <span class="play-icon">▶</span> 我的录音
-    </button>
-    <button class="rec-playback-btn" id="playAnsBtn" title="试听参考答案音频">
-      <span class="play-icon">🔊</span> 参考答案
-    </button>
-  </div>
-  <div class="rec-mini-player" id="recMiniPlayer">
-    <div class="rec-mini-player-inner">
-      <button class="rec-mini-btn" id="miniPlayBtn">▶</button>
-      <div class="rec-mini-progress" id="miniProgress"><div class="mp-bar" id="miniBar"></div></div>
-      <span class="rec-mini-time" id="miniTime">0:00 / 0:00</span>
-    </div>
-    <audio id="recAudio" preload="metadata"></audio>
-  </div>
-  <div class="modal-actions">
-    <button class="danger" id="recDiscard">丢弃</button>
-    <button class="primary hidden" id="recSave">💾 保存到本地</button>
-    <button id="recClose">关闭</button>
-  </div>
-</div>
 <audio id="ansAudio" preload="none"></audio>
 <audio id="myAudio" preload="none"></audio>
 
@@ -924,15 +884,15 @@
       <button class="auth-tab active" id="authTabLogin" onclick="switchAuthMode('login')">登录</button>
       <button class="auth-tab" id="authTabReg" onclick="switchAuthMode('register')">注册</button>
     </div>
-    <div class="auth-field">
-      <label for="authUser">用户名</label>
-      <input type="text" id="authUser" placeholder="3-32 个字符" autocomplete="username">
+    <div class="auth-field" id="authNickWrap" style="display:none">
+      <label for="authNick">昵称（选填）</label>
+      <input type="text" id="authNick" placeholder="不填则用邮箱前缀" maxlength="32" autocomplete="nickname">
     </div>
-    <div class="auth-field" id="authEmailWrap" style="display:none">
+    <div class="auth-field">
       <label for="authEmail">邮箱</label>
       <div class="code-row">
-        <input type="email" id="authEmail" placeholder="接收验证码的邮箱" autocomplete="email">
-        <button class="btn-code" id="btnSendCode" type="button">发送验证码</button>
+        <input type="email" id="authEmail" placeholder="登录邮箱" autocomplete="email">
+        <button class="btn-code" id="btnSendCode" type="button" style="display:none">发送验证码</button>
       </div>
     </div>
     <div class="auth-field" id="authCodeWrap" style="display:none">
@@ -961,9 +921,8 @@
 
 <script>
 const STORAGE_KEY = "brand9::doc::v3", STAR_KEY = "brand9::stars::v2", REVEAL_KEY = "brand9::reveal::v2";
-const APP_VERSION = "v2.3.0";
+const APP_VERSION = "v2.4.0";
 let doc = loadDoc(), stars = loadStars(), editing = false, currentIdx = 0, autoPlay = false, saveTimer = null;
-let recState = { recorder:null, stream:null, audioCtx:null, analyser:null, rafId:0, chunks:[], blob:null, startedAt:0 };
 let reveal = loadReveal();
 
 function loadDoc(){
@@ -1176,82 +1135,46 @@ $("#moreReset").onclick = ()=> $("#btnReset").click();
 $("#starBtn").onclick = ()=> toggleStar(doc[currentIdx].label);
 $("#gateMask").onclick = ()=>{ reveal=true; saveReveal(); render(); toast("答案已显示"); };
 
-function fmt2(sec){ const m=Math.floor(sec/60), s=Math.floor(sec%60); return `${m}:${String(s).padStart(2,"0")}`; }
+function fmt2(sec){ const m=Math.floor(sec/60), s=Math.floor(sec%60); return `${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`; }
 function curRecLabel(){
   return document.querySelector(".tab-btn.active")?.dataset.tab === "p23"
     ? (p23Data[p23Idx]?.label || "")
     : (doc[currentIdx]?.label || "");
 }
-function resetMiniPlayer(){
-  $("#miniPlayBtn").textContent = "▶"; $("#miniPlayBtn").classList.remove("playing");
-  $("#miniBar").style.width = "0%"; $("#miniTime").textContent = "0:00 / 0:00";
+
+/* ============================================================
+   四态录音状态机 recordState: 'idle'|'recording'|'recorded'|'playing'
+   单一状态变量驱动全部 UI（Part1 与 P23 两处按钮同体状态）
+   ============================================================ */
+const MAX_REC_SEC = 120;
+const recState = { recorder:null, stream:null, chunks:[] };
+let recordState = 'idle';          /* 唯一状态变量 */
+let recordedDuration = 0;          /* 上一段有效录音时长(秒)，<1s误触回退判断用 */
+let recStartTs = 0, recRaf = 0;
+let pressTimer = 0, longPressed = false;
+let myRecURL = null, myRecBlob = null;
+
+const recBtns = $$(".rec-btn.rec-state");
+const recFills = $$(".rec-btn.rec-state .rec-fill");
+const recTimers = $$(".rec-btn.rec-state .rec-timer");
+const refBtns = $$(".ref-btn");
+
+const setFills = w => recFills.forEach(f => f.style.width = w);
+const setTimers = t => recTimers.forEach(el => el.textContent = t);
+const setWarn = w => recBtns.forEach(b => b.classList.toggle("warn", w));
+function setRecState(next){
+  recordState = next;
+  recBtns.forEach(b => b.dataset.state = next);
+  /* 参考回答仅 recorded / playing 可见；始终占位（opacity:0 + pointer-events:none），整行不位移 */
+  refBtns.forEach(b => b.classList.toggle("show", next === "recorded" || next === "playing"));
 }
-function bindMiniPlayer(){
-  const a = $("#recAudio");
-  $("#miniPlayBtn").addEventListener("click", ()=>{ if(a.paused || a.ended) a.play(); else a.pause(); });
-  a.addEventListener("play",  ()=>{ $("#miniPlayBtn").textContent="⏸"; $("#miniPlayBtn").classList.add("playing"); });
-  a.addEventListener("pause", ()=>{ $("#miniPlayBtn").textContent="▶"; $("#miniPlayBtn").classList.remove("playing"); });
-  a.addEventListener("ended", ()=>{ $("#miniPlayBtn").textContent="▶"; $("#miniPlayBtn").classList.remove("playing"); });
-  a.addEventListener("timeupdate", ()=>{
-    const pct = a.duration ? (a.currentTime/a.duration*100) : 0;
-    $("#miniBar").style.width = pct+"%";
-    $("#miniTime").textContent = `${fmt(a.currentTime)} / ${fmt(a.duration)}`;
-  });
-  $("#miniProgress").addEventListener("click", e=>{
-    const r = e.currentTarget.getBoundingClientRect();
-    const ratio = (e.clientX-r.left)/r.width;
-    if(a.duration) a.currentTime = ratio*a.duration;
-  });
-}
-function openRec(){
-  const panel = $("#recPanel");
-  /* relocate panel inline inside the currently visible question card */
-  const card = document.querySelector(".tab-panel.active .card");
-  if(card && !card.contains(panel)) card.appendChild(panel);
-  panel.hidden = false;
-  resetRecUI();
-  syncRevealBtn();
-  requestAnimationFrame(()=>{ panel.scrollIntoView({behavior:"smooth", block:"nearest"}); });
-}
-function closeRec(){ stopRec(true); $("#recPanel").hidden = true; }
-function syncRevealBtn(){
-  const b = $("#recRevealBtn");
-  b.classList.toggle("on", reveal);
-  b.textContent = reveal ? "👁 隐藏参考答案" : "👁 显示参考答案";
-}
-function setRecButton(state){
-  const btn = $("#recMainBtn"), icon = $("#recIcon"), label = $("#recLabel"),
-        timer = $("#recTimerInline"), vu = $("#recVuInline");
-  btn.classList.remove("recording","has-recording","playing-rec");
-  timer.classList.add("hidden"); vu.classList.add("hidden");
-  if(state === "recording"){
-    btn.classList.add("recording");
-    icon.textContent = "⏺"; label.textContent = "点击停止";
-    timer.classList.remove("hidden"); vu.classList.remove("hidden");
-  } else if(state === "has-rec"){
-    btn.classList.add("has-recording");
-    icon.textContent = "▶"; label.textContent = "播放录音";
-  } else if(state === "playing-rec"){
-    btn.classList.add("has-recording","playing-rec");
-    icon.textContent = "⏸"; label.textContent = "暂停";
-  } else {
-    icon.textContent = "⏺"; label.textContent = "开始录音";
-  }
-}
-function resetRecUI(){
-  setRecButton("idle");
-  $("#recProgress").style.width = "0%";
-  $("#recPlaybackRow").classList.remove("show");
-  $("#recMiniPlayer").classList.remove("show");
-  $("#recSave").classList.add("hidden");
-  resetMiniPlayer();
-  $$("#recVuInline i").forEach(b => { b.style.height = "6px"; b.style.opacity = ".4"; });
-  recState.blob = null;
-  syncRevealBtn();
-}
-let recTimerTick;
-async function startRec(){
-  // --- Support / secure-context checks first: raw errors are useless to the user ---
+function vibrate(){ if(navigator.vibrate) navigator.vibrate(30); }
+
+/* ---------- 录制 ---------- */
+async function startRecording(){
+  if(recordState === "recording") return;
+  stopPlaying();                                  /* 播放中按录制：先停播放再录 */
+  const ansA = $("#ansAudio"); if(ansA) ansA.pause();
   if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
     alert("⚠️ 无法访问麦克风。\n\n原因：当前页面不是安全上下文（HTTP 公网地址），浏览器禁止网页调用麦克风。\n\n✅ 解决方法：\n1. 用本地地址访问录音: http://127.0.0.1:8996/\n2. 或为公网地址配置 HTTPS（手机在 http:// 页面上无法录音）");
     return;
@@ -1263,8 +1186,7 @@ async function startRec(){
   let stream;
   try{ stream = await navigator.mediaDevices.getUserMedia({audio:true}); }
   catch(e){
-    const name = e.name || "";
-    let msg;
+    const name = e.name || ""; let msg;
     if(name === "NotAllowedError" || name === "PermissionDeniedError" || name === "SecurityError")
       msg = "麦克风权限被拒绝。请在浏览器地址栏点击麦克风图标选择“允许”，或到系统设置中开启麦克风权限，然后重试。";
     else if(name === "NotFoundError" || name === "DevicesNotFoundError")
@@ -1276,61 +1198,37 @@ async function startRec(){
     alert("⚠️ " + msg);
     return;
   }
-  recState.stream = stream;
+  recState.stream = stream; recState.chunks = [];
   try{
-    recState.audioCtx = new (window.AudioContext||window.webkitAudioContext)();
-    const src = recState.audioCtx.createMediaStreamSource(recState.stream);
-    recState.analyser = recState.audioCtx.createAnalyser();
-    recState.analyser.fftSize = 256;
-    src.connect(recState.analyser);
-    const data = new Uint8Array(recState.analyser.frequencyBinCount);
-    function tick(){
-      recState.analyser.getByteTimeDomainData(data);
-      let sum = 0; for(let i=0;i<data.length;i++){ const v=(data[i]-128)/128; sum+=v*v; }
-      const rms = Math.sqrt(sum/data.length);
-      const bars = $$("#recVuInline i"); const lit = Math.min(bars.length, Math.round(rms*bars.length*2.5));
-      bars.forEach((b,i)=>{ if(i<lit){ b.style.height=(8+Math.random()*16)+"px"; b.style.opacity="1"; } else { b.style.height="6px"; b.style.opacity=".4"; } });
-      recState.rafId = requestAnimationFrame(tick);
-    }
-    tick();
-  }catch(e){ console.warn("vu meter failed:", e); }
-  recState.chunks = [];
-  try{
-    recState.recorder = new MediaRecorder(recState.stream);
-    recState.recorder.onerror = (ev) => {
+    recState.recorder = new MediaRecorder(stream);
+    recState.recorder.onerror = ev => {
       toast("录音出错：" + ((ev && ev.error && ev.error.message) || "设备异常，请重试"));
-      stopRec();
+      stopRecording();
     };
   }catch(e){
-    recState.stream.getTracks().forEach(t=>t.stop());
+    stream.getTracks().forEach(t=>t.stop());
     toast("录音初始化失败：" + (e.message || e));
     return;
   }
   recState.recorder.ondataavailable = e => { if(e.data.size) recState.chunks.push(e.data); };
   recState.recorder.onstop = ()=>{
-    recState.blob = new Blob(recState.chunks, {type: recState.chunks[0]?.type||"audio/webm"});
-    const url = URL.createObjectURL(recState.blob);
-    $("#recAudio").src = url;
-    $("#recAudio").pause(); $("#recAudio").currentTime = 0;
-    $("#recPlaybackRow").classList.add("show");
-    $("#recMiniPlayer").classList.add("show");
-    $("#recSave").classList.remove("hidden");
-    resetMiniPlayer();
-    setRecButton("has-rec");
-    recState.stream.getTracks().forEach(t=>t.stop());
-    if(recState.audioCtx) recState.audioCtx.close();
-    cancelAnimationFrame(recState.rafId);
+    if(recState.stream) recState.stream.getTracks().forEach(t=>t.stop());
+    recState.stream = null;
+    const blob = new Blob(recState.chunks, {type: recState.chunks[0]?.type || "audio/webm"});
+    if(myRecURL) URL.revokeObjectURL(myRecURL);
+    myRecBlob = blob; myRecURL = URL.createObjectURL(blob);
+    const myA = $("#myAudio");
+    if(myA){ myA.pause(); myA.removeAttribute("src"); myA.src = myRecURL; }
     (async ()=>{
-      await saveRecBlob(curRecLabel(), recState.blob);
-      refreshRecButtons();
       const label = curRecLabel();
+      await saveRecBlob(label, blob);
+      refreshRecButtons();
       if(label){
         const activeTab = document.querySelector(".tab-btn.active")?.dataset.tab;
         if(activeTab === "p23"){
           const q = p23Data[p23Idx];
           if(q){
             logPractice(label, q.topic, q.section);
-            // 自动标记「已完成」：与点击「标记已完成」效果一致，免去手动点击
             const today = new Date().toISOString().substring(0,10);
             const done = getPracticeLog().some(e => e.label === q.label && e.date === today);
             const btn = $("#p23DoneBtn");
@@ -1348,68 +1246,114 @@ async function startRec(){
       }
     })();
   };
-  recState.recorder.start();
-  recState.startedAt = Date.now();
-  setRecButton("recording");
-  recTimerTick = setInterval(()=>{ const sec = (Date.now()-recState.startedAt)/1000; $("#recTimerInline").textContent = fmt2(sec); const pct = Math.min(100, sec/60*100); $("#recProgress").style.width = pct+"%"; }, 200);
+  try{ recState.recorder.start(); }catch(e){ toast("录音启动失败：" + (e.message||e)); return; }
+  recStartTs = performance.now();
+  setFills("0%"); setWarn(false); setRecState("recording");
+  vibrate();
+  recTick();
 }
-function stopRec(){
-  clearInterval(recTimerTick);
-  if(!recState.recorder||recState.recorder.state==="inactive") return;
-  recState.recorder.stop();
-  setRecButton("has-rec");
-}
-$("#recBtn").onclick = openRec;
-$("#recClose").onclick = closeRec;
-$("#recMainBtn").onclick = ()=>{
-  if(recState.recorder && recState.recorder.state === "recording"){ stopRec(); return; }
-  const a = $("#recAudio");
-  if(recState.blob && a.src){
-    if(a.paused || a.ended) a.play(); else a.pause();
-  } else if(recState.blob){
-    $("#recAudio").src = URL.createObjectURL(recState.blob);
-    $("#recAudio").play();
-  } else {
-    startRec();
-  }
-};
-$("#playOwnBtn").onclick = ()=>{ $("#recAudio").currentTime = 0; $("#recAudio").play(); };
-$("#playAnsBtn").onclick = ()=>{
-  $("#myAudio").pause(); $("#ansAudio").pause();
-  const q = document.querySelector(".tab-btn.active")?.dataset.tab === "p23" ? p23Data[p23Idx] : doc[currentIdx];
-  if(!q) return;
-  const src = "voice/ans/" + q.label + ".mp3";
-  if($("#ansAudio").src && $("#ansAudio").src.endsWith(src) && !$("#ansAudio").paused){ $("#ansAudio").pause(); return; }
-  $("#ansAudio").src = src;
-  $("#ansAudio").play();
-};
-$("#recAudio").addEventListener("play",  ()=>{ setRecButton("playing-rec"); $("#miniPlayBtn").textContent="⏸"; $("#miniPlayBtn").classList.add("playing"); $("#playOwnBtn").classList.add("playing"); });
-$("#recAudio").addEventListener("pause", ()=>{ setRecButton("has-rec"); $("#miniPlayBtn").textContent="▶"; $("#miniPlayBtn").classList.remove("playing"); $("#playOwnBtn").classList.remove("playing"); });
-$("#recAudio").addEventListener("ended", ()=>{ setRecButton("has-rec"); $("#miniPlayBtn").textContent="▶"; $("#miniPlayBtn").classList.remove("playing"); $("#playOwnBtn").classList.remove("playing"); });
-$("#recAudio").addEventListener("timeupdate", ()=>{
-  const pct = $("#recAudio").duration ? ($("#recAudio").currentTime/$("#recAudio").duration*100) : 0;
-  $("#miniBar").style.width = pct+"%";
-  $("#miniTime").textContent = `${fmt($("#recAudio").currentTime)} / ${fmt($("#recAudio").duration)}`;
-});
-bindMiniPlayer();
-$("#recDiscard").onclick = ()=> resetRecUI();
-$("#recRevealBtn").onclick = ()=>{
-  reveal = !reveal; saveReveal(); render(); syncRevealBtn();
-  toast(reveal ? "参考答案已显示（可边看边录）" : "参考答案已隐藏");
-};
-$("#recSave").onclick = ()=>{
-  if(!recState.blob) return;
-  const label = curRecLabel();
-  const ext = (recState.blob.type.includes("mp4")?"m4a":recState.blob.type.includes("ogg")?"ogg":"webm");
-  const a = document.createElement("a");
-  a.href = URL.createObjectURL(recState.blob);
-  a.download = `brand9-${label}-${Date.now()}.${ext}`;
-  document.body.appendChild(a); a.click(); a.remove();
-  toast("已下载录音到本地");
-};
 
-/* --- 我的录音 / 参考答案 playback (visible only after recording) --- */
-let myRecURL = null, myRecBlob = null;
+function recTick(){
+  recRaf = requestAnimationFrame(()=>{
+    const sec = (performance.now()-recStartTs)/1000;
+    /* ★ 填充宽度% = 已录秒数/120，逐帧写；禁止 CSS transition 跟时间 */
+    setFills(Math.min(sec/MAX_REC_SEC,1)*100 + "%");
+    setTimers(fmt2(Math.min(sec,MAX_REC_SEC)) + " / " + fmt2(MAX_REC_SEC));
+    setWarn(MAX_REC_SEC - sec <= 10);             /* 最后10秒红点加速到0.4s */
+    if(sec >= MAX_REC_SEC){ stopRecording(); toast("已达到最长录制时间"); return; }
+    recTick();
+  });
+}
+
+function stopRecording(){
+  if(recordState !== "recording") return;
+  cancelAnimationFrame(recRaf); setWarn(false);
+  const sec = (performance.now()-recStartTs)/1000;
+  if(sec < 1){
+    /* ★ 误触丢弃：toast + 回到此前状态（无旧录音回 idle，有旧录音回 recorded） */
+    toast("录音时间过短");
+    const rec = recState.recorder; recState.recorder = null;
+    if(rec && rec.state !== "inactive"){ rec.onstop = null; try{ rec.stop(); }catch(e){} }
+    if(recState.stream) recState.stream.getTracks().forEach(t=>t.stop());
+    recState.stream = null;
+    setFills("0%");
+    setRecState(recordedDuration > 0 ? "recorded" : "idle");
+    return;
+  }
+  recordedDuration = Math.min(sec, MAX_REC_SEC);
+  setFills("0%"); setRecState("recorded"); vibrate();
+  const rec = recState.recorder; recState.recorder = null;
+  if(rec && rec.state !== "inactive"){ try{ rec.stop(); }catch(e){} }
+  /* onstop 里持久化 blob 到 IndexedDB 并自动标记进度 */
+}
+
+/* ---------- 播放（走 audio 的 play / timeupdate / ended） ---------- */
+function startPlaying(){
+  if(recordState !== "recorded") return;
+  if(!myRecBlob) return;
+  const myA = $("#myAudio"); if(!myA) return;
+  const ansA = $("#ansAudio"); if(ansA) ansA.pause();
+  if(!myA.src){ if(myRecURL) URL.revokeObjectURL(myRecURL); myRecURL = URL.createObjectURL(myRecBlob); myA.src = myRecURL; }
+  setFills("0%"); setRecState("playing"); vibrate();
+  if(myA.currentTime >= myA.duration) myA.currentTime = 0;
+  const p = myA.play();
+  if(p && p.catch) p.catch(()=>{ if(recordState === "playing"){ setFills("0%"); setRecState("recorded"); } });
+}
+function stopPlaying(){
+  if(recordState !== "playing") return;
+  const myA = $("#myAudio"); if(myA) myA.pause();
+  setFills("0%"); setRecState("recorded");
+}
+$("#myAudio").addEventListener("play",  ()=>{ if(recordState === "recorded") setRecState("playing"); });
+$("#myAudio").addEventListener("timeupdate", ()=>{
+  if(recordState !== "playing") return;
+  const myA = $("#myAudio"); if(!myA || !myA.duration) return;
+  setFills(Math.min(myA.currentTime/myA.duration,1)*100 + "%");
+});
+$("#myAudio").addEventListener("ended", ()=>{ if(recordState === "playing"){ setFills("0%"); setRecState("recorded"); } });
+$("#myAudio").addEventListener("pause", ()=>{ if(recordState === "playing" && !$("#myAudio").ended){ setFills("0%"); setRecState("recorded"); } });
+
+/* ---------- 交互：短按 click 走状态机；recorded 时长按600ms重录 ---------- */
+recBtns.forEach(btn => {
+  btn.addEventListener("pointerdown", ()=>{
+    if(recordState === "recorded"){
+      longPressed = false; clearTimeout(pressTimer);
+      pressTimer = setTimeout(()=>{ longPressed = true; toast("重新录制"); startRecording(); }, 600);
+    }
+  });
+  ["pointerup","pointerleave","pointercancel"].forEach(ev => btn.addEventListener(ev, ()=>clearTimeout(pressTimer)));
+  btn.addEventListener("click", ()=>{
+    if(longPressed){ longPressed = false; return; }
+    if(recordState === "idle") startRecording();
+    else if(recordState === "recording") stopRecording();
+    else if(recordState === "recorded") startPlaying();
+    else if(recordState === "playing") stopPlaying();
+  });
+  btn.addEventListener("contextmenu", e=>e.preventDefault());
+});
+/* 统一入口：复用同一条状态机（抽屉导航 / 快捷键 r / 倒计时浮层都调用 triggerRec） */
+function triggerRec(){ const b = document.getElementById("recStateBtn"); if(b) b.click(); }
+
+/* 参考回答按钮：点击播放参考答案音频 */
+function playReferenceAudio(){
+  const ansA = $("#ansAudio"); if(!ansA) return;
+  const q = document.querySelector(".tab-btn.active")?.dataset.tab === "p23" ? (p23Data[p23Idx] || null) : (doc[currentIdx] || null);
+  if(!q) return;
+  const src = "voice/ans/" + q.label.replace(/\//g,"-") + ".mp3";
+  if(ansA.src && ansA.src.endsWith(src) && !ansA.paused){ ansA.pause(); return; }
+  ansA.src = src; ansA.play();
+}
+refBtns.forEach(b => b.addEventListener("click", ()=>{
+  if(recordState !== "recorded" && recordState !== "playing") return;
+  stopPlaying();
+  playReferenceAudio();
+}));
+
+/* ---------- 中断保护：页面隐藏自动保存并停止 ---------- */
+document.addEventListener("visibilitychange", ()=>{
+  if(document.hidden && recordState === "recording"){ stopRecording(); toast("已自动保存并停止录制"); }
+});
+
 const REC_IDB = "brand9::rec::v1";
 function openRecDB(){
   return new Promise((resolve, reject)=>{
@@ -1441,70 +1385,40 @@ async function getRecBlob(label){
     });
   }catch(e){ console.warn("getRecBlob:", e); return null; }
 }
-function setBtnPlaying(btn, playing, idleTxt, playTxt){
-  btn.classList.toggle("playing", !!playing);
-  btn.textContent = playing ? playTxt : idleTxt;
-}
-function playMyRec(){
-  const a = $("#myAudio"), btn = $("#myAudioBtn");
-  if(!myRecBlob) return;
-  if(!a.src){ if(myRecURL) URL.revokeObjectURL(myRecURL); myRecURL = URL.createObjectURL(myRecBlob); a.src = myRecURL; }
-  if(a.paused || a.ended) a.play(); else a.pause();
-}
-function playAnsAudio(){
-  const q = doc[currentIdx], a = $("#ansAudio"), btn = $("#ansAudioBtn");
-  const src = "voice/ans/" + q.label.replace(/\//g, "-") + ".mp3";
-  if(a.src && a.src.endsWith(src) && !a.paused){ a.pause(); return; }
-  a.src = src;
-  a.play();
-}
+
 async function refreshRecButtons(){
   const activeTab = document.querySelector(".tab-btn.active")?.dataset.tab;
-  if(activeTab === "p23"){
-    refreshP23RecButtons();
-    return;
-  }
-  const q = doc[currentIdx];
-  const myBtn = $("#myAudioBtn"), ansBtn = $("#ansAudioBtn");
+  const isP23 = activeTab === "p23";
+  const q = isP23 ? (p23Data[p23Idx] || null) : (doc[currentIdx] || null);
+  const myA = $("#myAudio"), ansA = $("#ansAudio");
+  if(myA){ myA.pause(); myA.removeAttribute("src"); }
+  if(ansA){ ansA.pause(); ansA.removeAttribute("src"); }
+  if(recordState === "recording") stopRecording();
+  cancelAnimationFrame(recRaf);
+  if(!q){ setFills("0%"); setRecState("idle"); return; }
   myRecBlob = await getRecBlob(q.label);
-  myBtn.classList.toggle("hidden", !myRecBlob);
-  ansBtn.classList.toggle("hidden", !myRecBlob);
-  $("#myAudio").pause(); $("#myAudio").removeAttribute("src");
-  $("#ansAudio").pause(); $("#ansAudio").removeAttribute("src");
-  setBtnPlaying(myBtn, false, "🎙 我的录音", "⏸ 我的录音");
-  setBtnPlaying(ansBtn, false, "🔊 参考答案", "⏸ 参考答案");
+  if(myRecURL){ URL.revokeObjectURL(myRecURL); myRecURL = null; }
+  if(myRecBlob) myRecURL = URL.createObjectURL(myRecBlob);
+  recordedDuration = myRecBlob ? 1 : 0;
+  setFills("0%"); setWarn(false);
+  setRecState(myRecBlob ? "recorded" : "idle");
+  if(myRecBlob && myA) myA.src = myRecURL;
 }
-async function refreshP23RecButtons(){
-  const q = p23Data[p23Idx];
-  if(!q) return;
-  const myBtn = $("#p23MyAudioBtn"), ansBtn = $("#p23AnsAudioBtn");
-  myRecBlob = await getRecBlob(q.label);
-  myBtn.classList.toggle("hidden", !myRecBlob);
-  ansBtn.classList.toggle("hidden", !myRecBlob);
-  $("#myAudio").pause(); $("#myAudio").removeAttribute("src");
-  $("#ansAudio").pause(); $("#ansAudio").removeAttribute("src");
-  setBtnPlaying(myBtn, false, "🎙 我的录音", "⏸ 我的录音");
-  setBtnPlaying(ansBtn, false, "🔊 参考答案", "⏸ 参考答案");
-}
-$("#myAudioBtn").onclick = ()=>{ $("#ansAudio").pause(); setBtnPlaying($("#ansAudioBtn"), false, "🔊 参考答案", "⏸ 参考答案"); playMyRec(); };
-$("#ansAudioBtn").onclick = ()=>{ $("#myAudio").pause(); setBtnPlaying($("#myAudioBtn"), false, "🎙 我的录音", "⏸ 我的录音"); playAnsAudio(); };
-$("#p23MyAudioBtn").onclick = ()=>{ $("#ansAudio").pause(); setBtnPlaying($("#p23AnsAudioBtn"), false, "🔊 参考答案", "⏸ 参考答案"); playMyRec(); };
-$("#p23AnsAudioBtn").onclick = ()=>{ $("#myAudio").pause(); setBtnPlaying($("#p23MyAudioBtn"), false, "🎙 我的录音", "⏸ 我的录音"); playP23AnsAudio(); };
-function playP23AnsAudio(){
-  const q = p23Data[p23Idx], a = $("#ansAudio"), btn = $("#p23AnsAudioBtn");
-  if(!q) return;
-  const src = "voice/ans/" + q.label.replace(/\//g, "-") + ".mp3";
-  if(a.src && a.src.endsWith(src) && !a.paused){ a.pause(); return; }
-  a.src = src;
-  a.play();
-}
-$("#myAudio").addEventListener("play", ()=>{ if(document.querySelector(".tab-btn.active")?.dataset.tab === "p23") setBtnPlaying($("#p23MyAudioBtn"), true, "🎙 我的录音", "⏸ 我的录音"); else setBtnPlaying($("#myAudioBtn"), true, "🎙 我的录音", "⏸ 我的录音"); });
-$("#myAudio").addEventListener("pause", ()=>{ if(document.querySelector(".tab-btn.active")?.dataset.tab === "p23") setBtnPlaying($("#p23MyAudioBtn"), false, "🎙 我的录音", "⏸ 我的录音"); else setBtnPlaying($("#myAudioBtn"), false, "🎙 我的录音", "⏸ 我的录音"); });
-$("#myAudio").addEventListener("ended", ()=>{ if(document.querySelector(".tab-btn.active")?.dataset.tab === "p23") setBtnPlaying($("#p23MyAudioBtn"), false, "🎙 我的录音", "⏸ 我的录音"); else setBtnPlaying($("#myAudioBtn"), false, "🎙 我的录音", "⏸ 我的录音"); });
-$("#ansAudio").addEventListener("play", ()=>{ if(document.querySelector(".tab-btn.active")?.dataset.tab === "p23") setBtnPlaying($("#p23AnsAudioBtn"), true, "🔊 参考答案", "⏸ 参考答案"); else setBtnPlaying($("#ansAudioBtn"), true, "🔊 参考答案", "⏸ 参考答案"); });
-$("#ansAudio").addEventListener("pause", ()=>{ if(document.querySelector(".tab-btn.active")?.dataset.tab === "p23") setBtnPlaying($("#p23AnsAudioBtn"), false, "🔊 参考答案", "⏸ 参考答案"); else setBtnPlaying($("#ansAudioBtn"), false, "🔊 参考答案", "⏸ 参考答案"); });
-$("#ansAudio").addEventListener("ended", ()=>{ if(document.querySelector(".tab-btn.active")?.dataset.tab === "p23") setBtnPlaying($("#p23AnsAudioBtn"), false, "🔊 参考答案", "⏸ 参考答案"); else setBtnPlaying($("#ansAudioBtn"), false, "🔊 参考答案", "⏸ 参考答案"); });
 refreshRecButtons();
+
+/* ============================================================
+   明暗双主题切换（右上角太阳/月亮，localStorage 记住偏好，默认浅色）
+   ============================================================ */
+const THEME_KEY = "yasi8::theme";
+function applyTheme(theme){
+  if(theme === "dark") document.documentElement.setAttribute("data-theme", "dark");
+  else document.documentElement.removeAttribute("data-theme");
+  try{ localStorage.setItem(THEME_KEY, theme); }catch(e){}
+}
+$("#btnTheme").addEventListener("click", ()=>{
+  const cur = document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
+  applyTheme(cur === "dark" ? "light" : "dark");
+});
 
 document.addEventListener("keydown", e=>{
   if(editing) return;
@@ -1512,7 +1426,7 @@ document.addEventListener("keydown", e=>{
   if(e.code==="Space"){ e.preventDefault(); $("#pbPlay").click(); }
   else if(e.code==="ArrowRight"){ $("#pbNext").click(); }
   else if(e.code==="ArrowLeft")  { $("#pbPrev").click(); }
-  else if(e.key.toLowerCase()==="r"){ openRec(); }
+  else if(e.key.toLowerCase()==="r"){ triggerRec(); }
   else if(e.key.toLowerCase()==="s"){ toggleStar(doc[currentIdx].label); }
   else if(e.key.toLowerCase()==="h"){ reveal=!reveal; saveReveal(); render(); toast(reveal?"答案已显示 (H)":"答案已隐藏 (H)"); }
 });
@@ -1698,10 +1612,10 @@ function renderP23(){
     const p3s = p23Data.filter(x => x.topic === q.topic && x.section === "Part 3");
     p3s.forEach(p3 => {
       const card = document.createElement("div");
-      card.style.cssText = "background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:12px;padding:14px;margin:8px 0";
+      card.style.cssText = "background:var(--f-04);border:1px solid var(--line);border-radius:12px;padding:14px;margin:8px 0";
       card.innerHTML = `<div style="font-weight:600;color:var(--accent);margin:0 0 6px">${escape(p3.label.split("-").pop())}. ${escape(p3.text)}</div>
         <div style="font-size:12px;color:var(--ink-dim);margin:0 0 4px">${escape(p3.strategy||"")}</div>
-        <div style="font-size:13px;color:#e8edf4">${escape(p3.answer||"")}</div>`;
+        <div style="font-size:13px;color:var(--ink)">${escape(p3.answer||"")}</div>`;
       p3div.appendChild(card);
     });
   } else {
@@ -1775,7 +1689,7 @@ function getDailyStats(){
 /* ============================================================
    OVERVIEW / HEATMAP
    ============================================================ */
-const HEAT_COLORS = ["#ebedf0","#9be9a8","#40c463","#30a14e","#216e39"];
+const HEAT_COLORS = ["var(--heat-empty)","#9be9a8","#40c463","#30a14e","#216e39"];
 
 function renderOverview(){
   const stats = getDailyStats();
@@ -1896,9 +1810,6 @@ function bindP23(){
     p23Stars[q.label] = !p23Stars[q.label];
     saveStarsP23(); renderP23(); toast(p23Stars[q.label]?"已收藏":"取消收藏");
   });
-  $("#p23RecBtn").addEventListener("click", ()=>{
-    openRec();
-  });
   $("#p23DoneBtn").addEventListener("click", ()=>{
     const q = p23Data[p23Idx];
     const logged = logPractice(q.label, q.topic, q.section);
@@ -2010,7 +1921,7 @@ bindP23();
   // Countdown overlay: "录制我的回答" button - stop countdown, open recorder
   document.getElementById("countdownRecBtn").addEventListener("click", ()=>{
     stopCountdown();
-    openRec();
+    triggerRec();
   });
 
   // Intercept audio ended for countdown
@@ -2046,13 +1957,13 @@ bindP23();
     
     const legend = document.getElementById("heatmapLegend");
     if(mode === "question"){
-      legend.innerHTML = '<span style="background:#2a3548;padding:2px 8px;border-radius:3px">未练</span>' +
+      legend.innerHTML = '<span style="background:var(--heat-empty);padding:2px 8px;border-radius:3px">未练</span>' +
         '<span style="background:#4a9e6b;padding:2px 8px;border-radius:3px">1次</span>' +
         '<span style="background:#2d8a4e;padding:2px 8px;border-radius:3px">2次</span>' +
         '<span style="background:#1e6b38;padding:2px 8px;border-radius:3px">3次</span>' +
         '<span style="background:#155528;padding:2px 8px;border-radius:3px">4次+</span>';
     } else {
-      legend.innerHTML = '<span style="background:#2a3548;padding:2px 8px;border-radius:3px">无记录</span>' +
+      legend.innerHTML = '<span style="background:var(--heat-empty);padding:2px 8px;border-radius:3px">无记录</span>' +
         '<span style="background:#9be9a8;padding:2px 8px;border-radius:3px"><2分钟</span>' +
         '<span style="background:#40c463;padding:2px 8px;border-radius:3px">2-5分钟</span>' +
         '<span style="background:#30a14e;padding:2px 8px;border-radius:3px">5-10分钟</span>' +
@@ -2351,8 +2262,9 @@ function switchAuthMode(mode){
   $("#authErr").textContent     = "";
   $("#authHint").textContent    = "";
   const isReg = mode === "register";
-  $("#authEmailWrap").style.display = isReg ? "" : "none";
+  $("#authNickWrap").style.display = isReg ? "" : "none";
   $("#authCodeWrap").style.display = isReg ? "" : "none";
+  $("#btnSendCode").style.display  = isReg ? "" : "none";
   $("#authSubmit").disabled = false;
 }
 function stopCodeTimer(){
@@ -2398,7 +2310,7 @@ async function sendCode(){
 function openAuthModal(){
   $("#authModal").classList.add("show");
   switchAuthMode("login");
-  setTimeout(()=>{ try{ $("#authUser").focus(); }catch(e){} }, 60);
+  setTimeout(()=>{ try{ $("#authEmail").focus(); }catch(e){} }, 60);
 }
 function closeAuthModal(){ $("#authModal").classList.remove("show"); }
 
@@ -2421,21 +2333,19 @@ $("#authClose").addEventListener("click", closeAuthModal);
 $("#authModal").addEventListener("click", e=>{ if(e.target.id === "authModal") closeAuthModal(); });
 
 async function doAuth(){
-  const username = $("#authUser").value.trim();
-  const password = $("#authPass").value;
   const email    = $("#authEmail").value.trim();
+  const password = $("#authPass").value;
   const code     = $("#authCode").value.trim();
+  const nickname = $("#authNick").value.trim();
   const err = $("#authErr");
   err.textContent = "";
-  if(!username || !password){ err.textContent = "请输入用户名和密码"; return; }
-  if(authMode === "register"){
-    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ err.textContent = "请填写正确的邮箱"; return; }
-    if(!/^\d{6}$/.test(code)){ err.textContent = "请输入 6 位邮箱验证码"; return; }
-  }
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ err.textContent = "请填写正确的邮箱"; $("#authEmail").focus(); return; }
+  if(!password){ err.textContent = "请输入密码"; return; }
+  if(authMode === "register" && !/^\d{6}$/.test(code)){ err.textContent = "请输入 6 位邮箱验证码"; return; }
   const submit = $("#authSubmit");
   submit.disabled = true;
-  const body = {username: username, password: password};
-  if(authMode === "register"){ body.email = email; body.code = code; }
+  const body = {email: email, password: password};
+  if(authMode === "register"){ body.code = code; if(nickname) body.nickname = nickname; }
   const res = await api(authMode === "login" ? "/api/login" : "/api/register",
                         {method: "POST", body: body});
   submit.disabled = false;
@@ -2453,8 +2363,8 @@ async function doAuth(){
 }
 $("#authSubmit").addEventListener("click", doAuth);
 $("#btnSendCode").addEventListener("click", sendCode);
-$("#authUser").addEventListener("keydown", e=>{ if(e.key === "Enter") doAuth(); });
 $("#authEmail").addEventListener("keydown", e=>{ if(e.key === "Enter") doAuth(); });
+$("#authNick").addEventListener("keydown", e=>{ if(e.key === "Enter") doAuth(); });
 $("#authCode").addEventListener("keydown", e=>{ if(e.key === "Enter") doAuth(); });
 $("#authPass").addEventListener("keydown", e=>{ if(e.key === "Enter") doAuth(); });
 

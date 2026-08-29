@@ -90,6 +90,15 @@
   .more-menu button{appearance:none; cursor:pointer; background:transparent; border:none;
     color:var(--ink); text-align:left; padding:10px 12px; border-radius:8px; font:500 13px/1 inherit;}
   .more-menu button:hover{background:var(--f-10)}
+  .more-menu .more-toggle{display:flex; align-items:center; justify-content:space-between; gap:12px;
+    cursor:pointer; color:var(--ink); text-align:left; padding:10px 12px; border-radius:8px; font:500 13px/1 inherit;}
+  .more-menu .more-toggle:hover{background:var(--f-10)}
+  .more-menu .sw{flex:none; position:relative; width:34px; height:18px; border-radius:999px;
+    background:var(--f-14); transition:background .15s;}
+  .more-menu .sw::after{content:""; position:absolute; top:2px; left:2px; width:14px; height:14px;
+    border-radius:50%; background:#fff; transition:left .15s;}
+  .more-menu .sw.on{background:var(--accent)}
+  .more-menu .sw.on::after{left:18px}
   button.tool{appearance:none; cursor:pointer; font:500 13px/1 inherit; color:var(--ink);
     background:var(--f-08); border:1px solid var(--line);
     border-radius:999px; padding:8px 14px; transition:all .15s ease;}
@@ -222,11 +231,11 @@
     border:1px solid var(--line-strong); border-radius:999px;
     padding:10px 14px 10px 10px; display:flex; align-items:center; gap:8px;
     box-shadow:0 12px 36px rgba(0,0,0,.5); z-index:60; max-width: calc(100vw - 32px);}
-  .playerbar .ctrl{appearance:none; cursor:pointer; width:38px; height:38px; border-radius:50%;
+  .playerbar .ctrl{appearance:none; cursor:pointer; width:40px; height:40px; border-radius:50%;
     background:var(--f-10); color:var(--ink); border:1px solid var(--line);
     display:grid; place-items:center; font-size:14px; transition:all .15s ease;}
   .playerbar .ctrl:hover{background:var(--f-16)}
-  .playerbar .ctrl.play{width:46px; height:46px;
+  .playerbar .ctrl.play{width:52px; height:52px;
     background:linear-gradient(135deg,#ff9e8a,#ffbca8); color:#0a1220; border-color:transparent;
     font-size:15px; box-shadow:0 6px 20px rgba(255,158,138,.36);}
   .playerbar .ctrl.play.playing{background:linear-gradient(135deg,#5E7699,#8aa1c4); color:#fff}
@@ -253,6 +262,11 @@
   .playerbar .progress .bar{position:absolute; left:0; top:0; bottom:0;
     width:0%; background:linear-gradient(90deg,#ff9e8a,#ffbca8); border-radius:999px;
     transition:width .1s linear;}
+  /* 平板等中等宽度：放大播放/控制按钮，避免在大屏上显得过小 */
+  @media (min-width:881px) and (max-width:1180px){
+    .playerbar .ctrl{width:46px; height:46px; font-size:15px}
+    .playerbar .ctrl.play{width:62px; height:62px; font-size:19px}
+  }
   /* === recording modal === */
   .modal-bg{position:fixed; inset:0; z-index:80; background:rgba(10,18,32,.7);
     backdrop-filter:blur(8px); display:none; align-items:center; justify-content:center; padding:20px;}
@@ -367,12 +381,6 @@
   .toast.show{opacity:1; transform:translateX(-50%) translateY(0)}
   footer{margin-top:36px; padding-top:18px; border-top:1px solid var(--line);
     color:var(--ink-dim); font-size:12px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;}
-  .ver-badge{position:fixed; right:14px; bottom:76px; z-index:65;
-    font:500 10px/1 inherit; letter-spacing:.04em; color:rgba(154,163,184,.55);
-    background:var(--ver-badge-bg); border:1px solid var(--line);
-    padding:4px 9px; border-radius:999px; backdrop-filter:blur(6px);
-    pointer-events:none; user-select:none;}
-  @media (max-width:880px){ .ver-badge{bottom:70px} }
 
   /* === tab navigation === */
   .tab-nav{
@@ -646,6 +654,10 @@
       <button id="moreExport">⤓ 导出</button>
       <button id="moreImport">⤒ 导入</button>
       <button id="moreReset">↺ 重置</button>
+      <button id="moreRecToast" class="more-toggle" type="button">
+        <span>录制后弹窗提示</span>
+        <span class="sw" id="recToastSw"></span>
+      </button>
     </div>
         <input id="fileInput" type="file" accept="application/json" hidden>
       </div>
@@ -916,7 +928,6 @@
 </div>
 
 <div class="toast" id="toast"></div>
-<div class="ver-badge" id="verBadge"></div>
 <audio id="sharedAudio" preload="auto"></audio>
 
 <!-- 120 题数据 (72 KB) -->
@@ -950,7 +961,7 @@ window.bento = { get doc(){ return doc; }, serialize(){ return JSON.stringify(do
   loadDoc(next){ if(typeof next==="string") next = JSON.parse(next); if(Array.isArray(next)){ doc=next; render(); markSaved(); } } };
 
 const $ = (s,r=document)=>r.querySelector(s), $$ = (s,r=document)=>Array.from(r.querySelectorAll(s));
-$("#verBadge").textContent = "brand9 " + APP_VERSION;
+
 const FLAG = {"en-GB":"🇬🇧","en-US":"🇺🇸","en-AU":"🇦🇺","en-CA":"🇨🇦","en-IN":"🇮🇳"};
 const ACCENT_LABEL = {"British (mature female)":"英音·熟女","American (mid male)":"美音·中年男","Australian (female)":"澳音·女","Canadian (male)":"加音·男"};
 function getFlag(v){ return FLAG[v.split("-").slice(0,2).join("-")]||"🌐"; }
@@ -1135,6 +1146,14 @@ $("#moreEdit").onclick = ()=> $("#btnEdit").click();
 $("#moreExport").onclick = ()=> $("#btnExport").click();
 $("#moreImport").onclick = ()=> $("#btnImport").click();
 $("#moreReset").onclick = ()=> $("#btnReset").click();
+const recToastSw = $("#recToastSw");
+function syncRecToastSw(){ if(recToastSw) recToastSw.classList.toggle("on", recToastEnabled()); }
+syncRecToastSw();
+$("#moreRecToast").onclick = ()=>{
+  try{ localStorage.setItem("yasi8::recToast", recToastEnabled() ? "0" : "1"); }catch(e){}
+  syncRecToastSw();
+  toast(recToastEnabled() ? "已开启：每次录制都弹窗提示" : "已关闭：每天仅前几个新词弹窗");
+};
 $("#starBtn").onclick = ()=> toggleStar(doc[currentIdx].label);
 $("#gateMask").onclick = ()=>{ reveal=true; saveReveal(); render(); toast("答案已显示"); };
 
@@ -1171,7 +1190,18 @@ function setRecState(next){
   /* 参考回答仅 recorded / playing 可见；始终占位（opacity:0 + pointer-events:none），整行不位移 */
   refBtns.forEach(b => b.classList.toggle("show", next === "recorded" || next === "playing"));
 }
-function vibrate(){ if(navigator.vibrate) navigator.vibrate(30); }
+  function vibrate(){ if(navigator.vibrate) navigator.vibrate(30); }
+
+  /* 录制完成后的弹窗提示：默认每天只在前几个新词提示，设置开启则每次都提示 */
+  const TOAST_DAILY_LIMIT = 2;
+  function recToastEnabled(){ try{ return localStorage.getItem("yasi8::recToast") === "1"; }catch(e){ return false; } }
+  function shouldRecToast(loggedNew){
+    if(recToastEnabled()) return true;            /* 设置开：每次都提示 */
+    if(!loggedNew) return false;                  /* 重录已完成题：不再弹窗 */
+    const today = new Date().toISOString().substring(0,10);
+    const cnt = getPracticeLog().filter(e => e.date === today).length;
+    return cnt <= TOAST_DAILY_LIMIT;              /* 当天前 N 个新词提示 */
+  }
 
 /* ---------- 录制 ---------- */
 async function startRecording(){
@@ -1231,19 +1261,19 @@ async function startRecording(){
         if(activeTab === "p23"){
           const q = p23Data[p23Idx];
           if(q){
-            logPractice(label, q.topic, q.section);
+            const logged = logPractice(label, q.topic, q.section);
             const today = new Date().toISOString().substring(0,10);
             const done = getPracticeLog().some(e => e.label === q.label && e.date === today);
             const btn = $("#p23DoneBtn");
             if(btn){ btn.classList.toggle("answered", done); btn.textContent = done ? "✅ 今日已完成" : "□ 标记已完成"; }
-            toast("✅ 录制完成，已自动标记今日进度");
+            if(shouldRecToast(logged)) toast("✅ 录制完成，已自动标记今日进度");
           }
         } else {
           const q = doc[currentIdx];
           if(q){
-            logPractice(label, q.topic, "Part 1");
+            const logged = logPractice(label, q.topic, "Part 1");
             updateDoneButtonStates();
-            toast("✅ 录制完成，已自动标记今日进度");
+            if(shouldRecToast(logged)) toast("✅ 录制完成，已自动标记今日进度");
           }
         }
       }

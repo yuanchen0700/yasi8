@@ -336,6 +336,9 @@
   .rec-btn .rec-dot{width:8px; height:8px; border-radius:50%; background:var(--rec);
     flex:none; animation:recPulse 1s infinite}
   .rec-btn.warn .rec-dot{animation-duration:.4s}
+  /* 长按 3 秒清除录音时的「蓄力」提示 */
+  .rec-btn.armed{ border-color:var(--rec); animation:recArm 1s ease-in-out infinite; }
+  @keyframes recArm{0%,100%{box-shadow:0 0 0 3px rgba(217,74,91,.30)}50%{box-shadow:0 0 0 7px rgba(217,74,91,.10)}}
   @keyframes recPulse{0%,100%{opacity:1}50%{opacity:.25}}
   /* 参考回答按钮：recorded/playing 才可见；始终占位（opacity:0 + pointer-events:none）
      出现时淡入 + translateX(-8px→0) 240ms；配色跟随主题 accent-2，不做规格里的绿色 */
@@ -1313,15 +1316,22 @@ $("#myAudio").addEventListener("timeupdate", ()=>{
 $("#myAudio").addEventListener("ended", ()=>{ if(recordState === "playing"){ setFills("0%"); setRecState("recorded"); } });
 $("#myAudio").addEventListener("pause", ()=>{ if(recordState === "playing" && !$("#myAudio").ended){ setFills("0%"); setRecState("recorded"); } });
 
-/* ---------- 交互：短按 click 走状态机；recorded 时长按600ms重录 ---------- */
+/* ---------- 交互：短按走状态机；recorded 状态长按 3 秒清除录音并重新录制 ---------- */
 recBtns.forEach(btn => {
   btn.addEventListener("pointerdown", ()=>{
     if(recordState === "recorded"){
       longPressed = false; clearTimeout(pressTimer);
-      pressTimer = setTimeout(()=>{ longPressed = true; toast("重新录制"); startRecording(); }, 600);
+      btn.classList.add("armed");
+      pressTimer = setTimeout(()=>{
+        longPressed = true;
+        btn.classList.remove("armed");
+        clearCurrentRecording();
+        toast("已清除录音，重新录制…");
+        startRecording();
+      }, 3000);
     }
   });
-  ["pointerup","pointerleave","pointercancel"].forEach(ev => btn.addEventListener(ev, ()=>clearTimeout(pressTimer)));
+  ["pointerup","pointerleave","pointercancel"].forEach(ev => btn.addEventListener(ev, ()=>{ clearTimeout(pressTimer); btn.classList.remove("armed"); }));
   btn.addEventListener("click", ()=>{
     if(longPressed){ longPressed = false; return; }
     if(recordState === "idle") startRecording();
@@ -1331,6 +1341,22 @@ recBtns.forEach(btn => {
   });
   btn.addEventListener("contextmenu", e=>e.preventDefault());
 });
+
+/* 清除当前题的录音（IDB + 内存），用于长按重录 */
+async function clearCurrentRecording(){
+  if(myRecURL){ URL.revokeObjectURL(myRecURL); myRecURL = null; }
+  myRecBlob = null; recordedDuration = 0;
+  const label = curRecLabel();
+  if(!label) return;
+  try{
+    const db = await openRecDB();
+    await new Promise((res, rej)=>{
+      const tx = db.transaction("recs", "readwrite");
+      tx.objectStore("recs").delete(label);
+      tx.oncomplete = res; tx.onerror = ()=>rej(tx.error);
+    });
+  }catch(e){ console.warn("clearCurrentRecording:", e); }
+}
 /* 统一入口：复用同一条状态机（抽屉导航 / 快捷键 r / 倒计时浮层都调用 triggerRec） */
 function triggerRec(){ const b = document.getElementById("recStateBtn"); if(b) b.click(); }
 

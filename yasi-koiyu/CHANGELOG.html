@@ -33,7 +33,7 @@
     <ul>
       <li><span class="tag">主题</span>新增明暗双主题：右上角太阳/月亮按钮切换，<code>localStorage</code> 记住偏好，默认浅色；页面首屏防闪烁（FOUC）</li>
       <li><span class="tag">录音</span>重构为四态状态机 idle / recording / recorded / playing；移除原先独立的「录制我的回答」入口按钮，改由下方固定 172×44 的录音按钮统一承担（空闲时显示「点击开始录制」）</li>
-      <li><span class="tag">录音</span>进度逐帧填充（rAF）、满 120s 自动停止、录制 &lt;1s 判定为误触并丢弃、长按 600ms 重录、页面隐藏自动保存停止、开始/停止震动反馈</li>
+      <li><span class="tag">录音</span>进度逐帧填充（rAF）、满 120s 自动停止、录制 &lt;1s 判定为误触并丢弃、长按 3 秒清除录音并重新录制（红色「蓄力」光圈提示）、页面隐藏自动保存停止、开始/停止震动反馈</li>
       <li><span class="tag">UI</span>参考回答按钮主题化（accent-2 配色，非绿色），仅录完或播放中显示；按钮行在任意状态不位移</li>
     </ul>
   </div>

@@ -23,7 +23,8 @@
     --menu-bg:rgba(255,255,255,.92);
     --panel-grad:linear-gradient(160deg,#ffffff,#f1f5fa); --drawer-grad:linear-gradient(180deg,#ffffff,#eef2f8);
     --playerbar-bg:rgba(255,255,255,.9); --ver-badge-bg:rgba(255,255,255,.75);
-    --gate-mask:rgba(250,251,253,.86); --gate-mask-hover:rgba(245,247,251,.94);
+    --gate-mask:linear-gradient(160deg, rgba(255,255,255,.42), rgba(240,245,251,.76));
+    --gate-mask-hover:linear-gradient(160deg, rgba(255,255,255,.62), rgba(246,249,253,.9));
     --toast-bg:rgba(15,23,42,.92); --toast-ink:#f2f4f9;
     --heat-empty:#eef1f7; --heat-ink:#8fa0b8;
     --rec-btn-bg:var(--f-06); --rec-gray:rgba(15,23,42,.35);
@@ -210,12 +211,15 @@
   .answer:focus{background:rgba(255,158,138,.06); box-shadow:inset 0 0 0 2px rgba(255,158,138,.4)}
   .answer-gate{position:relative}
   .answer-gate .gate-mask{position:absolute; inset:0;
-    background:var(--gate-mask); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
-    border-radius:10px;
+    background:var(--gate-mask); backdrop-filter:blur(9px); -webkit-backdrop-filter:blur(9px);
+    border-radius:10px; border:1px dashed var(--line-strong);
     display:flex; flex-direction:column; align-items:center; justify-content:center;
     gap:6px; color:var(--ink-dim); font-size:13px; cursor:pointer; transition:opacity .25s ease; z-index:2;}
   .answer-gate .gate-mask:hover{background:var(--gate-mask-hover); color:var(--ink)}
-  .answer-gate .gate-mask .lock{font-size:24px}
+  .answer-gate .gate-mask .gate-title{font-size:13px; font-weight:600; color:var(--ink-dim); letter-spacing:.02em}
+  .answer-gate .gate-mask .gate-title:before{content:"👁 "; font-size:12px}
+  .answer-gate .gate-mask:hover .gate-title{color:var(--ink)}
+  .answer-gate .gate-mask .gate-sub{font-size:11px; opacity:.7}
   .answer-gate.revealed .gate-mask{display:none}
   .actions{display:flex; gap:8px; margin-top:18px; flex-wrap:wrap}
   .actions .btn{appearance:none; cursor:pointer; display:inline-flex; align-items:center; gap:8px;
@@ -721,9 +725,8 @@
           <div class="answer-gate" id="answerGate">
             <div class="answer editable" id="answer"></div>
             <div class="gate-mask" id="gateMask">
-              <div class="lock">🔒</div>
-              <div>参考答案已隐藏</div>
-              <div style="font-size:11px; opacity:.7">点击此处或播放器条"显示答案"开关</div>
+              <div class="gate-title">参考答案已隐藏</div>
+              <div class="gate-sub">点击此处或按 H 显示答案</div>
             </div>
           </div>
         </div>
@@ -782,8 +785,8 @@
             <div class="answer-gate" id="p23AnswerGate">
               <div class="answer" id="p23Answer"></div>
               <div class="gate-mask" id="p23GateMask">
-                <div class="lock">🔒</div><div>参考答案已隐藏</div>
-                <div style="font-size:11px;opacity:.7">点击此处或播放器条开关</div>
+                <div class="gate-title">参考答案已隐藏</div>
+                <div class="gate-sub">点击此处显示答案</div>
               </div>
             </div>
           </div>

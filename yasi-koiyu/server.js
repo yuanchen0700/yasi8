@@ -10,7 +10,9 @@
 //   GET  /api/state              (Bearer) -> {key: {value, updated_at}}
 //   POST /api/state/sync         (Bearer) {entries:[{key, value, updated_at}]}
 //   POST /api/state/clear        (Bearer) -> wipe user state (keep account)
-//   Admin: /api/admin/me|accounts|accounts/:id|accounts/:id/reset|smtp
+//   Admin: /api/admin/me|accounts|accounts/:id|accounts/:id/reset|smtp|keys
+//   Membership: GET /api/membership/me, POST /api/membership/activate {code}
+//   GET  /api/scoreboard         (Bearer) -> all users' gold fragments (leaderboard)
 //
 // Auth: login issues a bearer token kept in memory (expires after 30 days).
 // Passwords: PBKDF2-HMAC-SHA256 with per-user random salt (120k iterations).
@@ -256,6 +258,25 @@ function initDb() {
       sent_at    INTEGER NOT NULL,
       expires_at INTEGER NOT NULL
     );
+    CREATE TABLE IF NOT EXISTS vip_keys (
+      code       TEXT PRIMARY KEY,
+      type       TEXT NOT NULL,                    -- '7d' | '14d'
+      used_by    INTEGER,
+      used_at    INTEGER,
+      created_by INTEGER,
+      created_at INTEGER
+    );
+    CREATE TABLE IF NOT EXISTS membership (
+      user_id        INTEGER PRIMARY KEY,
+      key_type       TEXT,                         -- 激活的密钥类型 '7d' | '14d'
+      key_start      INTEGER,
+      key_expires    INTEGER,
+      gold           INTEGER NOT NULL DEFAULT 0,   -- 金色碎片（= 金色积分）
+      streak         INTEGER NOT NULL DEFAULT 0,   -- 连续练满(≥21)天数
+      yd_level       INTEGER NOT NULL DEFAULT 0,   -- 黄钻等级（= 连续练满天数）
+      last_status_day TEXT,                        -- 已结算的最后一天 (yyyy-mm-dd)
+      updated_at     INTEGER
+    );
   `);
   const cols = db.prepare('PRAGMA table_info(users)').all().map((r) => r.name);
   if (!cols.includes('email')) db.exec('ALTER TABLE users ADD COLUMN email TEXT');
@@ -377,6 +398,137 @@ function requireAdmin(req, res) {
   return user;
 }
 
+// ------------------------------------------------------------ membership
+// 会员 / 钻石系统：
+//   密钥    -> 白钻（7 天 / 14 天）。有效期内：免疫黑色碎片侵袭，且每日保底 +1 金碎片
+//   练满    -> 每练满 21 道触发一轮奖励（1-3 金碎片）；当日 ≥21 记为「练满」
+//   黄钻    -> 连续练满天数 = 黄钻等级（第 1 天一级，连续每天 +1 级）
+//   黑色    -> 次日练习 ≤3 时出现 3-5 个黑色碎片，1:1 吃掉金碎片；
+//              碎片耗尽后黄钻降级；白钻以下玩家触发新手保护仅损失 1 个碎片
+//   结算    -> 服务端每日自动结算（延迟补算所有未结算的日期）
+const KEY_TYPES = ['7d', '14d'];
+const KEY_DAYS = { '7d': 7, '14d': 14 };
+const DAY_SEC = 86400;
+const PRACTICE_LOG_KEY = 'brand9::practiceLog::v1';   // 与前端 LOG_KEY 一致
+
+function dayKey(ts) {
+  // UTC 日期字符串，与前端 new Date().toISOString().substring(0,10) 对齐
+  return new Date(ts == null ? Date.now() : ts).toISOString().substring(0, 10);
+}
+function dayStartSec(day) { return Date.parse(day + 'T00:00:00Z') / 1000; }
+
+function ensureMember(userId) {
+  const row = db.prepare('SELECT * FROM membership WHERE user_id = ?').get(userId);
+  if (row) return row;
+  db.prepare('INSERT INTO membership (user_id, gold, streak, yd_level, updated_at) VALUES (?,0,0,0,?)')
+    .run(userId, nowSec());
+  return db.prepare('SELECT * FROM membership WHERE user_id = ?').get(userId);
+}
+
+function updateMember(userId, mem) {
+  db.prepare(`UPDATE membership SET key_type=?, key_start=?, key_expires=?, gold=?, streak=?,
+              yd_level=?, last_status_day=?, updated_at=? WHERE user_id=?`)
+    .run(mem.key_type || null, mem.key_start || 0, mem.key_expires || 0,
+         mem.gold, mem.streak, mem.yd_level, mem.last_status_day || null, nowSec(), userId);
+}
+
+function practiceCountForDay(userId, day) {
+  const row = db.prepare('SELECT value FROM user_state WHERE user_id=? AND key=?').get(userId, PRACTICE_LOG_KEY);
+  if (!row || !row.value) return 0;
+  try {
+    const arr = JSON.parse(row.value);
+    if (!Array.isArray(arr)) return 0;
+    return arr.filter((e) => e && e.date === day).length;
+  } catch (_) { return 0; }
+}
+
+// 结算某用户从「上次结算日」到今天的每一天（含）。
+
+function settleMember(userId) {
+  const mem = ensureMember(userId);
+  const today = dayKey(Date.now());
+  if (mem.last_status_day && mem.last_status_day >= today) return mem;
+  const days = [];
+  if (!mem.last_status_day) {
+    days.push(today);              // 首次结算：从今天开始，不追溯历史
+  } else {
+    let cur = dayStartSec(mem.last_status_day) + DAY_SEC;
+    const end = dayStartSec(today);
+    for (; cur <= end; cur += DAY_SEC) days.push(dayKey(cur * 1000));
+  }
+  let gold = mem.gold || 0;
+  let streak = mem.streak || 0;
+  let level = mem.yd_level || 0;
+  const keyStart = mem.key_start || 0;
+  const keyExpires = mem.key_expires || 0;
+  let lastDay = mem.last_status_day || null;
+
+  for (const d of days) {
+    const ds = dayStartSec(d);
+    const keyActive = keyStart && keyExpires && ds >= keyStart && ds < keyExpires;
+    const cnt = practiceCountForDay(userId, d);
+    if (cnt >= 21) {
+      const rounds = Math.floor(cnt / 21);            // 每练满一轮 21 道触发一次
+      for (let i = 0; i < rounds; i++) gold += 1 + crypto.randomInt(0, 3); // 1-3 随机
+      streak += 1;                                    // 连续练满 +1
+      level = streak;                                 // 黄钻等级 = 连续练满天数
+      if (keyActive) gold += 1;                       // 密钥期内每日保底 +1
+    } else if (cnt <= 3) {
+      if (keyActive) {
+        gold += 1;                                    // 稳健 +1 金碎片，免疫黑色侵袭
+        streak = 0; level = 0;                        // 但连续练习断档仍掉回一级
+      } else {
+        const black = 3 + crypto.randomInt(0, 3);     // 3-5 个黑色碎片
+        let consumed = Math.min(black, gold);
+        if (level === 0) consumed = Math.min(consumed, 1); // 新手保护：仅吃掉 1 个
+        gold -= consumed;
+        if (gold < 0) gold = 0;
+        streak = 0; level = 0;                        // 断档掉回一级；碎片耗尽黄钻降级
+      }
+    }
+    // 4-20 题：无奖励、无惩罚、连续与等级保持不变
+    lastDay = d;
+  }
+  mem.gold = gold; mem.streak = streak; mem.yd_level = level; mem.last_status_day = lastDay;
+  updateMember(userId, mem);
+  return ensureMember(userId);
+}
+
+// 全局结算所有用户（定时 + 排行榜读取时调用）。
+function settleAllUsers() {
+  for (const r of db.prepare('SELECT id FROM users').all()) settleMember(r.id);
+}
+
+function memberCat(mem) {
+  const now = nowSec();
+  const keyActive = mem.key_type && mem.key_expires && mem.key_expires > now;
+  if (mem.yd_level >= 1) return 'yellow';
+  if (keyActive) return 'white';
+  return 'none';
+}
+
+function keyActiveUntil(mem) {
+  const now = nowSec();
+  if (mem.key_type && mem.key_expires && mem.key_expires > now) return mem.key_expires;
+  return 0;
+}
+
+// 密钥码：BR9-XXXX-XXXX-XXXX-XXXX（无易混淆字符），入库时去掉分隔符
+const KEY_ALPHABET = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+const KEY_PREFIX = 'BR9';
+function genKeyCode() {
+  let s = '';
+  for (let i = 0; i < 16; i++) s += KEY_ALPHABET[crypto.randomInt(KEY_ALPHABET.length)];
+  return KEY_PREFIX + s;
+}
+function formatKeyCode(raw) {
+  const b = raw.slice(KEY_PREFIX.length);
+  return KEY_PREFIX + '-' + b.slice(0, 4) + '-' + b.slice(4, 8) + '-' + b.slice(8, 12) + '-' + b.slice(12, 16);
+}
+function normalizeKeyCode(input) {
+  return String(input || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+}
+
 // -------------------------------------------------------------------- API
 async function apiSendCode(req, res) {
   const data = await readJson(req);
@@ -445,14 +597,14 @@ async function apiLogin(req, res) {
   const email = String(data.email || '').trim().toLowerCase() || ident;
   const password = String(data.password || '');
   const row = db.prepare(
-    'SELECT id, username, nickname, uuid, pass_salt, pass_hash FROM users WHERE email = ? OR username = ?'
+    'SELECT id, username, nickname, uuid, role, pass_salt, pass_hash FROM users WHERE email = ? OR username = ?'
   ).get(email, ident);
   if (!row || !verifyPassword(password, row.pass_salt, row.pass_hash)) {
     return sendError(res, '邮箱或密码错误', 401);
   }
   const token = issueToken(row.id);
   const display = row.nickname || row.username;
-  return sendJson(res, { ok: true, token, username: display, uuid: row.uuid || '' });
+  return sendJson(res, { ok: true, token, username: display, uuid: row.uuid || '', role: row.role || 'user' });
 }
 
 function apiLogout(req, res) {
@@ -465,7 +617,7 @@ function apiMe(req, res) {
   const user = auth(req, res);
   if (!user) return;
   const display = user.nickname || user.username;
-  return sendJson(res, { ok: true, username: display, uuid: user.uuid || '' });
+  return sendJson(res, { ok: true, username: display, uuid: user.uuid || '', role: user.role || 'user' });
 }
 
 async function apiSetNickname(req, res) {
@@ -530,10 +682,21 @@ function apiAdminMe(req, res) {
 function apiAdminAccounts(req, res) {
   const admin = requireAdmin(req, res);
   if (!admin) return;
+  settleAllUsers();
   const rows = db.prepare(
-    'SELECT id, username, email, note, created_at, role, parent_id FROM users ORDER BY created_at'
+    `SELECT u.id, u.username, u.email, u.note, u.created_at, u.role, u.parent_id,
+            COALESCE(m.gold,0) AS gold, COALESCE(m.streak,0) AS streak,
+            COALESCE(m.yd_level,0) AS yd_level, m.key_type, m.key_expires
+     FROM users u LEFT JOIN membership m ON m.user_id = u.id
+     ORDER BY u.created_at`
   ).all();
-  return sendJson(res, { ok: true, accounts: rows });
+  const out = rows.map((r) => ({
+    id: r.id, username: r.username, email: r.email, note: r.note, created_at: r.created_at,
+    role: r.role, parent_id: r.parent_id,
+    member: { gold: r.gold, streak: r.streak, yd_level: r.yd_level,
+              key_type: r.key_type, key_expires: r.key_expires || 0 },
+  }));
+  return sendJson(res, { ok: true, accounts: out });
 }
 
 async function apiAdminCreate(req, res) {
@@ -614,6 +777,94 @@ async function apiAdminSmtpSet(req, res) {
   db.prepare("INSERT INTO kv (k, v) VALUES ('smtp_user', ?) ON CONFLICT(k) DO UPDATE SET v = excluded.v").run(qq_email);
   db.prepare("INSERT INTO kv (k, v) VALUES ('smtp_pass', ?) ON CONFLICT(k) DO UPDATE SET v = excluded.v").run(qq_key);
   return sendJson(res, { ok: true });
+}
+
+async function apiAdminKeysGen(req, res) {
+  const admin = requireAdmin(req, res);
+  if (!admin) return;
+  const data = await readJson(req);
+  const type = String(data.type || '');
+  const count = Math.min(parseInt(data.count, 10) || 1, 50);
+  if (!KEY_TYPES.includes(type)) return sendError(res, '密钥类型需为 7d 或 14d');
+  const insert = db.prepare('INSERT INTO vip_keys (code, type, created_by, created_at) VALUES (?,?,?,?)');
+  const codes = [];
+  while (codes.length < count) {
+    const code = genKeyCode();
+    try { insert.run(code, type, admin.id, nowSec()); codes.push(formatKeyCode(code)); }
+    catch (e) { if (!String(e.message).includes('UNIQUE')) throw e; }
+  }
+  return sendJson(res, { ok: true, type, codes });
+}
+
+function apiAdminKeysList(req, res) {
+  const admin = requireAdmin(req, res);
+  if (!admin) return;
+  const rows = db.prepare('SELECT code, type, used_by, used_at, created_by, created_at FROM vip_keys ORDER BY created_at DESC LIMIT 200').all();
+  const out = rows.map((r) => ({
+    code: formatKeyCode(r.code), type: r.type,
+    used: r.used_by ? true : false, used_by: r.used_by || 0, used_at: r.used_at || 0, created_at: r.created_at || 0,
+  }));
+  return sendJson(res, { ok: true, keys: out });
+}
+
+function apiMembershipMe(req, res) {
+  const user = auth(req, res);
+  if (!user) return;
+  const mem = settleMember(user.id);
+  const now = nowSec();
+  const expire = keyActiveUntil(mem);
+  return sendJson(res, {
+    ok: true,
+    cat: memberCat(mem),
+    key_type: expire ? mem.key_type : null,
+    key_start: expire ? (mem.key_start || 0) : 0,
+    key_expires: expire,
+    gold: mem.gold,
+    streak: mem.streak,
+    yd_level: mem.yd_level,
+  });
+}
+
+async function apiActivateKey(req, res) {
+  const user = auth(req, res);
+  if (!user) return;
+  const data = await readJson(req);
+  const code = normalizeKeyCode(data.code);
+  if (code.length < 8) return sendError(res, '密钥格式不正确，请检查后重试');
+  const row = db.prepare('SELECT code, type, used_by FROM vip_keys WHERE code = ?').get(code);
+  if (!row) return sendError(res, '密钥不存在');
+  if (row.used_by) return sendError(res, '密钥已被使用');
+  const days = KEY_DAYS[row.type];
+  const mem = settleMember(user.id);
+  const now = nowSec();
+  const base = (mem.key_expires && mem.key_expires > now) ? mem.key_expires : now;
+  db.prepare('UPDATE vip_keys SET used_by = ?, used_at = ? WHERE code = ?').run(user.id, now, row.code);
+  mem.key_type = row.type;
+  mem.key_start = now;
+  mem.key_expires = base + days * DAY_SEC;
+  mem.gold += 1;                                   // 激活即送 1 个金碎片
+  updateMember(user.id, mem);
+  return sendJson(res, { ok: true, expire: mem.key_expires, type: row.type });
+}
+
+function apiScoreboard(req, res) {
+  const user = auth(req, res);
+  if (!user) return;
+  settleAllUsers();
+  const rows = db.prepare(
+    `SELECT u.id, u.username, COALESCE(m.gold,0) AS gold, COALESCE(m.yd_level,0) AS yd_level,
+            COALESCE(m.streak,0) AS streak, m.key_type, m.key_expires
+     FROM users u LEFT JOIN membership m ON m.user_id = u.id
+     ORDER BY gold DESC, u.created_at ASC`
+  ).all();
+  const now = nowSec();
+  const out = rows.map((r) => ({
+    id: r.id, username: r.username, gold: r.gold,
+    cat: r.yd_level >= 1 ? 'yellow'
+       : (r.key_type && r.key_expires && r.key_expires > now) ? 'white' : 'none',
+    yd_level: r.yd_level, streak: r.streak,
+  }));
+  return sendJson(res, { ok: true, board: out });
 }
 
 // -------------------------------------------------------------- static
@@ -697,6 +948,11 @@ async function apiRouter(req, res, method, p) {
   if (p === '/api/admin/accounts' && method === 'POST') return await A(apiAdminCreate);
   if (p === '/api/admin/smtp' && method === 'GET') return A(apiAdminSmtpGet);
   if (p === '/api/admin/smtp' && method === 'PUT') return await A(apiAdminSmtpSet);
+  if (p === '/api/admin/keys' && method === 'GET') return A(apiAdminKeysList);
+  if (p === '/api/admin/keys' && method === 'POST') return await A(apiAdminKeysGen);
+  if (p === '/api/membership/me' && method === 'GET') return A(apiMembershipMe);
+  if (p === '/api/membership/activate' && method === 'POST') return await A(apiActivateKey);
+  if (p === '/api/scoreboard' && method === 'GET') return A(apiScoreboard);
   let m = p.match(/^\/api\/admin\/accounts\/(\d+)$/);
   if (m && method === 'PUT') return await A((req, res) => apiAdminUpdate(req, res, Number(m[1])));
   m = p.match(/^\/api\/admin\/accounts\/(\d+)\/reset$/);
@@ -742,3 +998,6 @@ if (tlsEnabled) {
 } else {
   server.listen(PORT, '0.0.0.0', () => console.log(`Serving ${DIR} on http://0.0.0.0:${PORT}`));
 }
+
+// 会员结算：每 30 分钟全量结算一次（也让离线用户按时吃到每日奖励/惩罚）
+setInterval(() => { try { settleAllUsers(); } catch (e) { console.error('[settle]', e); } }, 30 * 60 * 1000);

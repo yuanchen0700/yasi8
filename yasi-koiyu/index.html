@@ -25,7 +25,7 @@
     --playerbar-bg:rgba(255,255,255,.9); --ver-badge-bg:rgba(255,255,255,.75);
     --gate-mask:rgba(250,251,253,.86); --gate-mask-hover:rgba(245,247,251,.94);
     --toast-bg:rgba(15,23,42,.92); --toast-ink:#f2f4f9;
-    --heat-empty:#e3e9f1; --heat-ink:#8fa0b8;
+    --heat-empty:#eef1f7; --heat-ink:#8fa0b8;
     --rec-btn-bg:var(--f-06); --rec-gray:rgba(15,23,42,.35);
     --ref-g1:#dbe4f0; --ref-g2:#bbcbdf; --ref-ink:#3d5377; --ref-glow:rgba(85,107,140,.35);
     --font-serif:'Fraunces',Georgia,serif;
@@ -835,6 +835,9 @@
         <div style="font-family:var(--font-serif);font-weight:600;font-size:28px;color:var(--good)" id="statDone">0</div><div style="font-size:12px;color:var(--ink-dim)">题 / <span id="statDoneOf">0</span></div>
       </div>
     </div>
+    <div id="lastPosNote" style="display:none; margin:0 0 16px; padding:12px 16px;
+      border:1px dashed var(--line-strong); border-radius:12px; background:var(--f-06);
+      cursor:pointer; font-size:13px; color:var(--ink); transition:all .15s;"></div>
     <div class="heatmap-tabs">
       <button class="heatmap-tab active" id="htTabQuestion" onclick="switchHeatmapMode('question')">&#x1F4CA; 题目热力图</button>
       <button class="heatmap-tab" id="htTabTime" onclick="switchHeatmapMode('time')">&#x23F1; 作答时间热力图</button>
@@ -923,6 +926,18 @@
     <div class="modal-actions">
       <button class="primary" id="authSubmit">登录</button>
       <button id="authClose">取消</button>
+    </div>
+  </div>
+</div>
+
+<!-- 欢迎回来弹窗：每天进入时提示上次复习进度，可一键继续 -->
+<div class="modal-bg" id="welcomeModal">
+  <div class="modal" style="max-width:400px">
+    <h2>👋 欢迎回来</h2>
+    <p class="sub" id="welcomeText"></p>
+    <div class="modal-actions">
+      <button class="primary" id="welcomeGo">继续上次进度 ›</button>
+      <button id="welcomeClose">今天先不练</button>
     </div>
   </div>
 </div>
@@ -1582,6 +1597,53 @@ function restorePosition(){
   else { switchTab("p1"); render(); }
 }
 
+/* ---------- 上次复习进度：跳转 + 注释 + 每日欢迎弹窗 ---------- */
+function lastPosSummary(pos){
+  if(pos && pos.tab === "p23" && p23Data.length){
+    const i = Math.max(0, Math.min(pos.p23 || 0, p23Data.length - 1));
+    return { txt: `Part 2&3 · 第 ${i+1} 题`, go: ()=>{ switchTab("p23"); p23Idx = i; renderP23(); renderP23Sidebar(); } };
+  }
+  if(pos && typeof pos.p1 === "number" && pos.p1 >= 0 && pos.p1 < doc.length){
+    return { txt: `Part 1 · 第 ${pos.p1+1}/${doc.length} 题`, go: ()=> switchTo(pos.p1) };
+  }
+  return null;
+}
+function posTimePrefix(pos){
+  if(!pos || !pos.ts) return "上次";
+  const days = Math.floor((Date.now() - pos.ts) / 86400000);
+  if(days <= 0) return "上次";
+  if(days === 1) return "昨天";
+  return `${days}天前`;
+}
+function fillLastPosNote(){
+  const el = $("#lastPosNote");
+  if(!el) return;
+  const s = lastPosSummary(_restorePos());
+  if(!s){ el.style.display = "none"; return; }
+  const pos = _restorePos();
+  el.textContent = `📌 ${posTimePrefix(pos)}复习到：${s.txt} › 点击继续`;
+  el.style.display = "block";
+  el.onclick = s.go;
+}
+let welcomeShownThisSession = false;
+function maybeShowWelcome(){
+  if(welcomeShownThisSession) return;
+  const pos = _restorePos();
+  const s = lastPosSummary(pos);
+  if(!s) return;
+  const today = new Date().toISOString().substring(0,10);
+  let lastShown = "";
+  try{ lastShown = localStorage.getItem("brand9::welcomeShown") || ""; }catch(e){}
+  if(lastShown === today){ welcomeShownThisSession = true; return; }
+  welcomeShownThisSession = true;
+  try{ localStorage.setItem("brand9::welcomeShown", today); }catch(e){}
+  $("#welcomeText").textContent = `你${posTimePrefix(pos)}复习到${s.txt}，可以从那里继续。`;
+  $("#welcomeModal").classList.add("show");
+  $("#welcomeGo").onclick = ()=>{ $("#welcomeModal").classList.remove("show"); s.go(); };
+  $("#welcomeClose").onclick = ()=> $("#welcomeModal").classList.remove("show");
+}
+$("#welcomeModal").addEventListener("click", e=>{ if(e.target.id === "welcomeModal") $("#welcomeModal").classList.remove("show"); });
+
 function loadStarsP23(){ try{ return JSON.parse(localStorage.getItem(STARS_P23_KEY)||"{}"); }catch(e){ return {}; } }
 function saveStarsP23(){ localStorage.setItem(STARS_P23_KEY, JSON.stringify(p23Stars)); trackChange(STARS_P23_KEY); }
 
@@ -1773,6 +1835,7 @@ function renderOverview(){
   $("#statTotal").textContent = totalMin;
   $("#statDone").textContent = days.length;
   $("#statDoneOf").textContent = totalAll || "—";
+  fillLastPosNote();
 
   // heatmap: last 52 weeks x 7 days
   const container = $("#heatmapContainer"); container.innerHTML = "";
@@ -2190,6 +2253,7 @@ const SYNC_KEYS = new Set([
   STAR_KEY,       // brand9::stars::v2
   REVEAL_KEY,     // brand9::reveal::v2
   STARS_P23_KEY,  // brand9::stars_p23::v1
+  POS_KEY,        // brand9::pos::v1 — 复习进度位置，随账号云端同步
 ]);
 
 let authToken = null;
@@ -2454,7 +2518,11 @@ updateAuthUI();
 if(authToken){
   api("/api/me").then(res=>{
     if(res.ok){
-      pullCloudState().then(()=>{ render(); if(p23Data.length) renderP23(); });
+      pullCloudState().then(()=>{
+        restorePosition();                       /* 云端进度可能更新，重新恢复位置 */
+        render(); if(p23Data.length) renderP23();
+        maybeShowWelcome();
+      });
     } else {
       authToken = null; authUser = null;
       saveAuth(); updateAuthUI();
@@ -2463,6 +2531,7 @@ if(authToken){
 }
 
 restorePosition();
+if(!authToken) maybeShowWelcome();
 
 // 注入版本号到页脚链接（APP_VERSION 已含 "v" 前缀）
 document.querySelectorAll(".appVer").forEach(el => { el.textContent = APP_VERSION; });

@@ -390,6 +390,7 @@
   .ava-white{color:#cfe3f5; stroke:#ffffff; stroke-width:.7; filter:drop-shadow(0 0 3px rgba(160,210,255,.5))}
   .ava-yellow{color:#ffd24a; stroke:#fff3c2; stroke-width:.7; filter:drop-shadow(0 0 4px rgba(255,200,60,.55))}
   .ava-lv{font:800 9px/1 "Fraunces",serif; color:#ffb400; margin-left:1px}
+  .ava-lv.wd{color:#dfe7f1}
   .mem-status{display:flex; flex-direction:column; gap:2px; margin:0 0 16px;
     border:1px dashed var(--line-strong); border-radius:12px; padding:12px 14px; background:var(--f-05)}
   .mem-row{display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--ink-dim);
@@ -1008,26 +1009,29 @@
   </div>
 </div>
 
-<!-- 会员中心：金色碎片 / 钻石等级 / 激活密钥 -->
+<!-- 会员中心：金色碎片 / 钻石等级 / 兑换黄钻 / 激活密钥 -->
 <div class="modal-bg" id="memberModal">
   <div class="modal" style="max-width:440px">
     <h2>💎 会员中心</h2>
-    <p class="sub">每日练满 21 道触发碎片奖励 · 会员期内免疫黑钻侵袭</p>
+    <p class="sub">每日练满 21-27 道触发随机奖励 · 21 个金碎片可兑换一级黄钻</p>
     <div class="mem-status">
       <div class="mem-row"><span>钻石等级</span><b id="memCat">—</b></div>
       <div class="mem-row"><span>金色碎片（积分）</span><b id="memGold">0</b></div>
-      <div class="mem-row"><span>连续练满天数</span><b id="memStreak">0 天</b></div>
+      <div class="mem-row"><span>距离下次兑换</span><b id="memNext">还需 21 个</b></div>
       <div class="mem-row"><span>会员密钥</span><b id="memKeyType">—</b></div>
       <div class="mem-row"><span>密钥到期</span><b id="memExpire">—</b></div>
     </div>
+    <button class="primary" id="redeemBtn" style="display:none;width:100%;margin-bottom:12px">💎 兑换一次黄钻（消耗 21 个金碎片）</button>
     <div class="auth-field">
       <label for="keyInput">激活密钥（7 天 / 14 天）</label>
       <input type="text" id="keyInput" placeholder="BR9-XXXX-XXXX-XXXX" maxlength="24" autocomplete="off">
     </div>
     <div class="auth-err" id="keyErr"></div>
     <div class="mem-rules">
-      规则：练满 21 道 = 触发 1 轮奖励（随机 1-3 金碎片）；连续练满天数 = 黄钻等级；
-      次日练习 ≤3 会出现 3-5 个黑色碎片吃掉金碎片，碎片耗尽黄钻降级；
+      规则：练满一档（随机 21-27 道）触发 1 次奖励（随机 1-3 金碎片）；
+      累计 21 个金碎片即可兑换 1 级黄钻（再攒 21 个可再升 1 级）；
+      次日练习 ≤3 会出现 3-5 个黑色碎片先吃掉金碎片；碎片耗尽后黄钻按
+      等级保留天数（一级 1 天、二级 2 天以此类推），超过则掉 1 级；
       开通会员（7/14 天）后免疫黑色侵袭，且每天保底 +1 金碎片。
     </div>
     <div class="modal-actions">
@@ -2571,10 +2575,10 @@ function closeAuthModal(){ $("#authModal").classList.remove("show"); }
 
 function esc(s){ return String(s==null?"":s).replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
 
-function diamondSVG(cat, level){
+function diamondSVG(cat, level, gold){
   const d = '<path d="M12 1.8 21 8l-9 14L3 8z"/>';
-  if(cat === "white") return '<svg class="ava-dia ava-white" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="currentColor">'+d+'</svg>';
   if(cat === "yellow") return '<svg class="ava-dia ava-yellow" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="currentColor">'+d+'</svg>' + (level > 1 ? '<b class="ava-lv">'+level+'</b>' : '');
+  if(cat === "white") return '<svg class="ava-dia ava-white" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="currentColor">'+d+'</svg>' + (gold ? '<b class="ava-lv wd">'+gold+'</b>' : '');
   return '👤';
 }
 
@@ -2583,7 +2587,7 @@ function updateAuthUI(){
   if(!btn) return;
   const moreAdmin = $("#moreAdmin"), moreLogout = $("#moreLogout");
   if(authUser){
-    const ava = diamondSVG(myMember ? myMember.cat : "none", myMember ? myMember.yd_level : 0);
+    const ava = diamondSVG((myMember && myMember.cat) || "white", myMember ? myMember.yd_level : 0, myMember ? myMember.gold : 0);
     btn.innerHTML = '<span class="auth-ava">'+ava+'</span><span id="authName">'+esc(authUser)+'</span><span class="auth-out" id="authOut">· 退出</span>';
     btn.classList.add("active");
     btn.classList.toggle("admin-caret", authRole === "admin");
@@ -2682,12 +2686,26 @@ async function openMemberCenter(){
 }
 function renderMemberStatus(m){
   const catTxt = m.cat === "yellow" ? "黄钻 Lv" + m.yd_level
-               : m.cat === "white" ? "白钻（会员）" : "未开通会员";
+               : m.yd_level >= 1 ? "黄钻 Lv" + m.yd_level      // 服务端兜底：有等级即黄钻
+               : "白钻（金碎片 " + m.gold + "）";
   $("#memCat").textContent = catTxt;
   $("#memGold").textContent = m.gold;
-  $("#memStreak").textContent = m.streak + " 天";
+  $("#memNext").textContent = m.gold >= 21 ? "已可兑换 👉 点击下方按钮" : "还需 " + (21 - m.gold) + " 个";
+  const redeemBtn = $("#redeemBtn");
+  if(redeemBtn) redeemBtn.style.display = m.gold >= 21 ? "" : "none";
   $("#memKeyType").textContent = m.key_type ? (m.key_type === "7d" ? "7 天密钥" : "14 天密钥") : "—";
   $("#memExpire").textContent = m.key_expires ? new Date(m.key_expires * 1000).toLocaleDateString("zh-CN") : "—";
+}
+async function convertDiamond(){
+  if(!authUser){ openAuthModal(); return; }
+  const btn = $("#redeemBtn");
+  if(btn) btn.disabled = true;
+  const res = await api("/api/membership/convert", {method:"POST"});
+  if(btn) btn.disabled = false;
+  if(!res.ok){ toast(res.error || "兑换失败"); return; }
+  toast("🎉 兑换成功，当前黄钻 Lv" + res.yd_level + "，剩余金碎片 " + res.gold);
+  const m = await api("/api/membership/me");
+  if(m.ok){ myMember = m; renderMemberStatus(m); updateAuthUI(); }
 }
 async function activateKey(){
   const code = $("#keyInput").value.trim();
@@ -2725,8 +2743,8 @@ function renderUserList(accounts){
   for(const a of accounts){
     const m = a.member || {};
     const dia = m.yd_level >= 1 ? '<b class="u-dia yd">黄钻Lv'+m.yd_level+'</b>'
-              : m.key_type ? '<b class="u-dia wd">白钻</b>' : '';
-    const extra = m.streak ? '<span class="ustreak">连续'+m.streak+'天</span>' : '';
+              : '<b class="u-dia wd">白钻</b>';
+    const extra = '';
     const row = document.createElement("div");
     row.className = "user-row";
     row.innerHTML =
@@ -2790,15 +2808,15 @@ async function openBoard(){
   const board = res.board || [];
   for(let i=0;i<board.length;i++){
     const b = board[i];
-    const ava = b.cat === "yellow" ? diamondSVG("yellow", b.yd_level)
-              : b.cat === "white" ? diamondSVG("white", 0) : "👤";
+    const ava = b.cat === "yellow" ? diamondSVG("yellow", b.yd_level, 0)
+              : diamondSVG("white", 0, b.gold);   // 白钻 + 金碎片数
     const row = document.createElement("div");
     row.className = "board-item" + (b.username === authUser ? " me" : "");
     row.innerHTML =
       '<span class="b-rank">'+(i+1)+'</span>' +
       '<span class="b-ava">'+ava+'</span>' +
       '<span class="b-name">'+esc(b.username)+'</span>' +
-      '<span class="b-cat">'+(b.cat === "yellow" ? "黄钻Lv"+b.yd_level : b.cat === "white" ? "白钻" : "")+'</span>' +
+      '<span class="b-cat">'+(b.cat === "yellow" ? "黄钻Lv"+b.yd_level : "白钻")+'</span>' +
       '<b class="b-gold">'+b.gold+' 金</b>';
     box.appendChild(row);
   }
@@ -2808,6 +2826,7 @@ async function openBoard(){
 /* --- 会员中心 / 管理面板 / 排行榜 交互 --- */
 $("#keyActivate").addEventListener("click", activateKey);
 $("#keyInput").addEventListener("keydown", e=>{ if(e.key === "Enter") activateKey(); });
+$("#redeemBtn").addEventListener("click", convertDiamond);
 $("#memberClose").addEventListener("click", ()=>closeModal("memberModal"));
 $("#memberModal").addEventListener("click", e=>{ if(e.target.id === "memberModal") closeModal("memberModal"); });
 $("#memberBoard").addEventListener("click", ()=>{ closeModal("memberModal"); openBoard(); });

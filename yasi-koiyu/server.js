@@ -11,7 +11,8 @@
 //   POST /api/state/sync         (Bearer) {entries:[{key, value, updated_at}]}
 //   POST /api/state/clear        (Bearer) -> wipe user state (keep account)
 //   Admin: /api/admin/me|accounts|accounts/:id|accounts/:id/reset|smtp|keys
-//   Membership: GET /api/membership/me, POST /api/membership/activate {code}
+//   Membership: GET /api/membership/me, POST /api/membership/convert,
+//               POST /api/membership/activate {code}
 //   GET  /api/scoreboard         (Bearer) -> all users' gold fragments (leaderboard)
 //
 // Auth: login issues a bearer token kept in memory (expires after 30 days).
@@ -232,8 +233,7 @@ const TOKENS = new Map();
 // ---------------------------------------------------------------- database
 function initDb() {
   db = new DatabaseSync(DB_PATH);
-  db.exec(`
-    CREATE TABLE IF NOT EXISTS users (
+  db.exec(`CREATE TABLE IF NOT EXISTS users (
       id         INTEGER PRIMARY KEY AUTOINCREMENT,
       username   TEXT UNIQUE NOT NULL,
       pass_salt  TEXT NOT NULL,
@@ -272,8 +272,9 @@ function initDb() {
       key_start      INTEGER,
       key_expires    INTEGER,
       gold           INTEGER NOT NULL DEFAULT 0,   -- 金色碎片（= 金色积分）
-      streak         INTEGER NOT NULL DEFAULT 0,   -- 连续练满(≥21)天数
-      yd_level       INTEGER NOT NULL DEFAULT 0,   -- 黄钻等级（= 连续练满天数）
+      yd_level       INTEGER NOT NULL DEFAULT 0,   -- 黄钻等级（首次兑换=1级，再兑换+1级）
+      grace_days     INTEGER NOT NULL DEFAULT 0,   -- 金碎片耗尽后黄钻可保留的天数
+      last_day_reward INTEGER NOT NULL DEFAULT 0,  -- 今日已发放的练满奖励快照（防重复补算）
       last_status_day TEXT,                        -- 已结算的最后一天 (yyyy-mm-dd)
       updated_at     INTEGER
     );
@@ -287,6 +288,10 @@ function initDb() {
   if (!cols.includes('uuid')) db.exec('ALTER TABLE users ADD COLUMN uuid TEXT');
   db.exec('CREATE UNIQUE INDEX IF NOT EXISTS idx_users_email ON users(email)');
   db.exec('CREATE TABLE IF NOT EXISTS kv (k TEXT PRIMARY KEY, v TEXT);');
+  // membership 列迁移（旧库可能没有 grace_days / 仍有 streak 旧列，保留不影响）
+  const memCols = db.prepare('PRAGMA table_info(membership)').all().map((r) => r.name);
+  if (!memCols.includes('grace_days')) db.exec('ALTER TABLE membership ADD COLUMN grace_days INTEGER NOT NULL DEFAULT 0');
+  if (!memCols.includes('last_day_reward')) db.exec('ALTER TABLE membership ADD COLUMN last_day_reward INTEGER NOT NULL DEFAULT 0');
   console.log(`[db] ready at ${DB_PATH}`);
 }
 
@@ -400,11 +405,13 @@ function requireAdmin(req, res) {
 
 // ------------------------------------------------------------ membership
 // 会员 / 钻石系统：
-//   密钥    -> 白钻（7 天 / 14 天）。有效期内：免疫黑色碎片侵袭，且每日保底 +1 金碎片
-//   练满    -> 每练满 21 道触发一轮奖励（1-3 金碎片）；当日 ≥21 记为「练满」
-//   黄钻    -> 连续练满天数 = 黄钻等级（第 1 天一级，连续每天 +1 级）
-//   黑色    -> 次日练习 ≤3 时出现 3-5 个黑色碎片，1:1 吃掉金碎片；
-//              碎片耗尽后黄钻降级；白钻以下玩家触发新手保护仅损失 1 个碎片
+//   密钥    -> 7 天 / 14 天会员。有效期内：每日保底 +1 金碎片，且免疫黑色碎片侵袭
+//   奖励    -> 每日练习每凑满一轮随机 21-27 道触发一次奖励（随机 1-3 金碎片）
+//   兑换    -> 金色碎片 ≥21 时变为可兑换状态，玩家可手动消耗 21 碎片兑换
+//              黄钻等级 +1（首次=一级黄钻），剩余碎片保留继续累积
+//   黑色    -> 次日练习 ≤3 出现 3-5 个黑色碎片，1:1 吃掉金碎片；
+//              金碎片被吃光后黄钻进入消耗：一级保留 1 天、二级 2 天…（grace_days），
+//              超过保留天数则黄钻降 1 级；一级以下新手只被吃掉 1 个碎片
 //   结算    -> 服务端每日自动结算（延迟补算所有未结算的日期）
 const KEY_TYPES = ['7d', '14d'];
 const KEY_DAYS = { '7d': 7, '14d': 14 };
@@ -420,16 +427,17 @@ function dayStartSec(day) { return Date.parse(day + 'T00:00:00Z') / 1000; }
 function ensureMember(userId) {
   const row = db.prepare('SELECT * FROM membership WHERE user_id = ?').get(userId);
   if (row) return row;
-  db.prepare('INSERT INTO membership (user_id, gold, streak, yd_level, updated_at) VALUES (?,0,0,0,?)')
+  db.prepare('INSERT INTO membership (user_id, gold, yd_level, grace_days, updated_at) VALUES (?,0,0,0,?)')
     .run(userId, nowSec());
   return db.prepare('SELECT * FROM membership WHERE user_id = ?').get(userId);
 }
 
 function updateMember(userId, mem) {
-  db.prepare(`UPDATE membership SET key_type=?, key_start=?, key_expires=?, gold=?, streak=?,
-              yd_level=?, last_status_day=?, updated_at=? WHERE user_id=?`)
+  db.prepare(`UPDATE membership SET key_type=?, key_start=?, key_expires=?, gold=?,
+              yd_level=?, grace_days=?, last_day_reward=?, last_status_day=?, updated_at=? WHERE user_id=?`)
     .run(mem.key_type || null, mem.key_start || 0, mem.key_expires || 0,
-         mem.gold, mem.streak, mem.yd_level, mem.last_status_day || null, nowSec(), userId);
+         mem.gold || 0, mem.yd_level || 0, mem.grace_days || 0,
+         mem.last_day_reward || 0, mem.last_status_day || null, nowSec(), userId);
 }
 
 function practiceCountForDay(userId, day) {
@@ -442,54 +450,105 @@ function practiceCountForDay(userId, day) {
   } catch (_) { return 0; }
 }
 
+// 当日奖励参数用 (用户, 日期, 轮次) 作确定性种子 —— 同一用户同一天重复结算结果一致，
+// 这样「当天练满后再次打开会员中心」能补算新增奖励，而不会重复发放。
+function hashStr(s) {
+  let h = 2166136261 >>> 0;
+  for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); }
+  return h >>> 0;
+}
+function rngFrom(seed) {
+  let a = seed >>> 0;
+  return function () {
+    a |= 0; a = a + 0x6D2B79F5 | 0;
+    let t = Math.imul(a ^ a >>> 15, 1 | a);
+    t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  };
+}
+function roundThreshold(userId, day, ri) {
+  return 21 + Math.floor(rngFrom(hashStr(userId + '|' + day + '|' + ri + '|th'))() * 7);   // 21-27
+}
+function roundReward(userId, day, ri) {
+  return 1 + Math.floor(rngFrom(hashStr(userId + '|' + day + '|' + ri + '|rw'))() * 3);    // 1-3
+}
+function rewardForCount(userId, day, cnt) {
+  let rem = cnt, ri = 0, g = 0;
+  while (rem >= 21) {
+    const threshold = roundThreshold(userId, day, ri);   // 21-27 随机
+    if (rem < threshold) break;
+    rem -= threshold;
+    g += roundReward(userId, day, ri);                   // 1-3 随机
+    ri += 1;
+  }
+  return g;
+}
+
 // 结算某用户从「上次结算日」到今天的每一天（含）。
 
 function settleMember(userId) {
   const mem = ensureMember(userId);
   const today = dayKey(Date.now());
-  if (mem.last_status_day && mem.last_status_day >= today) return mem;
-  const days = [];
-  if (!mem.last_status_day) {
-    days.push(today);              // 首次结算：从今天开始，不追溯历史
-  } else {
-    let cur = dayStartSec(mem.last_status_day) + DAY_SEC;
-    const end = dayStartSec(today);
-    for (; cur <= end; cur += DAY_SEC) days.push(dayKey(cur * 1000));
-  }
   let gold = mem.gold || 0;
-  let streak = mem.streak || 0;
   let level = mem.yd_level || 0;
+  let grace = mem.grace_days || 0;
+  let dayReward = mem.last_day_reward || 0;   // 已按「今天」累计发放的练满奖励快照
   const keyStart = mem.key_start || 0;
   const keyExpires = mem.key_expires || 0;
   let lastDay = mem.last_status_day || null;
+  const alreadySettledToday = lastDay === today;
 
-  for (const d of days) {
+  const processDay = (d, applyOnce) => {
     const ds = dayStartSec(d);
     const keyActive = keyStart && keyExpires && ds >= keyStart && ds < keyExpires;
     const cnt = practiceCountForDay(userId, d);
+
+    if (applyOnce && keyActive) gold += 1;        // 密钥期内每日保底 +1（仅当天首结算）
+
     if (cnt >= 21) {
-      const rounds = Math.floor(cnt / 21);            // 每练满一轮 21 道触发一次
-      for (let i = 0; i < rounds; i++) gold += 1 + crypto.randomInt(0, 3); // 1-3 随机
-      streak += 1;                                    // 连续练满 +1
-      level = streak;                                 // 黄钻等级 = 连续练满天数
-      if (keyActive) gold += 1;                       // 密钥期内每日保底 +1
-    } else if (cnt <= 3) {
-      if (keyActive) {
-        gold += 1;                                    // 稳健 +1 金碎片，免疫黑色侵袭
-        streak = 0; level = 0;                        // 但连续练习断档仍掉回一级
-      } else {
-        const black = 3 + crypto.randomInt(0, 3);     // 3-5 个黑色碎片
-        let consumed = Math.min(black, gold);
-        if (level === 0) consumed = Math.min(consumed, 1); // 新手保护：仅吃掉 1 个
+      // 每凑满一轮随机 21-27 道触发一次，奖励 1-3 金碎片（确定性种子）
+      // 当天重复结算时只补发差额（新增练满带来的金），不重复累计。
+      const full = rewardForCount(userId, d, cnt);
+      const granted = Math.max(0, full - dayReward);
+      gold += granted;
+      dayReward = full;
+      if (applyOnce && gold > 0) grace = 0;      // 有碎片兜底，黄钻不再消耗
+    } else if (cnt <= 3 && !keyActive && applyOnce) {
+      const black = 3 + crypto.randomInt(0, 3);   // 3-5 个黑色碎片（仅当天首结算）
+      if (level >= 1) {
+        const consumed = Math.min(black, gold);
         gold -= consumed;
-        if (gold < 0) gold = 0;
-        streak = 0; level = 0;                        // 断档掉回一级；碎片耗尽黄钻降级
+        if (gold <= 0) {
+          gold = 0;
+          // 碎片不够消耗：黄钻进入消耗期，一级保留 1 天、二级 2 天…
+          if (grace >= level) { level = Math.max(0, level - 1); grace = 0; }
+          else grace += 1;
+        } else {
+          grace = 0;
+        }
+      } else {
+        if (gold > 0) gold -= 1;                 // 新手保护：只被吃掉 1 个
       }
     }
-    // 4-20 题：无奖励、无惩罚、连续与等级保持不变
-    lastDay = d;
+    // 4-20 题：无奖励、无惩罚
+  };
+
+  if (!lastDay) {
+    processDay(today, true);                 // 首次结算：从今天开始，不追溯历史
+  } else if (alreadySettledToday) {
+    processDay(today, false);                // 当天补算：只补练满奖励差额
+  } else {
+    let cur = dayStartSec(lastDay) + DAY_SEC;
+    const end = dayStartSec(today);
+    for (; cur <= end; cur += DAY_SEC) {
+      const d = dayKey(cur * 1000);
+      dayReward = 0;                          // 补算期间每一天都是全新的
+      processDay(d, true);
+    }
   }
-  mem.gold = gold; mem.streak = streak; mem.yd_level = level; mem.last_status_day = lastDay;
+  mem.gold = gold; mem.yd_level = level; mem.grace_days = grace;
+  mem.last_day_reward = dayReward;
+  mem.last_status_day = today;
   updateMember(userId, mem);
   return ensureMember(userId);
 }
@@ -500,11 +559,8 @@ function settleAllUsers() {
 }
 
 function memberCat(mem) {
-  const now = nowSec();
-  const keyActive = mem.key_type && mem.key_expires && mem.key_expires > now;
   if (mem.yd_level >= 1) return 'yellow';
-  if (keyActive) return 'white';
-  return 'none';
+  return 'white';   // 一级以下统一为白钻（新手）；密钥只是额外的保护/保底权益
 }
 
 function keyActiveUntil(mem) {
@@ -685,15 +741,14 @@ function apiAdminAccounts(req, res) {
   settleAllUsers();
   const rows = db.prepare(
     `SELECT u.id, u.username, u.email, u.note, u.created_at, u.role, u.parent_id,
-            COALESCE(m.gold,0) AS gold, COALESCE(m.streak,0) AS streak,
-            COALESCE(m.yd_level,0) AS yd_level, m.key_type, m.key_expires
+            COALESCE(m.gold,0) AS gold, COALESCE(m.yd_level,0) AS yd_level, m.key_type, m.key_expires
      FROM users u LEFT JOIN membership m ON m.user_id = u.id
      ORDER BY u.created_at`
   ).all();
   const out = rows.map((r) => ({
     id: r.id, username: r.username, email: r.email, note: r.note, created_at: r.created_at,
     role: r.role, parent_id: r.parent_id,
-    member: { gold: r.gold, streak: r.streak, yd_level: r.yd_level,
+    member: { gold: r.gold, yd_level: r.yd_level,
               key_type: r.key_type, key_expires: r.key_expires || 0 },
   }));
   return sendJson(res, { ok: true, accounts: out });
@@ -811,7 +866,6 @@ function apiMembershipMe(req, res) {
   const user = auth(req, res);
   if (!user) return;
   const mem = settleMember(user.id);
-  const now = nowSec();
   const expire = keyActiveUntil(mem);
   return sendJson(res, {
     ok: true,
@@ -820,8 +874,28 @@ function apiMembershipMe(req, res) {
     key_start: expire ? (mem.key_start || 0) : 0,
     key_expires: expire,
     gold: mem.gold,
-    streak: mem.streak,
     yd_level: mem.yd_level,
+    grace_days: mem.grace_days || 0,
+    redeemable: mem.gold >= 21,
+  });
+}
+
+async function apiConvertDiamond(req, res) {
+  const user = auth(req, res);
+  if (!user) return;
+  const mem = settleMember(user.id);
+  if (mem.gold < 21) return sendError(res, `金色碎片不足，还差 ${21 - mem.gold} 个才能兑换`);
+  mem.gold -= 21;
+  mem.yd_level += 1;              // 首次兑换=一级黄钻，此后每兑换一次 +1 级
+  mem.grace_days = 0;
+  updateMember(user.id, mem);
+  const fresh = ensureMember(user.id);
+  return sendJson(res, {
+    ok: true,
+    gold: fresh.gold,
+    yd_level: fresh.yd_level,
+    grace_days: fresh.grace_days || 0,
+    redeemable: fresh.gold >= 21,
   });
 }
 
@@ -853,16 +927,14 @@ function apiScoreboard(req, res) {
   settleAllUsers();
   const rows = db.prepare(
     `SELECT u.id, u.username, COALESCE(m.gold,0) AS gold, COALESCE(m.yd_level,0) AS yd_level,
-            COALESCE(m.streak,0) AS streak, m.key_type, m.key_expires
+            m.key_type, m.key_expires
      FROM users u LEFT JOIN membership m ON m.user_id = u.id
      ORDER BY gold DESC, u.created_at ASC`
   ).all();
-  const now = nowSec();
   const out = rows.map((r) => ({
     id: r.id, username: r.username, gold: r.gold,
-    cat: r.yd_level >= 1 ? 'yellow'
-       : (r.key_type && r.key_expires && r.key_expires > now) ? 'white' : 'none',
-    yd_level: r.yd_level, streak: r.streak,
+    cat: r.yd_level >= 1 ? 'yellow' : 'white',   // 一级以下统一为白钻
+    yd_level: r.yd_level,
   }));
   return sendJson(res, { ok: true, board: out });
 }
@@ -951,6 +1023,7 @@ async function apiRouter(req, res, method, p) {
   if (p === '/api/admin/keys' && method === 'GET') return A(apiAdminKeysList);
   if (p === '/api/admin/keys' && method === 'POST') return await A(apiAdminKeysGen);
   if (p === '/api/membership/me' && method === 'GET') return A(apiMembershipMe);
+  if (p === '/api/membership/convert' && method === 'POST') return A(apiConvertDiamond);
   if (p === '/api/membership/activate' && method === 'POST') return await A(apiActivateKey);
   if (p === '/api/scoreboard' && method === 'GET') return A(apiScoreboard);
   let m = p.match(/^\/api\/admin\/accounts\/(\d+)$/);

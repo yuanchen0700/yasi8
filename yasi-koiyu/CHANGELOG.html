@@ -29,6 +29,18 @@
   <div class="sub">brand9 · yasi-koiyu 雅思口语练习 · 每次改进都会在此记录。完整提交记录见 <a href="https://github.com/yuanchen0700/yasi8/commits/main" target="_blank" rel="noopener">GitHub Commits</a>。</div>
 
   <div class="card">
+    <h2><span class="ver">v2.5.0</span><span class="date">2026-08-31</span></h2>
+    <ul>
+      <li><span class="tag">会员</span>钻石系统全面改版：每日练习每凑满一轮随机 21-27 道触发一次，随机奖励 1-3 金碎片（按用户+日期+轮次确定性种子，同日重复结算只补差额不重复发放）</li>
+      <li><span class="tag">兑换</span>金碎片 ≥21 即进入可兑换状态，新增「兑换黄钻」：消耗 21 碎片升级一级（首次=一级、再兑=二级…），剩余碎片保留</li>
+      <li><span class="tag">掉级</span>断档 ≤3 题生成 3-5 黑色碎片 1:1 吃金碎片；碎片耗尽后黄钻按等级保留天数（grace_days = 等级数：一级 1 天、二级 2 天…）宽限，超过即降一级；新手（白钻）断档每日仅损 1 碎片</li>
+      <li><span class="tag">密钥</span>7/14 天密钥期内每日保底 +1 金碎片且免疫黑色侵袭；密钥不再决定钻石颜色，白钻=未兑黄钻（显示金碎片数）</li>
+      <li><span class="tag">前端</span>会员中心新增可兑换提示与兑换按钮、白钻+金碎片数徽章、规则文案更新；移除「连续练满天数」概念；排行榜初级玩家显示白钻+数字</li>
+      <li><span class="tag">后台</span>新增 <code>POST /api/membership/convert</code> 兑换接口，管理员账号列表去掉 streak 字段</li>
+    </ul>
+  </div>
+
+  <div class="card">
     <h2><span class="ver">v2.4.0</span><span class="date">2026-08-29</span></h2>
     <ul>
       <li><span class="tag">主题</span>新增明暗双主题：右上角太阳/月亮按钮切换，<code>localStorage</code> 记住偏好，默认浅色；页面首屏防闪烁（FOUC）</li>
@@ -76,7 +88,7 @@
     </ul>
   </div>
 
-  <div class="foot">本页随版本演进持续更新 · 当前版本 v2.4.0</div>
+  <div class="foot">本页随版本演进持续更新 · 当前版本 v2.5.0</div>
 </div>
 </body>
 </html>

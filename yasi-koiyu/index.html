@@ -427,10 +427,22 @@
   .user-row .u-dia.wd{color:#cfd9e8; background:rgba(160,210,255,.13)}
   .user-row .ugold{font-size:11px; color:#ffb400; font-weight:600}
   .user-row .ustreak{font-size:11px; color:var(--ink-dim)}
-  .uactions{flex:none}
+  .uactions{flex:none; display:flex; gap:6px; flex-wrap:wrap; justify-content:flex-end}
   .uactions .mini{appearance:none; cursor:pointer; background:var(--f-10); color:var(--ink);
-    border:1px solid var(--line); border-radius:8px; padding:6px 12px; font:500 12px/1 inherit}
+    border:1px solid var(--line); border-radius:8px; padding:6px 10px; font:500 12px/1 inherit; white-space:nowrap}
   .uactions .mini:hover{background:var(--f-14); border-color:var(--line-strong)}
+  .uactions .mini.on{background:rgba(64,196,99,.18); border-color:rgba(64,196,99,.5); color:#40c463}
+  .uactions .mini[disabled]{opacity:.45; cursor:not-allowed}
+  .u-linkchip{font-size:10px; font-weight:700; border-radius:999px; padding:2px 8px; flex:none}
+  .u-linkchip.on{color:#40c463; background:rgba(64,196,99,.15)}
+  .u-linkchip.off{color:var(--ink-dim); background:rgba(120,120,130,.18)}
+  .link-sec{margin:0 0 18px}
+  .link-row{display:flex; gap:8px; align-items:center; margin:8px 0}
+  .link-row input{flex:1; min-width:0; font:500 12px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;
+    background:var(--f-04); border:1px solid var(--line); border-radius:8px; padding:9px 10px; color:var(--ink)}
+  .link-row input:focus{border-color:var(--accent); outline:none}
+  .link-row .mini{flex:none; padding:8px 12px}
+  .link-hint{font-size:11px; color:var(--ink-dim); line-height:1.7}
   .board-list{display:flex; flex-direction:column; gap:4px; max-height:55vh; overflow-y:auto}
   .board-item{display:flex; align-items:center; gap:10px; padding:8px 12px; border-radius:9px; font-size:13px}
   .board-item:nth-child(odd){background:var(--f-04)}
@@ -1034,6 +1046,15 @@
       等级保留天数（一级 1 天、二级 2 天以此类推），超过则掉 1 级；
       开通会员（7/14 天）后免疫黑色侵袭，且每天保底 +1 金碎片。
     </div>
+    <div class="link-sec" id="memLinkSec" style="display:none">
+      <div class="admin-title">🔗 我的免密直达登录链接</div>
+      <div class="link-row">
+        <input readonly id="memLinkVal" onclick="this.select()" placeholder="尚未生成">
+        <button class="mini" id="memLinkCopy">复制</button>
+        <button class="mini" id="memLinkGen">重新生成</button>
+      </div>
+      <div class="link-hint">把此链接存成书签或发给自己，打开即自动登录本账号，无需输密码。请勿外传。</div>
+    </div>
     <div class="modal-actions">
       <button class="primary" id="keyActivate">💎 激活会员</button>
       <button id="memberBoard">🏆 排行榜</button>
@@ -1047,6 +1068,15 @@
   <div class="modal" style="max-width:620px">
     <h2>🛠 管理面板</h2>
     <p class="sub" id="adminSelfInfo"></p>
+    <div class="link-sec" id="admLinkSec">
+      <div class="admin-title">🔗 我的免密直达登录链接</div>
+      <div class="link-row">
+        <input readonly id="admLinkVal" onclick="this.select()" placeholder="点击生成">
+        <button class="mini" id="admLinkCopy">复制</button>
+        <button class="mini" id="admLinkGen">重新生成</button>
+      </div>
+      <div class="link-hint">管理员账号默认开放。保存此链接，打开即自动登录本账号，无需输密码。请勿外传。</div>
+    </div>
     <div class="admin-sec">
       <div class="admin-title">生成会员密钥</div>
       <div class="admin-keys-gen">
@@ -1087,7 +1117,7 @@
 
 <script>
 const STORAGE_KEY = "brand9::doc::v3", STAR_KEY = "brand9::stars::v2", REVEAL_KEY = "brand9::reveal::v2";
-const APP_VERSION = "v2.5.0";
+const APP_VERSION = "v2.6.0";
 let doc = loadDoc(), stars = loadStars(), editing = false, currentIdx = 0, autoPlay = false, saveTimer = null;
 let reveal = loadReveal();
 
@@ -2673,6 +2703,68 @@ async function logout(){
    ============================================================ */
 function closeModal(id){ const el = $("#"+id); if(el) el.classList.remove("show"); }
 
+/* --- 免密直达链接 通用 --- */
+function makeDirectUrl(token){
+  return location.origin + location.pathname + "?pass=" + encodeURIComponent(token);
+}
+async function copyText(text){
+  try{ await navigator.clipboard.writeText(text); return true; }
+  catch(e){
+    try{
+      const ta = document.createElement("textarea");
+      ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select();
+      const ok = document.execCommand("copy");
+      document.body.removeChild(ta);
+      return ok;
+    }catch(e2){ return false; }
+  }
+}
+function showLinkBox(secId, valId, copyId, genId, res){
+  const sec = $("#"+secId); if(!sec) return;
+  const input = $("#"+valId); if(!input) return;
+  const copyBtn = $("#"+copyId), genBtn = $("#"+genId);
+  if(!(res && res.ok)){ sec.style.display = "none"; return; }
+  if(!res.open){ sec.style.display = "none"; return; }   // 未开放则完全隐藏
+  sec.style.display = "";
+  const url = res.token ? makeDirectUrl(res.token) : "";
+  input.value = url;
+  if(copyBtn) copyBtn.disabled = !url;
+  if(genBtn) genBtn.textContent = url ? "重新生成" : "生成链接";
+}
+async function refreshSelfLinkBox(){
+  const res = await api("/api/me/link");
+  showLinkBox("memLinkSec", "memLinkVal", "memLinkCopy", "memLinkGen", res);
+}
+async function refreshAdmLink(){
+  const res = await api("/api/me/link");
+  showLinkBox("admLinkSec", "admLinkVal", "admLinkCopy", "admLinkGen", res);
+}
+async function genSelfLink(){
+  const res = await api("/api/me/link/gen", {method:"POST"});
+  if(!res.ok){ toast(res.error || "生成失败"); return; }
+  const url = makeDirectUrl(res.token);
+  if(await copyText(url)) toast("已生成并复制免密直达链接");
+  else toast("已生成免密直达链接（复制失败，请手动复制）");
+  refreshSelfLinkBox();
+  refreshAdmLink();
+}
+async function genAdmLink(){
+  const res = await api("/api/me/link/gen", {method:"POST"});
+  if(!res.ok){ toast(res.error || "生成失败"); return; }
+  const url = makeDirectUrl(res.token);
+  if(await copyText(url)) toast("已生成并复制免密直达链接");
+  else toast("已生成免密直达链接（复制失败，请手动复制）");
+  refreshAdmLink();
+  refreshSelfLinkBox();
+}
+async function copySelfLinkBox(id){
+  const v = $("#"+id).value;
+  if(!v){ toast("请先生成链接"); return; }
+  if(await copyText(v)) toast("已复制免密直达链接");
+  else toast("复制失败，请手动复制");
+}
+
 async function openMemberCenter(){
   if(!authUser){ openAuthModal(); return; }
   closeModal("adminModal"); closeModal("boardModal");
@@ -2683,6 +2775,7 @@ async function openMemberCenter(){
   myMember = res;
   renderMemberStatus(res);
   updateAuthUI();
+  refreshSelfLinkBox();
 }
 function renderMemberStatus(m){
   const catTxt = m.cat === "yellow" ? "黄钻 Lv" + m.yd_level
@@ -2732,6 +2825,7 @@ async function openAdminPanel(){
 async function loadAdminPanel(){
   if(authRole !== "admin") return;
   $("#adminSelfInfo").textContent = "管理员：" + authUser;
+  refreshAdmLink();
   const res = await api("/api/admin/accounts");
   if(res.ok) renderUserList(res.accounts);
   const kr = await api("/api/admin/keys");
@@ -2742,24 +2836,62 @@ function renderUserList(accounts){
   const box = $("#userList"); box.innerHTML = "";
   for(const a of accounts){
     const m = a.member || {};
+    const isAdmin = a.role === "admin";
     const dia = m.yd_level >= 1 ? '<b class="u-dia yd">黄钻Lv'+m.yd_level+'</b>'
               : '<b class="u-dia wd">白钻</b>';
-    const extra = '';
+    const linkChip = isAdmin ? '<span class="u-linkchip on">🔗 默认开放</span>'
+                   : a.link_open ? '<span class="u-linkchip on">🔗 已开放</span>'
+                   : '<span class="u-linkchip off">🔗 关闭</span>';
     const row = document.createElement("div");
     row.className = "user-row";
+    let actions = '';
+    if(!isAdmin){
+      actions += '<button class="mini" data-id="'+a.id+'" data-act="link" data-on="'+(a.link_open?1:0)+'">'+(a.link_open?'关闭免密':'开放免密')+'</button>';
+      actions += '<button class="mini" data-id="'+a.id+'" data-act="copy"'+(a.has_link?'':' disabled')+'>复制链接</button>';
+    }
+    actions += '<button class="mini" data-id="'+a.id+'" data-name="'+esc(a.username)+'" data-act="reset">重置密码</button>';
     row.innerHTML =
       '<div class="uinfo">' +
         '<b class="uname">'+esc(a.username)+'</b>' +
         '<span class="uemail">'+esc(a.email || "—")+'</span>' +
-        '<span class="urole">'+(a.role === "admin" ? "管理员" : "用户")+'</span>' +
+        '<span class="urole">'+(isAdmin ? "管理员" : "用户")+'</span>' +
       '</div>' +
-      '<div class="umember">'+dia+'<span class="ugold">金积分 '+m.gold+'</span>'+extra+'</div>' +
-      '<div class="uactions"><button class="mini" data-id="'+a.id+'" data-name="'+esc(a.username)+'">重置密码</button></div>';
+      '<div class="umember">'+dia+'<span class="ugold">金积分 '+m.gold+'</span>'+linkChip+'</div>' +
+      '<div class="uactions">'+actions+'</div>';
     box.appendChild(row);
   }
   $$("#userList .uactions .mini").forEach(btn=>{
-    btn.addEventListener("click", ()=>resetUserPw(btn.dataset.id, btn.dataset.name));
+    btn.addEventListener("click", ()=>{
+      const act = btn.dataset.act;
+      if(act === "link") toggleAccountLink(btn);
+      else if(act === "copy") copyAccountLink(btn.dataset.id);
+      else resetUserPw(btn.dataset.id, btn.dataset.name);
+    });
   });
+}
+async function toggleAccountLink(btn){
+  const id = btn.dataset.id;
+  const wantOpen = !(btn.dataset.on === "1");
+  btn.disabled = true;
+  const res = await api("/api/admin/accounts/"+id+"/link", {method:"PUT", body:{open: wantOpen}});
+  btn.disabled = false;
+  if(!res.ok){ toast(res.error || "操作失败"); return; }
+  if(wantOpen){
+    if(res.token){
+      const url = makeDirectUrl(res.token);
+      const ok = await copyText(url);
+      toast(ok ? "已开放免密直达，链接已复制" : "已开放免密直达");
+    } else toast("已开放免密直达");
+  } else {
+    toast("已关闭免密直达，原链接已失效");
+  }
+  loadAdminPanel();
+}
+async function copyAccountLink(id){
+  const res = await api("/api/admin/accounts/"+id+"/link");
+  if(!res.ok || !res.open || !res.token){ toast("该账号未开放免密直达或尚无链接"); return; }
+  const ok = await copyText(makeDirectUrl(res.token));
+  toast(ok ? "已复制该账号的免密直达链接" : "复制失败，请手动复制");
 }
 async function resetUserPw(id, name){
   const pw = prompt("为「"+name+"」设置新密码（至少 6 位）：");
@@ -2830,12 +2962,16 @@ $("#redeemBtn").addEventListener("click", convertDiamond);
 $("#memberClose").addEventListener("click", ()=>closeModal("memberModal"));
 $("#memberModal").addEventListener("click", e=>{ if(e.target.id === "memberModal") closeModal("memberModal"); });
 $("#memberBoard").addEventListener("click", ()=>{ closeModal("memberModal"); openBoard(); });
+$("#memLinkCopy").addEventListener("click", ()=>copySelfLinkBox("memLinkVal"));
+$("#memLinkGen").addEventListener("click", genSelfLink);
 
 $("#genKey7").addEventListener("click", ()=>genKeys("7d"));
 $("#genKey14").addEventListener("click", ()=>genKeys("14d"));
 $("#adminRefresh").addEventListener("click", loadAdminPanel);
 $("#adminClose").addEventListener("click", ()=>closeModal("adminModal"));
 $("#adminModal").addEventListener("click", e=>{ if(e.target.id === "adminModal") closeModal("adminModal"); });
+$("#admLinkCopy").addEventListener("click", ()=>copySelfLinkBox("admLinkVal"));
+$("#admLinkGen").addEventListener("click", genAdmLink);
 
 $("#boardClose").addEventListener("click", ()=>closeModal("boardModal"));
 $("#boardModal").addEventListener("click", e=>{ if(e.target.id === "boardModal") closeModal("boardModal"); });
@@ -2862,7 +2998,10 @@ window.addEventListener("beforeunload", ()=>{
 // Init: restore session, verify token, pull cloud state.
 loadAuth();
 loadSyncMeta();
+const sp = new URLSearchParams(location.search);
+const magicTok = authToken ? "" : (sp.get("pass") || sp.get("key") || "");
 updateAuthUI();
+if(magicTok) magicLogin(magicTok);
 if(authToken){
   api("/api/me").then(res=>{
     if(res.ok){
@@ -2882,7 +3021,35 @@ if(authToken){
 }
 
 restorePosition();
-if(!authToken) maybeShowWelcome();
+if(!magicTok && !authToken) maybeShowWelcome();
+
+// 免密直达链接登录：?pass=token 打开即自动登录，成功后清理 URL 参数
+async function magicLogin(token){
+  const res = await api("/api/login/link", {method:"POST", body:{token: token}});
+  try{
+    const u = new URL(location.href);
+    u.searchParams.delete("pass"); u.searchParams.delete("key");
+    history.replaceState(null, "", u.pathname + u.search + u.hash);
+  }catch(e){}
+  if(!res.ok){
+    toast(res.error || "免密直达链接无效或已失效，请正常登录");
+    restorePosition();
+    if(!authToken) maybeShowWelcome();
+    return;
+  }
+  authToken = res.token;
+  authUser  = res.username || "";
+  authRole  = res.role || "user";
+  myMember  = null;
+  saveAuth();
+  updateAuthUI();
+  toast("🔗 免密直达登录成功：" + authUser);
+  await pullCloudState();
+  restorePosition();                       /* 云端进度可能更新，重新恢复位置 */
+  render(); if(p23Data.length) renderP23();
+  refreshMember();
+  maybeShowWelcome();
+}
 
 // 注入版本号到页脚链接（APP_VERSION 已含 "v" 前缀）
 document.querySelectorAll(".appVer").forEach(el => { el.textContent = APP_VERSION; });

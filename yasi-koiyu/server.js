@@ -7,10 +7,14 @@
 //   POST /api/login              {username, password} -> {token}
 //   POST /api/logout             (Bearer) -> invalidates token
 //   GET  /api/me                 (Bearer) -> {username}
+//   GET  /api/me/link            (Bearer) -> {open, token} 免密直达链接状态
+//   POST /api/me/link/gen        (Bearer) -> 生成/重置本人直达链接 token
+//   POST /api/login/link         {token}  -> 用直达链接换取会话 (登录免密)
 //   GET  /api/state              (Bearer) -> {key: {value, updated_at}}
 //   POST /api/state/sync         (Bearer) {entries:[{key, value, updated_at}]}
 //   POST /api/state/clear        (Bearer) -> wipe user state (keep account)
 //   Admin: /api/admin/me|accounts|accounts/:id|accounts/:id/reset|smtp|keys
+//          /api/admin/accounts/:id/link (GET 读取 / PUT {open} 开放可见性)
 //   Membership: GET /api/membership/me, POST /api/membership/convert,
 //               POST /api/membership/activate {code}
 //   GET  /api/scoreboard         (Bearer) -> all users' gold fragments (leaderboard)
@@ -286,7 +290,10 @@ function initDb() {
   if (!cols.includes('note')) db.exec('ALTER TABLE users ADD COLUMN note TEXT');
   if (!cols.includes('nickname')) db.exec('ALTER TABLE users ADD COLUMN nickname TEXT');
   if (!cols.includes('uuid')) db.exec('ALTER TABLE users ADD COLUMN uuid TEXT');
+  if (!cols.includes('link_open')) db.exec("ALTER TABLE users ADD COLUMN link_open INTEGER NOT NULL DEFAULT 0");
+  if (!cols.includes('login_token')) db.exec('ALTER TABLE users ADD COLUMN login_token TEXT');
   db.exec('CREATE UNIQUE INDEX IF NOT EXISTS idx_users_email ON users(email)');
+  db.exec('CREATE UNIQUE INDEX IF NOT EXISTS idx_users_login_token ON users(login_token)');
   db.exec('CREATE TABLE IF NOT EXISTS kv (k TEXT PRIMARY KEY, v TEXT);');
   // membership 列迁移（旧库可能没有 grace_days / 仍有 streak 旧列，保留不影响）
   const memCols = db.prepare('PRAGMA table_info(membership)').all().map((r) => r.name);
@@ -311,6 +318,11 @@ function makeUuid(email, createdAt) {
   const digest = crypto.createHash('sha256').update(`${email}|${createdAt}`).digest('hex');
   const h = digest.slice(0, 32);
   return `${h.slice(0, 8)}-${h.slice(8, 12)}-${h.slice(12, 16)}-${h.slice(16, 20)}-${h.slice(20, 32)}`;
+}
+
+// 免密直达链接 token（等价于一本书签，随身可复制）。存明文便于随时回显；随机关闭会被清空。
+function genLinkToken() {
+  return crypto.randomBytes(24).toString('base64url');
 }
 
 // ------------------------------------------------------------------- auth
@@ -669,6 +681,71 @@ function apiLogout(req, res) {
   return sendJson(res, { ok: true });
 }
 
+// 免密直达链接：用链接里的 token 换取正常会话。
+// 仅当账号「开放可见性」(link_open) 或为管理员时才有效；关闭时会清空 token，旧链接即失效。
+async function apiLoginLink(req, res) {
+  const data = await readJson(req);
+  const token = String(data.token || '').trim();
+  if (!token) return sendError(res, '缺少直达链接 token');
+  const row = db.prepare('SELECT id, username, nickname, uuid, role, link_open FROM users WHERE login_token = ?').get(token);
+  if (!row) return sendError(res, '直达链接无效或已失效', 401);
+  if (row.role !== 'admin' && row.link_open !== 1) return sendError(res, '该直达链接已被关闭', 401);
+  const userToken = issueToken(row.id);
+  const display = row.nickname || row.username;
+  return sendJson(res, { ok: true, token: userToken, username: display, uuid: row.uuid || '', role: row.role || 'user' });
+}
+
+function rowLinkState(row) {
+  const open = row.role === 'admin' || (row.link_open || 0) === 1;
+  return { open, token: open && row.login_token ? row.login_token : null };
+}
+
+function apiMeLinkGet(req, res) {
+  const user = auth(req, res);
+  if (!user) return;
+  const row = db.prepare('SELECT id, role, link_open, login_token FROM users WHERE id = ?').get(user.id);
+  if (!row) return sendError(res, '用户不存在', 404);
+  return sendJson(res, { ok: true, ...rowLinkState(row) });
+}
+
+async function apiMeLinkGen(req, res) {
+  const user = auth(req, res);
+  if (!user) return;
+  const row = db.prepare('SELECT id, role, link_open FROM users WHERE id = ?').get(user.id);
+  const st = rowLinkState(row);
+  if (!st.open) return sendError(res, '管理员还未对你开放此功能', 403);
+  const token = genLinkToken();
+  db.prepare('UPDATE users SET login_token = ? WHERE id = ?').run(token, user.id);
+  return sendJson(res, { ok: true, open: true, token });
+}
+
+async function apiAdminLinkGet(req, res, uid) {
+  const admin = requireAdmin(req, res);
+  if (!admin) return;
+  if (!isManaged(uid)) return sendError(res, '无权限操作该账号', 403);
+  const row = db.prepare('SELECT id, role, link_open, login_token FROM users WHERE id = ?').get(uid);
+  if (!row) return sendError(res, '用户不存在', 404);
+  return sendJson(res, { ok: true, ...rowLinkState(row) });
+}
+
+async function apiAdminLinkSet(req, res, uid) {
+  const admin = requireAdmin(req, res);
+  if (!admin) return;
+  if (!isManaged(uid)) return sendError(res, '无权限操作该账号', 403);
+  const row = db.prepare('SELECT id, role FROM users WHERE id = ?').get(uid);
+  if (!row) return sendError(res, '用户不存在', 404);
+  if (row.role === 'admin') return sendError(res, '管理员账号默认开放，无需开关');
+  const data = await readJson(req);
+  const open = data.open === true;
+  if (open) {
+    const token = genLinkToken();
+    db.prepare('UPDATE users SET link_open = 1, login_token = ? WHERE id = ?').run(token, uid);
+    return sendJson(res, { ok: true, open: true, token });
+  }
+  db.prepare('UPDATE users SET link_open = 0, login_token = NULL WHERE id = ?').run(uid);
+  return sendJson(res, { ok: true, open: false, token: null });
+}
+
 function apiMe(req, res) {
   const user = auth(req, res);
   if (!user) return;
@@ -741,6 +818,7 @@ function apiAdminAccounts(req, res) {
   settleAllUsers();
   const rows = db.prepare(
     `SELECT u.id, u.username, u.email, u.note, u.created_at, u.role, u.parent_id,
+            u.link_open, u.login_token,
             COALESCE(m.gold,0) AS gold, COALESCE(m.yd_level,0) AS yd_level, m.key_type, m.key_expires
      FROM users u LEFT JOIN membership m ON m.user_id = u.id
      ORDER BY u.created_at`
@@ -748,6 +826,8 @@ function apiAdminAccounts(req, res) {
   const out = rows.map((r) => ({
     id: r.id, username: r.username, email: r.email, note: r.note, created_at: r.created_at,
     role: r.role, parent_id: r.parent_id,
+    link_open: r.role === 'admin' || (r.link_open === 1),   // 管理员默认开放
+    has_link: !!(r.login_token),
     member: { gold: r.gold, yd_level: r.yd_level,
               key_type: r.key_type, key_expires: r.key_expires || 0 },
   }));
@@ -1009,9 +1089,12 @@ async function apiRouter(req, res, method, p) {
   if (p === '/api/register' && method === 'POST') return await A(apiRegister);
   if (p === '/api/send_code' && method === 'POST') return await A(apiSendCode);
   if (p === '/api/login' && method === 'POST') return await A(apiLogin);
+  if (p === '/api/login/link' && method === 'POST') return await A(apiLoginLink);
   if (p === '/api/logout' && method === 'POST') return A(apiLogout);
   if (p === '/api/me' && method === 'GET') return A(apiMe);
   if (p === '/api/me' && method === 'POST') return await A(apiSetNickname);
+  if (p === '/api/me/link' && method === 'GET') return A(apiMeLinkGet);
+  if (p === '/api/me/link/gen' && method === 'POST') return await A(apiMeLinkGen);
   if (p === '/api/state' && method === 'GET') return A(apiStateGet);
   if (p === '/api/state/sync' && method === 'POST') return await A(apiStateSync);
   if (p === '/api/state/clear' && method === 'POST') return A(apiStateClear);
@@ -1028,6 +1111,9 @@ async function apiRouter(req, res, method, p) {
   if (p === '/api/scoreboard' && method === 'GET') return A(apiScoreboard);
   let m = p.match(/^\/api\/admin\/accounts\/(\d+)$/);
   if (m && method === 'PUT') return await A((req, res) => apiAdminUpdate(req, res, Number(m[1])));
+  m = p.match(/^\/api\/admin\/accounts\/(\d+)\/link$/);
+  if (m && method === 'GET') return await A((req, res) => apiAdminLinkGet(req, res, Number(m[1])));
+  if (m && method === 'PUT') return await A((req, res) => apiAdminLinkSet(req, res, Number(m[1])));
   m = p.match(/^\/api\/admin\/accounts\/(\d+)\/reset$/);
   if (m && method === 'POST') return await A((req, res) => apiAdminReset(req, res, Number(m[1])));
   return sendError(res, `未知接口: ${method} ${p}`, 404);

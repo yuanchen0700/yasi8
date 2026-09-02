@@ -48,8 +48,28 @@
 <!-- panel -->
 <div id="panel" class="hide">
   <div class="row" style="align-items:center">
-    <div><h1>管理员后台</h1><div class="sub">当前管理员：<span id="me"></span></div></div>
+<div><h1>管理员后台</h1><div class="sub">当前管理员：<span id="me"></span></div></div>
     <div style="text-align:right"><button class="ghost" onclick="doLogout()">退出登录</button></div>
+  </div>
+
+  <div class="card">
+    <h2>我的免密直达链接</h2>
+    <div class="sub">把下方链接存成书签或发给自己，打开即自动登录，无需输密码。</div>
+    <input id="mylink" readonly onclick="this.select()">
+    <div class="row">
+      <div><button onclick="genMyLink()">生成 / 重新生成</button></div>
+      <div><button class="ghost" onclick="copyMyLink()">复制链接</button></div>
+    </div>
+    <div id="mylinkmsg" class="msg"></div>
+  </div>
+
+  <div class="card">
+    <h2>账号管理</h2>
+    <div class="sub">可新建账号、重置密码、开放/关闭「免密直达」，并将直达链接复制分发。</div>
+    <table>
+      <thead><tr><th>用户名</th><th>角色</th><th>免密</th><th>邮箱</th><th>备注</th><th>操作</th></tr></thead>
+      <tbody id="acctbody"></tbody>
+    </table>
   </div>
 
   <div class="card">
@@ -108,7 +128,11 @@ function showLogin(){ $("#login").classList.remove("hide"); $("#panel").classLis
 async function showPanel(name){
   $("#login").classList.add("hide"); $("#panel").classList.remove("hide");
   $("#me").textContent = name;
-  await loadAccounts(); await loadSmtp();
+  await loadMyLink(); await loadAccounts(); await loadSmtp();
+}
+async function loadMyLink(){
+  const r = await api("/api/me/link");
+  if (r.ok && r.open) $("#mylink").value = r.token ? makeLinkUrl(r.token) : "";
 }
 function doLogout(){ localStorage.removeItem(TKEY); location.reload(); }
 
@@ -127,19 +151,58 @@ async function loadAccounts(){
   if (!r.ok){ return; }
   const tb = $("#acctbody"); tb.innerHTML = "";
   for (const a of r.accounts){
+    const isAdmin = a.role==='admin';
+    const tag = `<span class="tag ${isAdmin?'admin':''}">${isAdmin?'管理员':'用户'}</span>`;
+    const openState = isAdmin ? '<span class="tag" style="color:var(--ok)">默认开放</span>'
+                    : a.link_open ? '<span class="tag" style="color:var(--ok)">开放</span>'
+                    : '<span class="tag">关闭</span>';
     const tr = document.createElement("tr");
     tr.innerHTML = `
       <td>${esc(a.username)}</td>
-      <td><span class="tag ${a.role==='admin'?'admin':''}">${a.role==='admin'?'管理员':'用户'}</span></td>
+      <td>${tag}</td>
+      <td>${openState}</td>
       <td>${esc(a.email||'—')}</td>
       <td>${esc(a.note||'—')}</td>
-      <td>${esc(a.created_at||'')}</td>
       <td>
+        ${isAdmin ? '' : `<button class="ghost sm" onclick="toggleLink(${a.id},'${esc(a.username)}',${a.link_open?1:0})">${a.link_open?'关闭免密':'开放免密'}</button>
+        <button class="ghost sm" onclick="copyLink(${a.id})" ${a.has_link?'':'disabled'}>复制链接</button>`}
         <button class="danger sm" onclick="resetPw(${a.id},'${esc(a.username)}')">重置密码</button>
         <button class="ghost sm" onclick="editNote(${a.id},'${esc(a.username)}')">备注/邮箱</button>
       </td>`;
     tb.appendChild(tr);
   }
+}
+async function toggleLink(id, name, isOpen){
+  const r = await api("/api/admin/accounts/"+id+"/link", {method:"PUT", body: JSON.stringify({open: isOpen ? false : true})});
+  if (!r.ok){ alert(r.error||"操作失败"); }
+  else {
+    if (r.open && r.token){
+      const url = makeLinkUrl(r.token);
+      try{ await navigator.clipboard.writeText(url); alert("已开放 ["+name+"] 免密直达，且已复制链接：" + url); }
+      catch(e){ alert("已开放 ["+name+"] 免密直达\n" + url); }
+    } else alert("已关闭 ["+name+"] 免密直达，原链接已失效");
+  }
+  await loadAccounts();
+}
+async function copyLink(id){
+  const r = await api("/api/admin/accounts/"+id+"/link");
+  if (!r.ok || !r.open || !r.token){ alert("该账号未开放免密直达"); return; }
+  const url = makeLinkUrl(r.token);
+  try{ await navigator.clipboard.writeText(url); alert("已复制直达链接：" + url); }
+  catch(e){ alert(url); }
+}
+function makeLinkUrl(token){ return location.origin + location.pathname + "?pass=" + encodeURIComponent(token); }
+async function genMyLink(){
+  const r = await api("/api/me/link/gen", {method:"POST"});
+  $("#mylinkmsg").className = "msg " + (r.ok?"ok":"bad");
+  if (r.ok){ $("#mylink").value = makeLinkUrl(r.token); $("#mylinkmsg").textContent = "已生成 ✅"; }
+  else $("#mylinkmsg").textContent = r.error || "生成失败";
+}
+async function copyMyLink(){
+  const url = $("#mylink").value;
+  if (!url) return;
+  try{ await navigator.clipboard.writeText(url); $("#mylinkmsg").className="msg ok"; $("#mylinkmsg").textContent="已复制 ✅"; }
+  catch(e){ $("#mylinkmsg").className="msg bad"; $("#mylinkmsg").textContent="复制失败，请手动复制"; }
 }
 async function loadSmtp(){
   const r = await api("/api/admin/smtp");

@@ -384,6 +384,30 @@
     opacity:0; pointer-events:none; transition:all .25s ease; z-index:90;}
   .toast.show{opacity:1; transform:translateX(-50%) translateY(0)}
 
+  /* === 金碎片奖励转盘 === */
+  #wheelModal{z-index:100}
+  .wheel-box{background:var(--panel-grad); border:1px solid var(--line-strong);
+    border-radius:20px; padding:24px 28px; width:min(340px,100%);
+    box-shadow:0 24px 60px rgba(0,0,0,.6); text-align:center}
+  .wheel-box h2{margin:0 0 4px; font-family:"Fraunces",serif; font-weight:600; font-size:20px}
+  .wheel-box .sub{color:var(--ink-dim); margin:0 0 16px; font-size:13px}
+  .wheel-stage{position:relative; width:220px; height:220px; margin:0 auto 8px}
+  .wheel-disc{position:absolute; inset:0; border-radius:50%;
+    border:4px solid var(--line-strong);
+    box-shadow:0 0 0 6px rgba(255,180,0,.18), 0 10px 30px rgba(0,0,0,.35);
+    will-change:transform}
+  .wheel-hub{position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+    width:58px; height:58px; border-radius:50%; display:grid; place-items:center;
+    background:var(--panel-grad); border:2px solid #ffb400;
+    font-size:22px; color:#ffb400; box-shadow:0 0 18px rgba(255,180,0,.5)}
+  .wheel-pointer{position:absolute; top:-12px; left:50%; transform:translateX(-50%);
+    width:0; height:0; border-left:13px solid transparent; border-right:13px solid transparent;
+    border-top:22px solid #ffb400; z-index:2; filter:drop-shadow(0 2px 4px rgba(0,0,0,.4))}
+  .wheel-face{opacity:0; transition:opacity .3s ease; margin:10px 0 4px;
+    font-family:"Fraunces",serif; font-size:20px; color:#ffb400}
+  .wheel-face.show{opacity:1}
+  .wheel-face b{font-size:26px}
+
   /* === diamonds / membership / admin / board === */
   .auth-ava{display:inline-flex; align-items:center; gap:2px; margin-right:2px}
   .ava-dia{display:inline-block; flex:none; vertical-align:-3px}
@@ -1112,12 +1136,29 @@
 <div class="toast" id="toast"></div>
 <audio id="sharedAudio" preload="auto"></audio>
 
+<!-- 金碎片奖励转盘 -->
+<div class="modal-bg" id="wheelModal">
+  <div class="wheel-box">
+    <h2>🍀 抽奖转盘</h2>
+    <p class="sub">恭喜完成一轮练习，转动转盘收奖励！</p>
+    <div class="wheel-stage">
+      <div class="wheel-pointer"></div>
+      <div class="wheel-disc" id="wheelDisc"></div>
+      <div class="wheel-hub">✦</div>
+    </div>
+    <div class="wheel-face" id="wheelFace">获得 <b id="wheelGain">1</b> 金色碎片</div>
+    <div class="modal-actions" style="justify-content:center; margin-top:6px">
+      <button class="primary" id="wheelClose">收下奖励</button>
+    </div>
+  </div>
+</div>
+
 <!-- 120 题数据 (72 KB) -->
 <script src="_init_data.js"></script>
 
 <script>
 const STORAGE_KEY = "brand9::doc::v3", STAR_KEY = "brand9::stars::v2", REVEAL_KEY = "brand9::reveal::v2";
-const APP_VERSION = "v2.6.0";
+const APP_VERSION = "v2.6.1";
 let doc = loadDoc(), stars = loadStars(), editing = false, currentIdx = 0, autoPlay = false, saveTimer = null;
 let reveal = loadReveal();
 
@@ -2507,7 +2548,7 @@ async function pushDirty(){
   }
   if(!entries.length){ dirtyKeys.clear(); return; }
   const res = await api("/api/state/sync", {method: "POST", body: {entries: entries}});
-  if(res.ok) dirtyKeys.clear();
+  if(res.ok){ dirtyKeys.clear(); checkPracticeCountReward(); }
   // on failure dirty keys are kept and retried on next schedule/visibility change
 }
 
@@ -2637,7 +2678,67 @@ function updateAuthUI(){
 async function refreshMember(){
   if(!authToken) return;
   const res = await api("/api/membership/me");
-  if(res.ok){ myMember = res; updateAuthUI(); }
+  if(res.ok){ myMember = res; updateAuthUI(); checkReward(res); }
+}
+
+// ---- 金碎片奖励转盘 ----
+const REWARD_SEEN_KEY = "brand9::rewardSeen::v1";
+const WHEEL_MIN = 21;                       // 一轮最少道数，达此值后才值得探测奖励
+const WHEEL_SEGS = ["#f6b93b","#ffd24a","#d98e2b","#ffdf7e","#e2a23a","#ffc95e","#c07f2a","#ffd66b"];
+let wheelTimer = null;
+
+function readRewardSeen(){
+  try{ return JSON.parse(localStorage.getItem(REWARD_SEEN_KEY) || "null") || {}; }catch(e){ return {}; }
+}
+
+// 根据 /api/membership/me 的 day_reward 快照判断“刚完成一轮”，增量>0 时弹转盘。
+function checkReward(res){
+  if(!res || !res.ok || !authUser) return;
+  const today = new Date().toISOString().substring(0,10);
+  const seen = readRewardSeen();
+  const cur  = res.day_reward || 0;
+  const prev = (seen.user === authUser && seen.date === today) ? (seen.day_reward || 0) : null;
+  // 首次见到当日快照：只静默记录基线，避免把历史奖励当新奖励弹
+  if(prev === null){
+    try{ localStorage.setItem(REWARD_SEEN_KEY, JSON.stringify({user:authUser, date:today, day_reward:cur})); }catch(e){}
+    return;
+  }
+  try{ localStorage.setItem(REWARD_SEEN_KEY, JSON.stringify({user:authUser, date:today, day_reward:cur})); }catch(e){}
+  const gained = cur - prev;
+  if(gained > 0) showRewardWheel(gained);
+}
+
+function showRewardWheel(gained){
+  const disc = $("#wheelDisc");
+  const seg  = 360 / WHEEL_SEGS.length;
+  const parts = WHEEL_SEGS.map((c,i)=> `${c} ${(i*seg).toFixed(1)}deg ${((i+1)*seg).toFixed(1)}deg`).join(",");
+  disc.style.background = `conic-gradient(${parts})`;
+  disc.style.transition = "none";
+  disc.style.transform  = "rotate(0deg)";
+  $("#wheelGain").textContent = gained;
+  $("#wheelFace").classList.remove("show");
+  $("#wheelModal").classList.add("show");
+  void disc.offsetWidth;                    // 强制重排后开始转动动画
+  const turns  = 5 + Math.floor(Math.random()*2);
+  const angle  = turns*360 + Math.floor(Math.random()*360);
+  disc.style.transition = "transform 3.2s cubic-bezier(.12,.8,.2,1)";
+  disc.style.transform  = `rotate(${angle}deg)`;
+  clearTimeout(wheelTimer);
+  wheelTimer = setTimeout(()=> $("#wheelFace").classList.add("show"), 3200);
+}
+
+function closeRewardWheel(){
+  $("#wheelModal").classList.remove("show");
+  clearTimeout(wheelTimer);
+}
+
+// 练习同步完成后，若当日题数已达一轮下限，稍后探测奖励（等成员结算）
+function checkPracticeCountReward(){
+  if(!authToken) return;
+  const log  = getPracticeLog();
+  const today = new Date().toISOString().substring(0,10);
+  const cnt  = log.filter(e => e.date === today).length;
+  if(cnt >= WHEEL_MIN) setTimeout(()=> refreshMember(), 2000);
 }
 
 $("#btnAuth").addEventListener("click", e=>{
@@ -2775,6 +2876,7 @@ async function openMemberCenter(){
   myMember = res;
   renderMemberStatus(res);
   updateAuthUI();
+  checkReward(res);
   refreshSelfLinkBox();
 }
 function renderMemberStatus(m){
@@ -2975,6 +3077,9 @@ $("#admLinkGen").addEventListener("click", genAdmLink);
 
 $("#boardClose").addEventListener("click", ()=>closeModal("boardModal"));
 $("#boardModal").addEventListener("click", e=>{ if(e.target.id === "boardModal") closeModal("boardModal"); });
+
+$("#wheelClose").addEventListener("click", closeRewardWheel);
+$("#wheelModal").addEventListener("click", e=>{ if(e.target.id === "wheelModal") closeRewardWheel(); });
 
 $("#moreMember").addEventListener("click", ()=>{ $("#moreMenu").classList.remove("show"); openMemberCenter(); });
 $("#moreBoard").addEventListener("click", ()=>{ $("#moreMenu").classList.remove("show"); openBoard(); });

@@ -957,6 +957,7 @@ function apiMembershipMe(req, res) {
     yd_level: mem.yd_level,
     grace_days: mem.grace_days || 0,
     redeemable: mem.gold >= 21,
+    day_reward: mem.last_day_reward || 0,   // 今日练满已发放的奖励快照（用于前端探测"刚完成整轮"）
   });
 }
 
@@ -1059,7 +1060,11 @@ function serveStatic(req, res, pathname) {
     if (err || !st.isFile()) return send404(res);
     const ext = path.extname(abs).toLowerCase();
     const mime = MIME[ext] || 'application/octet-stream';
-    const cc = ext === '.mp3' ? 'public, max-age=31536000, immutable' : 'public, max-age=600';
+    // HTML 始终 no-cache（每次重新验证），确保最新的 index.html（含直达登录等逻辑）即时分发；
+    // 其余非 mp3 资源短缓存 10 分钟；mp3 长缓存 immutable。
+    const cc = ext === '.mp3' ? 'public, max-age=31536000, immutable'
+             : ext === '.html' ? 'no-cache, must-revalidate'
+             : 'public, max-age=600';
     const lastMod = st.mtime.toUTCString();
     if (req.headers['if-modified-since'] === lastMod) {
       res.writeHead(304, { 'Cache-Control': cc, 'Last-Modified': lastMod });

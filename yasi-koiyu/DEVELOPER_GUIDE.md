@@ -106,7 +106,7 @@ BRAND9_PORT=8996 node server.js     # 默认就是 8996
 ### 6.4 会员 / 钻石系统（核心「金碎片」逻辑全在服务端）
 | 接口 | 方法 | 说明 |
 |---|---|---|
-| `/api/membership/me` | GET | 我的会员状态（含 gold/yd_level/redeemable/day_reward） |
+| `/api/membership/me` | GET | 我的会员状态（gold/yd_level/redeemable/day_reward/today_practice/next_gap/next_threshold） |
 | `/api/membership/convert` | POST | 21 金碎片兑换黄钻 +1 级 |
 | `/api/membership/activate` | POST | `{code}` 激活 7/14 天密钥 |
 | `/api/scoreboard` | GET | 全服按金积分排序（读取即触发全量结算） |

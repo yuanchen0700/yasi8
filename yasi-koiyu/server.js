@@ -496,6 +496,19 @@ function rewardForCount(userId, day, cnt) {
   return g;
 }
 
+// 距离下一轮练满还差多少题 + 该轮练满阈值（确定性，前端用于“还差 N 题”提醒）
+function nextRoundGap(userId, day, cnt) {
+  let rem = cnt, ri = 0;
+  while (rem >= 21) {
+    const threshold = roundThreshold(userId, day, ri);
+    if (rem < threshold) break;
+    rem -= threshold;
+    ri += 1;
+  }
+  const threshold = roundThreshold(userId, day, ri);
+  return { gap: Math.max(0, threshold - rem), threshold: cnt + (threshold - rem) };
+}
+
 // 结算某用户从「上次结算日」到今天的每一天（含）。
 
 function settleMember(userId) {
@@ -947,6 +960,9 @@ function apiMembershipMe(req, res) {
   if (!user) return;
   const mem = settleMember(user.id);
   const expire = keyActiveUntil(mem);
+  const today = dayKey(Date.now());
+  const cnt = practiceCountForDay(user.id, today);
+  const gapInfo = nextRoundGap(user.id, today, cnt);
   return sendJson(res, {
     ok: true,
     cat: memberCat(mem),
@@ -958,6 +974,9 @@ function apiMembershipMe(req, res) {
     grace_days: mem.grace_days || 0,
     redeemable: mem.gold >= 21,
     day_reward: mem.last_day_reward || 0,   // 今日练满已发放的奖励快照（用于前端探测"刚完成整轮"）
+    today_practice: cnt,                    // 今日已练题数（服务端同步后计数）
+    next_gap: gapInfo.gap,                  // 距本轮练满还差几题（如还差 10 → 前端提醒 "还差 10 次得金碎片"）
+    next_threshold: gapInfo.threshold,      // 本轮练满阈值（确定性种子：21-27 之间）
   });
 }
 

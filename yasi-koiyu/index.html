@@ -938,6 +938,9 @@
         <div style="font-family:var(--font-serif);font-weight:600;font-size:28px;color:var(--good)" id="statDone">0</div><div style="font-size:12px;color:var(--ink-dim)">题 / <span id="statDoneOf">0</span></div>
       </div>
     </div>
+    <div id="rewardHintBar" style="display:none; margin:0 0 16px; padding:10px 16px;
+      border:1px solid rgba(255,180,0,.45); border-radius:12px; background:rgba(255,180,0,.08);
+      font-size:13px; color:#b38600; font-weight:600"></div>
     <div id="lastPosNote" style="display:none; margin:0 0 16px; padding:12px 16px;
       border:1px dashed var(--line-strong); border-radius:12px; background:var(--f-06);
       cursor:pointer; font-size:13px; color:var(--ink); transition:all .15s;"></div>
@@ -1158,7 +1161,7 @@
 
 <script>
 const STORAGE_KEY = "brand9::doc::v3", STAR_KEY = "brand9::stars::v2", REVEAL_KEY = "brand9::reveal::v2";
-const APP_VERSION = "v2.6.1";
+const APP_VERSION = "v2.6.2";
 let doc = loadDoc(), stars = loadStars(), editing = false, currentIdx = 0, autoPlay = false, saveTimer = null;
 let reveal = loadReveal();
 
@@ -2678,17 +2681,45 @@ function updateAuthUI(){
 async function refreshMember(){
   if(!authToken) return;
   const res = await api("/api/membership/me");
-  if(res.ok){ myMember = res; updateAuthUI(); checkReward(res); }
+  if(res.ok){ myMember = res; updateAuthUI(); updateRewardHintBar(); checkReward(res); checkRewardHint(res); }
 }
 
 // ---- 金碎片奖励转盘 ----
 const REWARD_SEEN_KEY = "brand9::rewardSeen::v1";
+const REWARD_HINT_KEY = "brand9::rewardHint::v1";
 const WHEEL_MIN = 21;                       // 一轮最少道数，达此值后才值得探测奖励
+const HINT_MIN   = 11;                       // 轮阈值下限 21，还差 10 道时最小题数即 11
 const WHEEL_SEGS = ["#f6b93b","#ffd24a","#d98e2b","#ffdf7e","#e2a23a","#ffc95e","#c07f2a","#ffd66b"];
 let wheelTimer = null;
 
 function readRewardSeen(){
   try{ return JSON.parse(localStorage.getItem(REWARD_SEEN_KEY) || "null") || {}; }catch(e){ return {}; }
+}
+
+// 顶部进度条：距本轮练满还差 N 题（last 10 时显示，到点后隐藏）
+function updateRewardHintBar(){
+  const bar = $("#rewardHintBar");
+  if(!bar) return;
+  const gap = myMember && typeof myMember.next_gap === "number" ? myMember.next_gap : null;
+  if(!authUser || gap === null || gap <= 0 || gap > 10){ bar.style.display = "none"; return; }
+  bar.textContent = `✨ 还差 ${gap} 道练满本轮，即可获得金色碎片！`;
+  bar.style.display = "";
+}
+
+// 进入本轮最后 10 题区间时提醒一次（每轮阈值只提醒一次，跨轮再提醒）。
+function checkRewardHint(res){
+  if(!res || !res.ok || !authUser) return;
+  const gap = typeof res.next_gap === "number" ? res.next_gap : null;
+  const th  = typeof res.next_threshold === "number" ? res.next_threshold : null;
+  if(gap === null || th === null || gap <= 0 || gap > 10) return;
+  const today = new Date().toISOString().substring(0,10);
+  let seen = {};
+  try{ seen = JSON.parse(localStorage.getItem(REWARD_HINT_KEY) || "{}") || {}; }catch(e){}
+  if(seen.user === authUser && seen.date === today && seen.th === th) return;
+  try{
+    localStorage.setItem(REWARD_HINT_KEY, JSON.stringify({user:authUser, date:today, th}));
+  }catch(e){}
+  toast(`🎯 还差 ${gap} 次练满本轮，就能获得金色碎片！`);
 }
 
 // 根据 /api/membership/me 的 day_reward 快照判断“刚完成一轮”，增量>0 时弹转盘。
@@ -2732,13 +2763,13 @@ function closeRewardWheel(){
   clearTimeout(wheelTimer);
 }
 
-// 练习同步完成后，若当日题数已达一轮下限，稍后探测奖励（等成员结算）
+// 练习同步完成后，若当日题数已接近/进入一轮奖励区，稍后探测奖励与“还差 N 题”提醒（等成员结算）
 function checkPracticeCountReward(){
   if(!authToken) return;
   const log  = getPracticeLog();
   const today = new Date().toISOString().substring(0,10);
   const cnt  = log.filter(e => e.date === today).length;
-  if(cnt >= WHEEL_MIN) setTimeout(()=> refreshMember(), 2000);
+  if(cnt >= HINT_MIN) setTimeout(()=> refreshMember(), 2000);
 }
 
 $("#btnAuth").addEventListener("click", e=>{
@@ -2876,7 +2907,9 @@ async function openMemberCenter(){
   myMember = res;
   renderMemberStatus(res);
   updateAuthUI();
+  updateRewardHintBar();
   checkReward(res);
+  checkRewardHint(res);
   refreshSelfLinkBox();
 }
 function renderMemberStatus(m){
@@ -2900,7 +2933,7 @@ async function convertDiamond(){
   if(!res.ok){ toast(res.error || "兑换失败"); return; }
   toast("🎉 兑换成功，当前黄钻 Lv" + res.yd_level + "，剩余金碎片 " + res.gold);
   const m = await api("/api/membership/me");
-  if(m.ok){ myMember = m; renderMemberStatus(m); updateAuthUI(); }
+  if(m.ok){ myMember = m; renderMemberStatus(m); updateAuthUI(); updateRewardHintBar(); }
 }
 async function activateKey(){
   const code = $("#keyInput").value.trim();
@@ -2915,7 +2948,7 @@ async function activateKey(){
   $("#keyInput").value = "";
   toast("🎉 会员开通成功 +1 金碎片");
   const m = await api("/api/membership/me");
-  if(m.ok){ myMember = m; renderMemberStatus(m); updateAuthUI(); }
+  if(m.ok){ myMember = m; renderMemberStatus(m); updateAuthUI(); updateRewardHintBar(); }
 }
 
 async function openAdminPanel(){

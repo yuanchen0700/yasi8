@@ -1069,8 +1069,10 @@
     <div class="mem-rules">
       规则：练满一档（随机 21-27 道）触发 1 次奖励（随机 1-3 金碎片）；
       累计 21 个金碎片即可兑换 1 级黄钻（再攒 21 个可再升 1 级）；
-      次日练习 ≤3 会出现 3-5 个黑色碎片先吃掉金碎片；碎片耗尽后黄钻按
-      等级保留天数（一级 1 天、二级 2 天以此类推），超过则掉 1 级；
+      每日练习 ≤3 时，「当地 23:30」结算时出现 3-5 个黑色碎片先吃掉金碎片；
+      金碎片被吃光后黄钻按等级保留天数（一级 1 天、二级 2 天以此类推），
+      超过则掉 1 级；一级以下新手只被吃掉 1 个碎片；
+      提示：黑碎片仅在当地 23:30 结算时判定，页面没开则顺延到下次打开补结算；
       开通会员（7/14 天）后免疫黑色侵袭，且每天保底 +1 金碎片。
     </div>
     <div class="link-sec" id="memLinkSec" style="display:none">
@@ -1161,7 +1163,7 @@
 
 <script>
 const STORAGE_KEY = "brand9::doc::v3", STAR_KEY = "brand9::stars::v2", REVEAL_KEY = "brand9::reveal::v2";
-const APP_VERSION = "v2.6.2";
+const APP_VERSION = "v2.6.3";
 let doc = loadDoc(), stars = loadStars(), editing = false, currentIdx = 0, autoPlay = false, saveTimer = null;
 let reveal = loadReveal();
 
@@ -2516,11 +2518,17 @@ function saveSyncMeta(){
   try{ _origSetItem(SYNC_META_KEY, JSON.stringify(syncMeta)); }catch(e){}
 }
 
+// 用户时区偏移（分钟）；服务端据此判定「当地 23:30」是否到了，才做黑碎片结算。
+function tzOffsetMinutes(){
+  try{ return -new Date().getTimezoneOffset(); }catch(e){ return 480; } // 中国时区兜底
+}
+
 async function api(path, opts){
   opts = opts || {};
   const headers = {};
   headers["Content-Type"] = "application/json";
   if(authToken) headers["Authorization"] = "Bearer " + authToken;
+  headers["X-Tz-Offset"] = String(tzOffsetMinutes());   // 服务端按当地 23:30 判定黑碎片
   let res;
   try{
     res = await fetch(path, {
@@ -2681,8 +2689,47 @@ function updateAuthUI(){
 async function refreshMember(){
   if(!authToken) return;
   const res = await api("/api/membership/me");
-  if(res.ok){ myMember = res; updateAuthUI(); updateRewardHintBar(); checkReward(res); checkRewardHint(res); }
+  if(res.ok){
+    if(res.black_eaten){
+      const msg = res.black_eaten_count > 0
+        ? `⏰ 今日练习不足，黑碎片吃掉了 ${res.black_eaten_count} 个金碎片（共 ${res.black_count} 个）`
+        : `⏰ 今日练习不足，黄钻等级因黑碎片而下降 1 级`;
+      toast(msg);
+    }
+    myMember = res; updateAuthUI(); updateRewardHintBar(); checkReward(res); checkRewardHint(res);
+  }
 }
+
+// ---- 当地 23:30 黑碎片结算调度 ----
+// 判定「当天练习 ≤3」以用户所在时区的当地 23:30 为界：
+//   - 页面打开着时，在那一刻触发一次结算并提示；
+//   - 页面没开则顺延到下次打开时补结算（仍判当天）。
+const DAY_MS = 86400 * 1000;
+let localSettleTimer = null;
+function clientLocalDateStr(ms, m){
+  return new Date(ms + m * 60000).toISOString().substring(0, 10);
+}
+function nextLocal2330MS(nowMS, m){
+  const d = new Date(nowMS + m * 60000);
+  const localMidnight = Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) - m * 60000;
+  let t = localMidnight + (23 * 3600 + 30 * 60) * 1000;
+  if (t <= nowMS) t += DAY_MS;          // 今天 23:30 已过，进到明天
+  return t;
+}
+function scheduleLocalSettle(){
+  if(!authToken) return;
+  if(localSettleTimer){ clearTimeout(localSettleTimer); localSettleTimer = null; }
+  const m = tzOffsetMinutes();
+  const now = Date.now();
+  const when = nextLocal2330MS(now, m);
+  const delay = Math.max(0, when - now) + 1000;   // 多等 1s 确保「23:30」到来
+  localSettleTimer = setTimeout(async()=>{
+    localSettleTimer = null;
+    await refreshMember();                         // 触发当地 23:30 结算
+    scheduleLocalSettle();                         // 预约下一天
+  }, delay);
+}
+
 
 // ---- 金碎片奖励转盘 ----
 const REWARD_SEEN_KEY = "brand9::rewardSeen::v1";
@@ -2810,6 +2857,7 @@ async function doAuth(){
   toast(wasRegister ? "✨ 注册成功，欢迎 " + authUser : "👋 欢迎回来，" + authUser);
   await pullCloudState();
   refreshMember();
+  scheduleLocalSettle();
   render(); if(p23Data.length) renderP23();
 }
 $("#authSubmit").addEventListener("click", doAuth);
@@ -2821,6 +2869,7 @@ $("#authPass").addEventListener("keydown", e=>{ if(e.key === "Enter") doAuth(); 
 
 async function logout(){
   if(authToken) await api("/api/logout", {method: "POST"});
+  if(localSettleTimer){ clearTimeout(localSettleTimer); localSettleTimer = null; }
   authToken = null;
   authUser  = null;
   authRole  = null;
@@ -3148,11 +3197,13 @@ if(authToken){
       pullCloudState().then(()=>{
         restorePosition();                       /* 云端进度可能更新，重新恢复位置 */
         render(); if(p23Data.length) renderP23();
-        refreshMember();
+        refreshMember();                         /* 载入即结算：如今日 23:30 已过且未结算则在此时补扣 */
+        scheduleLocalSettle();
         maybeShowWelcome();
       });
     } else {
       authToken = null; authUser = null; authRole = null; myMember = null;
+      if(localSettleTimer){ clearTimeout(localSettleTimer); localSettleTimer = null; }
       saveAuth(); updateAuthUI();
     }
   });

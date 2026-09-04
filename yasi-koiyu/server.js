@@ -280,6 +280,8 @@ function initDb() {
       grace_days     INTEGER NOT NULL DEFAULT 0,   -- 金碎片耗尽后黄钻可保留的天数
       last_day_reward INTEGER NOT NULL DEFAULT 0,  -- 今日已发放的练满奖励快照（防重复补算）
       last_status_day TEXT,                        -- 已结算的最后一天 (yyyy-mm-dd)
+      tz_min        INTEGER DEFAULT 0,            -- 用户时区偏移（分钟）；用于按当地 23:30 判定黑碎片
+      black_day     TEXT DEFAULT NULL,            -- 已 black 结算的最后一天 (yyyy-mm-dd)
       updated_at     INTEGER
     );
   `);
@@ -299,6 +301,9 @@ function initDb() {
   const memCols = db.prepare('PRAGMA table_info(membership)').all().map((r) => r.name);
   if (!memCols.includes('grace_days')) db.exec('ALTER TABLE membership ADD COLUMN grace_days INTEGER NOT NULL DEFAULT 0');
   if (!memCols.includes('last_day_reward')) db.exec('ALTER TABLE membership ADD COLUMN last_day_reward INTEGER NOT NULL DEFAULT 0');
+  if (!memCols.includes('tz_min')) db.exec('ALTER TABLE membership ADD COLUMN tz_min INTEGER DEFAULT 0');
+  if (!memCols.includes('black_day')) db.exec('ALTER TABLE membership ADD COLUMN black_day TEXT DEFAULT NULL');
+  // 老库 tz_min 默认 0；按中国时区 (+480) 判读更符合预期，统一归零为 0 即可，判定时另有兜底。
   console.log(`[db] ready at ${DB_PATH}`);
 }
 
@@ -421,14 +426,20 @@ function requireAdmin(req, res) {
 //   奖励    -> 每日练习每凑满一轮随机 21-27 道触发一次奖励（随机 1-3 金碎片）
 //   兑换    -> 金色碎片 ≥21 时变为可兑换状态，玩家可手动消耗 21 碎片兑换
 //              黄钻等级 +1（首次=一级黄钻），剩余碎片保留继续累积
-//   黑色    -> 次日练习 ≤3 出现 3-5 个黑色碎片，1:1 吃掉金碎片；
+//   黑色    -> 次日练习 ≤3 出现 3-5 个黑色碎片先吃掉金碎片；
 //              金碎片被吃光后黄钻进入消耗：一级保留 1 天、二级 2 天…（grace_days），
 //              超过保留天数则黄钻降 1 级；一级以下新手只被吃掉 1 个碎片
-//   结算    -> 服务端每日自动结算（延迟补算所有未结算的日期）
+//   结算    -> 奖励/保底随请求结算；黑碎片判定以用户时区为准：
+//              每天「当地 23:30」结算。页面开着时当场结算并提示；
+//              页面没开则顺延到下次打开补结算（仍判当天）。
+//              30 分钟自动结算与排行榜仅做奖励补算，不触发黑扣（避免离线时被吃）。
 const KEY_TYPES = ['7d', '14d'];
 const KEY_DAYS = { '7d': 7, '14d': 14 };
 const DAY_SEC = 86400;
+const DAY_MS = DAY_SEC * 1000;
 const PRACTICE_LOG_KEY = 'brand9::practiceLog::v1';   // 与前端 LOG_KEY 一致
+const DEFAULT_TZ_MIN = 8 * 60;   // 产品面向中国用户，默认按北京时 (+480) 判定
+
 
 function dayKey(ts) {
   // UTC 日期字符串，与前端 new Date().toISOString().substring(0,10) 对齐
@@ -446,10 +457,46 @@ function ensureMember(userId) {
 
 function updateMember(userId, mem) {
   db.prepare(`UPDATE membership SET key_type=?, key_start=?, key_expires=?, gold=?,
-              yd_level=?, grace_days=?, last_day_reward=?, last_status_day=?, updated_at=? WHERE user_id=?`)
+              yd_level=?, grace_days=?, last_day_reward=?, last_status_day=?,
+              tz_min=?, black_day=?, updated_at=? WHERE user_id=?`)
     .run(mem.key_type || null, mem.key_start || 0, mem.key_expires || 0,
          mem.gold || 0, mem.yd_level || 0, mem.grace_days || 0,
-         mem.last_day_reward || 0, mem.last_status_day || null, nowSec(), userId);
+         mem.last_day_reward || 0, mem.last_status_day || null,
+         mem.tz_min || 0, mem.black_day || null, nowSec(), userId);
+}
+
+// 读取请求中的时区偏移（分钟）。X-Tz-Offset 形如 -480 / +480；越界或非法当作未知。
+function offsetMinutes(req) {
+  if (req && req.headers) {
+    const h = req.headers['x-tz-offset'];
+    const n = parseInt(h, 10);
+    if (Number.isFinite(n) && n >= -14 * 60 && n <= 14 * 60) return n;
+  }
+  return null;
+}
+
+// 把时间戳转为该时区下的本地日期 yyyy-mm-dd。
+function localDateStr(ts, m) {
+  return new Date((ts + m * 60) * 1000).toISOString().substring(0, 10);
+}
+
+// UTC 日 d 在用户时区下「当地 23:30」对应的 UTC 秒数：之后才判定当天是否黑碎片。
+function blackCutoffSec(day, m) {
+  return dayStartSec(day) - m * 60 + (23 * 3600 + 30 * 60);
+}
+
+// 对用户当前时区，今天(yyyy-mm-dd@UTC)是否已「过了当地 23:30」→ 即 UTC 日 = today 可判定。
+function todayBlackJudgeable(tzMin) {
+  const now = nowSec();
+  const today = dayKey(now * 1000);
+  return now >= blackCutoffSec(today, tzMin);
+}
+
+// 距离今天当地 23:30 还有多久（毫秒）；负/0 表示已过。
+function msUntilLocal2330(tzMin) {
+  const now = Date.now();
+  const today = dayKey(now);
+  return blackCutoffSec(today, tzMin) * 1000 - now;
 }
 
 function practiceCountForDay(userId, day) {
@@ -510,8 +557,14 @@ function nextRoundGap(userId, day, cnt) {
 }
 
 // 结算某用户从「上次结算日」到今天的每一天（含）。
-
-function settleMember(userId) {
+// 奖励/保底随请求结算；黑碎片判定以用户时区为准：
+//   - 仅 allowBlack=true 的用户主动请求才触发；
+//   - 某日黑判仅当「当地 23:30」已过时进行，且只判一次；
+//   - 页面没开/没访问 membership 就不会吃到今日黑碎片，顺延到下次打开补结算。
+function settleMember(userId, opts) {
+  opts = opts || {};
+  const allowBlack = opts.allowBlack === true;
+  const providedTz = opts.tzMin != null ? opts.tzMin : null;
   const mem = ensureMember(userId);
   const today = dayKey(Date.now());
   let gold = mem.gold || 0;
@@ -521,7 +574,10 @@ function settleMember(userId) {
   const keyStart = mem.key_start || 0;
   const keyExpires = mem.key_expires || 0;
   let lastDay = mem.last_status_day || null;
-  const alreadySettledToday = lastDay === today;
+
+  // 确定判定时区：请求带偏移优先，其次落库值，0/空按中国时区兜底。
+  const tz = (providedTz != null) ? providedTz
+        : (mem.tz_min === 0 ? DEFAULT_TZ_MIN : mem.tz_min);
 
   const processDay = (d, applyOnce) => {
     const ds = dayStartSec(d);
@@ -538,29 +594,13 @@ function settleMember(userId) {
       gold += granted;
       dayReward = full;
       if (applyOnce && gold > 0) grace = 0;      // 有碎片兜底，黄钻不再消耗
-    } else if (cnt <= 3 && !keyActive && applyOnce) {
-      const black = 3 + crypto.randomInt(0, 3);   // 3-5 个黑色碎片（仅当天首结算）
-      if (level >= 1) {
-        const consumed = Math.min(black, gold);
-        gold -= consumed;
-        if (gold <= 0) {
-          gold = 0;
-          // 碎片不够消耗：黄钻进入消耗期，一级保留 1 天、二级 2 天…
-          if (grace >= level) { level = Math.max(0, level - 1); grace = 0; }
-          else grace += 1;
-        } else {
-          grace = 0;
-        }
-      } else {
-        if (gold > 0) gold -= 1;                 // 新手保护：只被吃掉 1 个
-      }
     }
-    // 4-20 题：无奖励、无惩罚
+    // 4-20 题 / ≤3 题（非会员）：无奖励、无惩罚在此判定；黑扣移至黑判段完成，避免今天早判。
   };
 
   if (!lastDay) {
     processDay(today, true);                 // 首次结算：从今天开始，不追溯历史
-  } else if (alreadySettledToday) {
+  } else if (lastDay === today) {
     processDay(today, false);                // 当天补算：只补练满奖励差额
   } else {
     let cur = dayStartSec(lastDay) + DAY_SEC;
@@ -574,8 +614,58 @@ function settleMember(userId) {
   mem.gold = gold; mem.yd_level = level; mem.grace_days = grace;
   mem.last_day_reward = dayReward;
   mem.last_status_day = today;
+  if (providedTz != null) mem.tz_min = providedTz;   // 记住用户的时区偏好
+
+  // --- 黑碎片判定（仅用户主动请求时触发，按用户时区当地 23:30 结算） ---
+  let blackInfo = null;
+  if (allowBlack) {
+    // regDate 防护：刚注册的用户不因「注册前」的日期被扣金。
+    const regRow = db.prepare('SELECT created_at FROM users WHERE id = ?').get(userId);
+    const regDay = (regRow && regRow.created_at ? String(regRow.created_at).slice(0, 10) : today);
+    // black_day=null 时沿用「UTC 昨日」作为安全基线（历史日已被旧逻辑结算过，不重复判）。
+    let bd = mem.black_day || dayKey((nowSec() - DAY_SEC) * 1000);
+    // 今天只有当地 23:30 已过才纳入结算范围。
+    const horizon = todayBlackJudgeable(tz) ? today
+      : dayKey((nowSec() - DAY_SEC) * 1000);
+    const end = dayStartSec(horizon);
+    let cur = dayStartSec(bd) + DAY_SEC;
+    for (; cur <= end; cur += DAY_SEC) {
+      const d = dayKey(cur * 1000);
+      if (d < regDay) { bd = d; continue; }            // 注册前的日期，跳过但推进游标
+      if (blackCutoffSec(d, tz) > nowSec()) break;    // 当地 23:30 未到，停止（后面更晚）
+
+      const ds = dayStartSec(d);
+      const keyActive = keyStart && keyExpires && ds >= keyStart && ds < keyExpires;
+      const cnt = keyActive ? 0 : practiceCountForDay(userId, d);
+      if (!keyActive && cnt <= 3) {
+        const blackN = 3 + crypto.randomInt(0, 3);   // 3-5 个黑色碎片
+        let eaten = 0;
+        let hit = false;
+        if (level >= 1) {
+          hit = true;
+          const consumed = Math.min(blackN, gold);
+          gold -= consumed; eaten = consumed;
+          if (gold <= 0) {
+            gold = 0;
+            if (grace >= level) { level = Math.max(0, level - 1); grace = 0; }
+            else grace += 1;
+          } else {
+            grace = 0;
+          }
+        } else if (gold > 0) {
+          hit = true; gold -= 1; eaten = 1;          // 新手保护：只被吃掉 1 个
+        }
+        // 仅在真发生扣减/降级时反馈（跨天补算时只反馈最近一次）
+        if (hit) blackInfo = { day: d, count: blackN, eaten: eaten };
+      }
+      bd = d;                                        // 该日黑判已落实，推进游标
+    }
+    mem.black_day = bd;                              // 记录最新已判日
+    mem.gold = gold; mem.yd_level = level; mem.grace_days = grace;
+  }
+
   updateMember(userId, mem);
-  return ensureMember(userId);
+  return { mem: ensureMember(userId), black: blackInfo };
 }
 
 // 全局结算所有用户（定时 + 排行榜读取时调用）。
@@ -958,45 +1048,45 @@ function apiAdminKeysList(req, res) {
 function apiMembershipMe(req, res) {
   const user = auth(req, res);
   if (!user) return;
-  const mem = settleMember(user.id);
-  const expire = keyActiveUntil(mem);
+  const mem = settleMember(user.id, { allowBlack: true, tzMin: offsetMinutes(req) });
+  const expire = keyActiveUntil(mem.mem);
   const today = dayKey(Date.now());
   const cnt = practiceCountForDay(user.id, today);
   const gapInfo = nextRoundGap(user.id, today, cnt);
-  return sendJson(res, {
+  const body = {
     ok: true,
-    cat: memberCat(mem),
-    key_type: expire ? mem.key_type : null,
-    key_start: expire ? (mem.key_start || 0) : 0,
+    cat: memberCat(mem.mem),
+    key_type: expire ? mem.mem.key_type : null,
+    key_start: expire ? (mem.mem.key_start || 0) : 0,
     key_expires: expire,
-    gold: mem.gold,
-    yd_level: mem.yd_level,
-    grace_days: mem.grace_days || 0,
-    redeemable: mem.gold >= 21,
-    day_reward: mem.last_day_reward || 0,   // 今日练满已发放的奖励快照（用于前端探测"刚完成整轮"）
+    gold: mem.mem.gold,
+    yd_level: mem.mem.yd_level,
+    grace_days: mem.mem.grace_days || 0,
+    redeemable: mem.mem.gold >= 21,
+    day_reward: mem.mem.last_day_reward || 0,   // 今日练满已发放的奖励快照（用于前端探测"刚完成整轮"）
     today_practice: cnt,                    // 今日已练题数（服务端同步后计数）
     next_gap: gapInfo.gap,                  // 距本轮练满还差几题（如还差 10 → 前端提醒 "还差 10 次得金碎片"）
     next_threshold: gapInfo.threshold,      // 本轮练满阈值（确定性种子：21-27 之间）
-  });
+  };
+  if (mem.black) Object.assign(body, { black_eaten: true, black_day: mem.black.day, black_count: mem.black.count, black_eaten_count: mem.black.eaten });
+  return sendJson(res, body);
 }
 
 async function apiConvertDiamond(req, res) {
   const user = auth(req, res);
   if (!user) return;
-  const mem = settleMember(user.id);
-  if (mem.gold < 21) return sendError(res, `金色碎片不足，还差 ${21 - mem.gold} 个才能兑换`);
-  mem.gold -= 21;
-  mem.yd_level += 1;              // 首次兑换=一级黄钻，此后每兑换一次 +1 级
-  mem.grace_days = 0;
-  updateMember(user.id, mem);
+  const mem = settleMember(user.id, { allowBlack: true, tzMin: offsetMinutes(req) });
+  if (mem.mem.gold < 21) return sendError(res, `金色碎片不足，还差 ${21 - mem.mem.gold} 个才能兑换`);
+  mem.mem.gold -= 21;
+  mem.mem.yd_level += 1;              // 首次兑换=一级黄钻，此后每兑换一次 +1 级
+  mem.mem.grace_days = 0;
+
+  updateMember(user.id, mem.mem);
   const fresh = ensureMember(user.id);
-  return sendJson(res, {
-    ok: true,
-    gold: fresh.gold,
-    yd_level: fresh.yd_level,
-    grace_days: fresh.grace_days || 0,
-    redeemable: fresh.gold >= 21,
-  });
+  const body = { ok: true, gold: fresh.gold, yd_level: fresh.yd_level,
+                 grace_days: fresh.grace_days || 0, redeemable: fresh.gold >= 21 };
+  if (mem.black) Object.assign(body, { black_eaten: true, black_day: mem.black.day, black_count: mem.black.count, black_eaten_count: mem.black.eaten });
+  return sendJson(res, body);
 }
 
 async function apiActivateKey(req, res) {
@@ -1009,16 +1099,18 @@ async function apiActivateKey(req, res) {
   if (!row) return sendError(res, '密钥不存在');
   if (row.used_by) return sendError(res, '密钥已被使用');
   const days = KEY_DAYS[row.type];
-  const mem = settleMember(user.id);
+  const mem = settleMember(user.id, { allowBlack: true, tzMin: offsetMinutes(req) });
   const now = nowSec();
-  const base = (mem.key_expires && mem.key_expires > now) ? mem.key_expires : now;
+  const base = (mem.mem.key_expires && mem.mem.key_expires > now) ? mem.mem.key_expires : now;
   db.prepare('UPDATE vip_keys SET used_by = ?, used_at = ? WHERE code = ?').run(user.id, now, row.code);
-  mem.key_type = row.type;
-  mem.key_start = now;
-  mem.key_expires = base + days * DAY_SEC;
-  mem.gold += 1;                                   // 激活即送 1 个金碎片
-  updateMember(user.id, mem);
-  return sendJson(res, { ok: true, expire: mem.key_expires, type: row.type });
+  mem.mem.key_type = row.type;
+  mem.mem.key_start = now;
+  mem.mem.key_expires = base + days * DAY_SEC;
+  mem.mem.gold += 1;                                   // 激活即送 1 个金碎片
+  updateMember(user.id, mem.mem);
+  const body = { ok: true, expire: mem.mem.key_expires, type: row.type };
+  if (mem.black) Object.assign(body, { black_eaten: true, black_day: mem.black.day, black_count: mem.black.count, black_eaten_count: mem.black.eaten });
+  return sendJson(res, body);
 }
 
 function apiScoreboard(req, res) {

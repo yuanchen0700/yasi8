@@ -29,6 +29,16 @@
   <div class="sub">brand9 · yasi-koiyu 雅思口语练习 · 每次改进都会在此记录。完整提交记录见 <a href="https://github.com/yuanchen0700/yasi8/commits/main" target="_blank" rel="noopener">GitHub Commits</a>。</div>
 
   <div class="card">
+    <h2><span class="ver">v2.6.3</span><span class="date">2026-09-04</span></h2>
+    <ul>
+      <li><span class="tag">会员</span><span class="tag">修复</span>黑碎片结算从「UTC 日零点/首次请求」改为「用户所在时区当地 23:30」：晚上练习不再在次早被误扣；页面没开时顺延到下次打开补结算（仍判当天），页面打开着时到 23:30 立刻结算并弹提示</li>
+      <li><span class="tag">会员</span><code>/api/membership/me</code> 新增 <code>black_eaten</code> / <code>black_day</code> / <code>black_count</code> / <code>black_eaten_count</code>；客户端 <code>api()</code> 统一附带 <code>X-Tz-Offset</code> 时区头，<code>membership.me/convert/activate</code> 回写用户时区</li>
+      <li><span class="tag">会员</span>会员表新增 <code>tz_min</code> / <code>black_day</code> 列（自动迁移），30 分钟自动结算与排行榜/管理后台仅做奖励补算，不触发黑扣</li>
+      <li><span class="tag">体验</span>会员规则文案与弹窗说明同步为「当地 23:30 结算」</li>
+    </ul>
+  </div>
+
+  <div class="card">
     <h2><span class="ver">v2.6.2</span><span class="date">2026-09-04</span></h2>
     <ul>
       <li><span class="tag">体验</span>新增「还差 N 题」进度提醒：进入本轮最后 10 题时，顶部进度条提示「还差 N 道练满本轮，即可获得金色碎片」，并弹一次性提示（每轮阈值只提醒一次）</li>
@@ -116,7 +126,7 @@
     </ul>
   </div>
 
-  <div class="foot">本页随版本演进持续更新 · 当前版本 v2.6.2</div>
+  <div class="foot">本页随版本演进持续更新 · 当前版本 v2.6.3</div>
 </div>
 </body>
 </html>

@@ -282,6 +282,7 @@ function initDb() {
       last_status_day TEXT,                        -- 已结算的最后一天 (yyyy-mm-dd)
       tz_min        INTEGER DEFAULT 0,            -- 用户时区偏移（分钟）；用于按当地 23:30 判定黑碎片
       black_day     TEXT DEFAULT NULL,            -- 已 black 结算的最后一天 (yyyy-mm-dd)
+      enc_day       TEXT DEFAULT NULL,            -- 已发「每日满 10 题 +1 鼓励」的最后一天 (yyyy-mm-dd)
       updated_at     INTEGER
     );
   `);
@@ -303,6 +304,7 @@ function initDb() {
   if (!memCols.includes('last_day_reward')) db.exec('ALTER TABLE membership ADD COLUMN last_day_reward INTEGER NOT NULL DEFAULT 0');
   if (!memCols.includes('tz_min')) db.exec('ALTER TABLE membership ADD COLUMN tz_min INTEGER DEFAULT 0');
   if (!memCols.includes('black_day')) db.exec('ALTER TABLE membership ADD COLUMN black_day TEXT DEFAULT NULL');
+  if (!memCols.includes('enc_day')) db.exec('ALTER TABLE membership ADD COLUMN enc_day TEXT DEFAULT NULL');
   // 老库 tz_min 默认 0；按中国时区 (+480) 判读更符合预期，统一归零为 0 即可，判定时另有兜底。
   console.log(`[db] ready at ${DB_PATH}`);
 }
@@ -458,11 +460,11 @@ function ensureMember(userId) {
 function updateMember(userId, mem) {
   db.prepare(`UPDATE membership SET key_type=?, key_start=?, key_expires=?, gold=?,
               yd_level=?, grace_days=?, last_day_reward=?, last_status_day=?,
-              tz_min=?, black_day=?, updated_at=? WHERE user_id=?`)
+              tz_min=?, black_day=?, enc_day=?, updated_at=? WHERE user_id=?`)
     .run(mem.key_type || null, mem.key_start || 0, mem.key_expires || 0,
          mem.gold || 0, mem.yd_level || 0, mem.grace_days || 0,
          mem.last_day_reward || 0, mem.last_status_day || null,
-         mem.tz_min || 0, mem.black_day || null, nowSec(), userId);
+         mem.tz_min || 0, mem.black_day || null, mem.enc_day || null, nowSec(), userId);
 }
 
 // 读取请求中的时区偏移（分钟）。X-Tz-Offset 形如 -480 / +480；越界或非法当作未知。
@@ -574,6 +576,7 @@ function settleMember(userId, opts) {
   const keyStart = mem.key_start || 0;
   const keyExpires = mem.key_expires || 0;
   let lastDay = mem.last_status_day || null;
+  let encDay = mem.enc_day || null;          // 已发放「每日完成满 10 道 +1 鼓励」的最后一天
 
   // 确定判定时区：请求带偏移优先，其次落库值，0/空按中国时区兜底。
   const tz = (providedTz != null) ? providedTz
@@ -585,6 +588,13 @@ function settleMember(userId, opts) {
     const cnt = practiceCountForDay(userId, d);
 
     if (applyOnce && keyActive) gold += 1;        // 密钥期内每日保底 +1（仅当天首结算）
+
+    // 每日完成满 10 道 → +1 金碎片鼓励：每天一次、确定性给发；与下方 21-27 练满轮奖励相互独立可叠加。
+    if (cnt >= 10 && encDay !== d) {
+      gold += 1;
+      encDay = d;
+      if (gold > 0) grace = 0;                     // 有碎片兜底，黄钻不再消耗
+    }
 
     if (cnt >= 21) {
       // 每凑满一轮随机 21-27 道触发一次，奖励 1-3 金碎片（确定性种子）
@@ -614,6 +624,7 @@ function settleMember(userId, opts) {
   mem.gold = gold; mem.yd_level = level; mem.grace_days = grace;
   mem.last_day_reward = dayReward;
   mem.last_status_day = today;
+  mem.enc_day = encDay;                              // 持久化「满 10 道 +1」已发日
   if (providedTz != null) mem.tz_min = providedTz;   // 记住用户的时区偏好
 
   // --- 黑碎片判定（仅用户主动请求时触发，按用户时区当地 23:30 结算） ---
@@ -665,7 +676,8 @@ function settleMember(userId, opts) {
   }
 
   updateMember(userId, mem);
-  return { mem: ensureMember(userId), black: blackInfo };
+  // enc10 = 今天「满 10 道 +1 鼓励」是否已发放（供前端探测刚满 10 题的那次轻提示）
+  return { mem: ensureMember(userId), black: blackInfo, enc10: (encDay === today) };
 }
 
 // 全局结算所有用户（定时 + 排行榜读取时调用）。
@@ -1064,6 +1076,7 @@ function apiMembershipMe(req, res) {
     grace_days: mem.mem.grace_days || 0,
     redeemable: mem.mem.gold >= 21,
     day_reward: mem.mem.last_day_reward || 0,   // 今日练满已发放的奖励快照（用于前端探测"刚完成整轮"）
+    enc10: mem.enc10 === true,                  // 今日「满 10 道 +1 鼓励」是否已发放（用于前端探测满 10 题轻提示）
     today_practice: cnt,                    // 今日已练题数（服务端同步后计数）
     next_gap: gapInfo.gap,                  // 距本轮练满还差几题（如还差 10 → 前端提醒 "还差 10 次得金碎片"）
     next_threshold: gapInfo.threshold,      // 本轮练满阈值（确定性种子：21-27 之间）

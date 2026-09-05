@@ -1052,7 +1052,7 @@
 <div class="modal-bg" id="memberModal">
   <div class="modal" style="max-width:440px">
     <h2>💎 会员中心</h2>
-    <p class="sub">每日练满 21-27 道触发随机奖励 · 21 个金碎片可兑换一级黄钻</p>
+    <p class="sub">每日满 10 题 +1 鼓励 · 练满 21-27 道抽 1-3 金碎片 · 21 个可兑换一级黄钻</p>
     <div class="mem-status">
       <div class="mem-row"><span>钻石等级</span><b id="memCat">—</b></div>
       <div class="mem-row"><span>金色碎片（积分）</span><b id="memGold">0</b></div>
@@ -1067,7 +1067,8 @@
     </div>
     <div class="auth-err" id="keyErr"></div>
     <div class="mem-rules">
-      规则：练满一档（随机 21-27 道）触发 1 次奖励（随机 1-3 金碎片）；
+      规则：每日练习满 10 题 → 当天第 1 次奖励 1 个金碎片（每天一次，可放心叠加）；
+      练满一档（随机 21-27 道）触发 1 次奖励（随机 1-3 金碎片），与满 10 题 +1 互不影响；
       累计 21 个金碎片即可兑换 1 级黄钻（再攒 21 个可再升 1 级）；
       每日练习 ≤3 时，「当地 23:30」结算时出现 3-5 个黑色碎片先吃掉金碎片；
       金碎片被吃光后黄钻按等级保留天数（一级 1 天、二级 2 天以此类推），
@@ -1163,7 +1164,7 @@
 
 <script>
 const STORAGE_KEY = "brand9::doc::v3", STAR_KEY = "brand9::stars::v2", REVEAL_KEY = "brand9::reveal::v2";
-const APP_VERSION = "v2.6.3";
+const APP_VERSION = "v2.6.4";
 let doc = loadDoc(), stars = loadStars(), editing = false, currentIdx = 0, autoPlay = false, saveTimer = null;
 let reveal = loadReveal();
 
@@ -2696,7 +2697,7 @@ async function refreshMember(){
         : `⏰ 今日练习不足，黄钻等级因黑碎片而下降 1 级`;
       toast(msg);
     }
-    myMember = res; updateAuthUI(); updateRewardHintBar(); checkReward(res); checkRewardHint(res);
+    myMember = res; updateAuthUI(); updateRewardHintBar(); checkReward(res); checkRewardHint(res); checkEnc10(res);
   }
 }
 
@@ -2786,6 +2787,26 @@ function checkReward(res){
   if(gained > 0) showRewardWheel(gained);
 }
 
+// 「每日满 10 题 +1 鼓励」轻提示：与转盘奖励相互独立，到 10 题当天第一次弹一次，不弹转盘。
+// 服务端在满 10 题结算后把 enc10 置为当天 true；用 enc10 的 false→true 沿探测。
+const ENC_SEEN_KEY = "brand9::encSeen::v1";
+function checkEnc10(res){
+  if(!res || !res.ok || !authUser) return;
+  const today = new Date().toISOString().substring(0,10);
+  const cur = res.enc10 === true;
+  let seen = {};
+  try{ seen = JSON.parse(localStorage.getItem(ENC_SEEN_KEY) || "null") || {}; }catch(e){}
+  // 首次见到今日状态：只静默记录基线，不把早已发放的鼓励当新奖励弹
+  if(seen.user !== authUser || seen.date !== today){
+    try{ localStorage.setItem(ENC_SEEN_KEY, JSON.stringify({user:authUser, date:today, enc10:cur})); }catch(e){}
+    return;
+  }
+  if(cur && !seen.enc10) toast("🎉 今日练习满 10 题，奖励 1 个金碎片！");
+  if(seen.enc10 !== cur){
+    try{ localStorage.setItem(ENC_SEEN_KEY, JSON.stringify({user:authUser, date:today, enc10:cur})); }catch(e){}
+  }
+}
+
 function showRewardWheel(gained){
   const disc = $("#wheelDisc");
   const seg  = 360 / WHEEL_SEGS.length;
@@ -2811,12 +2832,13 @@ function closeRewardWheel(){
 }
 
 // 练习同步完成后，若当日题数已接近/进入一轮奖励区，稍后探测奖励与“还差 N 题”提醒（等成员结算）
+// ≥10 即刷新：满 10 题当天第一次会触发「+1 鼓励」结算与轻提示；≥11 再进入轮奖励/还差 N 题区。
 function checkPracticeCountReward(){
   if(!authToken) return;
   const log  = getPracticeLog();
   const today = new Date().toISOString().substring(0,10);
   const cnt  = log.filter(e => e.date === today).length;
-  if(cnt >= HINT_MIN) setTimeout(()=> refreshMember(), 2000);
+  if(cnt >= 10) setTimeout(()=> refreshMember(), 2000);
 }
 
 $("#btnAuth").addEventListener("click", e=>{
@@ -2959,6 +2981,7 @@ async function openMemberCenter(){
   updateRewardHintBar();
   checkReward(res);
   checkRewardHint(res);
+  checkEnc10(res);
   refreshSelfLinkBox();
 }
 function renderMemberStatus(m){

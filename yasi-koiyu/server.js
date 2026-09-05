@@ -924,7 +924,9 @@ function apiStateClear(req, res) {
 function apiAdminMe(req, res) {
   const user = auth(req, res);
   if (!user) return;
-  return sendJson(res, { ok: true, username: user.username, role: user.role });
+  const mem = db.prepare('SELECT gold, yd_level FROM membership WHERE user_id = ?').get(user.id) || {};
+  return sendJson(res, { ok: true, username: user.username, role: user.role,
+                          gold: mem.gold || 0, yd_level: mem.yd_level || 0 });
 }
 
 function apiAdminAccounts(req, res) {

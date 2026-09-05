@@ -48,7 +48,7 @@
 <!-- panel -->
 <div id="panel" class="hide">
   <div class="row" style="align-items:center">
-<div><h1>管理员后台</h1><div class="sub">当前管理员：<span id="me"></span></div></div>
+<div><h1>管理员后台</h1><div class="sub">当前管理员：<span id="me"></span>，<span id="adminGold"></span> 金碎片，<span id="adminLevel"></span> 黄钻</div></div>
     <div style="text-align:right"><button class="ghost" onclick="doLogout()">退出登录</button></div>
   </div>
 
@@ -128,6 +128,11 @@ function showLogin(){ $("#login").classList.remove("hide"); $("#panel").classLis
 async function showPanel(name){
   $("#login").classList.add("hide"); $("#panel").classList.remove("hide");
   $("#me").textContent = name;
+  const r = await api("/api/admin/me");
+  if (r.ok){
+    $("#adminGold").textContent = r.gold || 0;
+    $("#adminLevel").textContent = r.yd_level || 0;
+  }
   await loadMyLink(); await loadAccounts(); await loadSmtp();
 }
 async function loadMyLink(){

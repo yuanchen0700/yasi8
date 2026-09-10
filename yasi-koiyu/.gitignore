@@ -54,3 +54,6 @@ frp.log
 *+1-key.pem
 *+1.pem
 *+1.pem.d
+
+# Release artifacts (built locally, not tracked)
+release/

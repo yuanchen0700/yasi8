@@ -21,7 +21,7 @@ sudo systemctl start brand9 && sudo systemctl enable brand9
 
 ## 访问
 - 博客: `http://<IP>:8996/`
-- 管理: `http://<IP>:8996/admin`
+- 管理后台: `http://<IP>:8996/admin.html`
 
 ## 数据库合并（多服务器用户合并）
 
@@ -56,4 +56,4 @@ sudo systemctl restart brand9
 | `merge-db.js` | 多服务器数据库合并脚本 |
 | `deploy/` | TLS 证书 |
 
-详见 [deploy/README_SERVER.md](deploy/README_SERVER.md)
+详见下方「数据库合并」章节。
